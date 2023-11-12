@@ -32,17 +32,23 @@ const getProduct = async (query: string, variables: { handle: string }) => {
 const ProductPage = async (props: any) => {
     const variables = { handle: props.params.handle }
     const product = await getProduct(query, variables)
-    const image = product.images.edges[0].node
+    const image = product.images.edges[0]?.node
 
     return (
         <>
             <div className='flex flex-row'>
                 <div>
-                    <Image
-                        src={image.transformedSrc}
-                        alt={product.altText}
-                        width={500}
-                        height={500} />
+                    {image ?
+                        <Image
+                            src={image.transformedSrc}
+                            alt={product.altText}
+                            width={500}
+                            height={500} />
+                        :
+                        <div className='bg-white w-[500px] h-[500px]'>
+
+                        </div>
+                    }
                 </div>
                 <div>
                     <h1>{product.title}</h1>
