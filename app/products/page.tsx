@@ -2,39 +2,39 @@ import React from 'react'
 import ProductCard from '../components/products/ProductCard'
 import storefront from '@/utils/storefront'
 
-const query = `
-query Products{
-    products(first:6){
-      edges{
-        node {
-          id
-          title
-          handle
-          priceRange{
-            minVariantPrice{
-              amount
+
+const getProducts = async () => {
+  const query =
+    `query Products{
+      products(first:6){
+        edges{
+          node {
+            id
+            title
+            handle
+            priceRange{
+              minVariantPrice{
+                amount
+              }
             }
-          }
-          images(first: 1){
-            edges{
-              node{
-                transformedSrc
-                altText
+            images(first: 1){
+              edges{
+                node{
+                  transformedSrc
+                  altText
+                }
               }
             }
           }
         }
       }
-    }
-  }`
-
-const getProducts = async (query: string, variables = {}) => {
+    }`
   const products = await storefront(query)
   return products.data.products.edges
 }
 
 const ProductsPage = async () => {
-  const products = await getProducts(query)
+  const products = await getProducts()
   return (
     <>
       <div>

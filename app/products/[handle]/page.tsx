@@ -2,36 +2,35 @@ import storefront from '@/utils/storefront'
 import React from 'react'
 import Image from 'next/image'
 
-const query = `
-query SingleProduct($handle: String!){
-  productByHandle(handle: $handle){
-    title
-    description
-    priceRange{
-      minVariantPrice{
-        amount
-      }
-    }
-    images(first: 1){
-      edges{
-        node{
-          transformedSrc
-          altText
+const getProduct = async (variables: { handle: string }) => {
+    const query =
+        `query SingleProduct($handle: String!){
+      productByHandle(handle: $handle){
+        title
+        description
+        priceRange{
+          minVariantPrice{
+            amount
+          }
+        }
+        images(first: 1){
+          edges{
+            node{
+              transformedSrc
+              altText
+            }
+          }
         }
       }
-    }
-  }
-}
-`
+    }`
 
-const getProduct = async (query: string, variables: { handle: string }) => {
     const product = await storefront(query, variables)
     return product.data.productByHandle
 }
 
 const ProductPage = async (props: any) => {
     const variables = { handle: props.params.handle }
-    const product = await getProduct(query, variables)
+    const product = await getProduct(variables)
     const image = product.images.edges[0]?.node
 
     return (
