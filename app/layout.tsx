@@ -1,4 +1,4 @@
-import Navigation from "./components/navigation/navbar"
+import Navigation from "./components/navigation/navbar/Navbar"
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
