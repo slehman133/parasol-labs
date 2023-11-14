@@ -3,10 +3,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 const ProductCard = (props: any) => {
-    console.log(props)
     return (
         <>
-            <div className='w-96 p-5 border-2 overflow-hidden'>
+            <div className='w-96 p-5 border-2 overflow-hidden m-5'>
                 <Link href={`/products/${props.handle}`}>
                     {props.image ?
                         <Image
