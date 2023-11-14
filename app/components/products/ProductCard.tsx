@@ -1,26 +1,24 @@
 import React from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 
 const ProductCard = (props: any) => {
-    console.log(props)
     return (
         <>
-            <div className='w-96 p-5 border-2 overflow-hidden'>
-                <Link href={`/products/${props.handle}`}>
-                    {props.image ?
-                        <Image
-                            width={400}
-                            height={400}
-                            className=''
-                            src={props.image}
-                            alt={props.altText} />
-                        :
-                        <div className='w-96 h-96 bg-white' />
-                    }
-                    <h1>{props.title}</h1>
-                    <p>{props.price}</p>
-                </Link>
+            <div className="card w-96 bg-base-100 shadow-xl m-5">
+                {props.image ?
+                    <figure><img src={props.image} alt={props.altText} /></figure>
+                    :
+                    <figure><img src='/images/no_product_image.png' alt='no product image' /></figure>
+                }
+                <div className="card-body">
+                    <h2 className="card-title">{props.title}</h2>
+                    <p>{props.description}</p>
+                    <div className="card-actions justify-end">
+                        <Link href={`/products/${props.handle}`}>
+                            <button className="btn btn-primary">View</button>
+                        </Link>
+                    </div>
+                </div>
             </div >
         </>
     )
