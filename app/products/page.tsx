@@ -17,6 +17,7 @@ const getProducts = async () => {
                 amount
               }
             }
+            description
             images(first: 1){
               edges{
                 node{
@@ -44,13 +45,14 @@ const ProductsPage = async () => {
           {products.map((e: any) => {
             const item = e.node
             const id = item.id.slice(-13)
+            const description = item.description
             const image = item.images.edges[0]?.node.transformedSrc
             const altText = item.images.edges[0]?.node.altText
             const price = item.priceRange.minVariantPrice.amount
 
             return <ProductCard
               key={item.handle} handle={item.handle} image={image} title={item.title}
-              altText={altText} price={price} />
+              altText={altText} price={price} description={description} />
           })}
         </div>
       </div>
