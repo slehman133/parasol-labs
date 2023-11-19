@@ -52,7 +52,7 @@ const ProductPage = async (props: any) => {
         </div>
         <div className='m-12'>
           <h1 className='font-bold text-5xl'>{product.title}</h1>
-          <h3 className='font-semibold text-xl'>{product.priceRange.minVariantPrice.amount}</h3>
+          <h3 className='font-semibold text-xl'>${product.priceRange.minVariantPrice.amount}</h3>
           <p>{product.description}</p>
           <AddToCart />
         </div>
