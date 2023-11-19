@@ -39,8 +39,6 @@ const ProductsPage = async () => {
   return (
     <>
       <div>
-        <h1>ProductsPage</h1>
-
         <div className='flex flex-wrap'>
           {products.map((e: any) => {
             const item = e.node

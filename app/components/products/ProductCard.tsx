@@ -1,27 +1,28 @@
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const ProductCard = (props: any) => {
     return (
         <>
-            <div className="card w-96 bg-base-100 shadow-xl m-5">
-                {props.image ?
-                    <figure><img src={props.image} alt={props.altText} /></figure>
-                    :
-                    <figure><img src='/images/no_product_image.png' alt='no product image' /></figure>
-                }
-                <div className="card-body">
-                    <h2 className="card-title">{props.title}</h2>
-                    <p>{props.description}</p>
-                    <div className="card-actions justify-end">
-                        <Link href={`/products/${props.handle}`}>
-                            <button className="btn btn-primary">View</button>
+            <div className="flex flex-wrap border-2 border-black flex-row w-[90%] mx-auto my-5 justify-between">
+                <div className='flex flex-col justify-evenly m-5 p-5 gap-3'>
+                    <h2 className="text-5xl font-bold">{props.title}</h2>
+                    <p className='font-semibold'>${props.price}</p>
+                    <div className='h-60 overflow-hidden max-w-5xl'>
+                        <p className='text-clip'>{props.description}</p>
+                    </div>
+                    <div className='flex justify-center'>
+                        <Link className='border-2 border-black hover:bg-blue-600 hover:text-white hover:border-white' href={`/products/${props.handle}`}>
+                            <button className='p-5 px-28'>View</button>
                         </Link>
                     </div>
                 </div>
+                <div className='overflow-hidden max-w-lg'>
+                    <Image className='object-cover w-full h-full' height={9000} width={9000} src={props.image} alt={props.altText} />
+                </div>
             </div >
-        </>
-    )
+        </>)
 }
 
 export default ProductCard
