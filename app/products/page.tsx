@@ -38,7 +38,7 @@ const ProductsPage = async () => {
   const products = await getProducts()
   return (
     <>
-      <div>
+      <div className='text-[var(--text-color)]'>
         <div className='flex flex-wrap'>
           {products.map((e: any) => {
             const item = e.node

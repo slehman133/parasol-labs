@@ -10,9 +10,9 @@ const AddToCart = () => {
 
     return (
         <>
-            <div className='flex flex-col gap-3 my-5'>
+            <div className='flex flex-col gap-3 my-5 text-[var(--text-color)]'>
                 <input
-                    className='h-12 text-xl text-center rounded-full'
+                    className='h-12 text-xl text-center rounded-full bg-white'
                     type="number"
                     value={itemQuantity}
                     onChange={handleQuantityChange}
