@@ -9,6 +9,12 @@ interface ProductPageProps {
   };
 }
 
+export async function generateMetadata({ params }: { params: { handle: string } }) {
+  return {
+    title: `${params.handle} at Parasol Labs`,
+  }
+}
+
 const getProduct = async (variables: { handle: string }) => {
   const query =
     `query SingleProduct($handle: String!){

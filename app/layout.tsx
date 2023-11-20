@@ -1,10 +1,7 @@
-import Navigation from "./components/navigation/navbar/Navbar";
+import Navbar from "./components/navigation/navbar/Navbar";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Link from "next/link";
-import {BsFillPersonFill} from "react-icons/bs"
-import { FiHelpCircle } from "react-icons/fi"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,44 +17,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="backgroundMain">
+      <head>
+        <link rel="icon" type="image/x-icon" href="/images/favicon.ico"></link>
+      </head>
       <body className={inter.className}>
-        <div className="navbar bg-white">
-          <div className="navbar-start bg-white">
-            <Link href="/">
-            <p className="btn btn-ghost">
-              <span className="changeletter">Home</span>
-            </p>
-            </Link>
-            <Link href="/about">
-            <p className="btn btn-ghost ">
-              <span className="changeletter">About</span>
-            </p>
-            </Link>
-            <Link href="/news">
-            <p className="btn btn-ghost">
-              <span className="changeletter">News</span>
-            </p>
-            </Link>
-            <Link href="/team">
-            <p className="btn btn-ghost">
-              <span className="changeletter">Team</span>
-            </p>
-            </Link>
-            <Link href="/products">
-            <p className="btn btn-ghost ">
-              <span className="changeletter">Shop</span>
-            </p>
-            </Link>
-          </div>
-          <Link href="/">
-          <div className="navbar-center">
-            <p className="btn btn-ghost text-2xl">Parasol <span className="changeletter">Labs</span></p>
-          </div>
-          </Link>
-          <div className="navbar-end">
-            <a className="btn btn-ghost btn-circle"></a>
-          </div>
-        </div>
+        <Navbar />
         {children}
       </body>
     </html>

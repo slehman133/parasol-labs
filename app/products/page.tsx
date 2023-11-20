@@ -3,6 +3,12 @@ import ProductCard from '../components/products/ProductCard'
 import storefront from '@/utils/storefront'
 
 
+export async function generateMetadata() {
+  return {
+    title: 'Products from Parasol Labs',
+  }
+}
+
 const getProducts = async () => {
   const query =
     `query Products{
@@ -29,7 +35,8 @@ const getProducts = async () => {
           }
         }
       }
-    }`
+    }
+    `
   const products = await storefront(query)
   return products.data.products.edges
 }
