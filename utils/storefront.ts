@@ -1,19 +1,20 @@
 const storefront = async (query: string, variables = {}) => {
+
+    const storefrontAPIUrl = process.env.NEXT_PUBLIC_API_URL || ""
+
     const response = await fetch(
-        // error for some reason but it still works
-        process.env.NEXT_PUBLIC_API_URL,
+        storefrontAPIUrl,
         {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "X-Shopify-Storefront-Access-Token": process.env.NEXT_PUBLIC_ACCESS_TOKEN,
+                "X-Shopify-Storefront-Access-Token": process.env.NEXT_PUBLIC_ACCESS_TOKEN || "",
 
             },
             body: JSON.stringify({
                 query, variables
             })
-        }, { cache: 'no-store' }
-    ).then(res => res.json())
+        }).then(res => res.json())
 
     return response
 }
