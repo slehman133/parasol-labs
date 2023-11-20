@@ -2,7 +2,17 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
-const ProductCard = (props: any) => {
+interface ProductCardProps {
+    key: string;
+    handle: string;
+    image: string;
+    title: string;
+    altText: string;
+    price: number;
+    description: string;
+}
+
+const ProductCard = (props: ProductCardProps) => {
     return (
         <>
             <div className="flex flex-wrap border-2 border-black flex-row w-[90%] mx-auto my-5 justify-between text-[var(--text-color)]">

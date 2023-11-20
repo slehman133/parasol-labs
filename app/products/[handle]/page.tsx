@@ -3,6 +3,12 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import AddToCart from '../../components/products/AddToCart'
 
+interface ProductPageProps {
+  params: {
+    handle: string;
+  };
+}
+
 const getProduct = async (variables: { handle: string }) => {
   const query =
     `query SingleProduct($handle: String!){
@@ -29,7 +35,7 @@ const getProduct = async (variables: { handle: string }) => {
   return product.data.productByHandle
 }
 
-const ProductPage = async (props: any) => {
+const ProductPage = async (props: ProductPageProps) => {
   const variables = { handle: props.params.handle }
   const product = await getProduct(variables)
   const image = product.images.edges[0]?.node
