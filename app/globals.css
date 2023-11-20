@@ -1,27 +1,113 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url(https://fonts.googleapis.com/css?family=Exo);
+@import url(https://fonts.googleapis.com/css?family=Exo_2);
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+    --text-color: black;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+html {
+    --line-color: #e5e7eb;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.form-container {
+    display: flex;
+
+}
+
+.form {
+    width: 50%;
+}
+
+.borderBlack {
+    @apply border border-black/10;
+}
+
+.backgroundMain {
+    background: linear-gradient(180deg, #FFFFFF, #FFFFFF, #F5F5F5, #D9D9D9 50%);
+    background-attachment: fixed;
+}
+
+.split {
+    height: 50%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.right {
+    right: 0;
+}
+
+.left {
+    left: 0;
+}
+
+.topSection {
+    top: 0;
+    height: 50%;
+    width: 100%;
+    position: fixed;
+}
+
+.bottomSection {
+    bottom: 0;
+    height: 50%;
+    width: 100%;
+    position: fixed;
+}
+
+.leftSection {
+    left: 50%;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+}
+
+.rightSection {
+    right: 50%;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+}
+
+.changeletter::first-letter {
+    color: orange;
+}
+
+.navbar {
+    border-radius: 30px;
+    width: 98%;
+    margin: auto;
+    padding: 10px;
+}
+
+.navbar .btn {
+    font-size: medium;
+    color: black;
+    border: none;
+    background: none;
+}
+
+.navbar-center .btn {
+    text-align: center;
+    font-size: xx-large;
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-end .btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
 }
