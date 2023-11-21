@@ -1,4 +1,4 @@
-import storefront from '@/utils/storefront'
+import { getProduct } from '@/utils/storefront'
 import React, { useState } from 'react'
 import Image from 'next/image'
 import AddToCart from '../../components/products/AddToCart'
@@ -13,32 +13,6 @@ export async function generateMetadata({ params }: { params: { handle: string } 
   return {
     title: `${params.handle} at Parasol Labs`,
   }
-}
-
-const getProduct = async (variables: { handle: string }) => {
-  const query =
-    `query SingleProduct($handle: String!){
-      productByHandle(handle: $handle){
-        title
-        description
-        priceRange{
-          minVariantPrice{
-            amount
-          }
-        }
-        images(first: 1){
-          edges{
-            node{
-              transformedSrc
-              altText
-            }
-          }
-        }
-      }
-    }`
-
-  const product = await storefront(query, variables)
-  return product.data.productByHandle
 }
 
 const ProductPage = async (props: ProductPageProps) => {
