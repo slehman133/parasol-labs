@@ -39,7 +39,9 @@ const Navbar = () => {
           </div>
         </Link>
         <div className="navbar-end">
-          <a className="btn btn-ghost btn-circle"></a>
+          {/* <a className="btn btn-ghost btn-circle bg-black"></a> */}
+          <Link className='m-2' href={"/api/auth/signin"}>Log In</Link>
+          <Link className='m-2' href={"/account/signup"}>Sign Up</Link>
         </div>
       </div>
     </>
