@@ -3,16 +3,15 @@
 import { useCart, CartItem } from '@/app/context/CartContext';
 import React from 'react';
 
+const calcTotalPrice = (items: CartItem[]): number => {
+    let total = 0
+    items.map((e: CartItem) => {
+        total += Number(e.price * e.quantity)
+    })
+    return total
+}
 const CheckOutPage = () => {
     const { cartItems, clearCart } = useCart();
-
-    const calcTotalPrice = (items: CartItem[]): number => {
-        let total = 0
-        items.map((e: CartItem) => {
-            total += Number(e.price * e.quantity)
-        })
-        return total
-    }
 
     return (
         <>
@@ -21,7 +20,7 @@ const CheckOutPage = () => {
                 <div className='text-black'>
                     {cartItems.length > 0 ? (
                         <>
-                            <h1 className='text-3xl text-black ml-[25.25rem]'>Total Price: ${calcTotalPrice(cartItems)}</h1>
+                            <h1 className='text-xl text-black ml-[25.25rem]'>Total Price: ${calcTotalPrice(cartItems)}</h1>
                             {cartItems.map((cart, index) => (
                                 <div key={index} className='flex flex-row border-2 border-black max-w-5xl overflow-hidden mx-auto my-5'>
                                     <div className='max-w-sm'>
