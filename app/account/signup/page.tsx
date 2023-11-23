@@ -12,13 +12,14 @@ const SignUpPage = () => {
         firstName: "",
         lastName: "",
         password: "",
+        confirmPassword: "",
     })
 
 
     return (
         <>
-            <div className=''>
-                <form className='flex flex-col max-w-xl mx-auto my-40 p-5'
+            <div className='text-black'>
+                <form className='flex flex-col max-w-xl mx-auto my-40 p-5 gap-3'
                     onSubmit={async (e) => {
                         e.preventDefault();
                         const res = await fetch("/api/user", {
@@ -29,27 +30,30 @@ const SignUpPage = () => {
                         router.push("/api/auth/signin")
                     }}>
                     <label>Email</label>
-                    <input type="text" id="email"
+                    <input className='bg-white text-black' type="text"
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         value={formData.email} />
 
-                    <label htmlFor="">First Name
+                    <label>First Name
                     </label>
-                    <input type="text"
+                    <input className='bg-white text-black' type="text"
                         onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                         value={formData.firstName} />
 
-                    <label htmlFor="">Last Name
-                    </label>
-                    <input type="text"
+                    <label>Last Name</label>
+                    <input className='bg-white text-black' type="text"
                         onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                         value={formData.lastName} />
 
-                    <label htmlFor="">Password
-                    </label>
-                    <input type="password"
+                    <label htmlFor="">Password</label>
+                    <input className='bg-white text-black' type="password"
                         onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                         value={formData.password} />
+
+                    <label htmlFor="">Confirm Password</label>
+                    <input className='bg-white text-black' type="password"
+                        onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+                        value={formData.confirmPassword} />
 
                     <input className='btn btn-primary my-5' type="submit" value="Submit" />
                 </form>

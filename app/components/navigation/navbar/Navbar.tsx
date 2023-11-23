@@ -1,8 +1,12 @@
+'use client'
+
 import React from "react";
 import Link from "next/link";
+import { useCart } from "@/app/context/CartContext";
 
 
 const Navbar = () => {
+  const { cartItems } = useCart()
   return (
     <>
       <div className="navbar bg-white">
@@ -42,6 +46,15 @@ const Navbar = () => {
           {/* <a className="btn btn-ghost btn-circle bg-black"></a> */}
           <Link className='m-2' href={"/api/auth/signin"}>Log In</Link>
           <Link className='m-2' href={"/account/signup"}>Sign Up</Link>
+          <div className="relative">
+            {
+              cartItems.length > 0 &&
+              <div className="absolute right-0 top-0 z-10 bg-red-500 rounded text-white p-[0.1rem]">
+                <p>{cartItems.length}</p>
+              </div>
+            }
+            <Link className='m-2' href={"/account/checkout"}><img className='max-h-7' src="/images/cart.png" /></Link>
+          </div>
         </div>
       </div>
     </>

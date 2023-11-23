@@ -1,7 +1,9 @@
 import Navbar from "./components/navigation/navbar/Navbar";
+import { CartProvider } from "./context/CartContext";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,8 +23,10 @@ export default function RootLayout({
         <link rel="icon" type="image/x-icon" href="/images/favicon.ico"></link>
       </head>
       <body className={inter.className}>
-        <Navbar />
-        {children}
+        <CartProvider>
+          <Navbar />
+          {children}
+        </CartProvider>
       </body>
     </html>
   );

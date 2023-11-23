@@ -1,5 +1,5 @@
 import { getProduct } from '@/utils/storefront'
-import React, { useState } from 'react'
+import React from 'react'
 import Image from 'next/image'
 import AddToCart from '../../components/products/AddToCart'
 
@@ -19,6 +19,7 @@ const ProductPage = async (props: ProductPageProps) => {
   const variables = { handle: props.params.handle }
   const product = await getProduct(variables)
   const image = product.images.edges[0]?.node
+
 
   return (
     <>
@@ -40,7 +41,7 @@ const ProductPage = async (props: ProductPageProps) => {
           <h1 className='font-bold text-5xl'>{product.title}</h1>
           <h3 className='font-semibold text-xl'>${product.priceRange.minVariantPrice.amount}</h3>
           <p>{product.description}</p>
-          <AddToCart />
+          <AddToCart name={product.title} handle={product.handle} price={product.priceRange.minVariantPrice.amount} image={image.transformedSrc} />
         </div>
       </div>
     </>
