@@ -10,13 +10,12 @@ const calcTotalPrice = (items: CartItem[]): number => {
     })
     return total
 }
-const CheckOutPage = () => {
+const CartPage = () => {
     const { cartItems, clearCart } = useCart();
-
     return (
         <>
             <div className='m-10'>
-                <h1 className='text-5xl text-black ml-[25rem]'>Checkout</h1>
+                <h1 className='text-5xl text-black ml-[25rem]'>Cart</h1>
                 <div className='text-black'>
                     {cartItems.length > 0 ? (
                         <>
@@ -38,7 +37,7 @@ const CheckOutPage = () => {
                                 <button className='btn btn-primary' onClick={(e) => {
                                     e.preventDefault();
                                     clearCart();
-                                }}>Confirm Order</button>
+                                }}>Proceed To Checkout</button>
                             </div>
                         </>
                     ) : (
@@ -52,4 +51,4 @@ const CheckOutPage = () => {
     );
 };
 
-export default CheckOutPage;
+export default CartPage;

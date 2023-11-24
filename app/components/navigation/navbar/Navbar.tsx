@@ -53,7 +53,9 @@ const Navbar = () => {
                 <p>{cartItems.length}</p>
               </div>
             }
-            <Link className='m-2' href={"/account/checkout"}><img className='max-h-7' src="/images/cart.png" /></Link>
+            <Link className='m-2' href={"/account/cart"}>
+              <img className='max-h-7' src="/images/cart.png" />
+            </Link>
           </div>
         </div>
       </div>
