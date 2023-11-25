@@ -26,7 +26,7 @@ export function useCart(): CartContextProps {
 }
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
-    const inStorage = localStorage.getItem('productsInCart')
+    const inStorage = typeof window !== 'undefined' ? localStorage.getItem('productsInCart') : null
     const productsInCart = inStorage ? JSON.parse(inStorage) : []
     const [cartItems, setCartItems] = useState<CartItem[]>(productsInCart);
 
