@@ -20,15 +20,15 @@ const CartPage = () => {
                     {cartItems.length > 0 ? (
                         <>
                             <h1 className='text-xl text-black ml-[25.25rem]'>Total Price: ${calcTotalPrice(cartItems)}</h1>
-                            {cartItems.map((cart, index) => (
+                            {cartItems.map((item, index) => (
                                 <div key={index} className='flex flex-row border-2 border-black max-w-5xl overflow-hidden mx-auto my-5'>
                                     <div className='max-w-sm'>
-                                        <img src={cart.image} alt={cart.name} />
+                                        <img src={item.image} alt={item.name} />
                                     </div>
                                     <div className='p-5'>
-                                        <h1 className='font-bold text-2xl'>{cart.name}</h1>
-                                        <p>Quantity: {cart.quantity}</p>
-                                        <p>Total Price: ${cart.price * cart.quantity}</p>
+                                        <h1 className='font-bold text-2xl'>{item.name}</h1>
+                                        <p>Quantity: {item.quantity}</p>
+                                        <p>Total Price: ${(item.price * item.quantity).toFixed(2)}</p>
                                     </div>
                                 </div>
                             ))}

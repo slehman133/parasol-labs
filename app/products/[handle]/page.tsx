@@ -28,7 +28,7 @@ const ProductPage = async (props: ProductPageProps) => {
           {image ?
             <Image
               src={image.transformedSrc}
-              alt={product.altText}
+              alt={image.altText}
               width={8000}
               height={8000} />
             :
