@@ -3,12 +3,12 @@
 import { useCart, CartItem } from '@/app/context/CartContext';
 import React from 'react';
 
-const calcTotalPrice = (items: CartItem[]): number => {
+const calcTotalPrice = (items: CartItem[]): string => {
     let total = 0
     items.map((e: CartItem) => {
         total += Number(e.price * e.quantity)
     })
-    return total
+    return total.toFixed(2)
 }
 const CartPage = () => {
     const { cartItems, clearCart } = useCart();
