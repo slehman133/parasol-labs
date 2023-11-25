@@ -24,8 +24,6 @@ const ProductsPage = async () => {
             const altText = item.images.edges[0]?.node.altText
             const price = item.priceRange.minVariantPrice.amount
 
-            console.log(altText)
-
             return <ProductCard
               key={item.handle} handle={item.handle} image={image} title={item.title}
               altText={altText} price={price} description={description} />
