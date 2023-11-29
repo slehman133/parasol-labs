@@ -1,12 +1,13 @@
+
 import Navbar from "./components/navigation/navbar/Navbar";
-import { CartProvider } from "./context/CartContext";
-import Provider from "./context/ClientProvider";
+import Footer from "./components/navigation/footer/Footer";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { CartProvider } from "./context/CartContext";
+import Provider from "./context/ClientProvider";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/utils/authOptions";
-
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,17 +24,20 @@ export default async function RootLayout({
   const session = await getServerSession(authOptions)
   return (
     <html lang="en" className="backgroundMain">
-      <head>
+      <head >
         <link rel="icon" type="image/x-icon" href="/images/favicon.ico"></link>
+
+
       </head>
-      <body className={inter.className}>
-        <Provider session={session}>
+        <body className={inter.className}>
+          <Provider session={session}>
           <CartProvider>
             <Navbar />
-            {children}
+              {children}
+            <Footer></Footer>
           </CartProvider>
-        </Provider>
-      </body>
+          </Provider>
+        </body>
     </html>
   );
 }
