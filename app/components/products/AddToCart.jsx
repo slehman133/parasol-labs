@@ -9,6 +9,7 @@ const AddToCart = (props) => {
         handle: props.handle,
         quantity: 1,
         image: props.image,
+        variantId: props.variantId,
     })
     const { addToCart } = useCart()
 
