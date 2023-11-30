@@ -4,12 +4,14 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="footer p-10 bg-base-200">
-      <aside>
-        <div className="sm:flex sm:items-center sm:justify-between">
+      <aside className="border-r-2 pr-10">
+        <div className="sm:flex sm:items-center justify-center mx-auto">
           <img className="align-middle" src="/images/logo.png" height="75px" width="75px" />
         </div>
-        <p className="smalltext">Parasol Labs Incorporated © 2023</p>
+        <p className="smalltext ">Parasol Labs Incorporated © 2023</p>
+        <br />
       </aside>
+
       <nav>
         <header className="footer-title">Company</header>
         <a className="link link-hover">Mission Statement</a>
