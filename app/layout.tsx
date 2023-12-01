@@ -32,7 +32,7 @@ export default async function RootLayout({
         <body className={inter.className}>
           <Provider session={session}>
           <CartProvider>
-            <Navbar />
+            <Navbar/>
               {children}
             <Footer></Footer>
           </CartProvider>

@@ -8,6 +8,8 @@
     --text-color: black;
 }
 
+
+
 html {
     --line-color: #e5e7eb;
 }
@@ -27,7 +29,7 @@ html {
 
 .backgroundMain {
     background: linear-gradient(180deg, #FFFFFF, #FFFFFF, #F5F5F5, #D9D9D9 50%);
-    background-attachment: fixed;
+    background-attachment: scroll;
 }
 
 .split {
@@ -48,6 +50,24 @@ html {
     left: 0;
 }
 
+.fullImage{
+    object-fit: cover;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    object-position: center center;
+    transform-origin: center center;
+}
+.resizeableImage {
+    object-fit: cover;
+    object-position: center center;
+    transform-origin: center center;
+    height: 100%;
+    width: 100%;
+    opacity: 80%;
+}
+
 .topSection {
     top: 0;
     height: 50%;
@@ -61,19 +81,24 @@ html {
     width: 100%;
     position: fixed;
 }
-
-.leftSection {
-    left: 50%;
-    position: fixed;
-    height: 100%;
-    width: 100%;
+.content{
+    max-width: 1500px;
+    margin:auto;
+    padding: 5%;
+    text-align: center;
+    object-position: center center;
+    transform-origin: center center;
 }
-
-.rightSection {
-    right: 50%;
-    position: fixed;
-    height: 100%;
-    width: 100%;
+.column {
+    float: left;
+    width: 50%;
+    object-position: center center;
+    transform-origin: center center;
+}
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
 .changeletter::first-letter {
@@ -81,10 +106,15 @@ html {
 }
 
 .navbar {
-    border-radius: 30px;
+    border-radius: 10px;
     width: 98%;
+    height: 3%;
     margin: auto;
     padding: 10px;
+    margin-left: 1%;
+    position: fixed;
+    object-position: center center;
+    transform-origin: center center;
 }
 
 .navbar .btn {
@@ -113,11 +143,4 @@ html {
 }
 .smalltext {
     font-size: xx-small;
-}
-
-.centerimage{
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: -100px;
 }
