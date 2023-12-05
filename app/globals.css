@@ -5,166 +5,180 @@
 @import url(https://fonts.googleapis.com/css?family=Exo_2);
 
 :root {
-    --text-color: black;
+  --text-color: black;
 }
 
-
-
+body {
+  font-family: "Exo";
+}
+h1 {
+  font-family: "Exo_2";
+}
+p {
+  font-family: "Exo";
+}
 html {
-    --line-color: #e5e7eb;
+  --line-color: #e5e7eb;
 }
 
 .form-container {
-    display: flex;
-
+  display: flex;
 }
 
 .form {
-    width: 50%;
+  width: 50%;
 }
 
 .borderBlack {
-    @apply border border-black/10;
+  @apply border border-black/10;
 }
 
 .backgroundMain {
-    background: linear-gradient(180deg, #FFFFFF, #F5F5F5, #D9D9D9 60%, #626262);
-    background-attachment: scroll;
+  background: linear-gradient(180deg, #ffffff, #f5f5f5, #d9d9d9 60%, #626262);
+  background-attachment: scroll;
 }
 .backgroundMainReversal {
-    background: linear-gradient(180deg, #626262, #D9D9D9 60%, #F5F5F5, #FFFFFF)
+  background: linear-gradient(180deg, #626262, #d9d9d9 60%, #f5f5f5, #ffffff);
 }
 
 .split {
-    height: 50%;
-    width: 50%;
-    position: fixed;
-    z-index: 1;
-    bottom: 0;
-    overflow-x: hidden;
-    padding-top: 20px;
+  height: 50%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
 }
 
 .right {
-    right: 0;
+  right: 0;
 }
 
 .left {
-    left: 0;
+  left: 0;
 }
 
-.fullImage{
-    object-fit: cover;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    object-position: center center;
-    transform-origin: center center;
+.fullImage {
+  object-fit: cover;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  object-position: center center;
+  transform-origin: center center;
 }
 .resizeableImage {
-    z-index: 0;
-    object-fit: cover;
-    object-position: center center;
-    transform-origin: center center;
-    height: 100%;
-    width: 100%;
-    opacity: 80%;
+  z-index: 0;
+  object-fit: cover;
+  object-position: center center;
+  transform-origin: center center;
+  height: 100%;
+  width: 100%;
+  opacity: 80%;
 }
 
 .topSection {
-    top: 0;
-    height: 50%;
-    width: 100%;
-    position: fixed;
+  top: 0;
+  height: 50%;
+  width: 100%;
+  position: fixed;
 }
 
 .bottomSection {
-    bottom: 0;
-    height: 50%;
-    width: 100%;
-    position: fixed;
+  bottom: 0;
+  height: 50%;
+  width: 100%;
+  position: fixed;
 }
-.content{
-    max-width: 1500px;
-    margin:auto;
-    padding: 5%;
-    text-align: center;
-    object-position: center center;
-    transform-origin: center center;
-}
-
-.mainTextPrompt{
-    text-align: left;
-    color: black;
-}
-h1::after{
-    content: attr(data-end) ;
-    color: orange;
+.content {
+  max-width: 1500px;
+  margin: auto;
+  padding: 5%;
+  text-align: center;
+  object-position: center center;
+  transform-origin: center center;
 }
 
-.centerText{
-    text-align: center;
+.mainTextPrompt {
+  text-align: left;
+  color: black;
 }
-.rightText{
-    text-align: right;
+h1::after {
+  content: attr(data-end);
+  color: orange;
+}
+
+.middleline{
+  background-image: linear-gradient(#f1f1f1, #f1f1f1);
+  background-size: 3px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.centerText {
+  text-align: center;
+}
+.rightText {
+  text-align: right;
+}
+.leftText {
+  text-align: left;
 }
 
 .column {
-    float: left;
-    width: 50%;
-    object-position: center center;
-    transform-origin: center center;
+  float: left;
+  width: 50%;
+  object-position: center center;
+  transform-origin: center center;
 }
+
 .row::after {
-    content: "";
-    display: table;
-    clear: both;
+  content: "";
+  display: table;
+  clear: both;
 }
 
 .changeletter::first-letter {
-    color: orange;
-}
-.changeletter::last-letter{
-
+  color: orange;
 }
 .navbar {
-    z-index: 10;
-    border-radius: 10px;
-    width: 98%;
-    height: 2%;
-    margin: auto;
-    padding: 10px;
-    margin-left: 1%;
-    position: fixed;
-    object-position: center center;
-    transform-origin: center center;
+  z-index: 10;
+  border-radius: 10px;
+  width: 98%;
+  height: 2%;
+  margin: auto;
+  padding: 10px;
+  margin-left: 1%;
+  position: fixed;
+  object-position: center center;
+  transform-origin: center center;
 }
 
 .navbar .btn {
-    font-size: medium;
-    color: black;
-    border: none;
-    background: none;
+  font-size: medium;
+  color: black;
+  border: none;
+  background: none;
 }
 
 .navbar-center .btn {
-    text-align: center;
-    font-size: xx-large;
-    border: none;
-    background: none;
-    cursor: pointer;
-    margin: 0;
-    padding: 0;
+  text-align: center;
+  font-size: xx-large;
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
 }
 
 .navbar-end .btn {
-    border: none;
-    background: none;
-    cursor: pointer;
-    margin: 0;
-    padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
 }
 .smalltext {
-    font-size: xx-small;
+  font-size: xx-small;
 }
