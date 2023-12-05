@@ -28,8 +28,11 @@ html {
 }
 
 .backgroundMain {
-    background: linear-gradient(180deg, #FFFFFF, #FFFFFF, #F5F5F5, #D9D9D9 50%);
+    background: linear-gradient(180deg, #FFFFFF, #F5F5F5, #D9D9D9 60%, #626262);
     background-attachment: scroll;
+}
+.backgroundMainReversal {
+    background: linear-gradient(180deg, #626262, #D9D9D9 60%, #F5F5F5, #FFFFFF)
 }
 
 .split {
@@ -60,6 +63,7 @@ html {
     transform-origin: center center;
 }
 .resizeableImage {
+    z-index: 0;
     object-fit: cover;
     object-position: center center;
     transform-origin: center center;
@@ -89,6 +93,23 @@ html {
     object-position: center center;
     transform-origin: center center;
 }
+
+.mainTextPrompt{
+    text-align: left;
+    color: black;
+}
+h1::after{
+    content: attr(data-end) ;
+    color: orange;
+}
+
+.centerText{
+    text-align: center;
+}
+.rightText{
+    text-align: right;
+}
+
 .column {
     float: left;
     width: 50%;
@@ -104,11 +125,14 @@ html {
 .changeletter::first-letter {
     color: orange;
 }
+.changeletter::last-letter{
 
+}
 .navbar {
+    z-index: 10;
     border-radius: 10px;
     width: 98%;
-    height: 3%;
+    height: 2%;
     margin: auto;
     padding: 10px;
     margin-left: 1%;

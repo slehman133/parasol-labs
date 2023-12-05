@@ -29,15 +29,18 @@ export default async function RootLayout({
 
 
       </head>
-        <body className={inter.className}>
-          <Provider session={session}>
+      <header>
+        <Provider session={session}>
           <CartProvider>
-            <Navbar/>
-              {children}
-            <Footer></Footer>
+            <Navbar />
           </CartProvider>
-          </Provider>
-        </body>
+        </Provider>
+      </header>
+      <body className={inter.className}>
+
+        {children}
+        <Footer></Footer>
+      </body>
     </html>
   );
 }

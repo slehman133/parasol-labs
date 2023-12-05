@@ -9,7 +9,7 @@ const Navbar = () => {
   return (
     <>
       <header>
-        <div className="navbar bg-white fixed top-3">
+        <div className="navbar bg-white fixed top-2">
           <div className="navbar-start bg-white">
             <Link href="/">
               <p className="btn btn-ghost">
