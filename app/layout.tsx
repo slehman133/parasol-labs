@@ -1,13 +1,17 @@
 import Navbar from "./components/navigation/navbar/Navbar";
-import { CartProvider } from "./context/CartContext";
-import Provider from "./context/ClientProvider";
+import Footer from "./components/navigation/footer/Footer";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Exo_2, Inter } from "next/font/google";
+import { CartProvider } from "./context/CartContext";
+import Provider from "./context/ClientProvider";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/utils/authOptions";
+import { Exo } from "next/font/google";
 
-
+const exo = Exo_2({
+  subsets: ["latin"],
+});
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -20,9 +24,9 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession(authOptions)
+  const session = await getServerSession(authOptions);
   return (
-    <html lang="en" className="backgroundMain">
+    <html lang="en" className="backgroundMain ">
       <head>
         <link rel="icon" type="image/x-icon" href="/images/favicon.ico"></link>
       </head>
@@ -30,9 +34,10 @@ export default async function RootLayout({
         <Provider session={session}>
           <CartProvider>
             <Navbar />
-            {children}
           </CartProvider>
         </Provider>
+        {children}
+        <Footer></Footer>
       </body>
     </html>
   );
