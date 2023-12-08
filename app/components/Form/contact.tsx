@@ -1,6 +1,23 @@
+'use client';
+
 import React from "react";
+import { useForm } from 'react-hook-form';
+import { sendEmail } from "@/utils/email";
+
+
+export type FormData = {
+  subject: string;
+  email: string;
+  message: string;
+}
 
 export default function Contact() {
+  const { register, handleSubmit } = useForm<FormData>();
+  
+  function onSubmit(data: FormData) {
+    sendEmail(data);
+  }
+
   return (
     <section
       id="contact"

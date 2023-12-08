@@ -17,16 +17,16 @@ export default function Footer() {
       </aside>
       <nav >
         <header className="footer-title">Company</header>
-        <a className="link link-hover">Mission Statement</a>
-        <a className="link link-hover">Operational Statement</a>
-        <a className="link link-hover">Branding</a>
-        <a className="link link-hover">Terms & Policies</a>
+        <Link href="" className="link link-hover">Mission Statement</Link>
+        <Link href="" className="link link-hover">Operational Statement</Link>
+        <Link href="" className="link link-hover">News</Link>
+        <Link href="" className="link link-hover">Terms & Policies</Link>
       </nav>
       <nav >
         <header className="footer-title">Research</header>
-        <a className="link link-hover">Philosophy</a>
-        <a className="link link-hover">Liquid Sterilization</a>
-        <a className="link link-hover">R&D Pipeline</a>
+        <Link href="/" className="link link-hover">Products</Link>
+        <Link href="/" className="link link-hover">Liquid Sterilization</Link>
+        <Link href="/" className="link link-hover">R&D Pipeline</Link>
       </nav>
       <nav>
         <header className="footer-title">Social</header>

@@ -38,11 +38,11 @@ export default function Home() {
             </div>
           </section>
         </div>
-        <section className="border-t-white border-b-2">
+        <section className="border-t-white">
           <img className="fullImage" src="/images/strl.jpg" />
         </section>
         <div className="backgroundMainReversal h-48 border-t-gray ">
-          <section className="content border-b-2 border-t-gray"></section>
+          <section className="content border-b-2 "></section>
         </div>
         <div className="border-t-gray border-2 bg-white middleline">
           <section className="border-t-gray-500">
@@ -61,27 +61,26 @@ export default function Home() {
                 <div className="content grid grid-cols-3 gap-12 content-center">
                   <div className="border-2 border-gray-500 rounded-md text-left">
                     <div className="grid grid-cols-2 gap-12 place-content-between">
-                      <h1 className="font-bold text-black text-3xl">
+                      <p className="w-auto min-w-fit resize-x font-bold text-black text-3xl break-words flex-auto">
                         Get Support
-                      </h1>
+                      </p>
                       <div className="bg-orange-400 h-2 w-12 mx-auto"></div>
                     </div>
-                    <p className="text-gray-500">
+                    <p className="text-gray-500 break-words">
                       <br />
                       Need a hand? Fill out the form or use the self-serve in
                       our Help Center.
                     </p>
                   </div>
-                  <div className="border-2 border-gray-500 rounded-md text-left">
-                    <div className="grid grid-cols-2 gap-12 place-content-between">
-                      <h1 className="font-bold text-black text-3xl">
-                        Partnership
-                        <br />
-                        Inquiries
-                      </h1>
-                      <div className="bg-purple-400 h-2 w-12 mx-auto"></div>
+                  <div className="border-2 border-gray-500 rounded-md text-left ">
+                    <div className="grid grid-cols-2 gap-12 place-content-between ">
+                      <p className="w-auto font-bold text-black text-3xl break-normal ">
+                        Partnership 
+                        <br/>Inquiries
+                      </p>
+                      <div className="bg-purple-400 h-2 w-12 mx-auto resize "></div>
                     </div>
-                    <p className="text-gray-500">
+                    <p className="text-gray-500 break-words">
                       <br />
                       Lets work and grow together. Fill out the forms and our
                       partnership manager will reach out to you.
@@ -89,14 +88,14 @@ export default function Home() {
                   </div>
                   <div className="border-2 border-gray-500 rounded-md text-left">
                     <div className="grid grid-cols-2 gap-12 place-content-between">
-                      <h1 className="font-bold text-black text-3xl">
+                      <p className="font-bold text-black text-3xl break-words truncate ... w-max">
                         General
                         <br />
                         Inquiries
-                      </h1>
+                      </p>
                       <div className="bg-green-200 h-2 w-12 mx-auto"></div>
                     </div>
-                    <p className="">
+                    <p className="text-gray-500 break-words ">
                       <br />
                       Need more information? Have an inquiry for an issue? We're
                       here to help. Fill out our form and we will get in touch.

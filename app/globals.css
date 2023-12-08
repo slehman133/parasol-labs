@@ -10,6 +10,12 @@
 
 body {
   font-family: "Exo";
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+footer{
+  margin-top: auto;
 }
 h1 {
   font-family: "Exo_2";
