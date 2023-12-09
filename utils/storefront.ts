@@ -26,6 +26,13 @@ const getProduct = async (variables: { handle: string }) => {
         title
         handle
         description
+        variants(first: 1){
+          edges{
+            node{
+              id
+            }
+          }
+        }
         priceRange{
           minVariantPrice{
             amount
@@ -78,5 +85,30 @@ const getProducts = async () => {
   return products.data.products.edges
 }
 
+const createCheckout = async (variantId: string, quantity: number) => {
+  const query = `
+  mutation CheckoutCreate($variantId: ID!, $quantity: Int!){
+    checkoutCreate(input:{
+      lineItems:{
+        variantId: $variantId,
+        quantity: $quantity
+      }
+    }){
+      checkout{
+        webUrl
+      }
+    }
+  }
+  `
+  const variables =
+  {
+    "variantId": variantId,
+    "quantity": quantity
+  }
+
+  const checkout = await storefront(query, variables)
+  return checkout
+}
+
 export default storefront
-export { getProduct, getProducts }
+export { getProduct, getProducts, createCheckout }

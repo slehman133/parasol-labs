@@ -7,12 +7,16 @@ export interface CartItem {
     price: number;
     image: string;
     quantity: number;
+    variantId: {
+        id: string
+    };
 }
 
 interface CartContextProps {
     addToCart: (item: CartItem) => void;
     cartItems: CartItem[];
     clearCart: () => void;
+    removeFromCart: (item: CartItem) => void;
 }
 
 const CartContext = createContext<CartContextProps | undefined>(undefined);
@@ -38,6 +42,11 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         setCartItems([...cartItems, item]);
     };
 
+    const removeFromCart = (item: CartItem) => {
+        const newCartItems = cartItems.filter((e) => e !== item)
+        setCartItems(newCartItems)
+    }
+
     const clearCart = () => {
         setCartItems([]);
     };
@@ -46,6 +55,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         addToCart,
         cartItems,
         clearCart,
+        removeFromCart,
     };
 
     return (
