@@ -24,8 +24,8 @@ const ProductPage = async (props: ProductPageProps) => {
 
   return (
     <>
-      <div className='flex flex-row text-[var(--text-color)] m-12 mt-auto'>
-        <div className='m-5'>
+      <div className='flex flex-row text-[var(--text-color)] m-12 mb-auto'>
+        <div className='m-5 mb-auto'>
           {image ?
             <Image
               src={image.transformedSrc}

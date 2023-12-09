@@ -12,7 +12,7 @@ const ProductsPage = async () => {
   const products = await getProducts();
   return (
     <>
-      <div className="mt-auto text-[var(--text-color)]">
+      <div className="text-[var(--text-color)] mb-auto mt-24">
         <div className="flex flex-wrap">
           {products.map((e: any) => {
             const item = e.node;

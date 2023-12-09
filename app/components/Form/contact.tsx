@@ -29,20 +29,20 @@ export default function Contact() {
             <span className="label-text">Subject</span>
           </div>
           <input
-            className="input input-bordered input-ghost bg-transparent border-black border"
+            className="input input-bordered text-black bg-transparent border-black border"
             type="subject"
           ></input>
           <div className="label">
             <span className="label-text">Email</span>
           </div>
           <input
-            className="input input-bordered input-ghost p-5 bg-transparent border-black border"
+            className="input input-bordered p-5 bg-transparent border-black border text-black"
             type="email"
           />
           <div className="label">
             <span className="label-text">Message</span>
           </div>
-          <textarea className="textarea textarea-bordered textarea-ghost border-black border bg-transparent p-5" />
+          <textarea className="textarea textarea-bordered text-black border-black border bg-transparent p-5" />
           <div className="h-4"></div>
           <button
             type="submit"
