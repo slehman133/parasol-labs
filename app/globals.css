@@ -1,15 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url(https://fonts.googleapis.com/css?family=Exo);
-@import url(https://fonts.googleapis.com/css?family=Exo_2);
 
 :root {
   --text-color: black;
 }
 
 body {
-  font-family: "Exo";
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -17,12 +14,7 @@ body {
 footer{
   margin-top: auto;
 }
-h1 {
-  font-family: "Exo_2";
-}
-p {
-  font-family: "Exo";
-}
+
 html {
   --line-color: #e5e7eb;
 }
@@ -187,4 +179,10 @@ h1::after {
 }
 .smalltext {
   font-size: xx-small;
+}
+
+
+.resizeableDiv {
+  width: 60%;
+  height: 15%;
 }
