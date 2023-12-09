@@ -24,9 +24,10 @@ const PostPage = (props:any) => {
     const slug = props.params.slug;
     const post = getPostContent(slug);
     return(
-        <div>
-            <h2>This is a post: {slug}</h2>
-            <Markdown>{post.content}</Markdown>
+        <div className='flex p-24'>
+            <div className=''>
+                <Markdown>{post.content}</Markdown>
+            </div>
         </div>
     )
 
