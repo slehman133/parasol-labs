@@ -40,6 +40,8 @@ export const authOptions: NextAuthOptions = {
                 //     user.password
                 // )
 
+                console.log(user)
+
                 const isPasswordValid = (user.password == credentials.password)
 
                 if (!isPasswordValid) {
@@ -52,31 +54,34 @@ export const authOptions: NextAuthOptions = {
                     // name: user.name,
                     firstName: user.firstName,
                     lastName: user.lastName,
-                    randomKey: 'Hey cool'
+                    randomKey: 'Hey cool',
+                    isAdmin: user.isAdmin
                 }
             }
         })
     ],
     callbacks: {
         session: ({ session, token }) => {
-            // console.log('Session Callback', { session, token })
+            console.log('Session Callback', { session, token })
             return {
                 ...session,
                 user: {
                     ...session.user,
                     id: token.id,
-                    randomKey: token.randomKey
+                    randomKey: token.randomKey,
+                    isAdmin: token.isAdmin
                 }
             }
         },
         jwt: ({ token, user }) => {
-            // console.log('JWT Callback', { token, user })
+            console.log('JWT Callback', { token, user })
             if (user) {
                 const u = user as unknown as any
                 return {
                     ...token,
                     id: u.id,
-                    randomKey: u.randomKey
+                    randomKey: u.randomKey,
+                    isAdmin: u.isAdmin
                 }
             }
             return token

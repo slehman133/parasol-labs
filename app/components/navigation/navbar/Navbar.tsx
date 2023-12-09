@@ -11,6 +11,7 @@ const Navbar = () => {
   const { status } = useSession()
   const [menuVisible, setMenuVisible] = useState(false)
 
+
   return (
     <>
       <header>
