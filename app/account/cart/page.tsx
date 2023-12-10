@@ -15,7 +15,7 @@ const CartPage = () => {
     const { cartItems, clearCart, removeFromCart } = useCart();
     return (
         <>
-            <div className='m-10'>
+            <div className='m-10 mt-24'>
                 <h1 className='text-5xl text-black ml-[25rem]'>Cart</h1>
                 <div className='text-black'>
                     {cartItems.length > 0 ? (
