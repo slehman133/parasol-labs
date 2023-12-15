@@ -3,6 +3,8 @@ import Markdown from "markdown-to-jsx"
 import matter from 'gray-matter'
 import getPostMetadata from '@/app/components/Blog/getPostMetadata';
 
+//integrated as part of postpreview
+//source: https://github.com/pixegami/nextjs-blog-tutorial
 const getPostContent = (slug: string) => {
     const folder = "posts/";
     const file = `${folder}${slug}.md`;
@@ -13,6 +15,8 @@ const getPostContent = (slug: string) => {
 
 
 // Static Params Definition
+//integrated as part of postpreview
+//source: https://github.com/pixegami/nextjs-blog-tutorial
 export const generateStaticParams = async () => {
     const posts = getPostMetadata();
     return posts.map((post) => [{
@@ -20,6 +24,8 @@ export const generateStaticParams = async () => {
     }]);
 };
 
+//integrated as part of postpreview
+//source: https://github.com/pixegami/nextjs-blog-tutorial
 const PostPage = (props:any) => {
     const slug = props.params.slug;
     const post = getPostContent(slug);

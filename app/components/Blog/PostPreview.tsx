@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { PostMetadata } from "./PostMetadata";
 
+
+//integrated as part of postpreview
+//source: https://github.com/pixegami/nextjs-blog-tutorial
 const PostPreview = (props:PostMetadata) => {
     return <div className="border border-solid border-slate-500 p-2">
         <Link href={`/posts/${props.slug}`}>
