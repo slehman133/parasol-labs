@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import MarkdownEditor from '@uiw/react-markdown-editor';
 
+//Developed using library examples
+
 const mdStr = `# This is a H1  \n## This is a H2  \n###### This is a H6 \nInformational only, please delete this line and above`;
 export default function App() {
   const [markdown, setMarkdown] = useState(mdStr);

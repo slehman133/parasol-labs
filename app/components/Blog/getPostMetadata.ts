@@ -2,6 +2,9 @@ import fs from "fs"
 import matter from "gray-matter"
 import { PostMetadata } from "./PostMetadata";
 
+//integrated as part of postpreview
+//source: https://github.com/pixegami/nextjs-blog-tutorial
+
 const getPostMetadata = (): PostMetadata[] => {
     const folder = "posts/";
     const files = fs.readdirSync(folder);

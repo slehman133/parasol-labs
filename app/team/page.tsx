@@ -9,6 +9,8 @@ export async function generateMetadata() {
     }
 }
 
+//developed
+
 const TeamPage = () => {
     return (
         <>

@@ -7,6 +7,8 @@ import Link from "next/link"
 // import {useSession} from "next/auth"
 
 
+//developed, using integrated components, see component files for integrations
+
 // export async function generateMetadata() {
 //     return {
 //         title: 'News About Parasol Labs',
