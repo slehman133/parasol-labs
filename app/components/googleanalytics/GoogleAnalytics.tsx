@@ -1,4 +1,5 @@
 'use client'
+//Kaeden
 import React from 'react'
 import Script from 'next/script'
 import { usePathname, useSearchParams } from 'next/navigation'
@@ -9,7 +10,7 @@ import { pageview } from '@/lib/gtagHelper'
 export default function GoogleAnalytics({ GA_MEASUREMENT_ID }: { GA_MEASUREMENT_ID: string }) {
     const pathname = usePathname()
     const searchParams = useSearchParams()
-
+    //To keep track of what page the user is on upon pageview effect.
     useEffect(() => {
         const url = pathname + searchParams.toString()
 

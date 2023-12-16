@@ -2,6 +2,8 @@ import { type NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
 
+
+//POST request for mailing. --Kaeden
 export async function POST(request: NextRequest) {
     const { email, subject, message } = await request.json();
 
@@ -17,6 +19,8 @@ export async function POST(request: NextRequest) {
             TODO: Provide support for other email providers 
                 -- do with the nodemailer github link to find the settings at:
                 /nodemailer/blob/master/lib/well-known/services.json ezpz
+
+            Reach out to Kaeden for help.
         */
         auth: {
             user: process.env.MY_EMAIL,
