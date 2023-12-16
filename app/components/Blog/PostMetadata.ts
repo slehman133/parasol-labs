@@ -1,3 +1,5 @@
+//Written by Nicholas Whitehorn
+
 //integrated as part of postpreview
 //source: https://github.com/pixegami/nextjs-blog-tutorial
 

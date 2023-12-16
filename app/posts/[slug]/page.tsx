@@ -3,6 +3,8 @@ import Markdown from "markdown-to-jsx"
 import matter from 'gray-matter'
 import getPostMetadata from '@/app/components/Blog/getPostMetadata';
 
+//Written by Nicholas Whitehorn
+
 //integrated as part of postpreview
 //source: https://github.com/pixegami/nextjs-blog-tutorial
 const getPostContent = (slug: string) => {
