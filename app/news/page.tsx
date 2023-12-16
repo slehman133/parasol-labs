@@ -8,6 +8,7 @@ import Link from "next/link"
 
 
 //developed, using integrated components, see component files for integrations
+//Written by Nicholas Whitehorn
 
 // export async function generateMetadata() {
 //     return {

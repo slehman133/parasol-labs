@@ -2,7 +2,8 @@ import React from 'react'
 import Image from 'next/image'
 import Contact from '../components/Form/contact'
 
-
+//Written by Nicholas Whitehorn
+//Developed
 export async function generateMetadata() {
     return {
         title: 'About Parasol Labs',

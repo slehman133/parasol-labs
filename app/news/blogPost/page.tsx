@@ -9,6 +9,7 @@ import { UploadForm } from "@/app/components/Upload/UploadForm";
 
 
 //Developed, integrated elements are included and notated in component files
+//Written by Nicholas Whitehorn
 
 // export async function generateMetadata() {
 //     return {

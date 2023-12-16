@@ -10,6 +10,7 @@ export async function generateMetadata() {
 }
 
 //developed
+//Written by Nicholas Whitehorn
 
 const TeamPage = () => {
     return (
