@@ -1,3 +1,6 @@
+// code by Samuel Lehman
+
+
 import { getProduct } from '@/utils/storefront'
 import React from 'react'
 import Image from 'next/image'

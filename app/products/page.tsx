@@ -1,3 +1,6 @@
+// code by Samuel Lehman
+
+
 import React from "react";
 import ProductCard from "../components/products/ProductCard";
 import { getProducts } from "@/utils/storefront";

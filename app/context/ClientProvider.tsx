@@ -1,3 +1,6 @@
+// code by Samuel Lehman
+
+
 'use client'
 
 import { SessionProvider } from "next-auth/react"

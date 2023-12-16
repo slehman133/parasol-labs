@@ -1,3 +1,5 @@
+// code by Samuel Lehman
+
 'use client'
 
 import { useCart, CartItem } from '@/app/context/CartContext';

@@ -1,3 +1,6 @@
+// code by Samuel Lehman
+
+
 const storefront = async (query: string, variables = {}) => {
 
   const storefrontAPIUrl = process.env.NEXT_PUBLIC_API_URL || ""
