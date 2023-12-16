@@ -1,5 +1,6 @@
 import { FormData } from "@/app/components/Form/contact";
 
+//email util. --Kaeden
 export function sendEmail(data: FormData) {
     //TODO: actually sending shit
     const apiEndpoint = '/api/email';

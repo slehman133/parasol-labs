@@ -1,10 +1,10 @@
 'use client';
-
+//Kaeden
 import React from "react";
 import { useForm } from 'react-hook-form';
 import { sendEmail } from "@/utils/email";
 
-
+//Web Form for contact information
 export type FormData = {
   subject: string;
   email: string;

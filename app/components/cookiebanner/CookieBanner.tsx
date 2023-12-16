@@ -1,10 +1,9 @@
 'use client';
-
+//Kaeden
 import React from 'react'
 import Link from 'next/link'
 import { getLocalStorage, setLocalStorage } from '@/lib/storageHelper';
 import { useState, useEffect } from 'react'
-
 
 export default function CookieBanner() {
     const [cookieConsent, setCookieConsent] = useState(false);
