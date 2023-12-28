@@ -66,8 +66,7 @@ const Navbar = () => {
             {status === 'authenticated' &&
               <>
                 <div className="invisible lg:visible relative ">
-                  {
-                    cartItems.length > 0 &&
+                  {cartItems.length > 0 &&
                     <div className="absolute right-0 top-0 z-10 bg-red-500 rounded text-white p-[0.1rem]">
                       <p>{cartItems.length}</p>
                     </div>
@@ -137,7 +136,7 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-      </header >
+      </header>
     </>
   );
 };
