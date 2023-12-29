@@ -33,13 +33,21 @@ export function useCart(): CartContextProps {
 }
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
+    const [mounted, setMounted] = useState(false)
     const inStorage = typeof window !== 'undefined' ? localStorage.getItem('productsInCart') : null
     const productsInCart = inStorage ? JSON.parse(inStorage) : []
+
+
     const [cartItems, setCartItems] = useState<CartItem[]>(productsInCart);
 
     useEffect(() => {
         localStorage.setItem('productsInCart', JSON.stringify(cartItems))
     }, [cartItems])
+
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
 
     const addToCart = (item: CartItem) => {
         setCartItems([...cartItems, item]);
@@ -62,8 +70,11 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     };
 
     return (
-        <CartContext.Provider value={contextValue}>
-            {children}
-        </CartContext.Provider>
+        <>
+            {mounted && <CartContext.Provider value={contextValue}>
+                {children}
+            </CartContext.Provider>
+            }
+        </>
     )
 };
