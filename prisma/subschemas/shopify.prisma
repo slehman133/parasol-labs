@@ -1,0 +1,252 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+//Shopify Section:
+//Resources extracted from rest API at https://shopify.dev/docs/api/admin-rest
+//Ask Kaeden for entity relationships.
+//we may just need to extract all information from shopify into an all data table, export it to a csv, and then i can re-create an ERD that should provide better business logic
+
+model ShopifyCustomer {
+    id Int @id @default(autoincrement())
+
+    email            String  @unique
+    phoneNumber      String  @unique
+    acceptsMarketing Boolean
+    firstName        String
+    lastName         String
+    totalSpent       Decimal
+    lastOrderID      Int?
+    note             String?
+    verifiedEmail    Boolean
+    currency         String
+
+    Orders  ShopifyOrder[]
+    Address CustomerAddress[]
+}
+
+model CustomerAddress {
+    id Int @id @default(autoincrement())
+
+    Customer   ShopifyCustomer? @relation(fields: [customerID], references: [id])
+    customerID Int?
+    address1   String
+    address2   String?
+    city       String
+    province   String
+    country    String
+    zip        String
+    phone      String
+}
+
+//Order Resource (its long, majority of the nullable attributes im not sure if they will be needed, but some are just purely for additional features we could add onto)
+model ShopifyOrder {
+    id Int @id @default(autoincrement())
+
+    //customer can have many orders
+    Customer   ShopifyCustomer? @relation(fields: [customerID], references: [id])
+    customerID Int?
+
+    //does not need to be its own entity for business logic. there is no multiple billing addresses for one order -> no need to create a relationship
+    billingAddressFirstName String?
+    billingAddressLastName  String?
+    billingAddressCompany   String?
+    billingAddressPhone     String?
+    billingAddressProvince  String
+    billingAddressCountry   String
+    billingAddressAddress1  String
+    billingAddressAddress2  String?
+    billingAddressZip       String
+    billingAddressLatitude  String
+    billingAddressLongitude String
+
+    //Similar scenario to billingaddress fields
+    mailingAddressFirstName String?
+    mailingAddressLastName  String?
+    mailingAddressCompany   String?
+    mailingAddressPhone     String?
+    mailingAddressCountry   String
+    mailingAddressProvince  String
+    mailingAddressAddress1  String
+    mailingAddressAddress2  String?
+    mailingAddressZip       String?
+    mailingAddressLatitude  String
+    mailingAddressLongitude String
+
+    orderNumber         Int       @default(autoincrement())
+    note                String?
+    token               String?
+    gateway             String?
+    Test                Boolean
+    totalPrice          Decimal
+    subTotalPrice       Decimal
+    totalWeight         Decimal
+    totalTax            Decimal
+    taxesIncluded       Boolean
+    currency            String
+    financialStatus     String
+    confirmed           Boolean
+    totalDiscounts      Decimal
+    totalLineItemsPrice Decimal
+    cartToken           String
+    acceptsMarketing    Boolean
+    referringSite       String?
+    landingSite         String?
+    cancelledAt         DateTime?
+    cancelReason        String?
+    totalPriceUSD       Decimal
+    checkoutToken       String
+    reference           String?
+    sourceIdentifier    String?
+    sourceURL           String?
+    processedAt         DateTime?
+    deviceID            Int?
+    customerLocale      String?
+    processingMethod    String?
+    fulfillmentStatus   String?
+    orderStatusURL      String?
+
+    totalLineItemsPriceSetShopAmount              Decimal?
+    totalLineItemsPriceSetShopCurrency            String?
+    totalLineItemsPriceSetPresentmentAmount       Decimal?
+    totalLineItemsPriceSetPresentmentCurrencyCode String?
+
+    totalDiscountsSetShopAmount              Decimal?
+    totalDiscountsSetShopCurrencyCode        String?
+    totalDiscountsSetPresentmentAmount       Decimal?
+    totalDiscountsSetPresentmentCurrencyCode String?
+
+    totalShippingPriceSetShopAmount              Decimal?
+    totalShippingPriceSetShopCurrencyCode        String?
+    totalShippingPriceSetPresentmentAmount       Decimal?
+    totalShippingPriceSetPresentmentCurrencyCode String?
+
+    subTotalPriceSetShopAmount              Decimal?
+    subTotalPriceSetShopCurrencyCode        String?
+    subTotalPriceSetPresentmentAmount       Decimal?
+    subTotalPriceSetPresentmentCurrencyCode String?
+
+    totalPriceSetShopAmount              Decimal?
+    totalPriceSetShopCurrencyCode        String?
+    totalPriceSetPresentmentAmount       Decimal?
+    totalPriceSetPresentmentCurrencyCode String?
+
+    totalTaxSetShopAmount              Decimal?
+    totalTaxSetShopCurrencyCode        String?
+    totalTaxSetPresentmentAmount       Decimal?
+    totalTaxSetPresentmentCurrencyCode String?
+
+    orderTaxLines OrderTaxLine[]
+}
+
+model OrderTaxLine {
+    id Int @id @default(autoincrement())
+
+    order   ShopifyOrder? @relation(fields: [orderID], references: [id])
+    orderID Int?
+
+    ChannelLiable           Boolean?
+    price                   Decimal
+    rate                    Decimal
+    title                   String?
+    shopAmount              Decimal
+    shopCurrencyCode        String
+    presentmentAmount       Decimal
+    presentmentCurrencyCode String
+}
+
+model Location {
+    id Int @id @default(autoincrement())
+
+    inventoryLevels InventoryLevel[]
+
+    name                  String?
+    address1              String
+    address2              String?
+    city                  String
+    zip                   String?
+    province              String
+    country               String
+    phone                 String?
+    countryCode           String?
+    countryName           String?
+    provinceCode          String?
+    legacy                Boolean
+    active                Boolean
+    localizedCountryName  String?
+    localizedProvinceName String?
+}
+
+model InventoryLevel {
+    id Int @id @default(autoincrement())
+
+    location       Location?       @relation(fields: [locationID], references: [id])
+    locationID     Int?
+    inventoryItems InventoryItem[]
+
+    available Boolean
+}
+
+//there isnt even an entity model in shopifies api for this but its referenced in their documents for inventory level (:  *thats an upside down smiley face :)
+model InventoryItem {
+    id               Int             @id @default(autoincrement())
+    description      String?
+    title            String?
+    InventoryLevel   InventoryLevel? @relation(fields: [inventoryLevelId], references: [id])
+    inventoryLevelId Int?
+}
+
+model Product {
+    id Int @id @default(autoincrement())
+
+}
+
+model ProductTag {
+    id Int @id @default(autoincrement())
+}
+model ProductVariant {
+
+}
+
+model ProductOption {
+
+}
+
+model Collection {
+
+}
+model CollectionProduct {
+
+}
+
+model SmartCollection {
+
+}
+
+model SmartCollectionProduct {
+
+}
+
+model Fulfillment {
+
+}
+
+model FulfillmentLineItem {
+
+}
+
+model OrderLineItem {
+
+}
+
+model Refund {
+
+}
+
+model RefundLineItem {
+
+}
