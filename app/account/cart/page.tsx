@@ -14,7 +14,7 @@ const calcTotalPrice = (items: CartItem[]): string => {
     return total.toFixed(2)
 }
 const CartPage = () => {
-    const { cartItems, clearCart, removeFromCart } = useCart();
+    const { cartItems, clearCart, removeFromCart, editItemQuantity } = useCart();
     const removeItemModal = useRef<HTMLDialogElement>(null)
     const clearCartModal = useRef<HTMLDialogElement>(null)
 
@@ -88,7 +88,20 @@ const CartPage = () => {
                                     </div>
                                     <div className='p-5'>
                                         <h1 className='font-bold text-2xl'>{item.name}</h1>
-                                        <p>Quantity: {item.quantity}</p>
+                                        {/* <p>Quantity: {item.quantity}</p> */}
+                                        <p>Quantity: </p>
+                                        <div className='flex gap-5'>
+                                            {/* no idea why but is it doubled might have to do with rendering
+                                                somewhere in the cart context
+                                            */}
+                                            <button onClick={() => {
+                                                editItemQuantity(item, index, -0.5)
+                                            }}>-</button>
+                                            <p>{item.quantity}</p>
+                                            <button onClick={() => {
+                                                editItemQuantity(item, index, 0.5)
+                                            }}>+</button>
+                                        </div>
                                         <p>Total Price: ${(item.price * item.quantity).toFixed(2)}</p>
                                     </div>
                                     <div className='absolute right-1 bottom-1'>
@@ -112,7 +125,7 @@ const CartPage = () => {
                     <div className='flex justify-center mt-24'>
                         <button className='btn btn-primary' onClick={async (e) => {
                             e.preventDefault();
-                            const res = await createCheckout(cartItems[0].variantId.id, Number(cartItems[0].quantity))
+                            const res = await createCheckout(cartItems, Number(cartItems[0].quantity))
                             clearCart();
                             window.location.replace(res.data.checkoutCreate.checkout.webUrl)
                         }}>Proceed To Checkout</button>

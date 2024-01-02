@@ -43,7 +43,7 @@ export const authOptions: NextAuthOptions = {
                 //     user.password
                 // )
 
-                console.log(user)
+                // console.log(user)
 
                 const isPasswordValid = (user.password == credentials.password)
 
@@ -65,7 +65,7 @@ export const authOptions: NextAuthOptions = {
     ],
     callbacks: {
         session: ({ session, token }) => {
-            console.log('Session Callback', { session, token })
+            // console.log('Session Callback', { session, token })
             return {
                 ...session,
                 user: {
@@ -77,7 +77,7 @@ export const authOptions: NextAuthOptions = {
             }
         },
         jwt: ({ token, user }) => {
-            console.log('JWT Callback', { token, user })
+            // console.log('JWT Callback', { token, user })
             if (user) {
                 const u = user as unknown as any
                 return {

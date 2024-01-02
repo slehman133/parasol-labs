@@ -20,6 +20,7 @@ interface CartContextProps {
     cartItems: CartItem[];
     clearCart: () => void;
     removeFromCart: (item: CartItem) => void;
+    editItemQuantity: (item: CartItem, index: number, newQuantity: number) => void;
 }
 
 const CartContext = createContext<CartContextProps | undefined>(undefined);
@@ -62,11 +63,24 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         setCartItems([]);
     };
 
+    const editItemQuantity = (item: CartItem, index: number, newQuantity: number) => {
+
+        setCartItems(() => {
+            let newArr = [...cartItems]
+            const newItem = item
+            newItem.quantity += newQuantity
+            newArr.splice(index, 1, newItem)
+            return newArr
+        })
+    }
+
+
     const contextValue: CartContextProps = {
         addToCart,
         cartItems,
         clearCart,
         removeFromCart,
+        editItemQuantity
     };
 
     return (
