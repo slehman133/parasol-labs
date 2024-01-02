@@ -67,7 +67,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
         setCartItems(() => {
             let newArr = [...cartItems]
-            const newItem = item
+            const newItem = { ...item }
             newItem.quantity += newQuantity
             newArr.splice(index, 1, newItem)
             return newArr

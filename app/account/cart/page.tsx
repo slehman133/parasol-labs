@@ -88,18 +88,14 @@ const CartPage = () => {
                                     </div>
                                     <div className='p-5'>
                                         <h1 className='font-bold text-2xl'>{item.name}</h1>
-                                        {/* <p>Quantity: {item.quantity}</p> */}
                                         <p>Quantity: </p>
                                         <div className='flex gap-5'>
-                                            {/* no idea why but is it doubled might have to do with rendering
-                                                somewhere in the cart context
-                                            */}
                                             <button onClick={() => {
-                                                editItemQuantity(item, index, -0.5)
+                                                editItemQuantity(item, index, -1)
                                             }}>-</button>
                                             <p>{item.quantity}</p>
                                             <button onClick={() => {
-                                                editItemQuantity(item, index, 0.5)
+                                                editItemQuantity(item, index, 1)
                                             }}>+</button>
                                         </div>
                                         <p>Total Price: ${(item.price * item.quantity).toFixed(2)}</p>
