@@ -53,7 +53,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     };
 
     const removeFromCart = (index: number) => {
-        const newArr = cartItems.filter((item, i) => {
+        const newArr = cartItems.filter((item, i: number) => {
             if (i !== index) {
                 return true
             }
