@@ -20,9 +20,9 @@ const CartPage = () => {
 
     let itemToRemove = 0
 
-    const removeItemFromCart = (index: number) => {
-        removeFromCart(cartItems[index])
-    }
+    // const removeItemFromCart = (index: number) => {
+    //     removeFromCart(cartItems[index])
+    // }
 
     return (
         <>
@@ -33,7 +33,7 @@ const CartPage = () => {
                         <div className='flex justify-between mx-32 m-5'>
                             <button className='btn btn-primary w-28 btn-error'
                                 onClick={() => {
-                                    removeItemFromCart(itemToRemove)
+                                    removeFromCart(itemToRemove)
                                     removeItemModal.current?.close()
                                 }}>Yes</button>
                             <button className='btn btn-primary w-28'
@@ -90,7 +90,7 @@ const CartPage = () => {
                                         <h1 className='font-bold text-2xl'>{item.name}</h1>
                                         <p>Quantity: </p>
                                         <div className='flex gap-5'>
-                                            <button onClick={() => {
+                                            <button disabled={item.quantity == 0} onClick={() => {
                                                 editItemQuantity(item, index, -1)
                                             }}>-</button>
                                             <p>{item.quantity}</p>

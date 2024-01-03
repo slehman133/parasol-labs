@@ -2,7 +2,7 @@
 
 
 'use client'
-import { createContext, useContext, ReactNode, useState, useEffect } from 'react';
+import { createContext, useContext, ReactNode, useState, useEffect, useRef } from 'react';
 
 export interface CartItem {
     name: string;
@@ -19,7 +19,7 @@ interface CartContextProps {
     addToCart: (item: CartItem) => void;
     cartItems: CartItem[];
     clearCart: () => void;
-    removeFromCart: (item: CartItem) => void;
+    removeFromCart: (index: number) => void;
     editItemQuantity: (item: CartItem, index: number, newQuantity: number) => void;
 }
 
@@ -37,8 +37,6 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     const [mounted, setMounted] = useState(false)
     const inStorage = typeof window !== 'undefined' ? localStorage.getItem('productsInCart') : null
     const productsInCart = inStorage ? JSON.parse(inStorage) : []
-
-
     const [cartItems, setCartItems] = useState<CartItem[]>(productsInCart);
 
     useEffect(() => {
@@ -54,9 +52,13 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         setCartItems([...cartItems, item]);
     };
 
-    const removeFromCart = (item: CartItem) => {
-        const newCartItems = cartItems.filter((e) => e !== item)
-        setCartItems(newCartItems)
+    const removeFromCart = (index: number) => {
+        const newArr = cartItems.filter((item, i) => {
+            if (i !== index) {
+                return true
+            }
+        })
+        setCartItems(newArr)
     }
 
     const clearCart = () => {
@@ -85,9 +87,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
     return (
         <>
-            {mounted && <CartContext.Provider value={contextValue}>
-                {children}
-            </CartContext.Provider>
+            {mounted &&
+                <CartContext.Provider value={contextValue}>
+                    {children}
+                </CartContext.Provider>
             }
         </>
     )
