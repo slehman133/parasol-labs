@@ -9,7 +9,6 @@ import { useRouter } from 'next/navigation'
 
 const SignUpPage = () => {
     const router = useRouter()
-
     const [formData, setFormData] = useState({
         email: "",
         firstName: "",
@@ -17,7 +16,6 @@ const SignUpPage = () => {
         password: "",
         confirmPassword: "",
     })
-
 
     return (
         <>
