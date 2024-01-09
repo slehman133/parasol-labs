@@ -5,7 +5,7 @@
 //Kaeden
 import React from "react";
 import Link from "next/link";
-import { useCart } from "@/app/context/CartContext";
+import { CartProvider, useCart } from "@/app/context/CartContext";
 import { useSession, signOut } from "next-auth/react";
 import { useState } from "react";
 
@@ -66,7 +66,7 @@ const Navbar = () => {
             {status === 'authenticated' &&
               <>
                 <div className="invisible lg:visible relative ">
-                  {cartItems.length > 0 &&
+                  {(cartItems && cartItems.length > 0) &&
                     <div className="absolute right-0 top-0 z-10 bg-red-500 rounded text-white p-[0.1rem]">
                       <p>{cartItems.length}</p>
                     </div>

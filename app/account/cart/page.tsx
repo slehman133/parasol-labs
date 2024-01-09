@@ -20,10 +20,6 @@ const CartPage = () => {
 
     let itemToRemove = 0
 
-    // const removeItemFromCart = (index: number) => {
-    //     removeFromCart(cartItems[index])
-    // }
-
     return (
         <>
             <dialog ref={removeItemModal}>

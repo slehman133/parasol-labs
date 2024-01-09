@@ -1,6 +1,5 @@
 // code by Samuel Lehman
 
-
 'use client'
 import { createContext, useContext, ReactNode, useState, useEffect, useRef } from 'react';
 
@@ -43,13 +42,13 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         localStorage.setItem('productsInCart', JSON.stringify(cartItems))
     }, [cartItems])
 
-
     useEffect(() => {
         setMounted(true)
     }, [])
 
     const addToCart = (item: CartItem) => {
-        setCartItems([...cartItems, item]);
+        cartItems ? setCartItems([...cartItems, item]) : setCartItems([item])
+        // setCartItems([...cartItems, item])
     };
 
     const removeFromCart = (index: number) => {
@@ -66,7 +65,6 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     };
 
     const editItemQuantity = (item: CartItem, index: number, newQuantity: number) => {
-
         setCartItems(() => {
             let newArr = [...cartItems]
             const newItem = { ...item }
@@ -76,7 +74,6 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         })
     }
 
-
     const contextValue: CartContextProps = {
         addToCart,
         cartItems,
@@ -85,9 +82,12 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         editItemQuantity
     };
 
+
     return (
         <>
-            {mounted &&
+            {
+                // if we have a demo or something hard code to true and dont refresh
+                mounted &&
                 <CartContext.Provider value={contextValue}>
                     {children}
                 </CartContext.Provider>

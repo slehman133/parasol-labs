@@ -38,8 +38,8 @@ export default async function RootLayout({
           <CartProvider>
             <Navbar />
             {children}
-            <CookieBanner/>
           </CartProvider>
+          <CookieBanner />
         </Provider>
         <Footer></Footer>
       </body>
