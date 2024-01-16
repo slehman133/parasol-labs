@@ -10,12 +10,14 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@nextui-org/react": "^2.2.9",
     "@prisma/client": "^5.6.0",
     "@types/nodemailer": "^6.4.14",
     "@uiw/react-markdown-editor": "^6.0.0",
     "@vercel/postgres": "^0.5.0",
     "bcrypt": "^5.1.1",
     "client-only": "^0.0.1",
+    "framer-motion": "^10.18.0",
     "gray-matter": "^4.0.3",
     "markdown-to-jsx": "^7.3.2",
     "next": "13.5.4",
