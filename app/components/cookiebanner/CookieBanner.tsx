@@ -1,49 +1,76 @@
-'use client';
+"use client";
 //Kaeden
-import React from 'react'
-import Link from 'next/link'
-import { getLocalStorage, setLocalStorage } from '@/lib/storageHelper';
-import { useState, useEffect } from 'react'
+import "./Cookie.css";
+import React from "react";
+import { getLocalStorage, setLocalStorage } from "@/lib/storageHelper";
+import { useState, useEffect } from "react";
+import { Button } from "@nextui-org/react";
 
 export default function CookieBanner() {
-    const [cookieConsent, setCookieConsent] = useState(false);
+  const [cookieConsent, setCookieConsent] = useState();
 
-    useEffect(() => {
-        const storedCookieConsent = getLocalStorage("cookie_consent", null)
+  useEffect(() => {
+    const storedCookieConsent = getLocalStorage("cookie_consent", null);
 
-        setCookieConsent(storedCookieConsent)
-    }, [setCookieConsent])
+    setCookieConsent(storedCookieConsent);
+  }, [setCookieConsent]);
 
+  useEffect(() => {
+    const newValue = cookieConsent ? "granted" : "denied";
 
-    useEffect(() => {
-        const newValue = cookieConsent ? 'granted' : 'denied'
+    window.gtag("consent", "update", {
+      analytics_storage: newValue,
+    });
 
-        window.gtag("consent", 'update', {
-            'analytics_storage': newValue
-        });
+    setLocalStorage("cookie_consent", cookieConsent);
 
-        setLocalStorage("cookie_consent", cookieConsent)
+    //For Testing
+    console.log("Cookie Consent: ", cookieConsent);
+  }, [cookieConsent]);
 
-        //For Testing
-        console.log("Cookie Consent: ", cookieConsent)
+  return (
+    <div
+      className={`cookie-consent-banner justify-between ${
+        cookieConsent != null ? "hidden" : "flex"
+      }`}
+    >
+      <div className="flex w-96">
 
-    }, [cookieConsent]);
-
-    return (
-        <div className={` ${cookieConsent != null ? "hidden" : "flex"} my-10 mx-auto max-w-max md:max-w-screen-sm
-                        fixed bottom-0 left-0 right-0 
-                        flex px-3 md:px-4 py-3 justify-between items-center flex-col sm:flex-row gap-4  
-                         bg-gray-700 rounded-lg shadow`}>
-
-            <div className='text-center'>
-                <Link href="/info/cookies"><p>We use <span className='font-bold text-sky-400'>cookies</span> on our site.</p></Link>
-            </div>
-
-
-            <div className='flex gap-2'>
-                <button className='...' onClick={() => setCookieConsent(false)}>Decline</button>
-                <button className='...' onClick={() => setCookieConsent(true)}>Allow Cookies</button>
-            </div>
-        </div>
-    )
+        <p className="mt-2.5 ml-10">
+          we like cookies.
+        </p>
+      </div>
+      <div className="flex gap-4 mx-5">
+        {/* Argument is not assignable, yet it assigns on click properly and adjusts gcs tag??? 
+          Only fix is if const [cookieConsent, setCookieConsent] = useState(false);
+          Buuut that assigns our user's cookie consent to false, and it automatically hides since it has a value. cool.*/}
+        <Button
+          className="mt-1 mb-1 text-red-500 font-medium"
+          color="danger"
+          variant="ghost"
+          onClick={() => setCookieConsent(false)}
+        >
+          Decline
+        </Button>
+        <Button
+          className="mt-1 mb-1 text-orange-500 font-medium"
+          color="warning"
+          variant="ghost"
+          onClick={() => setCookieConsent(false)} //TODO - create a pop up that allows user to customize their cookie consent
+        >
+          Customize Cookies
+        </Button>
+        <Button
+          className="mt-1 mb-1 text-green-500 font-medium"
+          color="success"
+          variant="ghost"
+          onClick={() => setCookieConsent(true)}
+        >
+          Allow Cookies
+        </Button>
+      </div>
+    </div>
+  );
 }
+
+/* PARASOL LABORATORIES */
