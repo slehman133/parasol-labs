@@ -1,5 +1,7 @@
 // code by Samuel Lehman
 
+import { CartItem } from "@/app/context/CartContext"
+
 
 const storefront = async (query: string, variables = {}) => {
 
@@ -88,28 +90,42 @@ const getProducts = async () => {
   return products.data.products.edges
 }
 
-const createCheckout = async (variantId: string, quantity: number) => {
+const createCheckout = async (cartItems: CartItem[], quantity: number) => {
+  console.log(cartItems)
+
+  const lineItems = cartItems.map((e) => {
+    return {
+      variantId: e.variantId.id,
+      quantity: Number(e.quantity)
+    }
+  })
+
   const query = `
-  mutation CheckoutCreate($variantId: ID!, $quantity: Int!){
-    checkoutCreate(input:{
-      lineItems:{
-        variantId: $variantId,
-        quantity: $quantity
-      }
-    }){
-      checkout{
-        webUrl
+    mutation {
+    checkoutCreate(input: {
+      lineItems:[
+        ${lineItems.map(e =>
+    `{variantId: "${e.variantId}",
+          quantity: ${e.quantity}},
+        `
+  )}]
+    }) {
+      checkout {
+         id
+         webUrl
+         lineItems(first: 5) {
+           edges {
+             node {
+               title
+               quantity
+             }
+           }
+         }
       }
     }
   }
   `
-  const variables =
-  {
-    "variantId": variantId,
-    "quantity": quantity
-  }
-
-  const checkout = await storefront(query, variables)
+  const checkout = await storefront(query)
   return checkout
 }
 
