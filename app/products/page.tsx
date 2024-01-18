@@ -4,6 +4,7 @@
 import React from "react";
 import ProductCard from "../components/products/ProductCard";
 import { getProducts } from "@/utils/storefront";
+import { CartProvider } from "../context/CartContext";
 
 export async function generateMetadata() {
   return {
@@ -15,7 +16,7 @@ const ProductsPage = async () => {
   const products = await getProducts();
   return (
     <>
-      <div className="text-[var(--text-color)] mb-auto mt-24">
+      <div className="text-[var(--text-color)] my-24">
         <div className="flex flex-wrap">
           {products.map((e: any) => {
             const item = e.node;
