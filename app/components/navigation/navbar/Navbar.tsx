@@ -75,12 +75,12 @@ const Navbar = () => {
                     <img className='max-h-7' src="/images/cart.png" />
                   </Link>
                 </div>
-                <div className="invisible lg:visible mx-2">
+                <div className="invisible lg:visible mx-3 ">
                   <Link className='m-2 changeletter' href={`/account/${session.user.id}`}>
                     My Account
                   </Link>      
                 </div>
-                <div className="invisible lg:visible mx-2">
+                <div className="invisible lg:visible">
                   <button onClick={() => signOut()}>Sign Out</button>
                 </div>
               </>
