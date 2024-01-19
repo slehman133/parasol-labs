@@ -1,0 +1,13 @@
+.leftSection {
+  width: 50%;
+  float: left;
+  position: fixed;
+
+  padding: 5%;
+}
+.rightSection {
+  width: 50%;
+  float: right;
+  position: relative;
+  padding: 5%;
+}
