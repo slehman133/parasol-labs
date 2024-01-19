@@ -11,7 +11,7 @@ import { useState } from "react";
 
 const Navbar = () => {
   const { cartItems } = useCart();
-  const { status } = useSession()
+  const { data: session, status } = useSession()
   const [menuVisible, setMenuVisible] = useState(false)
 
 
@@ -76,6 +76,11 @@ const Navbar = () => {
                   </Link>
                 </div>
                 <div className="invisible lg:visible mx-2">
+                  <Link className='m-2 changeletter' href={`/account/${session.user.id}`}>
+                    My Account
+                  </Link>      
+                </div>
+                <div className="invisible lg:visible mx-2">
                   <button onClick={() => signOut()}>Sign Out</button>
                 </div>
               </>
@@ -121,6 +126,7 @@ const Navbar = () => {
                     </Link>
                     {status === 'authenticated' ?
                       <>
+                        <Link className='m-2 changeletter' href={`/account/${session.user.id}`}>My Account</Link>
                         <Link className='m-2 changeletter' href={"/account/cart"}>My Cart</Link>
                         <button className='changeletter' onClick={() => signOut()}>Sign Out</button>
                       </>
