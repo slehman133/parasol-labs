@@ -11,3 +11,25 @@
   position: relative;
   padding: 5%;
 }
+
+.privacySection {
+    height: 100%;
+    justify-content: left;
+    padding: 2%;
+    display: inline;
+}
+
+.spacing {
+    padding-top: 2%;
+}
+
+.textlink {
+    text-decoration: underline;
+}
+
+.sectionText {
+    margin-left: 15px;
+}
+header{
+    font-weight: bold;
+}

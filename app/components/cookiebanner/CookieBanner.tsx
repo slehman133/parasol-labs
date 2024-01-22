@@ -35,8 +35,8 @@ export default function CookieBanner() {
       }`}
     >
       <div className="flex justify-between gap-5 p-1">
-        <header className="mt-auto font-bold">We value your <Link href="/privacy" color="success" underline="hover">Privacy</Link>.</header>
-        <p className="text-xs mt-auto">We use cookies to enhance your browsing experience by serving personalized ads or content, and analyze our traffic. By clicking "Accept All", you consent to the use of cookies.</p>
+        <header className="mt-2 font-bold">We value your <Link href="/privacy" color="success" underline="hover">Privacy</Link>.</header>
+        <p className="text-xs mt-4">We use cookies to enhance your browsing experience by serving personalized ads or content, and analyze our traffic. By clicking "Accept All", you consent to the use of cookies.</p>
         <Link href="/privacy" color="success" underline="always" className="text-xs mt-0 mb-5">Privacy Policy</Link>
       </div>
       <div>
