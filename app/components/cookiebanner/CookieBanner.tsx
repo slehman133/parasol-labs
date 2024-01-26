@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { Button, Divider, Link } from "@nextui-org/react";
 
 export default function CookieBanner() {
-  const [cookieConsent, setCookieConsent] = useState();
+  const [cookieConsent, setCookieConsent] = useState<true|false>();
 
   useEffect(() => {
     const storedCookieConsent = getLocalStorage("cookie_consent", null);

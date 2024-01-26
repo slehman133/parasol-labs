@@ -3,12 +3,11 @@
 "use client";
 //Kaeden
 import React from "react";
-import { useCart } from "@/app/context/CartContext";
 import { useSession, signOut } from "next-auth/react";
+import { CartProvider, useCart } from "@/app/context/CartContext";
 import { Divider, Link } from "@nextui-org/react";
 import { link as linkStyles } from "@nextui-org/theme";
 import NextLink from "next/link";
-
 import {
   Navbar,
   NavbarBrand,
@@ -51,7 +50,7 @@ const HeadNavbar = () => {
                 alt="Parasol"
               />
             </NextLink>
-            <Divider orientation="vertical" className="bg-white"/>
+            <Divider orientation="vertical" className="bg-white" />
           </NavbarBrand>
           <NavbarBrand>
             <p className="font-bold text-inherit text-white text-lg">
@@ -61,8 +60,30 @@ const HeadNavbar = () => {
             </p>
           </NavbarBrand>
         </NavbarContent>
+        <NavbarContent>
+          <div>
+            {status === 'authenticated' &&
+              <>
+                <div className="invisible lg:visible relative ">
+                  {(cartItems && cartItems.length > 0) &&
+                    <div className="absolute right-0 top-0 z-10 bg-red-500 rounded text-white p-[0.1rem]">
+                      <p>{cartItems.length}</p>
+                    </div>
+                  }
+                  <Link className='m-2' href={"/account/cart"}>
+                    <img className='max-h-7' src="/images/shoppingcart.png" />
+                  </Link>
+                </div>
+                <div className="invisible lg:visible mx-2">
+                  <button onClick={() => signOut()}>Sign Out</button>
+                </div>
+              </>
+            }
+          </div>
+        </NavbarContent>
+
         <NavbarContent className="visible" justify="end">
-          <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"}/>
+          <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
         </NavbarContent>
         <NavbarMenu className="">
           {siteConfig.navMenuItems.map((item, index) => (
@@ -72,8 +93,8 @@ const HeadNavbar = () => {
                   index === 2
                     ? "primary"
                     : index === siteConfig.navMenuItems.length - 1
-                    ? "danger"
-                    : "foreground"
+                      ? "danger"
+                      : "foreground"
                 }
                 className="w-full "
                 href={item.href}
