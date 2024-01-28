@@ -4,6 +4,18 @@ import prisma from "@/utils/db"
 import { NextResponse } from "next/server";
 import { saltAndHash } from "@/utils/hash";
 
+export async function GET(request: Request) {
+  const data = await request.json()
+  if (data.event === 'cart') {
+    const cart = await prisma.user.findUnique({
+      where: {
+        email: data.email
+      }
+    })
+    return NextResponse.json(cart)
+  }
+}
+
 export async function PATCH(request: Request) {
   try {
 

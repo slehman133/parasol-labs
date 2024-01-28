@@ -1,7 +1,7 @@
 // code by Samuel Lehman
 
 'use client'
-import { createContext, useContext, ReactNode, useState, useEffect, useRef } from 'react';
+import { createContext, useContext, ReactNode, useState, useEffect } from 'react';
 
 export interface CartItem {
     name: string;
@@ -38,6 +38,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     const productsInCart = inStorage ? JSON.parse(inStorage) : []
     const [cartItems, setCartItems] = useState<CartItem[]>(productsInCart);
 
+
     useEffect(() => {
         localStorage.setItem('productsInCart', JSON.stringify(cartItems))
     }, [cartItems])
@@ -48,7 +49,6 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
     const addToCart = (item: CartItem) => {
         cartItems ? setCartItems([...cartItems, item]) : setCartItems([item])
-        // setCartItems([...cartItems, item])
     };
 
     const removeFromCart = (index: number) => {
@@ -86,7 +86,6 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     return (
         <>
             {
-                // if we have a demo or something hard code to true and dont refresh
                 mounted &&
                 <CartContext.Provider value={contextValue}>
                     {children}

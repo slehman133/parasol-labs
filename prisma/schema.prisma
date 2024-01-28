@@ -20,6 +20,7 @@ model User {
   password  String
   role      user_type @default(user)
   Orders    Order[]
+  cart      String    @default("[]")
 }
 
 model Order {

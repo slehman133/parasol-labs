@@ -5,13 +5,13 @@
 //Kaeden
 import React from "react";
 import Link from "next/link";
-import { CartProvider, useCart } from "@/app/context/CartContext";
+import { useCart } from "@/app/context/CartContext";
 import { useSession, signOut } from "next-auth/react";
 import { useState } from "react";
 
 const Navbar = () => {
   const { cartItems } = useCart();
-  const { data: session, status } = useSession()
+  const { data: session, status }: any = useSession()
   const [menuVisible, setMenuVisible] = useState(false)
 
 
@@ -78,7 +78,7 @@ const Navbar = () => {
                 <div className="invisible lg:visible mx-3 ">
                   <Link className='m-2 changeletter' href={`/account/${session.user.id}`}>
                     My Account
-                  </Link>      
+                  </Link>
                 </div>
                 <div className="invisible lg:visible">
                   <button onClick={() => signOut()}>Sign Out</button>

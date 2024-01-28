@@ -25,14 +25,14 @@ export function CustomForm() {
       const markdownHeader = `---\ntitle: ${formData.title}\nsubtitle: ${formData.subtitle}\ndate: ${formData.date}\n---\n\n`;
       const fullFile = markdownHeader + formData.content;
       const data = new FormData()
-      const fileName = formData.slug +".md"
-      data.append('file', new Blob([fullFile], { type: 'text/markdown'}), fileName)
+      const fileName = formData.slug + ".md"
+      data.append('file', new Blob([fullFile], { type: 'text/markdown' }), fileName)
 
       const res = await fetch('/api/upload', {
         method: 'POST',
         body: data
       })
-      if(res.ok) {
+      if (res.ok) {
         console.log('Upload Successful')
       }
       // handle the error
@@ -46,7 +46,7 @@ export function CustomForm() {
   return (
     <div className="flex flex-row">
       <div className="basis-1/3 flex flex-col gap-4">
-        <div className = "flex flex-col py-8 p-4">
+        <div className="flex flex-col py-8 p-4">
           <h2>Create a basic news post</h2>
           <form onSubmit={onSubmit}>
             <label className="form-control w-full max-w-xs">
@@ -54,46 +54,46 @@ export function CustomForm() {
                 <span className="label-text">Title</span>
                 <span className="label-text-alt">Top Right label</span>
               </div>
-              <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" onChange={(e,viewUpdate) => setFormData({ ...formData, title: e.target.value})}/>
+              <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" onChange={(e) => setFormData({ ...formData, title: e.target.value })} />
             </label>
             <label className="form-control w-full max-w-xs">
               <div className="label">
                 <span className="label-text">Subtitle</span>
                 <span className="label-text-alt">Top Right label</span>
               </div>
-              <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" onChange={(e,viewUpdate) => setFormData({ ...formData, subtitle: e.target.value})} />
+              <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })} />
             </label>
             <label className="form-control w-full max-w-xs">
               <div className="label">
                 <span className="label-text">Date</span>
                 <span className="label-text-alt">Top Right label</span>
               </div>
-              <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" onChange={(e,viewUpdate) => setFormData({ ...formData, date: e.target.value})}/>
+              <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" onChange={(e) => setFormData({ ...formData, date: e.target.value })} />
             </label>
             <label className="form-control w-full max-w-xs">
               <div className="label">
                 <span className="label-text">Filename</span>
                 <span className="label-text-alt">Please use _ or - for spaces</span>
               </div>
-              <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" onChange={(e,viewUpdate) => setFormData({ ...formData, slug: e.target.value})}/>
+              <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" onChange={(e) => setFormData({ ...formData, slug: e.target.value })} />
             </label>
-            
+
             <div className="flex py-8">
               <MarkdownEditor
-                value = {mdStr}
+                value={mdStr}
                 height="300px"
-                width = "500px"
-                onChange={(value, viewUpdate) => setFormData({...formData, content: value})}
+                width="500px"
+                onChange={(value, viewUpdate) => setFormData({ ...formData, content: value })}
               />
             </div>
             <div className='flex py-4'>
-              <input className = 'btn btn-active' type="submit" value="Submit"/>
+              <input className='btn btn-active' type="submit" value="Submit" />
             </div>
           </form>
-              
 
 
-        </div>     
+
+        </div>
       </div>
       <div className="flex flex-col gap-4">
         <div className="py-8 text-3xl">
@@ -104,15 +104,15 @@ export function CustomForm() {
           <h3>{formData.subtitle}</h3>
           <p className="text-sm">{formData.date}</p>
           <p>
-            <Markdown> 
+            <Markdown>
               {formData.content}
             </Markdown>
           </p>
         </div>
       </div>
-      
-        
+
+
     </div>
-    
+
   )
 }
