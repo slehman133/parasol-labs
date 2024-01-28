@@ -59,9 +59,9 @@ export const authOptions: NextAuthOptions = {
         session: async ({ session, token }) => {
             // console.log('Session Callback', { session, token })
             const user = await prisma.user.findUnique({
-              where:{
-                email: session.user?.email
-              }
+                where: {
+                    email: session.user?.email
+                }
             })
             return {
                 ...session,
@@ -75,7 +75,7 @@ export const authOptions: NextAuthOptions = {
             }
         },
         jwt: ({ token, user }) => {
-            console.log('JWT Callback', { token, user })
+            // console.log('JWT Callback', { token, user })
             if (user) {
                 const u = user as unknown as any
                 return {

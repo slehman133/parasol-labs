@@ -23,7 +23,7 @@ const SignUpPage = () => {
                 <form className='flex flex-col max-w-xl mx-auto my-40 p-5 gap-3'
                     onSubmit={async (e) => {
                         e.preventDefault();
-                        const res = await fetch("/api/user", {
+                        await fetch("/api/user", {
                             method: 'POST',
                             body: JSON.stringify(formData),
 
