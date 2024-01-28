@@ -21,7 +21,7 @@ export default function Home() {
                   <br />
                   At Parasol Labs, we are fueled by an unwavering commitment to
                   innovate and deliver life-changing biotechnology solutions for
-                  marginalized communities and {"women's"} health. Through our
+                  marginalized communities and women`s health. Through our
                   relentless pursuit of rigorous research and the deployment of
                   cutting-edge technology, we develop products that are safe,
                   effective, and accessible.
@@ -54,7 +54,7 @@ export default function Home() {
                 </h1>
                 <p className="ml-5 text-xl text-black text-left">
                   <br />
-                  Whether you have general questions or inquiries - we’re here
+                  Whether you have general questions or inquiries - we`re here
                   to provide information and answer questions.
                 </p>
                 <div className="content grid grid-cols-3 gap-12 content-center">
@@ -96,7 +96,7 @@ export default function Home() {
                     </div>
                     <p className="text-gray-500 break-words ">
                       <br />
-                      Need more information? Have an inquiry for an issue? {"We're"}
+                      Need more information? Have an inquiry for an issue? We`re
                       here to help. Fill out our form and we will get in touch.
                     </p>
                   </div>
