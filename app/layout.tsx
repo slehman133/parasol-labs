@@ -37,6 +37,8 @@ export default async function RootLayout({
         <Provider session={session}>
           <CartProvider>
             <Navbar />
+          </CartProvider>
+          <CartProvider>
             {children}
           </CartProvider>
           <CookieBanner />
