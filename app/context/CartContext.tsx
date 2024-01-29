@@ -86,7 +86,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     return (
         <>
             {
-                // mounted &&
+                mounted &&
                 <CartContext.Provider value={contextValue}>
                     {children}
                 </CartContext.Provider>
