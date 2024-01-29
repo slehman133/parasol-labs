@@ -28,13 +28,13 @@ const ProductPage = async (props: ProductPageProps) => {
   return (
     <>
       <div className='flex flex-row text-[var(--text-color)] m-12 mb-auto mt-32'>
-        <div className='m-5 mb-auto mt-12'>
+        <div className='m-5 mb-auto mt-16'>
           {image ?
             <Image
               src={image.transformedSrc}
               alt={image.altText}
-              width={8000}
-              height={8000} />
+              width={7000}
+              height={7000} />
             :
             <div className='bg-white w-[500px] h-[500px]'>
 
@@ -47,7 +47,7 @@ const ProductPage = async (props: ProductPageProps) => {
           <p>{product.description}</p>
           <AddToCart name={product.title} handle={product.handle} price={product.priceRange.minVariantPrice.amount} image={image.transformedSrc} variantId={variantId} />
         </div>
-      </div>
+      </div >
     </>
   )
 }
