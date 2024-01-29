@@ -4,6 +4,7 @@
 'use client'
 import React, { useState } from 'react';
 import { useCart } from '@/app/context/CartContext';
+import { buyItNow } from '@/utils/storefront';
 
 const AddToCart = (props) => {
     const [productToAdd, setProductToAdd] = useState({
@@ -18,7 +19,7 @@ const AddToCart = (props) => {
 
     return (
         <>
-            <div className='flex flex-col gap-3 my-5 text-[var(--text-color)]'>
+            <div className='flex flex-col gap-3 my-4 text-[var(--text-color)] mx-2'>
                 <input
                     className='h-12 text-xl text-center rounded-full bg-white'
                     type="number"
@@ -26,10 +27,21 @@ const AddToCart = (props) => {
                     onChange={(e) => setProductToAdd({ ...productToAdd, quantity: e.target.value })}
                 />
                 <button className='border-2 border-black rounded-full p-2 text-xl
-            hover:bg-blue-600 hover:text-white hover:border-white' onClick={async (e) => {
+                hover:bg-blue-600 hover:text-white hover:border-white'
+                    onClick={async (e) => {
                         e.preventDefault()
                         await addToCart(productToAdd)
-                    }}>Add To Cart</button>
+                    }}>Add To Cart
+                </button>
+                <button className='border-2 bg-black text-white border-white rounded-full p-2 text-xl
+                hover:bg-blue-600 hover:text-white hover:border-white'
+                    onClick={async (e) => {
+                        e.preventDefault()
+                        const res = await buyItNow(productToAdd.variantId.id, productToAdd.quantity)
+                        window.location.replace(res.data.checkoutCreate.checkout.webUrl)
+                    }}>
+                    Buy It Now
+                </button>
             </div>
         </>
     );
