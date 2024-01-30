@@ -10,11 +10,11 @@ import Link from "next/link"
 //developed, using integrated components, see component files for integrations
 //Written by Nicholas Whitehorn
 
-// export async function generateMetadata() {
-//     return {
-//         title: 'News About Parasol Labs',
-//     }
-// }
+export async function generateMetadata() {
+    return {
+        title: 'News About Parasol Labs',
+    }
+}
 
 
 
@@ -51,7 +51,7 @@ const NewsPage = async () => {
                 {res.result.map((e: any) => {
                     return (
                         <>
-                            <Link href={`/news/${e.slug.current}`}>
+                            <Link key={e.slug.current} href={`/news/${e.slug.current}`}>
                                 <div>
                                     <h1>{e.title}</h1>
                                 </div>
