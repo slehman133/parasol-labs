@@ -1,7 +1,7 @@
 const ArticlePage = async (props: any) => {
     const slug = props.params.slug
     const res = await fetch(`https://q7s7f1a1.api.sanity.io/v2021-06-07/data/query/local?query=*`).then(res => res.json())
-    const data = res.result.filter((e) => e.slug.current == slug)[0]
+    const data = res.result.filter((e: any) => e.slug.current == slug)[0]
     // console.log(data)
     return (
         <>

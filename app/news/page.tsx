@@ -48,7 +48,7 @@ const NewsPage = async () => {
             <div className="grid grid-cols-1 md:grid-cols-3 p-8 gap-8">{postPreviews}</div> */}
             {/* </div > */}
             <div className='m-20'>
-                {res.result.map((e) => {
+                {res.result.map((e: any) => {
                     return (
                         <>
                             <Link href={`/news/${e.slug.current}`}>
