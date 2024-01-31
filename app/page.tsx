@@ -2,7 +2,7 @@
 import React from "react";
 import HeadNavbar from "./components/navigation/navbar/HeadNavbar";
 import "./homestyles.css";
-import { Button, Input, Link, Textarea } from "@nextui-org/react";
+import { Button, Divider, Input, Link, Textarea } from "@nextui-org/react";
 import Contact from "./components/Form/contact";
 //Kaeden
 //TODO: figure out how the hell to hide the header and have it fade in at a certain point
@@ -75,13 +75,40 @@ export default function Home() {
             </div>
           </section>
           <section className="m-2 ml-48 mt-24 mr-48 min-h-screen">
-            <h1 className="text-9xl text-left">Contact Us</h1>
-            <p>Whether you have general questions or inquiries - we&apos;re here to provide information and answer questions.</p>
-            <div className="flex w-96 flex-wrap gap-4 p-10">
-              <Input type="email" label="Email" variant="underlined"/>
-              <Input type="subject" label="Subject" variant="underlined"/>
-              <Textarea variant="underlined" label="Message" labelPlacement="outside" placeholder="Enter your message"/>
-
+            <div className="row">
+              <div className="column">
+                <div className="p-5">
+                  <h1 className="text-9xl text-left">Contact Us</h1>
+                  <Divider orientation="horizontal" />
+                </div>
+                <p className="text-2xl text-left ml-5">
+                  Whether you have general questions or inquiries - we&apos;re
+                  here to provide information and answer questions.
+                </p>
+                <div className="flex w-max flex-wrap gap-4 p-10">
+                  <Input type="email" label="Email" variant="underlined" />
+                  <Input type="subject" label="Subject" variant="underlined" />
+                  <Textarea
+                    variant="underlined"
+                    label="Message"
+                    labelPlacement="outside"
+                    placeholder="Enter your message"
+                    size="lg"
+                  />
+                </div>
+              </div>
+              <div className="column mt-56">
+                <p>
+                  Tell us about your vision.
+                  <br />
+                  What challenges are you facing? What are your expectations?
+                  What do you want to know?
+                  <br />
+                  <br />
+                  We are here to help. Fill out the form, submit, and we will
+                  reach out.
+                </p>
+              </div>
             </div>
           </section>
         </div>
