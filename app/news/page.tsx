@@ -19,7 +19,7 @@ export async function generateMetadata() {
 
 
 const NewsPage = async () => {
-    const res = await fetch(`https://q7s7f1a1.api.sanity.io/v2021-06-07/data/query/local?query=*`).then(res => res.json())
+    const res = await fetch(`https://q7s7f1a1.api.sanity.io/v2021-06-07/data/query/local?query=*`, { cache: 'no-store' }).then(res => res.json())
     // const {data:session} = useSession();
     // console.log(session)
     // const postMetadata = getPostMetadata();
@@ -51,7 +51,7 @@ const NewsPage = async () => {
                 {res.result.map((e: any) => {
                     return (
                         <>
-                            <Link key={e.slug.current} href={`/news/${e.slug.current}`}>
+                            <Link key={e.slug?.current} href={`/news/${e.slug?.current}`}>
                                 <div>
                                     <h1>{e.title}</h1>
                                 </div>
