@@ -71,7 +71,7 @@ const HeadNavbar = () => {
                     </div>
                   }
                   <Link className='m-2' href={"/account/cart"}>
-                    <img className='max-h-7' src="/images/shoppingcart.png" />
+                    <img className='max-h-7' src="/images/shoppingcart.png" alt=""/>
                   </Link>
                 </div>
                 <div className="invisible lg:visible mx-2">
@@ -90,11 +90,7 @@ const HeadNavbar = () => {
             <NavbarMenuItem key={"${item}-${index}"}>
               <Link
                 color={
-                  index === 2
-                    ? "primary"
-                    : index === siteConfig.navMenuItems.length - 1
-                      ? "danger"
-                      : "foreground"
+                  "foreground"
                 }
                 className="w-full "
                 href={item.href}

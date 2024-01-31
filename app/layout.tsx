@@ -10,6 +10,7 @@ import type { Metadata } from "next";
 import { Cookie, Exo_2, Inter } from "next/font/google";
 import { CartProvider } from "./context/CartContext";
 import HeadNavbar from "./components/navigation/navbar/HeadNavbar";
+import Footer from "./components/navigation/footer/Footer";
 
 const exo = Exo_2({
   subsets: ["latin"],
@@ -44,6 +45,7 @@ export default async function RootLayout({
           <Provider session={session}>
             <CartProvider>
               <main>{children}</main>
+              <Footer/>
             </CartProvider>
           </Provider>
           <CookieBanner />
