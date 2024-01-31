@@ -19,6 +19,7 @@
     "client-only": "^0.0.1",
     "framer-motion": "^10.18.0",
     "gray-matter": "^4.0.3",
+    "jquery": "^3.7.1",
     "markdown-to-jsx": "^7.3.2",
     "next": "13.5.4",
     "next-auth": "^4.24.5",
@@ -35,6 +36,7 @@
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
     "@types/gtag.js": "^0.0.18",
+    "@types/jquery": "^3.5.29",
     "@types/node": "^20.9.3",
     "@types/react": "^18",
     "@types/react-burger-menu": "^2.8.7",

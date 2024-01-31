@@ -1,4 +1,4 @@
-const {nextui} = require("@nextui-org/react");
+const { nextui } = require("@nextui-org/react");
 import type { Config } from 'tailwindcss'
 const config: Config = {
   content: [
@@ -17,6 +17,10 @@ const config: Config = {
     },
   },
   darkMode: "class",
-  plugins: [require("daisyui"), nextui()], 
+  plugins: [require("daisyui"),
+  nextui({
+    addComonColors: true,
+  }),
+  ],
 }
 export default config

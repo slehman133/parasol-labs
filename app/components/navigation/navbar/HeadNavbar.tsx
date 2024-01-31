@@ -85,7 +85,7 @@ const HeadNavbar = () => {
         <NavbarContent className="visible" justify="end">
           <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
         </NavbarContent>
-        <NavbarMenu className="">
+        <NavbarMenu className="white">
           {siteConfig.navMenuItems.map((item, index) => (
             <NavbarMenuItem key={"${item}-${index}"}>
               <Link

@@ -24,3 +24,7 @@ html {
   display: flex;
 }
 
+
+::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}
