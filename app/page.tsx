@@ -71,21 +71,20 @@ export default function Home() {
 
                     Click below to learn more about the data behind our tech and our mission.
                   </p>
-                  <div className=" pt-5 flex justify-around">
-
+                  <div className="flex flex-center justify-between p-5 w-1/2">
                     <Button
                       href="/research"
                       as={Link}
                       color="default"
-
+                      size="md"
                       variant="light"
-                      className="borderedBottom"
+                      className="borderedBottom "
                     >Our Company</Button>
                     <Button
                       href="/about"
                       as={Link}
                       color="default"
-
+                      size="md"
                       variant="light"
                       className="borderedBottom"
                     >Our Research</Button>
@@ -93,7 +92,7 @@ export default function Home() {
                       href="/products"
                       as={Link}
                       color="default"
-
+                      size="md"
                       variant="light"
                       className="borderedBottom"
                     >STRL</Button>
@@ -113,7 +112,7 @@ export default function Home() {
           <section className="relative text-white text-center">
             <img src="/images/strl.jpg" className="fullImage" alt="" />
             <div className="absolute left-16 top-10">
-              <h1 className="text-9xl">STRL</h1>
+              <h1 className="text-9xl font-bold">STRL</h1>
             </div>
             <div className="absolute left-16 top-64 w-3/12 text-left text-3xl">
               <p>
