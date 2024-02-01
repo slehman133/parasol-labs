@@ -4,6 +4,7 @@ import HeadNavbar from "./components/navigation/navbar/HeadNavbar";
 import "./homestyles.css";
 import { Button, Divider, Input, Link, Textarea } from "@nextui-org/react";
 import Contact from "./components/Form/contact";
+import { motion } from "framer-motion";
 //Kaeden
 //TODO: figure out how the hell to hide the header and have it fade in at a certain point
 //ALSO: figure out how to make the video scroll into the div below and not have it be its own section.
@@ -16,9 +17,9 @@ export default function Home() {
             <source src="/videos/parasolHome.mp4" type="video/mp4" />
           </video>
         </section>
-        <div>
+        <div className="pt-4">
           <HeadNavbar />
-          <section className="content">
+          <section className="content min-h-screen">
             <div className="row">
               <div className="column p-10 mx-auto">
                 <h1 className="text-5xl font-bold text-center">
@@ -48,6 +49,67 @@ export default function Home() {
               </div>
             </div>
           </section>
+          <section className="content min-h-screen">
+            <div className="row">
+              <div className="column">
+                <div className="h-50 w-20 bg-blue-300">
+
+                </div>
+              </div>
+              <div className="relative text-center justify-center">
+                <div className="">
+                  <h1 className="text-5xl ">SOLVING HUMANITY'S BIGGEST PROBLEMS, BY ANY MEANS NECESSARY.</h1>
+                  <Divider orientation="horizontal" className="mt-5" />
+                </div>
+
+                <div className="p-4 justify-evenly">
+                  <p className="text-2xl mt-5">
+                    Parasol Labs is committed to transparency through and through.
+                    From our laboratory tests to the historical research that drives
+                    our passions, we're dedicated to sharing our knowledge and
+                    supporting a healthier, more informed, future.
+
+                    Click below to learn more about the data behind our tech and our mission.
+                  </p>
+                  <div className=" pt-5 flex justify-around">
+
+                    <Button
+                      href="/research"
+                      as={Link}
+                      color="default"
+
+                      variant="light"
+                      className="borderedBottom"
+                    >Our Company</Button>
+                    <Button
+                      href="/about"
+                      as={Link}
+                      color="default"
+
+                      variant="light"
+                      className="borderedBottom"
+                    >Our Research</Button>
+                    <Button
+                      href="/products"
+                      as={Link}
+                      color="default"
+
+                      variant="light"
+                      className="borderedBottom"
+                    >STRL</Button>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </section>
+          <section className="backgroundGradient min-h-screen">
+            <div className="row">
+              <div className="column">
+
+              </div>
+            </div>
+          </section>
           <section className="relative text-white text-center">
             <img src="/images/strl.jpg" className="fullImage" alt="" />
             <div className="absolute left-16 top-10">
@@ -69,7 +131,6 @@ export default function Home() {
                   size="lg"
                 >
                   <p className="text-6xl p-5 text-left">Learn More.</p>
-                  {String.fromCharCode(8592)}
                 </Button>
               </Link>
             </div>
@@ -108,6 +169,7 @@ export default function Home() {
                   We are here to help. Fill out the form, submit, and we will
                   reach out.
                 </p>
+
               </div>
             </div>
           </section>

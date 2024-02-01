@@ -4,11 +4,21 @@ import "./Cookie.css";
 import React from "react";
 import { getLocalStorage, setLocalStorage } from "@/lib/storageHelper";
 import { useState, useEffect } from "react";
-import { Button, Divider, Link } from "@nextui-org/react";
+import {
+  Button,
+  Divider,
+  Link,
+  useDisclosure,
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter
+} from "@nextui-org/react";
 
 export default function CookieBanner() {
-  const [cookieConsent, setCookieConsent] = useState<true|false>();
-
+  const [cookieConsent, setCookieConsent] = useState<true | false>();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   useEffect(() => {
     const storedCookieConsent = getLocalStorage("cookie_consent", null);
 
@@ -30,9 +40,8 @@ export default function CookieBanner() {
 
   return (
     <div
-      className={`cookie-consent-banner ${
-        cookieConsent != null ? "hidden" : "flex"
-      }`}
+      className={`cookie-consent-banner ${cookieConsent != null ? "hidden" : "flex"
+        }`}
     >
       <div className="flex justify-between gap-5 p-1">
         <header className="mt-2 font-bold">We value your <Link href="/privacy" color="success" underline="hover">Privacy</Link>.</header>
@@ -40,7 +49,7 @@ export default function CookieBanner() {
         <Link href="/privacy" color="success" underline="always" className="text-xs mt-0 mb-5">Privacy Policy</Link>
       </div>
       <div>
-        <Divider className="bg-black" orientation="vertical"/>
+        <Divider className="bg-black" orientation="vertical" />
       </div>
       <div className="flex gap-4 mx-5 ">
         {/* Argument is not assignable, yet it assigns on click properly and adjusts gcs tag??? 
@@ -50,10 +59,78 @@ export default function CookieBanner() {
         <Button
           className="my-auto text-green-500 font-medium"
           variant="light"
-          onClick={() => setCookieConsent(false)} //TODO - create a pop up that allows user to customize their cookie consent
+          onPress={onOpen} //TODO - create a pop up that allows user to customize their cookie consent
         >
           Customize Cookies
         </Button>
+        <Modal
+          placement="top-center"
+          isOpen={isOpen}
+          onOpenChange={onOpenChange}
+          motionProps={{
+            variants: {
+              enter: {
+                y: 0,
+                opacity: 1,
+                transition: {
+                  duration: 0.2,
+                  ease: "easeOut",
+                },
+              },
+              exit: {
+                y: -20,
+                opacity: 0,
+                transition: {
+                  duration: 0.2,
+                  ease: "easeIn"
+                },
+              },
+            }
+          }}>
+          <ModalContent>
+            {(onClose) => (
+              <>
+                <ModalHeader className="flex flex-col gap-1 text-left">
+                  <img
+                    src="/images/logo.png"
+                    width={25}
+                    height={30}
+                  />
+                  <h1 className="text-xl">We value your privacy.</h1>
+                </ModalHeader>
+                <ModalBody>
+                  <p>
+                    We utilize cookies to provide you with the best experience
+                    possible. With cookies, we can serve personalized ads and
+                    content while also analyzing our traffic for user behavior
+                    so that we can constantly improve our website, for you.
+                  </p>
+                  <br />
+                  <p>
+                    Click "Accept All" to give us content to use cookies for those
+                    services. You can also personalize your consent to specific
+                    purposes by clicking "Personalize" and selecting the checkboxes.
+                  </p>
+                  <br />
+                  <p>
+                    You can change your preferences at any time in the privacy settings.
+                    Read more about how we use cookies and other technologies to collect
+                    personal dadta. <Link href="/privacy" color="success" underline="always">Privacy Policy</Link>.
+                  </p>
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="danger" variant="bordered" onPress={onClose}>
+                    Close
+                  </Button>
+                  <Button color="default" variant="bordered" onPress={onClose}>
+                    Personalize
+                  </Button>
+                </ModalFooter>
+              </>
+            )}
+          </ModalContent>
+
+        </Modal>
         <Button
           className="my-auto text-green-500 font-medium"
           color="success"

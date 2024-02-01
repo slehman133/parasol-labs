@@ -49,3 +49,7 @@ h1::after {
     object-position: center center;
     transform-origin: center center;
 }
+
+.borderedBottom {
+    border-bottom: 1px solid white;
+}
