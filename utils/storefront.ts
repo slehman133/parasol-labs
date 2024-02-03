@@ -91,7 +91,7 @@ const getProducts = async () => {
 }
 
 const createCheckout = async (cartItems: CartItem[], quantity: number) => {
-  console.log(cartItems)
+  // console.log(cartItems)
 
   const lineItems = cartItems.map((e) => {
     return {
@@ -129,5 +129,49 @@ const createCheckout = async (cartItems: CartItem[], quantity: number) => {
   return checkout
 }
 
+const buyItNow = async (variantId: string, quantity: number) => {
+  // console.log(cartItems)
+
+  // const query = `
+  //   mutation {
+  //   checkoutCreate(input: {
+  //     lineItems:[
+  //       {variantId: "${variantId}",
+  //         quantity: ${quantity},}
+  //       ]
+  //   }) {
+  //     checkout {
+  //        id
+  //        webUrl
+  //        lineItems(first: 5) {
+  //          edges {
+  //            node {
+  //              title
+  //              quantity
+  //            }
+  //          }
+  //        }
+  //     }
+  //   }
+  // }
+  // `
+
+  const query = `mutation{
+  checkoutCreate(input:{
+    lineItems:{
+      variantId: "${variantId}",
+      quantity: ${quantity}
+    }
+  }){
+    checkout{
+      webUrl
+    }
+  }
+}`
+  const checkout = await storefront(query)
+  return checkout
+}
+
+
 export default storefront
-export { getProduct, getProducts, createCheckout }
+export { getProduct, getProducts, createCheckout, buyItNow }

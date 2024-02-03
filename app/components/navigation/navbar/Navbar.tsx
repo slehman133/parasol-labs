@@ -1,20 +1,25 @@
 // code by Samuel Lehman
 
 
+
 "use client";
 //Kaeden
 import React from "react";
 import Link from "next/link";
-import { CartProvider, useCart } from "@/app/context/CartContext";
+import { useCart } from "@/app/context/CartContext";
 import { useSession, signOut } from "next-auth/react";
 import { useState } from "react";
+//Nick
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const { cartItems } = useCart();
-  const { status } = useSession()
+  const { data: session, status }: any = useSession()
   const [menuVisible, setMenuVisible] = useState(false)
 
-
+  // nw- added a change to ignore /studio
+  const pathname = usePathname();
+  if(pathname != "/studio" )
   return (
     <>
       <header>
@@ -75,7 +80,12 @@ const Navbar = () => {
                     <img className='max-h-7' src="/images/cart.png" />
                   </Link>
                 </div>
-                <div className="invisible lg:visible mx-2">
+                <div className="invisible lg:visible mx-3 ">
+                  <Link className='m-2 changeletter' href={`/account/${session.user.id}`}>
+                    My Account
+                  </Link>
+                </div>
+                <div className="invisible lg:visible">
                   <button onClick={() => signOut()}>Sign Out</button>
                 </div>
               </>
@@ -121,6 +131,7 @@ const Navbar = () => {
                     </Link>
                     {status === 'authenticated' ?
                       <>
+                        <Link className='m-2 changeletter' href={`/account/${session.user.id}`}>My Account</Link>
                         <Link className='m-2 changeletter' href={"/account/cart"}>My Cart</Link>
                         <button className='changeletter' onClick={() => signOut()}>Sign Out</button>
                       </>
@@ -139,6 +150,7 @@ const Navbar = () => {
       </header>
     </>
   );
+  else return;
 };
 
 export default Navbar;
