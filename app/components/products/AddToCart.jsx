@@ -26,14 +26,14 @@ const AddToCart = (props) => {
                     value={productToAdd.quantity}
                     onChange={(e) => setProductToAdd({ ...productToAdd, quantity: e.target.value })}
                 />
-                <button className='border-2 border-black rounded-full p-2 text-xl
+                <button className='border-2 border-white rounded-full text-white p-2 text-xl
                 hover:bg-blue-600 hover:text-white hover:border-white'
                     onClick={async (e) => {
                         e.preventDefault()
                         await addToCart(productToAdd)
                     }}>Add To Cart
                 </button>
-                <button className='border-2 bg-black text-white border-white rounded-full p-2 text-xl
+                <button className='border-2 bg-black border-black text-white rounded-full p-2 text-xl
                 hover:bg-blue-600 hover:text-white hover:border-white'
                     onClick={async (e) => {
                         e.preventDefault()
