@@ -9,5 +9,5 @@ export function getLocalStorage(key: string, defaultValue:any){
 }
 
 export function setLocalStorage(key: string, value:any){
-localStorage.setItem(key, JSON.stringify(value));
+  localStorage.setItem(key, JSON.stringify(value));
 }
