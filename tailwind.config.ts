@@ -19,7 +19,15 @@ const config: Config = {
   darkMode: "class",
   plugins: [require("daisyui"),
   nextui({
-    addComonColors: true,
+    prefix: "nextui",
+    defaultTheme: "dark",
+    defaultExtendTheme: "dark",
+    addCommonColors: true,
+    themes: {
+      dark: {
+        colors: {},
+      },
+    },
   }),
   ],
 }

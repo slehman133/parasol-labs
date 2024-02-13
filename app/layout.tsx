@@ -44,6 +44,7 @@ export default async function RootLayout({
         >
           <Provider session={session}>
             <CartProvider>
+              <HeadNavbar/>
               <main>{children}</main>
               <Footer/>
             </CartProvider>
