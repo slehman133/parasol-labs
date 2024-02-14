@@ -41,7 +41,7 @@ const HeadNavbar = () => {
       >
         <NavbarContent className=" sm:basis-full " justify="start">
           <NavbarBrand as="li" className="gap-3 max-w-fit flex space-x-1">
-            <NextLink
+            <Link
               className="flex justify-start items-center gap-1"
               href="/"
             >
@@ -51,7 +51,7 @@ const HeadNavbar = () => {
                 width={"40px"}
                 alt="Parasol"
               />
-            </NextLink>
+            </Link>
             <Divider orientation="vertical" className="bg-white" />
           </NavbarBrand>
           <NavbarBrand>

@@ -3,13 +3,14 @@
 @tailwind utilities;
 
 .content {
-    max-width: 1500px;
-    margin: auto;
+    max-height: fit-content;
+    max-width: max-content;
+    margin: 1% 5% 1% 5%;
     padding: 5%;
     text-align: center;
     object-position: center center;
     transform-origin: center center;
-    color: white;
+    border-radius: 25px;
 }
 
 .column {
@@ -35,8 +36,8 @@ h1::after {
     object-fit: cover;
     object-position: center center;
     transform-origin: center center;
-    height: 100%;
-    width: 100%;
+    height: 80%;
+    width: 80%;
     opacity: 80%;
 }
 

@@ -13,7 +13,7 @@ import {
   ModalContent,
   ModalHeader,
   ModalBody,
-  ModalFooter
+  ModalFooter,
 } from "@nextui-org/react";
 
 export default function CookieBanner() {
@@ -40,13 +40,31 @@ export default function CookieBanner() {
 
   return (
     <div
-      className={`cookie-consent-banner ${cookieConsent != null ? "hidden" : "flex"
-        }`}
+      className={`cookie-consent-banner ${
+        cookieConsent != null ? "hidden" : "flex"
+      }`}
     >
       <div className="flex justify-between gap-5 p-1">
-        <header className="mt-2 font-bold">We value your <Link href="/privacy" color="success" underline="hover">Privacy</Link>.</header>
-        <p className="text-xs mt-4">We use cookies to enhance your browsing experience by serving personalized ads or content, and analyze our traffic. By clicking "Accept All", you consent to the use of cookies.</p>
-        <Link href="/privacy" color="success" underline="always" className="text-xs mt-0 mb-5">Privacy Policy</Link>
+        <header className="mt-2 font-bold">
+          We value your{" "}
+          <Link href="/privacy" color="success" underline="hover">
+            Privacy
+          </Link>
+          .
+        </header>
+        <p className="text-xs mt-4">
+          We use cookies to enhance your browsing experience by serving
+          personalized ads or content, and analyze our traffic. By clicking
+          "Accept All", you consent to the use of cookies.
+        </p>
+        <Link
+          href="/privacy"
+          color="success"
+          underline="always"
+          className="text-xs mt-0 mb-5"
+        >
+          Privacy Policy
+        </Link>
       </div>
       <div>
         <Divider className="bg-black" orientation="vertical" />
@@ -82,20 +100,17 @@ export default function CookieBanner() {
                 opacity: 0,
                 transition: {
                   duration: 0.2,
-                  ease: "easeIn"
+                  ease: "easeIn",
                 },
               },
-            }
-          }}>
+            },
+          }}
+        >
           <ModalContent>
             {(onClose) => (
               <>
                 <ModalHeader className="flex flex-col gap-1 text-left">
-                  <img
-                    src="/images/logo.png"
-                    width={25}
-                    height={30}
-                  />
+                  <img src="/images/logo.png" width={25} height={30} />
                   <h1 className="text-xl">We value your privacy.</h1>
                 </ModalHeader>
                 <ModalBody>
@@ -107,15 +122,20 @@ export default function CookieBanner() {
                   </p>
                   <br />
                   <p>
-                    Click "Accept All" to give us content to use cookies for those
-                    services. You can also personalize your consent to specific
-                    purposes by clicking "Personalize" and selecting the checkboxes.
+                    Click "Accept All" to give us content to use cookies for
+                    those services. You can also personalize your consent to
+                    specific purposes by clicking "Personalize" and selecting
+                    the checkboxes.
                   </p>
                   <br />
                   <p>
-                    You can change your preferences at any time in the privacy settings.
-                    Read more about how we use cookies and other technologies to collect
-                    personal dadta. <Link href="/privacy" color="success" underline="always">Privacy Policy</Link>.
+                    You can change your preferences at any time in the privacy
+                    settings. Read more about how we use cookies and other
+                    technologies to collect personal dadta.{" "}
+                    <Link href="/privacy" color="success" underline="always">
+                      Privacy Policy
+                    </Link>
+                    .
                   </p>
                 </ModalBody>
                 <ModalFooter>
@@ -129,7 +149,6 @@ export default function CookieBanner() {
               </>
             )}
           </ModalContent>
-
         </Modal>
         <Button
           className="my-auto text-green-500 font-medium"

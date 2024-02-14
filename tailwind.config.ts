@@ -25,7 +25,9 @@ const config: Config = {
     addCommonColors: true,
     themes: {
       dark: {
-        colors: {},
+        colors: {
+          background: "#111111",
+        },
       },
     },
   }),
