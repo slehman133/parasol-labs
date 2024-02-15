@@ -5,8 +5,10 @@
 import React, { useState } from 'react';
 import { useCart } from '@/app/context/CartContext';
 import { buyItNow } from '@/utils/storefront';
+import Spinner from '@/components/Spinner';
 
 const AddToCart = (props) => {
+    const [loading, setLoading] = useState(false)
     const [productToAdd, setProductToAdd] = useState({
         name: props.name,
         price: props.price,
@@ -19,6 +21,7 @@ const AddToCart = (props) => {
 
     return (
         <>
+            {loading && <Spinner />}
             <div className='flex flex-col gap-3 my-4 text-[var(--text-color)] mx-2'>
                 <input
                     className='h-12 text-xl text-center rounded-full bg-white'
@@ -37,6 +40,7 @@ const AddToCart = (props) => {
                 hover:bg-blue-600 hover:text-white hover:border-white'
                     onClick={async (e) => {
                         e.preventDefault()
+                        setLoading(true)
                         const res = await buyItNow(productToAdd.variantId.id, productToAdd.quantity)
                         window.location.replace(res.data.checkoutCreate.checkout.webUrl)
                     }}>
