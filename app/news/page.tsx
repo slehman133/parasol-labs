@@ -2,6 +2,7 @@ import React from 'react'
 import getPostMetadata from '../components/Blog/getPostMetadata';
 import PostPreview from '../components/Blog/PostPreview';
 import Link from "next/link"
+import { createClient } from '@sanity/client'
 
 
 //developed, using integrated components, see component files for integrations
@@ -13,17 +14,22 @@ export async function generateMetadata() {
     }
 }
 
+const client = createClient({
+    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+    dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+    apiVersion: '2021-06-07',
+    useCdn: false
+})
 
 
 const NewsPage = async () => {
-    const res = await fetch(`https://q7s7f1a1.api.sanity.io/v2021-06-07/data/query/local?query=*`, { cache: 'no-store' }).then(res => res.json())
-    // console.log(res.result)
+    const res = await client.fetch(`*[_type == "post"]`)
 
     return (
         <>
             <div className="my-24 grid grid-cols-[20%_60%_20%]">
                 <div className='col-start-2 mx-auto'>
-                    {res.result.map((e: any) => {
+                    {res.map((e: any) => {
                         return (
                             <>
                                 <Link key={e.slug?.current} href={`/news/${e.slug?.current}`}>
