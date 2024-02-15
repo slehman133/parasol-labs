@@ -31,7 +31,6 @@ html {
   display: none;
   /* Safari and Chrome */
 }
-
 @keyframes fadeInUp {
   0% {
     transform: translateY(100%);

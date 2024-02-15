@@ -38,12 +38,13 @@ export default async function RootLayout({
       <head>
         <link rel="icon" type="image/x-icon" href="/images/favicon.ico"></link>
       </head>
-      <body className={inter.className}>
+      <body className={` ${inter.className}`}>
         <NextProviders
           themeProps={{ attribute: "class", defaultTheme: "dark" }}
         >
           <Provider session={session}>
             <CartProvider>
+              <HeadNavbar/>
               <main>{children}</main>
               <Footer/>
             </CartProvider>
