@@ -5,6 +5,7 @@
 import { useCart, CartItem } from '@/app/context/CartContext';
 import { createCheckout } from '@/utils/storefront';
 import React, { useRef } from 'react';
+import Spinner from '@/components/Spinner';
 
 const calcTotalPrice = (items: CartItem[]): string => {
     let total = 0
@@ -17,11 +18,13 @@ const CartPage = () => {
     const { cartItems, clearCart, removeFromCart, editItemQuantity } = useCart();
     const removeItemModal = useRef<HTMLDialogElement>(null)
     const clearCartModal = useRef<HTMLDialogElement>(null)
+    const [loading, setLoading] = React.useState(false)
 
     let itemToRemove = 0
 
     return (
         <>
+            {loading && <Spinner />}
             <dialog ref={removeItemModal}>
                 <div className='flex bg-white text-black '>
                     <div className='col-start-2 row-start-2 p-12'>
@@ -116,7 +119,8 @@ const CartPage = () => {
                 {cartItems.length > 0 &&
                     <div className='flex justify-center mt-24'>
                         <button className='btn btn-primary' onClick={async (e) => {
-                            e.preventDefault();
+                            e.preventDefault()
+                            setLoading(true)
                             const res = await createCheckout(cartItems, Number(cartItems[0].quantity))
                             clearCart();
                             window.location.replace(res.data.checkoutCreate.checkout.webUrl)
