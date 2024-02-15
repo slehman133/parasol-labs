@@ -29,7 +29,7 @@ const parseArticleData = async (article: any) => {
 
 const ArticlePage = async (props: { params: { slug: string } }) => {
     const slug = props.params.slug
-    const article = await client.fetch(`*[_type == "post" && slug.current == $slug][0]`, { slug })
+    const article = await client.fetch(`*[_type == "post" && slug.current == $slug][0]`, { slug }, { cache: "no-store" })
     const { imageURL, bodyText, author } = await parseArticleData(article)
 
     return (

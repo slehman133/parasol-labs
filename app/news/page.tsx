@@ -23,7 +23,7 @@ const client = createClient({
 
 
 const NewsPage = async () => {
-    const res = await client.fetch(`*[_type == "post"]`)
+    const res = await client.fetch(`*[_type == "post"]`, {}, { cache: "no-store" })
 
     return (
         <>
