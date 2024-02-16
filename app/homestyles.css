@@ -4,13 +4,13 @@
 
 .content {
     max-height: fit-content;
-    max-width: max-content;
     margin: 1% 5% 1% 5%;
     padding: 5%;
     text-align: center;
     object-position: center center;
     transform-origin: center center;
     border-radius: 25px;
+    position: relative;
 }
 
 .column {
@@ -33,6 +33,7 @@ h1::after {
 
 .resizeableImage {
     z-index: 0;
+    justify-content: center;
     object-fit: cover;
     object-position: center center;
     transform-origin: center center;
