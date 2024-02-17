@@ -7,7 +7,7 @@ import { PostMetadata } from "./PostMetadata";
 //source: https://github.com/pixegami/nextjs-blog-tutorial
 const PostPreview = (props:PostMetadata) => {
     return <div className="border border-solid border-slate-500 p-2">
-        <Link href={`/posts/${props.slug}`}>
+        <Link key={props.slug?.current} href={`/news/${props.slug?.current}`}>
             <h2 className="text-xl">{props.title}</h2>
         </Link>
         <p>{props.subtitle}</p>
