@@ -8,4 +8,5 @@ export interface PostMetadata {
     date: string;
     subtitle: string;
     slug: any;
+    author:string;
 }
