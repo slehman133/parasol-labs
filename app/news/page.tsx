@@ -13,14 +13,6 @@ export async function generateMetadata() {
     }
 }
 
-// const client = createClient({
-//     projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-//     dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
-//     apiVersion: '2021-06-07',
-//     useCdn: false
-// })
-
-
 const NewsPage = async () => {
     const res = await client.fetch(`*[_type == "post"]`, {}, { cache: "no-store" })
 
