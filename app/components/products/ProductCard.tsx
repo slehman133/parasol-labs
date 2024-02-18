@@ -18,7 +18,7 @@ interface ProductCardProps {
 const ProductCard = (props: ProductCardProps) => {
     return (
         <>
-            <div className="flex flex-wrap shadow-2xl flex-row w-[90%] mx-auto my-5 justify-between text-white ">
+            <div className="flex flex-wrap shadow-2xl flex-row w-[90%] mx-auto my-5 justify-between text-white">
                 <div className='flex flex-col justify-evenly m-5 p-5 gap-3'>
                     <h2 className="text-5xl font-bold">{props.title}</h2>
                     <p className='font-semibold'>${props.price}</p>
