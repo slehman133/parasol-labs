@@ -1,12 +1,5 @@
-import { createClient } from '@sanity/client'
 import Image from 'next/image'
-
-const client = createClient({
-    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-    dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
-    apiVersion: '2021-06-07',
-    useCdn: false
-})
+import { client } from '@/sanity/lib/client'
 
 const parseArticleData = async (article: any) => {
     const sanityPrefix = `https://cdn.sanity.io/images/${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}/${process.env.NEXT_PUBLIC_SANITY_DATASET}/`

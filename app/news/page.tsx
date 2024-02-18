@@ -2,8 +2,7 @@ import React from 'react'
 import getPostMetadata from '../components/Blog/getPostMetadata';
 import PostPreview from '../components/Blog/PostPreview';
 import Link from "next/link"
-import { createClient } from '@sanity/client'
-
+import { client } from '@/sanity/lib/client'
 
 //developed, using integrated components, see component files for integrations
 //Written by Nicholas Whitehorn
@@ -14,12 +13,12 @@ export async function generateMetadata() {
     }
 }
 
-const client = createClient({
-    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-    dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
-    apiVersion: '2021-06-07',
-    useCdn: false
-})
+// const client = createClient({
+//     projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+//     dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+//     apiVersion: '2021-06-07',
+//     useCdn: false
+// })
 
 
 const NewsPage = async () => {
