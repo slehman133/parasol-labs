@@ -18,7 +18,7 @@ interface ProductCardProps {
 const ProductCard = (props: ProductCardProps) => {
     return (
         <>
-            <div className="flex flex-wrap border-2 border-black flex-row w-[90%] mx-auto my-5 justify-between text-[var(--text-color)] bg-white">
+            <div className="flex flex-wrap shadow-2xl flex-row w-[90%] mx-auto my-5 justify-between text-white ">
                 <div className='flex flex-col justify-evenly m-5 p-5 gap-3'>
                     <h2 className="text-5xl font-bold">{props.title}</h2>
                     <p className='font-semibold'>${props.price}</p>
@@ -26,7 +26,7 @@ const ProductCard = (props: ProductCardProps) => {
                         <p className='text-clip'>{props.description}</p>
                     </div>
                     <div className='flex justify-center'>
-                        <Link className='border-2 border-black hover:bg-blue-600 hover:text-white hover:border-white' href={`/products/${props.handle}`}>
+                        <Link className='border-2 border-white hover:bg-blue-600 hover:text-white hover:border-white' href={`/products/${props.handle}`}>
                             <button className='p-5 px-28'>View</button>
                         </Link>
                     </div>
