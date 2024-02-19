@@ -18,7 +18,8 @@ import {
   NavbarMenuItem,
   Image,
 } from "@nextui-org/react";
-
+import AccountModalContent from "./AccountModalContent";
+import { Modal, useDisclosure } from "@nextui-org/react";
 import { siteConfig } from "@/app/config/site";
 import { useState } from "react";
 import { motion } from "framer-motion";
@@ -27,11 +28,16 @@ const HeadNavbar = () => {
   const { cartItems } = useCart();
   const { status } = useSession();
   const scrollRef = useRef(null);
-
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
+        <AccountModalContent isOpen={isOpen} onOpenChange={onOpenChange} onOpen={onOpen} />
+      </Modal>
+
+
       <Navbar
         maxWidth="full"
         position="sticky"
@@ -62,7 +68,7 @@ const HeadNavbar = () => {
             </p>
           </NavbarBrand>
         </NavbarContent>
-        <NavbarContent>
+        {/* <NavbarContent>
           <div>
             {status === 'authenticated' &&
               <>
@@ -82,9 +88,13 @@ const HeadNavbar = () => {
               </>
             }
           </div>
-        </NavbarContent>
+        </NavbarContent> */}
 
         <NavbarContent className="visible" justify="end">
+          <div className="w-[35px] mx-2 hover:cursor-pointer"
+            onClick={onOpen}>
+            <img src="/images/profile-avatar.png" alt="profile avatar" />
+          </div>
           <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
         </NavbarContent>
         <NavbarMenu className="white">

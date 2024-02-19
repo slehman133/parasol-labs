@@ -30,16 +30,16 @@ const ArticlePage = async (props: { params: { slug: string } }) => {
             <div className="my-24 grid grid-cols-[20%_60%_20%]">
                 <div className='col-start-2'>
                     <h1 className="text-5xl font-bold">{article.title}</h1>
+                    {imageURL &&
+                        <div className="my-10">
+                            <Image height={2000} width={2000} className='mx-auto' src={imageURL} alt="image" />
+                        </div>
+                    }
                     {author &&
                         <div className='my-5'>
                             <h3>
                                 By {author.name}
                             </h3>
-                        </div>
-                    }
-                    {imageURL &&
-                        <div className="my-10">
-                            <Image height={2000} width={2000} className='mx-auto' src={imageURL} alt="image" />
                         </div>
                     }
                     <div>

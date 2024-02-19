@@ -24,7 +24,7 @@ const AddToCart = (props) => {
             {loading && <Spinner />}
             <div className='flex flex-col gap-3 my-4 text-[var(--text-color)] mx-2'>
                 <input
-                    className='h-12 text-xl text-center rounded-full bg-white'
+                    className='h-12 text-xl text-center rounded-full bg-white text-black'
                     type="number"
                     value={productToAdd.quantity}
                     onChange={(e) => setProductToAdd({ ...productToAdd, quantity: e.target.value })}

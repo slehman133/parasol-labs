@@ -36,10 +36,11 @@ const SignInPage = () => {
                                 </button>
                             }
                             type={isVisible ? "text" : "password"} />
+                        <p className='text-center'><a href='/account/signup'>Don`t have an account? Sign Up</a></p>
                         <Input type='submit' value='Sign In' />
                     </form>
                 </div>
-            </div >
+            </div>
         </>
     )
 }
