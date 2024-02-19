@@ -43,7 +43,7 @@ const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
                                                         e.preventDefault()
                                                         setIsLoading(true)
                                                         const res = await signIn('credentials', { ...formData, redirect: false })
-                                                        // console.log(res)
+                                                        console.log(res)
                                                         setIsLoading(false)
                                                     }}>
                                                     <Input type='email' placeholder='Email' value={formData.email}
@@ -60,7 +60,7 @@ const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
                                                             </button>
                                                         }
                                                         type={isVisible ? "text" : "password"} />
-                                                    <p onClick={() => setActiveTab("signup")} className='text-center hover:cursor-pointer'>Don`t have an account? <span className='underline'> Sign Up</span></p>
+                                                    <p onClick={() => setActiveTab("signup")} className='text-center hover:cursor-pointer'>Don&apos;t have an account? <span className='underline'> Sign Up</span></p>
                                                     <Input type='submit' value='Sign In' />
                                                 </form>
                                             </div>
@@ -82,6 +82,7 @@ const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
                                                             body: JSON.stringify(formData),
 
                                                         });
+                                                        console.log(res)
                                                         setIsLoading(false)
                                                     }}>
                                                     <Input type='email' placeholder='Email' value={formData.email}
