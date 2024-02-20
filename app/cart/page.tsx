@@ -44,7 +44,7 @@ const CartPage = () => {
                 </div>
             </dialog>
 
-            <dialog ref={clearCartModal}>
+            {/* <dialog ref={clearCartModal}>
                 <div className='flex bg-white text-black '>
                     <div className='col-start-2 row-start-2 p-12'>
                         <p className='text-xl'>Are you sure you want to clear ALL items from cart?</p>
@@ -63,9 +63,9 @@ const CartPage = () => {
                 </div>
             </dialog>
 
-            <div className='m-10 mt-24 mx-[30rem]'>
+            <div className='m-10 mt-24 mx-[30rem] text-white'>
                 <div className='relative'>
-                    <h1 className='text-5xl text-black'>Cart</h1>
+                    <h1 className='text-5xl'>Cart</h1>
                     {cartItems.length > 0 &&
                         <button
                             className='btn btn-error absolute right-0 bottom-0'
@@ -74,14 +74,14 @@ const CartPage = () => {
                     }
                 </div>
                 {cartItems.length > 0 &&
-                    <h1 className='text-xl text-black'>Total Price: ${calcTotalPrice(cartItems)}</h1>
+                    <h1 className='text-xl'>Total Price: ${calcTotalPrice(cartItems)}</h1>
                 }
 
-                <div className='text-black' >
+                <div className='' >
                     {cartItems.length > 0 ? (
                         <>
                             {cartItems.map((item, index) => (
-                                <div key={index} className='relative flex flex-row border-2 border-black bg-white max-w-5xl overflow-hidden mx-auto my-5'>
+                                <div key={index} className='relative flex flex-row border-2 border-black  max-w-5xl overflow-hidden mx-auto my-5'>
                                     <div className='max-w-sm'>
                                         <img src={item.image} alt={item.name} />
                                     </div>
@@ -127,6 +127,70 @@ const CartPage = () => {
                         }}>Proceed To Checkout</button>
                     </div>
                 }
+            </div> */}
+            <div className='grid grid-cols-2 gap-5'>
+                <div className='col-start-1 m-16 overflow-y-scroll max-h-[80vh]'>
+                    {cartItems.length > 0 ? (
+                        <>
+                            {cartItems.map((item, index) => (
+                                <div key={index} className='relative flex flex-row overflow-hidden mx-28 shadow-large my-5'>
+                                    <div className='overflow-hidden'>
+                                        <img className="object-cover h-48 w-48" src={item.image} alt={item.name} />
+                                    </div>
+                                    <div className='p-5'>
+                                        <h1 className='font-bold text-2xl'>{item.name}</h1>
+                                        <p>Quantity: </p>
+                                        <div className='flex gap-5'>
+                                            <button disabled={item.quantity == 1} onClick={() => {
+                                                editItemQuantity(item, index, -1)
+                                            }}>-</button>
+                                            <p>{item.quantity}</p>
+                                            <button onClick={() => {
+                                                editItemQuantity(item, index, 1)
+                                            }}>+</button>
+                                        </div>
+                                        <p>Total Price: ${(item.price * item.quantity).toFixed(2)}</p>
+                                    </div>
+                                    <div className='absolute right-2 bottom-2'>
+                                        {/* <img className='h-9 w-9 hover:cursor-pointer' src="/images/trash.png" alt="trash button"
+                                            onClick={(e) => {
+                                                itemToRemove = index
+                                                removeItemModal.current?.showModal()
+                                            }} /> */}
+                                        <p className='hover:cursor-pointer'
+                                            onClick={() => {
+                                                itemToRemove = index
+                                                removeItemModal.current?.showModal()
+                                            }}>
+                                            Remove Product
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
+                        </>
+                    ) : (
+                        <div>
+                            <p className='ml-[25.5rem] my-5'>No items in cart</p>
+                        </div>
+                    )
+                    }
+                </div>
+                <div className='col-start-2 m-16'>
+                    <h1 className='text-5xl font-bold'>Order Summary</h1>
+                    <p className='my-5 text-2xl'>Total Price: ${calcTotalPrice(cartItems)}</p>
+                    <button className='border-2 border-white p-3 mt-56 text-xl
+                    hover:bg-white hover:text-black hover:border-black transition-all'
+                        disabled={cartItems.length == 0}
+                        onClick={async (e) => {
+                            e.preventDefault()
+                            setLoading(true)
+                            const res = await createCheckout(cartItems, Number(cartItems[0].quantity))
+                            clearCart();
+                            window.location.replace(res.data.checkoutCreate.checkout.webUrl)
+                        }}
+                    >Proceed To Checkout &rarr;</button>
+                </div>
+
             </div>
         </>
     );

@@ -43,7 +43,7 @@ const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
                                                         e.preventDefault()
                                                         setIsLoading(true)
                                                         const res = await signIn('credentials', { ...formData, redirect: false })
-                                                        console.log(res)
+                                                        // console.log(res)
                                                         setIsLoading(false)
                                                     }}>
                                                     <Input type='email' placeholder='Email' value={formData.email}
@@ -82,8 +82,9 @@ const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
                                                             body: JSON.stringify(formData),
 
                                                         });
-                                                        console.log(res)
+                                                        // console.log(res)
                                                         setIsLoading(false)
+                                                        setActiveTab("signin")
                                                     }}>
                                                     <Input type='email' placeholder='Email' value={formData.email}
                                                         onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
