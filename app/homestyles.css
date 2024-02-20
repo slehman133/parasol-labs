@@ -30,6 +30,10 @@ h1::after {
     content: attr(data-end);
     color: orange;
 }
+span::after {
+    content: attr(data-end);
+    color: orange;
+}
 
 .resizeableImage {
     z-index: 0;
@@ -54,4 +58,36 @@ h1::after {
 
 .borderedBottom {
     border-bottom: 1px solid white;
+}
+
+.arrow-right {
+    height: 22px;
+    width: 100px;
+    opacity: 0.5;
+    transition: 250ms all ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    path {
+        transition: 250ms all ease;
+        height: 100%;
+    }
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.arrow-right:hover path {
+    d: path("M0 9.35772H50.9956L44.2001 2.29941L46.4134 0L57 11L46.4134 22L44.2001 19.7006L50.9956 12.6423H0V9.35772Z"
+        );
+    d: "M0 9.35772H50.9956L44.2001 2.29941L46.4134 0L57 11L46.4134 22L44.2001 19.7006L50.9956 12.6423H0V9.35772Z";
+}
+
+.contact-box {
+    border: 1px solid white;
+    width: auto;
+    height: auto;
+    padding: 2%;
 }

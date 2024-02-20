@@ -34,7 +34,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "middleware.ts"
-  ],
+, "lib/sendGrid.js", "app/webforms/generalform/page.tsx"  ],
   "exclude": [
     "node_modules"
   ]

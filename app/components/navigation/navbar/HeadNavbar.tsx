@@ -37,7 +37,7 @@ const HeadNavbar = () => {
         position="sticky"
         isMenuOpen={isMenuOpen}
         onMenuOpenChange={setIsMenuOpen}
-        className="bg-inherit "
+        className="bg-transparent "
       >
         <NavbarContent className=" sm:basis-full " justify="start">
           <NavbarBrand as="li" className="gap-3 max-w-fit flex space-x-1">
