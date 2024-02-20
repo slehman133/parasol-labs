@@ -19,8 +19,30 @@ const AddToCart = (props) => {
     })
     const { addToCart } = useCart()
 
+    const [isItemAdded, setIsItemAdded] = useState(false)
+
     return (
         <>
+            {isItemAdded &&
+                <div id="toast-default" className="flex items-center w-full max-w-xs p-4 bg-green-500 text-white font-semibold 
+                rounded-lg shadow 
+                fixed top-20 right-10 
+                animate-appearance-in"
+                    role=" alert">
+                    <div className="ms-3 text-sm">Item(s) Added to Cart</div>
+                    <button type="button"
+                        className="ms-auto -mx-1.5 -my-1.5 hover:text-gray-900 rounded-lg 
+                        focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8"
+                        data-dismiss-target="#toast-default" aria-label="Close"
+                        onClick={() => setIsItemAdded(false)}
+                    >
+                        <span className="sr-only">Close</span>
+                        <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                    </button>
+                </div >}
+
             {loading && <Spinner />}
             <div className='flex flex-col gap-3 my-4 text-[var(--text-color)] mx-2'>
                 <input
@@ -33,7 +55,9 @@ const AddToCart = (props) => {
                 hover:bg-blue-600 hover:text-white hover:border-white'
                     onClick={async (e) => {
                         e.preventDefault()
+                        setIsItemAdded(false)
                         await addToCart(productToAdd)
+                        setIsItemAdded(true)
                     }}>Add To Cart
                 </button>
                 <button className='border-2 bg-black border-black text-white rounded-full p-2 text-xl

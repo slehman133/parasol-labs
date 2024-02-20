@@ -91,7 +91,7 @@ const HeadNavbar = () => {
         </NavbarContent> */}
 
         <NavbarContent className="visible" justify="end">
-          <div className="w-[35px] mx-2 hover:cursor-pointer"
+          <div className="w-[35px] mx-2 hover:cursor-pointer hover:animate-pulse"
             onClick={onOpen}>
             <img src="/images/profile-avatar.png" alt="profile avatar" />
           </div>
