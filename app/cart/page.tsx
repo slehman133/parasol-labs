@@ -8,6 +8,7 @@ import React, { useState } from 'react';
 import Spinner from '@/components/Spinner';
 import { motion } from "framer-motion"
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react"
+import Link from 'next/link';
 const calcTotalPrice = (items: CartItem[]): string => {
     let total = 0
     items.map((e: CartItem) => {
@@ -65,10 +66,14 @@ const CartPage = () => {
 
                 <div className='grid grid-cols-2 gap-5 h-[95vh]'>
                     <div className='col-start-1 m-16 overflow-y-scroll max-h-[80vh]'>
+                        {
+                            cartItems.length > 0 &&
+                            <Link href="/products"><h1 className='text-xl font-bold mx-28'>&larr; View more products</h1></Link>
+                        }
                         {cartItems.length > 0 ? (
                             <>
                                 {cartItems.map((item, index) => (
-                                    <div key={index} className='relative flex flex-row overflow-hidden mx-28 shadow-large my-5'>
+                                    <div key={index} className='relative flex flex-row overflow-hidden mx-28 shadow-small my-5'>
                                         <div className='overflow-hidden'>
                                             <img className="object-cover h-48 w-48" src={item.image} alt={item.name} />
                                         </div>
@@ -115,7 +120,7 @@ const CartPage = () => {
                     <div className='col-start-2 m-16'>
                         <h1 className='text-5xl font-bold'>Order Summary</h1>
                         <p className='my-5 text-2xl'>Total Price: ${calcTotalPrice(cartItems)}</p>
-                        <button className='border-2 border-white p-5 mt-56 text-xl
+                        <button className='border-2 border-white p-5 mt-56 text-xl font-semibold
                     hover:bg-white hover:text-black hover:border-black hover: cursor-pointer transition-all'
                             disabled={cartItems.length == 0}
                             onClick={async (e) => {
@@ -129,7 +134,7 @@ const CartPage = () => {
                     </div>
 
                 </div>
-            </motion.div>
+            </motion.div >
         </>
     );
 };
