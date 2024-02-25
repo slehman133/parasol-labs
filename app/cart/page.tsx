@@ -126,7 +126,7 @@ const CartPage = () => {
                             onClick={async (e) => {
                                 e.preventDefault()
                                 setLoading(true)
-                                const res = await createCheckout(cartItems, Number(cartItems[0].quantity))
+                                const res = await createCheckout(cartItems)
                                 clearCart();
                                 window.location.replace(res.data.checkoutCreate.checkout.webUrl)
                             }}

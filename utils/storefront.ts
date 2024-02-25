@@ -90,9 +90,7 @@ const getProducts = async () => {
   return products.data.products.edges
 }
 
-const createCheckout = async (cartItems: CartItem[], quantity: number) => {
-  // console.log(cartItems)
-
+const createCheckout = async (cartItems: CartItem[]) => {
   const lineItems = cartItems.map((e) => {
     return {
       variantId: e.variantId.id,
@@ -130,32 +128,6 @@ const createCheckout = async (cartItems: CartItem[], quantity: number) => {
 }
 
 const buyItNow = async (variantId: string, quantity: number) => {
-  // console.log(cartItems)
-
-  // const query = `
-  //   mutation {
-  //   checkoutCreate(input: {
-  //     lineItems:[
-  //       {variantId: "${variantId}",
-  //         quantity: ${quantity},}
-  //       ]
-  //   }) {
-  //     checkout {
-  //        id
-  //        webUrl
-  //        lineItems(first: 5) {
-  //          edges {
-  //            node {
-  //              title
-  //              quantity
-  //            }
-  //          }
-  //        }
-  //     }
-  //   }
-  // }
-  // `
-
   const query = `mutation{
   checkoutCreate(input:{
     lineItems:{
