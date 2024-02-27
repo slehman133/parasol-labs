@@ -95,18 +95,6 @@ const HeadNavbar = () => {
             onClick={onOpen}>
             <img src="/images/profile-avatar.png" alt="profile avatar" />
           </div>
-          {/* <div className="">
-            <div className="flex flex-row">
-              <Link className='' href={"/cart"}>
-                <img className='max-h-7' src="/images/cart.png" alt="cart" />
-              </Link>
-              {(cartItems && cartItems.length > 0) &&
-                <div className=" bg-red-500 rounded text-white p-[0.1rem]">
-                  <p>{cartItems.length}</p>
-                </div>
-              }
-            </div>
-        </div> */}
           <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
         </NavbarContent>
         <NavbarMenu className="white">
@@ -125,7 +113,7 @@ const HeadNavbar = () => {
             </NavbarMenuItem>
           ))}
         </NavbarMenu>
-      </Navbar >
+      </Navbar>
     </>
   );
 };
