@@ -1,39 +1,39 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === 'POST') {
-    const { name, email, message } = req.body;
+const resend = new Resend('re_9HFzCxfW_93jYyAGW5tseFVxfr3AEVq7V');
 
-    // Create a Nodemailer transporter
-    const transporter = nodemailer.createTransport({
-      service: 'Gmail',
-      auth: {
-        user: 'carver.kaeden@gmail.com', // Your email address
-        pass: 'ctkh kdgy ngsi cemp', // Your email password or App Password
-      },
-    });
-
-    try {
-      // Send email
-      await transporter.sendMail({
-        from: email,
-        to: 'carver.kaeden@gmail.com', // Recipient's email address
-        subject: 'New Contact Form Submission',
-        html: `
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Message:</strong> ${message}</p>
-        `,
-      });
-
-      res.status(200).json({ message: 'Email sent successfully' });
-    } catch (error) {
-      console.error('Error sending email:', error);
-      res.status(500).json({ message: 'An error occurred while sending the email' });
-    }
-  } else {
-    res.setHeader('Allow', ['POST']);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
+interface EmailOptions {
+    from: string;
+    to: string[];
+    subject: string;
+    html: string;
   }
-}
+  
+  /**
+   * Sends an email using the Resend service.
+   * 
+   * @param {EmailOptions} options An object containing email options.
+   * @returns {Promise<void>} A promise that resolves when the email is sent or logs an error.
+   */
+  async function sendEmail(options: EmailOptions): Promise<void> {
+    try {
+      const { data, error } = await resend.emails.send({
+        from: options.from,
+        to: options.to,
+        subject: options.subject,
+        html: options.html,
+      });
+  
+      if (error) {
+        console.error({ error });
+        throw new Error('Failed to send email');
+      }
+  
+      console.log({ data });
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
+  }
+  
+  // Export the sendEmail function for use in other parts of the application
+  export { sendEmail };

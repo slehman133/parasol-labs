@@ -1,77 +1,79 @@
+
 "use client";
 import React, { useState } from 'react';
-import Head from 'next/head';
-import { Input, Textarea, Button } from '@nextui-org/react';
+import { Button, Input, Textarea } from '@nextui-org/react';
+import { sendEmail } from '../../api/email/contact'; // Adjust the path as necessary
 
-const ContactPage: React.FC = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
-  const [submitting, setSubmitting] = useState(false);
-  const [message, setMessage] = useState('');
+const SendEmailForm: React.FC = () => {
+  const [from, setFrom] = useState<string>('');
+  const [to, setTo] = useState<string>('');
+  const [subject, setSubject] = useState<string>('');
+  const [html, setHtml] = useState<string>('');
+  const [sending, setSending] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>('');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitting(true);
-
+  const handleSendEmail = async () => {
+    setSending(true);
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        setMessage('Email sent successfully');
-      } else {
-        setMessage('An error occurred while sending the email');
-      }
+      await sendEmail({ from, to: to.split(','), subject, html });
+      setMessage('Email sent successfully!');
     } catch (error) {
-      console.error('Error sending email:', error);
-      setMessage('An error occurred while sending the email');
+      setMessage('Failed to send email. Please check the console for more details.');
+      console.error(error);
+    } finally {
+      setSending(false);
     }
-
-    setSubmitting(false);
   };
 
   return (
-    <div className="container mx-auto py-8 min-h-screen">
-      <Head>
-        <title>Contact Us</title>
-      </Head>
-      <h1 className="text-2xl font-bold mb-4">Contact Us</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-            Your Name
-          </label>
-          <Input id="name" name="name" type="text" placeholder="John Doe" required />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-            Your Email
-          </label>
-          <Input id="email" name="email" type="email" placeholder="john@example.com" required />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-            Message
-          </label>
-          <Textarea id="message" name="message" placeholder="Your message here..." required />
-        </div>
-        <Button type="submit">Submit</Button>
-      </form>
+    <div style={{ padding: '20px', maxWidth: '500px', margin: 'auto' }}>
+      <h3>Send an Email</h3>
+      <Input
+        variant = 'bordered'
+        fullWidth
+        color="primary"
+        size="lg"
+        placeholder="From: name@example.com"
+        value={from}
+        onChange={(e) => setFrom(e.target.value)}
+      />
+      <Input
+        variant='bordered'
+        fullWidth
+        color="primary"
+        size="lg"
+        placeholder="To: recipient@example.com"
+        value={to}
+        onChange={(e) => setTo(e.target.value)}
+      />
+      <Input
+        variant='bordered'
+        fullWidth
+        color="primary"
+        size="lg"
+        placeholder="Subject"
+        value={subject}
+        onChange={(e) => setSubject(e.target.value)}
+      />
+      <Textarea
+        variant='bordered'
+        fullWidth
+        color="primary"
+        size="lg"
+        placeholder="HTML Content"
+        value={html}
+        onChange={(e) => setHtml(e.target.value)}
+      />
+      <Button
+        color="primary"
+        disabled={sending}
+        onClick={handleSendEmail}
+      >
+        Send Email
+      </Button>
+      <p>{message}</p>
     </div>
   );
 };
 
-export default ContactPage;
+export default SendEmailForm;
