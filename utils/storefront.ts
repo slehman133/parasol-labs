@@ -18,7 +18,8 @@ const storefront = async (query: string, variables = {}) => {
       },
       body: JSON.stringify({
         query, variables
-      })
+      }),
+      cache: "no-store",
     }).then(res => res.json())
 
   return response
@@ -35,6 +36,7 @@ const getProduct = async (variables: { handle: string }) => {
           edges{
             node{
               id
+              quantityAvailable
             }
           }
         }
