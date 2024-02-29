@@ -45,7 +45,7 @@ export default async function RootLayout({
           <Provider session={session}>
             <CartProvider>
               <HeadNavbar/>
-              <main>{children}</main>
+              <main className="dark bg-background">{children}</main>
               <Footer/>
             </CartProvider>
           </Provider>
