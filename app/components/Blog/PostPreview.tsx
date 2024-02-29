@@ -28,17 +28,17 @@ const parseArticleData = async (page: any) => {
 
     return { imageURL, /* author */ }
 }
-const PostPreview = async (props:PostMetadata) => {
+const PostPreview = async (props: PostMetadata) => {
     const slug = props.slug
-    const page = await client.fetch(`*[_type == "post"]`, {slug}, { cache: "no-store" })
+    const page = await client.fetch(`*[_type == "post"]`, { slug }, { cache: "no-store" })
     const { imageURL, /* author */ } = await parseArticleData(page)
 
     return (
         <>
             <div className="flex flex-row border border-solid border-slate-500 p-2 hover:ring-4 gap-4">
-                <div className="basis-2/12 md:basis-1/3">    
+                <div className="basis-2/12 md:basis-1/3">
                     {/* imageURL && */
-                        <Image height={1600} width={1600} className='mx-auto' src="/images/placeholderimage.jpg"  alt="image" />
+                        <Image height={1600} width={1600} className='mx-auto' src="/images/placeholderimage.jpg" alt="image" />
                     }
                 </div>
 
@@ -46,13 +46,13 @@ const PostPreview = async (props:PostMetadata) => {
                     <Link key={props.slug?.current} href={`/news/${props.slug?.current}`}>
                         <h2 className="text-xl">{props.title}</h2>
                     </Link>
-                    <p className = "invisible md:visible">{props.subtitle}</p>
-                    <p className = "invisible md:visible">{props.date}</p>
+                    <p className="invisible md:visible">{props.subtitle}</p>
+                    <p className="invisible md:visible">{props.date}</p>
                     {/* <p">{author}</p> */}
                 </div>
             </div>
         </>
-    ) 
+    )
 };
 
 export default PostPreview;

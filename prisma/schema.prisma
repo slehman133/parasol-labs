@@ -32,7 +32,6 @@ model Order {
   itemName     String
   itemQuantity Int
   orderedAt    DateTime
-  User         User?    @relation(fields: [userId], references: [id])
 }
 
 enum user_type {
