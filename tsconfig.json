@@ -25,6 +25,9 @@
     "paths": {
       "@/*": [
         "./*"
+      ],
+      "@/components/*": [
+        "./app/components/*"
       ]
     }
   },
@@ -33,8 +36,11 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "middleware.ts"
-, "lib/sendGrid.js", "app/webforms/generalform/page.tsx"  ],
+    "middleware.ts", 
+    "lib/sendGrid.js", 
+    "app/webforms/generalform/page.tsx",
+    "test/hash.test.js"
+  ],
   "exclude": [
     "node_modules"
   ]

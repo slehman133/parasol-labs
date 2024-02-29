@@ -2,7 +2,7 @@ import React from 'react'
 import getPostMetadata from '../components/Blog/getPostMetadata';
 import PostPreview from '../components/Blog/PostPreview';
 import Link from "next/link"
-
+import { client } from '@/sanity/lib/client'
 
 //developed, using integrated components, see component files for integrations
 //Written by Nicholas Whitehorn
@@ -13,26 +13,20 @@ export async function generateMetadata() {
     }
 }
 
-
-
 const NewsPage = async () => {
-    const res = await fetch(`https://q7s7f1a1.api.sanity.io/v2021-06-07/data/query/local?query=*`, { cache: 'no-store' }).then(res => res.json())
-    // console.log(res.result)
+    const res = await client.fetch(`*[_type == "post"]`, {}, { cache: "no-store" })
+    const postPreviews = res.map((post:any) => (
+        <PostPreview key = {post.slug?.current} {...post} />
+    ));
 
     return (
         <>
-            <div className="my-24 grid grid-cols-[20%_60%_20%]">
-                <div className='col-start-2 mx-auto'>
-                    {res.result.map((e: any) => {
-                        return (
-                            <>
-                                <Link key={e.slug?.current} href={`/news/${e.slug?.current}`}>
-                                    <div className='border-2 border-black'>
-                                        <h1>{e.title}</h1>
-                                    </div>
-                                </Link>
-                            </>)
-                    })}
+            <div className="flex flex-col md:p-24">
+                <div className="flex border justify-between bg-slate-500 p-8">
+                    <h2 className='text-3xl'>NEWS</h2>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 p-4 md:p-12 gap-8">
+                    {postPreviews}    
                 </div>
             </div>
         </>

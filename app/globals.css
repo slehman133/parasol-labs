@@ -4,15 +4,17 @@
 
 :root {
   --text-color: black;
+  --background-color: #111111;
 }
 
 body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #111111;
+  background-color: var(--background-color);
 }
-footer{
+
+footer {
   margin-top: auto;
 }
 
@@ -25,14 +27,16 @@ html {
 }
 
 
-::-webkit-scrollbar { 
-  display: none;  /* Safari and Chrome */
+::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome */
 }
 @keyframes fadeInUp {
   0% {
     transform: translateY(100%);
     opacity: 0;
   }
+
   100% {
     transform: translateY(0%);
     opacity: 1;
