@@ -91,3 +91,11 @@ span::after {
     height: auto;
     padding: 2%;
 }
+
+.boxshadow {
+    box-shadow: 60px -16px rgb(248 113 113);;
+}
+
+.strl-shadow {
+    box-shadow: -60px -20px gray;
+}

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import HeadNavbar from "./components/navigation/navbar/HeadNavbar";
 import "./homestyles.css";
-import { Button, Divider, Input, Link, Textarea } from "@nextui-org/react";
+import { Button, Card, CardHeader, Divider, Image, Input, Link, Textarea } from "@nextui-org/react";
 import Contact from "./components/Form/contact";
 import { motion, useAnimation, useTransform, useViewportScroll } from "framer-motion";
 import SwiperButton from "./components/navigation/swiperbutton/SwiperButton";
@@ -78,34 +78,37 @@ export default function Home() {
         </div>
       </section>
       <div className="pt-4">
-
         {/* TODO: Add sliding animation on entry of section */}
         {/* Potential: create a hook and utilize div refs to keep things */}
-        <div className="text-center" ref={ref}>
-          <motion.h1
-            className="mx-auto text-6xl py-20 leading-loose"
-            initial="hidden"
-            animate={controls}
-            variants={{
-              visible: { opacity: 1, y: 0 },
-              hidden: { opacity: 0, y: 50 },
-            }}
-            transition={{ duration: 1 }}
-          >
-            Our first step in <span className="text-green-300 font-semibold">Bio</span>technology.
-            <br />
-            Is with <span className="text-red-400 font-bold">Women's Health</span>.
-          </motion.h1>
-          <svg height={200} width={200} className="mx-auto" id="eDiGStl2V6I1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 300 300" shape-rendering="geometricPrecision" text-rendering="geometricPrecision"><path d="M216.201146,141.167723c-26.689497-4.919209-44.913991-2.686837-66.897827-26.258456-23.221065-23.254447-65.673291-13.6587-69.062625,22.173807s63.467703,84.919324,135.960452,4.084649Z" transform="translate(1.817804 23.442574)" fill="#ecc9c7" stroke="#ecc9c7" stroke-width="0.6" /><ellipse rx="25" ry="25" transform="translate(130.982868 93.32929)" fill="#ecc9c7" stroke-width="0" /><ellipse rx="15" ry="15" transform="translate(189.838379 140.696999)" fill="#ecc9c7" stroke-width="0" /></svg>
-
-          <Divider orientation="horizontal" className="my-10" />
+        <div className="grid grid-cols-[50%_50%] px-10 gap-5">
+          <div className="text-left mx-auto" ref={ref}>
+            <motion.h1
+              className="mx-auto text-6xl py-10 leading-loose"
+              initial="hidden"
+              animate={controls}
+              variants={{
+                visible: { opacity: 1, y: 0 },
+                hidden: { opacity: 0, y: 50 },
+              }}
+              transition={{ duration: 1 }}
+            >
+              Our first step in <span className="text-green-300 font-semibold">Bio</span>technology.
+              <br />
+              Is with <span className="text-red-400 font-bold">Women's Health</span>.
+            </motion.h1>
+            <svg height={200} width={200} className="mx-auto" id="eDiGStl2V6I1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 300 300" shape-rendering="geometricPrecision" text-rendering="geometricPrecision"><path d="M216.201146,141.167723c-26.689497-4.919209-44.913991-2.686837-66.897827-26.258456-23.221065-23.254447-65.673291-13.6587-69.062625,22.173807s63.467703,84.919324,135.960452,4.084649Z" transform="translate(1.817804 23.442574)" fill="#ecc9c7" stroke="#ecc9c7" stroke-width="0.6" /><ellipse rx="25" ry="25" transform="translate(130.982868 93.32929)" fill="#ecc9c7" stroke-width="0" /><ellipse rx="15" ry="15" transform="translate(189.838379 140.696999)" fill="#ecc9c7" stroke-width="0" /></svg>
+          </div>
+          <div>
+            <img src="/images/homepagelady.png" alt="Teagan Paddleton and her baby, Oakley." className="h-3/4 mx-auto my-auto boxshadow" />
+          </div>
         </div>
+        <Divider orientation="horizontal" />
         <section className="content h-screen">
           {/* TODO (when more products are added): create mini product icons on a horizontal slider that overflows off the image. When mini product icon is clicked on, replace the background image with the selected product. */}
           <div className="relative ">
             <img
               src="/images/strl.jpg"
-              className="absolute opacity-80 left-0 rounded-lg"
+              className="absolute opacity-80 left-0 rounded-lg strl-shadow"
             />
 
             <motion.div className="absolute top-0 right-0 mx-auto leading-loose text-left w-1/5" initial="hidden"
@@ -156,33 +159,33 @@ export default function Home() {
               <Divider orientation="horizontal" className="my-10" />
             </motion.h1>
           </div>
-          <div className="grid grid-row-1 grid-flow-col justify-center gap-x-unit-4xl">
-            <div className="text-center">
-              <ProfilePicture imageUrl="/images/AhmedPic.jpg" />
-              <h1 className="font-semibold"> our lord and savior</h1>
-              <p className="font-semibold text-slate-400">raaaaah</p>
+          <div className="grid grid-row-1 grid-cols-4 justify-center gap-x-unit-3xl mx-auto">
+            <div className="mx-auto">
+              <ProfilePicture imageUrl="/images/ashraf_affan.webp" />
+              <h1 className="font-semibold">Dr. Ashraf Affan</h1>
+              <p className="font-semibold text-slate-400">Angel Kids Pediatrics<br />I Nurse My Baby<br />Center for Medicare & Medicaid Services</p>
             </div>
-            <div className="text-center">
-              <ProfilePicture imageUrl="/images/AhmedPic.jpg" />
-              <h1 className="font-semibold"> our lord and savior</h1>
-              <p className="font-semibold text-slate-400">raaaaah</p>
+            <div className="mx-auto my-auto">
+              <ProfilePicture imageUrl="/images/christine_davies.jpg" />
+              <h1 className="font-semibold">Christine Davies</h1>
+              <p className="font-semibold text-slate-400">Angel Kids Pediatrics<br />Board Certified Lactation Consultant</p>
             </div>
-            <div className="text-center">
-              <ProfilePicture imageUrl="/images/AhmedPic.jpg" />
-              <h1 className="font-semibold"> our lord and savior</h1>
-              <p className="font-semibold text-slate-400">raaaaah</p>
+            <div className="mx-auto">
+              <ProfilePicture imageUrl="/images/megan_gregg.jpg" />
+              <h1 className="font-semibold">Megan Gregg</h1>
+              <p className="font-semibold text-slate-400">15+ years of experience building startups in SaaS, MarTech, F&B, and E-commerce <br />Founding Member of Women in Tech</p>
             </div>
-            <div className="text-center">
-              <ProfilePicture imageUrl="/images/AhmedPic.jpg" />
-              <h1 className="font-semibold"> our lord and savior</h1>
-              <p className="font-semibold text-slate-400">raaaaah</p>
+            <div className="mx-auto">
+              <ProfilePicture imageUrl="/images/scott_kelly.jpeg" />
+              <h1 className="font-semibold">Scott Kelly</h1>
+              <p className="font-semibold text-slate-400">Black Dog Venture Partners</p>
             </div>
           </div>
         </section>
         <Divider orientation="horizontal" className="my-10" />
         <section className="content">
-          <div className="grid grid-row-1 grid-flow-col">
-            <div className="text-left w-1/3 py-2">
+          <div className="grid grid-row-1 grid-cols-2 gap-x-unit-2xl">
+            <div className="text-left py-2">
               <h1 className="font-thin text-7xl">Let us innovate tomorrow,<br /> <span className="font-bold" data-end="you">with&nbsp;</span>.</h1>
               <p className="py-5 font-thin">We're here to help. Whether you have general questions or inquiries - we're here to provide information and answer questions.</p>
               <div className="py-5">
@@ -192,11 +195,8 @@ export default function Home() {
                       <svg fill="#FFFFFF" height="100px" width="100px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
                         viewBox="0 0 24 24" enable-background="new 0 0 24 24" xmlSpace="preserve">
                         <g id="stakeholder">
-                          <path d="M18,1.9l-6,3V12l6,3l6-3V4.8L18,1.9z M20.7,5.5L18,6.8l-2.7-1.3L18,4.1L20.7,5.5z M14,7.1l3,1.5v3.7l-3-1.5V7.1z M19,12.2
-		V8.5l3-1.5v3.7L19,12.2z"/>
-                          <path d="M8.9,13.8C9.6,13.1,10,12.1,10,11c0-2.2-1.8-4-4-4s-4,1.8-4,4c0,1.1,0.4,2.1,1.1,2.8C1.3,14.9,0,16.9,0,19.2V22h2.7h0.8H12
-		v-2.8C12,16.8,10.7,14.8,8.9,13.8z M4,11c0-1.1,0.9-2,2-2s2,0.9,2,2c0,1.1-0.9,2-2,2S4,12.1,4,11z M10,20H3.5H2.7H2v-0.8
-		C2,16.9,3.8,15,6,15c2.2,0,4,1.9,4,4.2V20z"/>
+                          <path d="M18,1.9l-6,3V12l6,3l6-3V4.8L18,1.9z M20.7,5.5L18,6.8l-2.7-1.3L18,4.1L20.7,5.5z M14,7.1l3,1.5v3.7l-3-1.5V7.1z M19,12.2V8.5l3-1.5v3.7L19,12.2z" />
+                          <path d="M8.9,13.8C9.6,13.1,10,12.1,10,11c0-2.2-1.8-4-4-4s-4,1.8-4,4c0,1.1,0.4,2.1,1.1,2.8C1.3,14.9,0,16.9,0,19.2V22h2.7h0.8H12v-2.8C12,16.8,10.7,14.8,8.9,13.8z M4,11c0-1.1,0.9-2,2-2s2,0.9,2,2c0,1.1-0.9,2-2,2S4,12.1,4,11z M10,20H3.5H2.7H2v-0.8C2,16.9,3.8,15,6,15c2.2,0,4,1.9,4,4.2V20z" />
                         </g>
                       </svg>
                     </div>
@@ -206,7 +206,7 @@ export default function Home() {
                         Inquiries
                       </h2>
                       <p className="py-2">Lets work and grow together. Click the link below to fill out the forms and our partnership manager will reach out to you.</p>
-                      <Link className="text-2xl font-bold" href="/webforms/investorform" underline="always" color="foreground">Partnership Form</Link>
+                      <Link className="text-2xl font-bold" href="/webforms/partnershipform" underline="always" color="foreground">Partnership Form</Link>
                     </div>
 
                   </div>
@@ -239,6 +239,27 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div>
+              <img src="/images/teagan_and_frankie.png" alt="Teagan Padelford & Frankie Civiletto, with her baby, Oakley." />
+              <div className="pt-5 text-left">
+                <h1 className="font-bold text-2xl">Recent News</h1>
+              </div>
+              <div className="grid grid-row-1 grid-flow-cols gap-5 flex-col py-5">
+                <Link href="https://wefunder.com/parasol.laboratories.incorporated" target="_blank">
+                  <Card className="h-[300px]">
+                    <CardHeader className="z-10 absolute flex-col !items-start top-1">
+                      <p className="text-tiny text-white/60 uppercase font-bold">STRL</p>
+                      <h4 className="text-white font-medium text-large">Support us through WeFundr</h4>
+                    </CardHeader>
+                    <Image
+                      removeWrapper
+                      alt="STRL WeFundr"
+                      className="z-0 w-full h-full object-cover"
+                      src="/images/strl.jpg" />
+                  </Card>
+                </Link>
               </div>
             </div>
           </div>

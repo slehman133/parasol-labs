@@ -7,9 +7,12 @@ interface ProfilePictureProps {
 
 const ProfilePicture: React.FC<ProfilePictureProps> = ({ imageUrl }) => {
   return (
-    <div className="profilePicture">
-      <img src={imageUrl} alt="Profile" className="image" />
-    </div>
+    <>
+      <div className="profilePicture mx-auto">
+        <img src={imageUrl} alt="Profile" className="image" />
+      </div>
+    </>
+
   );
 };
 
