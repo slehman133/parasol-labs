@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react';
 import { sendEmail } from '@/app/api/email/contact';
 import { Input, Textarea, Button, Checkbox } from '@nextui-org/react';

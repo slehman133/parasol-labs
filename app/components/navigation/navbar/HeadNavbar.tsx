@@ -36,14 +36,12 @@ const HeadNavbar = () => {
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
         <AccountModalContent isOpen={isOpen} onOpenChange={onOpenChange} onOpen={onOpen} />
       </Modal>
-
-
       <Navbar
         maxWidth="full"
-        position="sticky"
+        isBlurred={false}
         isMenuOpen={isMenuOpen}
         onMenuOpenChange={setIsMenuOpen}
-        className="bg-transparent "
+        className="bg-transparent"
       >
         <NavbarContent className=" sm:basis-full " justify="start">
           <NavbarBrand as="li" className="gap-3 max-w-fit flex space-x-1">
