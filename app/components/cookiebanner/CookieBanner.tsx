@@ -74,13 +74,13 @@ export default function CookieBanner() {
           Only fix is if const [cookieConsent, setCookieConsent] = useState(false);
           Buuut that assigns our user's cookie consent to false, and it automatically hides since it has a value. cool.*/}
 
-        <Button
+        {/* <Button
           className="my-auto text-green-500 font-medium"
           variant="light"
           onPress={onOpen} //TODO - create a pop up that allows user to customize their cookie consent
         >
           Customize Cookies
-        </Button>
+        </Button> */}
         <Modal
           placement="top-center"
           isOpen={isOpen}

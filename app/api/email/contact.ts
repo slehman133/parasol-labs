@@ -4,7 +4,6 @@ const resend = new Resend('re_9HFzCxfW_93jYyAGW5tseFVxfr3AEVq7V');
 
 interface EmailOptions {
     from: string;
-    to: string[];
     subject: string;
     html: string;
   }
@@ -19,7 +18,7 @@ interface EmailOptions {
     try {
       const { data, error } = await resend.emails.send({
         from: options.from,
-        to: options.to,
+        to: 'carver.kaeden@gmail.com', //Change this asap please i dont want these emails --Kaeden
         subject: options.subject,
         html: options.html,
       });

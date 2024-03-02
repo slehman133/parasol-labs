@@ -2,7 +2,7 @@
 
 "use client";
 //Kaeden
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { CartProvider, useCart } from "@/app/context/CartContext";
 import { Divider, Link } from "@nextui-org/react";
@@ -97,7 +97,7 @@ const HeadNavbar = () => {
         </NavbarContent>
         <NavbarMenu className="white">
           {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={"${item}-${index}"}>
+            <NavbarMenuItem key={`${item}-${index}`}>
               <Link
                 color={
                   "foreground"
