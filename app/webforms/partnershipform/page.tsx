@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { sendEmail } from '@/app/api/email/contact';
 import { Input, Textarea, Button, Checkbox } from '@nextui-org/react';
-export default function page() {
+export default function PartnershipFormPage() {
 
   //Change the subject state to reflect elements within
   const [from, setFrom] = useState<string>('');
@@ -30,7 +30,7 @@ export default function page() {
 
   return (
     <div style={{ padding: '20px', maxWidth: '500px', margin: 'auto' }}>
-      <h3>Let's build a better tomorrow.</h3>
+      <h3>Let&apos;s build a better tomorrow.</h3>
       <Input
         label="Company Name"
         labelPlacement='outside'

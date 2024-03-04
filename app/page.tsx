@@ -113,7 +113,7 @@ export default function Home() {
               technology.
               <br />
               Is with{" "}
-              <span className="text-red-400 font-bold">Women's Health</span>.
+              <span className="text-red-400 font-bold">Women&apos;s Health</span>.
             </motion.h1>
             <svg
               height={200}
@@ -256,8 +256,8 @@ export default function Home() {
                 .
               </h1>
               <p className="py-5 font-thin">
-                We're here to help. Whether you have general questions or
-                inquiries - we're here to provide information and answer
+                We&apos;re here to help. Whether you have general questions or
+                inquiries - we&apos;re here to provide information and answer
                 questions.
               </p>
               <div className="py-5">

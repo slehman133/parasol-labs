@@ -55,7 +55,7 @@ export default function CookieBanner() {
         <p className="text-xs mt-4">
           We use cookies to enhance your browsing experience by serving
           personalized ads or content, and analyze our traffic. By clicking
-          "Accept All", you consent to the use of cookies.
+          &quot;Accept All&quot;, you consent to the use of cookies.
         </p>
         <Link
           href="/privacy"
@@ -122,9 +122,9 @@ export default function CookieBanner() {
                   </p>
                   <br />
                   <p>
-                    Click "Accept All" to give us content to use cookies for
+                    Click &quot;Accept All&quot; to give us content to use cookies for
                     those services. You can also personalize your consent to
-                    specific purposes by clicking "Personalize" and selecting
+                    specific purposes by clicking &quot;Personalize&quot; and selecting
                     the checkboxes.
                   </p>
                   <br />
