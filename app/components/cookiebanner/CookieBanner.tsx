@@ -19,6 +19,7 @@ import {
 export default function CookieBanner() {
   const [cookieConsent, setCookieConsent] = useState<true | false>();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  
   useEffect(() => {
     const storedCookieConsent = getLocalStorage("cookie_consent", null);
 

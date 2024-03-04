@@ -1,10 +1,11 @@
 "use client";
 import React, { useState } from 'react';
 import { Button, Input, Textarea } from '@nextui-org/react';
-import { sendEmail } from '../../api/email/contact'; // Adjust the path as necessary
+import { SendEmail } from '../../api/email/contact'; // Adjust the path as necessary
 
 //Try to remove useState in the functional component.
 //Find an alternative, dont really need to access states of this for anything.
+
 const SendEmailForm: React.FC = () => {
   const [from, setFrom] = useState<string>('');
   const [to, setTo] = useState<string>('');
@@ -16,8 +17,9 @@ const SendEmailForm: React.FC = () => {
   const handleSendEmail = async () => {
     setSending(true);
     try {
-      await sendEmail({ from, subject, html });
-      setMessage('Email sent successfully!');
+      setSubject("test");
+      const error = await SendEmail({ from, subject, html });
+      console.log(error);
     } catch (error) {
       setMessage('Failed to send email. Please check the console for more details.');
       console.error(error);
