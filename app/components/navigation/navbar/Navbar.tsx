@@ -1,6 +1,7 @@
 // code by Samuel Lehman
 
 
+
 "use client";
 //Kaeden
 import React from "react";
@@ -8,13 +9,17 @@ import Link from "next/link";
 import { useCart } from "@/app/context/CartContext";
 import { useSession, signOut } from "next-auth/react";
 import { useState } from "react";
+//Nick
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const { cartItems } = useCart();
   const { data: session, status }: any = useSession()
   const [menuVisible, setMenuVisible] = useState(false)
 
-
+  // nw- added a change to ignore /studio
+  const pathname = usePathname();
+  if(pathname != "/studio" )
   return (
     <>
       <header>
@@ -145,6 +150,7 @@ const Navbar = () => {
       </header>
     </>
   );
+  else return;
 };
 
 export default Navbar;

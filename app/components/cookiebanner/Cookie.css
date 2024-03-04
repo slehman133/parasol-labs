@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.cookie-consent-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 2147483645;
+    box-sizing: border-box;
+    width: 100%;
+    color: black;
+    justify-content: space-between;
+    background-color: #ffffff;
+    padding-top: .2%;
+    padding-bottom: .5%;
+    padding-left: 3%;
+}
