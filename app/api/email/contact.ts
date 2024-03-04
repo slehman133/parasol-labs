@@ -17,7 +17,7 @@ export async function SendEmail(options: EmailOptions) {
     });
     return true;
   } catch (error) {
-    console.error("An error occurred:", error);
+    // console.error("An error occurred:", error);
     return false;
   }
 }

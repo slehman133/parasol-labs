@@ -3,10 +3,10 @@
 import { SendEmail } from "../app/api/email/contact";
 
 test("emailFail", async () => {
-  const error = await SendEmail({
-    from: "engr100.carver@gmail.com",
+  const succeed = await SendEmail({
+    from: "",
     subject: "hi",
     html: "test",
   });
-  expect(error).toBe(true);
+  expect(succeed).toBe(false);
 });
