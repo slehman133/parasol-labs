@@ -1,3 +1,5 @@
+// written by Samuel Lehman
+
 import { saltAndHash } from "./../utils/hash";
 
 test("saltAndHash", async () => {

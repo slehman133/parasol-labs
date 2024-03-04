@@ -3,54 +3,102 @@
 @tailwind utilities;
 
 .content {
-    max-height: fit-content;
-    max-width: max-content;
-    margin: 1% 5% 1% 5%;
-    padding: 5%;
-    text-align: center;
-    object-position: center center;
-    transform-origin: center center;
-    border-radius: 25px;
+  max-height: fit-content;
+  margin: 1% 5% 1% 5%;
+  padding: 5%;
+  text-align: center;
+  object-position: center center;
+  transform-origin: center center;
+  border-radius: 25px;
+  position: relative;
 }
 
 .column {
-    float: left;
-    width: 50%;
-    object-position: center center;
-    transform-origin: center center;
+  float: left;
+  width: 50%;
+  object-position: center center;
+  transform-origin: center center;
 }
 
 .row::after {
-    content: '';
-    display: table;
-    clear: both;
+  content: "";
+  display: table;
+  clear: both;
 }
 
 h1::after {
-    content: attr(data-end);
-    color: orange;
+  content: attr(data-end);
+  color: orange;
+}
+span::after {
+  content: attr(data-end);
+  color: orange;
 }
 
 .resizeableImage {
-    z-index: 0;
-    object-fit: cover;
-    object-position: center center;
-    transform-origin: center center;
-    height: 80%;
-    width: 80%;
-    opacity: 80%;
+  z-index: 0;
+  justify-content: center;
+  object-fit: cover;
+  object-position: center center;
+  transform-origin: center center;
+  height: 80%;
+  width: 80%;
+  opacity: 80%;
 }
 
 .fullImage {
-    object-fit: cover;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    object-position: center center;
-    transform-origin: center center;
+  object-fit: cover;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  object-position: center center;
+  transform-origin: center center;
 }
 
 .borderedBottom {
-    border-bottom: 1px solid white;
+  border-bottom: 1px solid white;
+}
+
+.arrow-right {
+  height: 22px;
+  width: 100px;
+  opacity: 0.5;
+  transition: 250ms all ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  path {
+    transition: 250ms all ease;
+    height: 100%;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.arrow-right:hover path {
+  d: path(
+    "M0 9.35772H50.9956L44.2001 2.29941L46.4134 0L57 11L46.4134 22L44.2001 19.7006L50.9956 12.6423H0V9.35772Z"
+  );
+  d: "M0 9.35772H50.9956L44.2001 2.29941L46.4134 0L57 11L46.4134 22L44.2001 19.7006L50.9956 12.6423H0V9.35772Z";
+}
+
+.contact-box {
+  border: 1px solid white;
+  width: auto;
+  height: auto;
+  padding: 2%;
+}
+
+.boxshadow {
+  box-shadow: 60px -16px rgb(248 113 113);
+}
+.box-shadow-under {
+  box-shadow: 60px 16px rgb(248 113 113);
+}
+.strl-shadow {
+  box-shadow: -60px -20px gray;
 }
