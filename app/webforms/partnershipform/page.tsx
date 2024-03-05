@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { sendEmail } from '@/app/api/email/contact';
+import { SendEmail } from '@/app/api/email/contact';
 import { Input, Textarea, Button, Checkbox, CheckboxGroup, Divider } from '@nextui-org/react';
 import "./partnershipformstyles.css";
 export default function page() {
@@ -22,7 +22,7 @@ export default function page() {
   };
   return (
     <div className='h-auto w-full p-10'>
-      <div className='bg-[#1a0617] p-10 h-2/3 w-3/4 mx-auto my-auto grid grid-cols-2 grid-row-[50vh] gap-5 rounded-md'>
+      <div className='border-1 border-white p-10 h-2/3 w-3/4 mx-auto my-auto grid grid-cols-2 grid-row-[50vh] gap-5 rounded-md'>
         <div className='mx-auto text-left'>
           <h3 className='font-bold text-3xl'>Let's build a better tomorrow.</h3>
           <p className='font-thin w-2/3'>We want to grow with our community. Fill out the form and our partnership manager will reach out as soon as possible.</p>

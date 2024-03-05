@@ -366,7 +366,7 @@ export default function Home() {
               </div>
             </div>
             <div>
-              <img
+              <Image
                 src="/images/teagan_and_frankie.png"
                 alt="Teagan Padelford & Frankie Civiletto, with her baby, Oakley."
                 className="box-shadow-under"

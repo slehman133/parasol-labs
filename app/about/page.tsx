@@ -1,85 +1,72 @@
-import React from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
+import React from 'react';
+import { Divider, Button, Link, Image } from '@nextui-org/react';
+import "./aboutpagestyles.css";
 
-//Written by Nicholas Whitehorn
-//Developed
-export async function generateMetadata() {
-  return {
-    title: 'About Parasol Labs',
-  }
-}
-
-const AboutPage = () => {
-
-
+export default function About() {
   return (
     <>
-      <div className='flex flex-row px-36 py-24 gap-24'>
-        <div className="flex flex-col basis-9/12">
-          <div className="flex flex-col text-lg">
-
-            <div className=" py-4 text-4xl bg-slate-500 text-white">
-              <h2>THE FUTURE OF HEALTHCARE BEGINS NOW.</h2>
-            </div>
-            <div className="flex p-4">
-              <p>At Parasol Labs, we believe that our values are the cornerstone of our identity. Driven by a commitment to excellence, integrity, and innovation, we strive to transcend the ordinary in everything we do. We`re not just about making promises; we`re about embodying them in every project, every breakthrough, and every interaction. Here, our actions speak louder than words, reflecting our unwavering dedication to impacting the world positively and paving the way for a brighter, healthier future.</p>
-            </div>
-            <div className="flex py-2 bg-slate-500 text-white text-3xl">
-              <h2>MISSION STATEMENT</h2>
-            </div>
-            <div className="flex py-2 px-4">
-              <p>Parasol Laboratories Incorporated is dedicated to pioneering transformative solutions that solve global health needs, empower marginalized communities, and target underserved markets. We are driven by a deep-rooted ethos, prioritizing the well-being of our end users and the integrity of our data.</p>
-            </div>
-            <div className="flex py-2 px-4">
-              <p>Every product we design, every decision we make, is anchored in creating a tangible, positive impact, with no compromise. Our responsibility extends beyond profit, as we reinvest in our community, ensuring equitable care and quality of life are forever at the forefront of our endeavors.</p>
-            </div>
-            <div className="flex py-2 px-4">
-              <p>Every day at Parasol Laboratories Incorporated, we operationalize our mission by engineering products with the end user`s best interest in mind. Our pricing models allow us to produce more while giving back, ensuring that our innovations reach those who need them most, not just those who can afford them. We champion environmental responsibility, sustainability, and neutrality in all our processes.</p>
-            </div>
-            <div className="flex py-2 px-4">
-              <p>Our team, our greatest asset, is nurtured in an environment that values their well-being, rewards their expertise, and encourages continuous growth. Together, we work towards building a lasting legacy of positive change and unparalleled impact, internally and externally.</p>
-            </div>
-
-            <div className='flex flex-row p-8 gap-8'>
-              <div className="">
-                <Link href="/team">
-                  <button className='btn btn-wide rounded-lg bg-white font-bold px-5 text-2xl'>
-                    Learn More
-                  </button>
-                </Link>
+      <div>
+        <section className='content grid grid-cols-2 grid-rows-1 gap-10 '>
+          <div className='w-full text-wrap text-left'>
+            <h1 className='font-bold text-6xl'>Our Mission Statement.</h1>
+            <Divider orientation='horizontal' className='my-5' />
+            <div className='grid grid-rows-2 gap-5'>
+              <div>
+                <p className='font-thin text-2xl'>Parasol Laboratories Incorporated is dedicated to pioneering transformative solutions that solve global health needs, empower marginalized communities, and target underserved markets.
+                  <br />
+                  <br />
+                  Every product we design, every decision we make, is anchored in creating a tangible, positive impact, with no compromise. Our responsibility extends beyond profit, as we reinvest in our community, ensuring equitable care and quality of life are forever at the forefront of our endeavors.
+                </p>
               </div>
-              <div className="">
-                <Link href="/products">
-                  <button className='btn btn-wide h-12 rounded-lg bg-white font-bold px-5 text-2xl'>
-                    Shop Products
-                  </button>
+              <div className=' justify-end inline-flex items-end h-1/6'>
+                <Link href="/about" color="foreground">
+                  <div className="grid grid-columns-2 grid-flow-col gap-4">
+                    <h1 className="font-bold text-2xl py-5">About us</h1>
+                    <svg id="right" className="arrow-right my-auto ">
+                      <path
+                        d="M0.5 9.35772H20.9956L14.2001 2.29941L16.4134 0L27 11L16.4134 22L14.2001 19.7006L20.9956 12.6423H0.5V9.35772Z"
+                        fill="#ffffff"
+                      ></path>
+                    </svg>
+                  </div>
                 </Link>
               </div>
             </div>
           </div>
+          <div className='p-10 w-2/3 h-auto mx-auto'>
+            <div className='styled-box'>
+              <Image
+                src="/images/logo.png"
+                alt='Parasol Laboratories Logo'
+                className='w-2/3 h-auto mx-auto top-0'
+              />
+            </div>
+          </div>
+        </section>
+        <section className='content grid grid-cols-[20%_80%] grid-rows-1 gap-10 bg-slate-300 text-black'>
+          <div className='p-10 w-2/3 h-auto mx-auto'>
+            <div className='styled-box'>
+              <Image
+                src="/images/logo.png"
+                alt='Parasol Laboratories Logo'
+                className='w-2/3 h-auto mx-auto top-0'
+              />
+            </div>
+          </div>
+          <div>
+            <h1 className='font-bold text-6xl'>
+              Operational Statement.
+            </h1>
+            <p>
+              Every day at Parasol Laboratories Incorporated, we operationalize our mission by engineering products with the end user’s best interest in mind. Our pricing models allow us to produce even more while giving back, ensuring that our innovations reach those who need them most. We champion environmental responsibility, sustainability, and neutrality in all our processes.
 
+              Our team, our greatest asset, is nurtured in an environment that values their well-being, rewards their expertise, and encourages continuous growth. Together, we work towards building a lasting legacy of positive change and unparalleled impact, internally and externally.
+            </p>
 
+          </div>
 
-
-        </div>
-        <div className='flex px-8 py-48'>
-
-          <figure>
-            <Image
-              src="/images/logo.png"
-              alt='Member Image'
-              width="400"
-              height="400"
-            />
-          </figure>
-        </div>
+        </section>
       </div>
     </>
-  )
-
+  );
 }
-
-
-
-export default AboutPage
