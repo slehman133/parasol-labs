@@ -9,13 +9,8 @@ import Spinner from '@/components/Spinner';
 import { motion } from "framer-motion"
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react"
 import Link from 'next/link';
-const calcTotalPrice = (items: CartItem[]): string => {
-    let total = 0
-    items.map((e: CartItem) => {
-        total += Number(e.price * e.quantity)
-    })
-    return total.toFixed(2)
-}
+import {calcTotalPrice} from '@/utils/cart';
+
 const CartPage = () => {
     const { cartItems, clearCart, removeFromCart, editItemQuantity } = useCart();
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
