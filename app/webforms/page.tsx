@@ -6,7 +6,7 @@ export default function page() {
         <div className='my-auto mx-auto p-14 grid grid-cols-2 gap-5'>
             <div>
                 <h1 className='text-4xl font-bold'>Contact us at Parasol Laboratories.</h1>
-                <p className='font-medium'>Whether you're interested in working with us, or have a general inquiry. We're here to provide.<br />Please select the form you feel appropriate for your needs and we will get back to you as soon as possible.</p>
+                <p className='font-medium'>Whether you&apos;re interested in working with us, or have a general inquiry. We&apos;re here to provide.<br />Please select the form you feel appropriate for your needs and we will get back to you as soon as possible.</p>
                 <Link
                     className="text-2xl font-bold w-fit"
                     href="/webforms/partnershipform"
