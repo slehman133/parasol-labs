@@ -5,7 +5,6 @@ import { Input, Textarea, Button, Checkbox, CheckboxGroup, Divider } from '@next
 import "./partnershipformstyles.css";
 export default function PartnershipFormPage() {
   const [selected, setSelected] = useState(['']);
-  const [selected, setSelected] = useState(['']);
   const [sending, setSending] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
 
