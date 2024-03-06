@@ -7,6 +7,9 @@
     align-items: center;
     justify-content: center;
 }
+.box-shadow {
+    box-shadow: -40px -100px gray;
+}
 
 .arrow-right {
     height: 22px;
