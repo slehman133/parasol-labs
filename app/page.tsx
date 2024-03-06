@@ -12,7 +12,6 @@ import {
   Link,
   Textarea,
 } from "@nextui-org/react";
-import Contact from "./components/Form/contact";
 import {
   motion,
   useAnimation,
@@ -207,7 +206,7 @@ export default function Home() {
           </div>
           <div className="grid grid-row-1 grid-cols-4 justify-center gap-x-unit-3xl mx-auto">
             <div className="mx-auto">
-              <ProfilePicture imageUrl="/images/ashraf_affan.webp" linkedinUrl=""/>
+              <ProfilePicture imageUrl="/images/ashraf_affan.webp" linkedinUrl="" />
               <h1 className="font-semibold">Dr. Ashraf Affan</h1>
               <p className="font-semibold text-slate-400">
                 Angel Kids Pediatrics
@@ -226,7 +225,7 @@ export default function Home() {
               </p>
             </div>
             <div className="mx-auto">
-              <ProfilePicture imageUrl="/images/megan_gregg.jpg" linkedinUrl=""/>
+              <ProfilePicture imageUrl="/images/megan_gregg.jpg" linkedinUrl="" />
               <h1 className="font-semibold">Megan Gregg</h1>
               <p className="font-semibold text-slate-400">
                 15+ years of experience building startups in SaaS, MarTech, F&B,
@@ -235,7 +234,7 @@ export default function Home() {
               </p>
             </div>
             <div className="mx-auto">
-              <ProfilePicture imageUrl="/images/scott_kelly.jpeg" linkedinUrl=""/>
+              <ProfilePicture imageUrl="/images/scott_kelly.jpeg" linkedinUrl="" />
               <h1 className="font-semibold">Scott Kelly</h1>
               <p className="font-semibold text-slate-400">
                 Black Dog Venture Partners
@@ -366,11 +365,6 @@ export default function Home() {
               </div>
             </div>
             <div>
-              <Image
-                src="/images/teagan_and_frankie.png"
-                alt="Teagan Padelford & Frankie Civiletto, with her baby, Oakley."
-                className="box-shadow-under"
-              />
               <div className="pt-5 text-left">
                 <h1 className="font-bold text-2xl border-b-1 border-white">
                   Recent News

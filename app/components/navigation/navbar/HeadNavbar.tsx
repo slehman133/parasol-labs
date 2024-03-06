@@ -38,7 +38,6 @@ const HeadNavbar = () => {
       </Modal>
       <Navbar
         maxWidth="full"
-        isBlurred={false}
         isMenuOpen={isMenuOpen}
         onMenuOpenChange={setIsMenuOpen}
         className="bg-transparent"
