@@ -21,16 +21,16 @@ export default function Footer() {
       
       <nav>
         <header className="footer-title">Company</header>
-        <Link href="" className="link link-hover">
+        <Link href="/about#mission-statement" className="link link-hover">
           Mission Statement
         </Link>
-        <Link href="" className="link link-hover">
+        <Link href="/about#operational-statement" className="link link-hover">
           Operational Statement
         </Link>
-        <Link href="" className="link link-hover">
+        <Link href="/news" className="link link-hover">
           News
         </Link>
-        <Link href="" className="link link-hover">
+        <Link href="/privacy" className="link link-hover">
           Terms & Policies
         </Link>
       </nav>
@@ -38,14 +38,11 @@ export default function Footer() {
 
       <nav>
         <header className="footer-title">Research</header>
-        <Link href="/" className="link link-hover">
+        <Link href="/Products" className="link link-hover">
           Products
         </Link>
-        <Link href="/" className="link link-hover">
+        <Link href="/strl" className="link link-hover">
           Liquid Sterilization
-        </Link>
-        <Link href="/" className="link link-hover">
-          R&D Pipeline
         </Link>
       </nav>
       <Divider orientation="vertical" />

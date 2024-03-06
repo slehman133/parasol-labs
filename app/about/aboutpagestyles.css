@@ -1,37 +1,67 @@
 .styled-box {
-    height: 60vh;
-    width: 75%;
-    margin: auto;
-    background-color: #8191ED;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 60vh;
+  width: 75%;
+  margin: auto;
+  background-color: #8191ed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .box-shadow {
-    box-shadow: -40px -100px gray;
+  box-shadow: -40px -100px gray;
 }
 
 .arrow-right {
-    height: 22px;
-    width: 100px;
-    opacity: 0.5;
+  height: 22px;
+  width: 100px;
+  opacity: 0.5;
+  transition: 250ms all ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  path {
     transition: 250ms all ease;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
+    height: 100%;
+  }
 
-    path {
-        transition: 250ms all ease;
-        height: 100%;
-    }
-
-    &:hover {
-        opacity: 1;
-    }
+  &:hover {
+    opacity: 1;
+  }
 }
 
 .arrow-right:hover path {
-    d: path("M0 9.35772H50.9956L44.2001 2.29941L46.4134 0L57 11L46.4134 22L44.2001 19.7006L50.9956 12.6423H0V9.35772Z"
-        );
-    d: "M0 9.35772H50.9956L44.2001 2.29941L46.4134 0L57 11L46.4134 22L44.2001 19.7006L50.9956 12.6423H0V9.35772Z";
+  d: path(
+    "M0 9.35772H50.9956L44.2001 2.29941L46.4134 0L57 11L46.4134 22L44.2001 19.7006L50.9956 12.6423H0V9.35772Z"
+  );
+  d: "M0 9.35772H50.9956L44.2001 2.29941L46.4134 0L57 11L46.4134 22L44.2001 19.7006L50.9956 12.6423H0V9.35772Z";
+}
+
+#wave {
+  position: relative;
+  height: 70px;
+  width: auto;
+  background: #e0efe3;
+}
+#wave:before {
+  content: "";
+  display: block;
+  position: absolute;
+  border-radius: 100% 50%;
+  width: 340px;
+  height: 80px;
+  background-color: white;
+  right: -5px;
+  top: 40px;
+}
+#wave:after {
+  content: "";
+  display: block;
+  position: absolute;
+  border-radius: 100% 50%;
+  width: 300px;
+  height: 70px;
+  background-color: #e0efe3;
+  left: 0;
+  top: 27px;
 }
