@@ -110,6 +110,23 @@ const HeadNavbar = () => {
               </Link>
             </NavbarMenuItem>
           ))}
+          <NavbarMenuItem>
+            <Link
+              color={
+                "foreground"
+
+              }
+              className="w-full "
+              href="/cart"
+              size="lg"
+            >
+              Cart {(cartItems && cartItems.length > 0) &&
+                    <div className="bg-red-500 rounded text-white p-[0.1rem] ml-2">
+                      <p>{cartItems.length}</p>
+                    </div>
+                  }
+            </Link>
+          </NavbarMenuItem>
         </NavbarMenu>
       </Navbar>
     </>

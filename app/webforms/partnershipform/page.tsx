@@ -24,7 +24,7 @@ export default function PartnershipFormPage() {
     <div className='h-auto w-full p-10'>
       <div className='border-1 border-white p-10 h-2/3 w-3/4 mx-auto my-auto grid grid-cols-2 grid-row-[50vh] gap-5 rounded-md'>
         <div className='mx-auto text-left'>
-          <h3 className='font-bold text-3xl'>Let's build a better tomorrow.</h3>
+          <h3 className='font-bold text-3xl'>Let&apos;s build a better tomorrow.</h3>
           <p className='font-thin w-2/3'>We want to grow with our community. Fill out the form and our partnership manager will reach out as soon as possible.</p>
           <img src='/images/logo.png' alt='Parasol Laboratories Logo' className='h-auto w-1/3 mx-auto pt-12'/>
         </div>
@@ -93,7 +93,7 @@ export default function PartnershipFormPage() {
             placeholder="Postal / Zip Code"
             isRequired
           />
-          <h1 className='py-4 font-bold'>Services you're interested in (can select multiple)</h1>
+          <h1 className='py-4 font-bold'>Services you&apos;re interested in (can select multiple)</h1>
           <CheckboxGroup
             value={selected}
             onValueChange={setSelected}
