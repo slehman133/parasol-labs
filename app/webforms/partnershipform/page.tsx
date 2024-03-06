@@ -1,24 +1,18 @@
 "use client";
 import React, { useState } from 'react';
-import { sendEmail } from '@/app/api/email/contact';
-import { Input, Textarea, Button, Checkbox } from '@nextui-org/react';
+import { SendEmail } from '@/app/api/email/contact';
+import { Input, Textarea, Button, Checkbox, CheckboxGroup, Divider } from '@nextui-org/react';
+import "./partnershipformstyles.css";
 export default function PartnershipFormPage() {
-
-  //Change the subject state to reflect elements within
-  const [from, setFrom] = useState<string>('');
-  const [to, setTo] = useState<string>('');
-  const [subject, setSubject] = useState<string>('');
-  const [html, setHtml] = useState<string>('');
+  const [selected, setSelected] = useState(['']);
+  const [selected, setSelected] = useState(['']);
   const [sending, setSending] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
-
-  //Set selected for multiple diff checkboxes
-  const [isSelected, setIsSelected] = useState(false)
 
   const handleSendEmail = async () => {
     setSending(true);
     try {
-      await sendEmail({ from, to: to.split(','), subject, html });
+      //TODO: Database logic to check that it was succesfully created in database
       setMessage('Email sent successfully!');
     } catch (error) {
       setMessage('Failed to send email. Please check the console for more details.');
@@ -27,139 +21,155 @@ export default function PartnershipFormPage() {
       setSending(false);
     }
   };
-
   return (
-    <div style={{ padding: '20px', maxWidth: '500px', margin: 'auto' }}>
-      <h3>Let&apos;s build a better tomorrow.</h3>
-      <Input
-        label="Company Name"
-        labelPlacement='outside'
-        variant='bordered'
-        fullWidth
-        color="primary"
-        size="lg"
-        placeholder="From: name@example.com"
-        value={from}
-        onChange={(e) => setFrom(e.target.value)}
-      />
-      <Input
-        label='Company Webpage'
-        labelPlacement='outside'
-        variant='bordered'
-        fullWidth
-        color="primary"
-        size="lg"
-        value={to}
-        onChange={(e) => setTo(e.target.value)}
-      />
-      <h1>Company Address</h1>
-      <Input
-        variant='bordered'
-        fullWidth
-        color="primary"
-        size="lg"
-        placeholder="Street Address"
-        value={subject}
-        onChange={(e) => setSubject(e.target.value)}
-      />
-      <Input
-        variant='bordered'
-        fullWidth
-        color="primary"
-        size="lg"
-        placeholder="Street Address Line 2"
-        value={subject}
-        onChange={(e) => setSubject(e.target.value)}
-      />
-      <Input
-        variant='bordered'
-        fullWidth
-        color="primary"
-        size="lg"
-        placeholder="City"
-        value={subject}
-        onChange={(e) => setSubject(e.target.value)}
-      />
-      <Input
-        variant='bordered'
-        fullWidth
-        color="primary"
-        size="lg"
-        placeholder="State / Province"
-        value={subject}
-        onChange={(e) => setSubject(e.target.value)}
-      />
-      <Input
-        variant='bordered'
-        fullWidth
-        color="primary"
-        size="lg"
-        placeholder="Postal / Zip Code"
-        value={subject}
-        onChange={(e) => setSubject(e.target.value)}
-      />
-      <h1>Current Demand Generation Activities (can select multiple)</h1>
-      <Checkbox isSelected={isSelected} onValueChange={setIsSelected}>
-        Website Optimization
-      </Checkbox>
-      <Checkbox isSelected={isSelected} onValueChange={setIsSelected}>
-        Social Media
-      </Checkbox>
-      <Checkbox isSelected={isSelected} onValueChange={setIsSelected}>
-        Media Advertisement
-      </Checkbox>
-      <Checkbox isSelected={isSelected} onValueChange={setIsSelected}>
-        Email/Mobile Marketing
-      </Checkbox>
-      <Checkbox isSelected={isSelected} onValueChange={setIsSelected}>
-        Trade show/Workshop
-      </Checkbox>
-      <Checkbox isSelected={isSelected} onValueChange={setIsSelected}>
-        Paid Search / SEO
-      </Checkbox>
-      <Checkbox isSelected={isSelected} onValueChange={setIsSelected}>
-        Other
-      </Checkbox>
-      <h1>Additional information</h1>
-      <Textarea
-        variant='bordered'
-        fullWidth
-        color="primary"
-        size="lg"
-        placeholder="Type here..."
-        value={html}
-        onChange={(e) => setHtml(e.target.value)}
-      />
-      <h1>Point of Contact - Partnership</h1>
-      <Input
-        label='Contact Name'
-        labelPlacement='outside'
-        variant='bordered'
-        color='primary'
-        size='lg'
-      />
-      <Input
-        label='Phone Number'
-        labelPlacement='outside'
-        variant='bordered'
-        color='primary'
-        size='lg'
-      />
-      <Input
-        label='Email Address'
-        labelPlacement='outside'
-        variant='bordered'
-        color='primary'
-        size='lg'
-      />
-      <Button
-        color="primary"
-        disabled={sending}
-        onClick={handleSendEmail}
-      >
-        Submit
-      </Button>
-      <p>{message}</p>
+    <div className='h-auto w-full p-10'>
+      <div className='border-1 border-white p-10 h-2/3 w-3/4 mx-auto my-auto grid grid-cols-2 grid-row-[50vh] gap-5 rounded-md'>
+        <div className='mx-auto text-left'>
+          <h3 className='font-bold text-3xl'>Let's build a better tomorrow.</h3>
+          <p className='font-thin w-2/3'>We want to grow with our community. Fill out the form and our partnership manager will reach out as soon as possible.</p>
+          <img src='/images/logo.png' alt='Parasol Laboratories Logo' className='h-auto w-1/3 mx-auto pt-12'/>
+        </div>
+        <div className='h-[50vh] scroll-container'>
+          <h1 className='text-center font-bold text-2xl border-b-1 border-white'>Partnership Form</h1>
+          <div className='py-5 grid grid-cols-2 gap-4'>
+            <Input
+              label="Company Name"
+              labelPlacement='outside'
+              variant='bordered'
+              fullWidth
+              radius='none'
+              size="lg"
+              isRequired
+            />
+            <Input
+              label='Company Webpage'
+              labelPlacement='outside'
+              variant='bordered'
+              fullWidth
+              radius='none'
+              size="lg"
+            />
+          </div>
+          <h1 className='font-bold'>Company Address</h1>
+          <Input
+            variant='bordered'
+            fullWidth
+            radius='none'
+            size="lg"
+            placeholder="Street Address"
+            isRequired
+            className='py-2'
+          />
+          <Input
+            variant='bordered'
+            fullWidth
+            radius='none'
+            size="lg"
+            placeholder="Street Address Line 2"
+            className='py-2'
+          />
+          <div className='grid grid-cols-2 grid-gap-4 gap-4 py-5'>
+            <Input
+              variant='bordered'
+              fullWidth
+              radius='none'
+              size="lg"
+              placeholder="City"
+              isRequired
+            />
+            <Input
+              variant='bordered'
+              fullWidth
+              radius='none'
+              size="lg"
+              placeholder="State / Province"
+              isRequired
+            />
+          </div>
+          <Input
+            variant='bordered'
+            fullWidth
+            radius='none'
+            size="lg"
+            placeholder="Postal / Zip Code"
+            isRequired
+          />
+          <h1 className='py-4 font-bold'>Services you're interested in (can select multiple)</h1>
+          <CheckboxGroup
+            value={selected}
+            onValueChange={setSelected}
+            color='warning'
+            className='p-2'
+          >
+            <Checkbox value='Website Optimization'>
+              Website Optimization
+            </Checkbox>
+            <Checkbox value='Social Media'>
+              Social Media
+            </Checkbox>
+            <Checkbox value='Media Advertisement'>
+              Media Advertisement
+            </Checkbox>
+            <Checkbox value='Marketing'>
+              Email/Mobile Marketing
+            </Checkbox>
+            <Checkbox value='Workshop'>
+              Trade show/Workshop
+            </Checkbox>
+            <Checkbox value='SEO'>
+              Paid Search / SEO
+            </Checkbox>
+            <Checkbox value='Other'>
+              Other
+            </Checkbox>
+          </CheckboxGroup>
+          <h1 className='py-4 font-bold'>Additional information</h1>
+          <Textarea
+            variant='bordered'
+            fullWidth
+            color="primary"
+            size="lg"
+            radius='none'
+            placeholder="Type here..."
+          />
+          <h1 className='font-bold pt-4'>Point of Contact - Partnership</h1>
+          <Input
+            label='Contact Name'
+            labelPlacement='outside'
+            variant='bordered'
+            size='lg'
+            radius='none'
+
+          />
+          <Input
+            label='Phone Number'
+            labelPlacement='outside'
+            variant='bordered'
+            size='lg'
+            radius='none'
+
+          />
+          <Input
+            label='Email Address'
+            labelPlacement='outside'
+            variant='bordered'
+            size='lg'
+            radius='none'
+
+          />
+          <div className='pt-5 w-full mx-auto grid grid-cols-2 gap-4'>
+            <Button
+              disabled={sending}
+              onClick={handleSendEmail}
+            >
+              Submit
+            </Button>
+            <p className='py-2 mx-auto'>{message}</p>
+          </div>
+
+        </div>
+      </div>
+
     </div>
   );
 };

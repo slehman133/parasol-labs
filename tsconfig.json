@@ -1,12 +1,9 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
+    "baseUrl": "./",
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
@@ -23,12 +20,8 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./*"
-      ],
-      "@/components/*": [
-        "./app/components/*"
-      ]
+      "@/*": ["./*"],
+      "@/components/*": ["./app/components/*"]
     }
   },
   "include": [
@@ -36,12 +29,12 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "middleware.ts", 
-    "lib/sendGrid.js", 
+    "middleware.ts",
+    "lib/sendGrid.js",
     "app/webforms/generalform/page.tsx",
-    "test/hash.test.js"
+    "test/hash.test.js",
+    "test/homepage.test.jsx",
+    "test/gtag.test.js"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

@@ -179,7 +179,7 @@ export default function Home() {
               <h1 className="font-bold text-2xl py-5">Liquid Sterilization</h1>
               <h1 className="font-bold text-9xl py-5">STRL</h1>
               <p>
-                Our flagship project, STRL paves the way for future innovations
+                Our inaugural project, STRL paves the way for future innovations
                 at Parasol Laboratories, all aimed at enriching lives and
                 transforming global health.
               </p>
@@ -207,7 +207,7 @@ export default function Home() {
           </div>
           <div className="grid grid-row-1 grid-cols-4 justify-center gap-x-unit-3xl mx-auto">
             <div className="mx-auto">
-              <ProfilePicture imageUrl="/images/ashraf_affan.webp" />
+              <ProfilePicture imageUrl="/images/ashraf_affan.webp" linkedinUrl=""/>
               <h1 className="font-semibold">Dr. Ashraf Affan</h1>
               <p className="font-semibold text-slate-400">
                 Angel Kids Pediatrics
@@ -216,8 +216,8 @@ export default function Home() {
                 Center for Medicare & Medicaid Services
               </p>
             </div>
-            <div className="mx-auto my-auto">
-              <ProfilePicture imageUrl="/images/christine_davies.jpg" />
+            <div className="mx-auto">
+              <ProfilePicture imageUrl="/images/christine_davies.jpg" linkedinUrl="" />
               <h1 className="font-semibold">Christine Davies</h1>
               <p className="font-semibold text-slate-400">
                 Angel Kids Pediatrics
@@ -226,7 +226,7 @@ export default function Home() {
               </p>
             </div>
             <div className="mx-auto">
-              <ProfilePicture imageUrl="/images/megan_gregg.jpg" />
+              <ProfilePicture imageUrl="/images/megan_gregg.jpg" linkedinUrl=""/>
               <h1 className="font-semibold">Megan Gregg</h1>
               <p className="font-semibold text-slate-400">
                 15+ years of experience building startups in SaaS, MarTech, F&B,
@@ -235,7 +235,7 @@ export default function Home() {
               </p>
             </div>
             <div className="mx-auto">
-              <ProfilePicture imageUrl="/images/scott_kelly.jpeg" />
+              <ProfilePicture imageUrl="/images/scott_kelly.jpeg" linkedinUrl=""/>
               <h1 className="font-semibold">Scott Kelly</h1>
               <p className="font-semibold text-slate-400">
                 Black Dog Venture Partners
@@ -244,7 +244,7 @@ export default function Home() {
           </div>
         </section>
         <Divider orientation="horizontal" className="my-10" />
-        <section className="content">
+        <section className="content" id="contact">
           <div className="grid grid-row-1 grid-cols-2 gap-x-unit-2xl">
             <div className="text-left py-2">
               <h1 className="font-thin text-7xl">
@@ -296,7 +296,7 @@ export default function Home() {
                       </p>
                       <Link
                         className="text-2xl font-bold w-fit"
-                        href="/webforms/generalform"
+                        href="/webforms/partnershipform"
                         underline="always"
                         color="foreground"
                       >
@@ -366,7 +366,7 @@ export default function Home() {
               </div>
             </div>
             <div>
-              <img
+              <Image
                 src="/images/teagan_and_frankie.png"
                 alt="Teagan Padelford & Frankie Civiletto, with her baby, Oakley."
                 className="box-shadow-under"

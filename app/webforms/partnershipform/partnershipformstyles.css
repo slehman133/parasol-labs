@@ -1,0 +1,28 @@
+::-webkit-scrollbar {
+    padding-left: 5%;
+    margin-left: 2%;
+    display: inline-block;
+}
+.scroll-container { 
+    overflow-y: scroll; 
+} 
+
+.scroll-container::-webkit-scrollbar { 
+    width: 15px; 
+} 
+
+.scroll-container::-webkit-scrollbar-track { 
+    background: inherit; 
+} 
+
+.scroll-container::-webkit-scrollbar-thumb { 
+    background: #FFFFFF; 
+} 
+
+.scroll-container::-webkit-scrollbar-thumb:hover { 
+    background: #555; 
+} 
+
+.scroll-container::-webkit-scrollbar-button { 
+    display: none; 
+} 

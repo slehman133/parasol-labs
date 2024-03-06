@@ -1,10 +1,11 @@
 "use client";
 import React, { useState } from 'react';
 import { Button, Input, Textarea } from '@nextui-org/react';
-import { sendEmail } from '../../api/email/contact'; // Adjust the path as necessary
+import { SendEmail } from '../../api/email/contact'; // Adjust the path as necessary
 
 //Try to remove useState in the functional component.
 //Find an alternative, dont really need to access states of this for anything.
+
 const SendEmailForm: React.FC = () => {
   const [from, setFrom] = useState<string>('');
   const [to, setTo] = useState<string>('');
@@ -16,8 +17,9 @@ const SendEmailForm: React.FC = () => {
   const handleSendEmail = async () => {
     setSending(true);
     try {
-      await sendEmail({ from, to: to.split(','), subject, html });
-      setMessage('Email sent successfully!');
+      setSubject("test");
+      const error = await SendEmail({ from, subject, html });
+      console.log(error);
     } catch (error) {
       setMessage('Failed to send email. Please check the console for more details.');
       console.error(error);
@@ -27,52 +29,56 @@ const SendEmailForm: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: '20px', maxWidth: '500px', margin: 'auto' }}>
-      <h3>Send an Email</h3>
+    <div className='p-10'>
+      <div className='grid grid-cols-2 gap-5'>
+        <Input
+          variant='bordered'
+          fullWidth
+          radius='none'
+          size='lg'
+          label='First Name'
+          labelPlacement='outside'
+        />
+        <Input
+          variant='bordered'
+          fullWidth
+          radius='none'
+          size='lg'
+          label='Last Name'
+          labelPlacement='outside'
+        />
+      </div>
       <Input
-        variant = 'bordered'
+        variant='bordered'
         fullWidth
-        color="primary"
+        radius='none'
         size="lg"
         placeholder="From: name@example.com"
         value={from}
         onChange={(e) => setFrom(e.target.value)}
-      />
-      <Input
-        variant='bordered'
-        fullWidth
-        color="primary"
-        size="lg"
-        placeholder="To: recipient@example.com"
-        value={to}
-        onChange={(e) => setTo(e.target.value)}
-      />
-      <Input
-        variant='bordered'
-        fullWidth
-        color="primary"
-        size="lg"
-        placeholder="Subject"
-        value={subject}
-        onChange={(e) => setSubject(e.target.value)}
+        className='py-4'
       />
       <Textarea
         variant='bordered'
         fullWidth
-        color="primary"
+        radius='none'
         size="lg"
-        placeholder="HTML Content"
+        placeholder="Your message."
         value={html}
         onChange={(e) => setHtml(e.target.value)}
+        className='py-4'
       />
-      <Button
-        color="primary"
-        disabled={sending}
-        onClick={handleSendEmail}
-      >
-        Send Email
-      </Button>
-      <p>{message}</p>
+      <div className='grid grid-cols-2 gap-5 py-4'>
+        <Button
+          radius='none'
+          disabled={sending}
+          className=''
+          onClick={handleSendEmail}
+        >
+          Send Email
+        </Button>
+        <p className='my-auto '>{message}</p>
+      </div>
     </div>
   );
 };

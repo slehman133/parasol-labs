@@ -14,6 +14,16 @@ body {
   background-color: var(--background-color);
 }
 
+.content {
+  max-height: fit-content;
+  margin: 1% 5% 1% 5%;
+  padding: 5%;
+  text-align: center;
+  object-position: center center;
+  transform-origin: center center;
+  position: relative;
+}
+
 footer {
   margin-top: auto;
 }
@@ -31,6 +41,7 @@ html {
   display: none;
   /* Safari and Chrome */
 }
+
 @keyframes fadeInUp {
   0% {
     transform: translateY(100%);
