@@ -2,7 +2,7 @@
 
 "use client";
 //Kaeden
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { CartProvider, useCart } from "@/app/context/CartContext";
 import { Divider, Link } from "@nextui-org/react";
@@ -38,7 +38,6 @@ const HeadNavbar = () => {
       </Modal>
       <Navbar
         maxWidth="full"
-        isBlurred={false}
         isMenuOpen={isMenuOpen}
         onMenuOpenChange={setIsMenuOpen}
         className="bg-transparent"
@@ -97,7 +96,7 @@ const HeadNavbar = () => {
         </NavbarContent>
         <NavbarMenu className="white">
           {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={"${item}-${index}"}>
+            <NavbarMenuItem key={`${item}-${index}`}>
               <Link
                 color={
                   "foreground"
@@ -110,6 +109,23 @@ const HeadNavbar = () => {
               </Link>
             </NavbarMenuItem>
           ))}
+          <NavbarMenuItem>
+            <Link
+              color={
+                "foreground"
+
+              }
+              className="w-full "
+              href="/cart"
+              size="lg"
+            >
+              Cart {(cartItems && cartItems.length > 0) &&
+                    <div className="bg-red-500 rounded text-white p-[0.1rem] ml-2">
+                      <p>{cartItems.length}</p>
+                    </div>
+                  }
+            </Link>
+          </NavbarMenuItem>
         </NavbarMenu>
       </Navbar>
     </>

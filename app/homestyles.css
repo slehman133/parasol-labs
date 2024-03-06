@@ -2,17 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.content {
-  max-height: fit-content;
-  margin: 1% 5% 1% 5%;
-  padding: 5%;
-  text-align: center;
-  object-position: center center;
-  transform-origin: center center;
-  border-radius: 25px;
-  position: relative;
-}
-
 .column {
   float: left;
   width: 50%;

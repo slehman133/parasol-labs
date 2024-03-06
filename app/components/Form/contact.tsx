@@ -2,7 +2,7 @@
 //Kaeden
 import React from "react";
 import { useForm } from 'react-hook-form';
-import { sendEmail } from "@/utils/email";
+// import { sendEmail } from "@/utils/email";
 
 //Web Form for contact information
 export type FormData = {
@@ -14,9 +14,9 @@ export type FormData = {
 export default function Contact() {
   const { register, handleSubmit } = useForm<FormData>();
   
-  function onSubmit(data: FormData) {
-    sendEmail(data);
-  }
+  // function onSubmit(data: FormData) {
+  //   sendEmail(data);
+  // }
 
   return (
     <section

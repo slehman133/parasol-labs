@@ -27,6 +27,10 @@ export const siteConfig = {
         {
             label: "Team",
             href: "/team",
+        },
+        {
+            label: "Contact Us",
+            href: "/webforms"
         }
     ],
     navMenuItems: [
@@ -53,6 +57,10 @@ export const siteConfig = {
         {
             label: "Team",
             href: "/team",
+        },
+        {
+            label: "Contact Us",
+            href: "/webforms"
         }
     ],
     links: {

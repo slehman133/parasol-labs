@@ -4,7 +4,7 @@ import { Spinner as NextUISpinner } from '@nextui-org/react'
 const Spinner = () => {
     return (
         <>
-            <div className='z-[9999999] bg-[var(--background-color)]             
+            <div className='z-[9999999] bg-background          
             fixed h-[100vh] w-[100vw] 
             top-0 left-0 
             grid grid-cols-1 grid-rows-3 justify-items-center'>
