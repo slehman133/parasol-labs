@@ -2,7 +2,7 @@ import './generalformstyles.css'
 import SendEmailForm from '@/app/components/webforms/emailform'
 import React from 'react'
 
-export default function page() {
+export default function GeneralFormPage() {
   return (
     <div className='h-auto w-full p-10'>
       <div className='border-white border-1 p-10 h-2/3 w-3/4 mx-auto my-auto grid grid-cols-2 grid-row-[50vh] gap-5 rounded-md'>

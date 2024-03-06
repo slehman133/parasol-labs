@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import { SendEmail } from '@/app/api/email/contact';
 import { Input, Textarea, Button, Checkbox, CheckboxGroup, Divider } from '@nextui-org/react';
 import "./partnershipformstyles.css";
-export default function page() {
+export default function PartnershipFormPage() {
+  const [selected, setSelected] = useState(['']);
   const [selected, setSelected] = useState(['']);
   const [sending, setSending] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
@@ -168,6 +169,7 @@ export default function page() {
 
         </div>
       </div>
+
     </div>
   );
 };
