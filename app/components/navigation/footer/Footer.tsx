@@ -41,7 +41,7 @@ export default function Footer() {
         <Link href="/Products" className="link link-hover">
           Products
         </Link>
-        <Link href="/strl" className="link link-hover">
+        <Link href="/projects#strlproject" className="link link-hover">
           Liquid Sterilization
         </Link>
       </nav>
