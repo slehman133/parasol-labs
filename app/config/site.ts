@@ -13,16 +13,16 @@ export const siteConfig = {
             href: "/about",
         },
         {
-            label: "Account",
-            href: "/account",
-        },
-        {
             label: "News",
             href: "/news",
         },
         {
             label: "Products",
             href: "/products",
+        },
+        {
+            label: "Projects",
+            href: "/projects",
         },
         {
             label: "Team",
@@ -43,16 +43,16 @@ export const siteConfig = {
             href: "/about",
         },
         {
-            label: "Account",
-            href: "/account",
-        },
-        {
             label: "News",
             href: "/news",
         },
         {
             label: "Products",
             href: "/products",
+        },
+        {
+            label: "Projects",
+            href: "/projects",
         },
         {
             label: "Team",

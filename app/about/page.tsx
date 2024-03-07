@@ -40,8 +40,9 @@ export default function About() {
                     radius="none"
                     size="lg"
                     className="my-auto w-2/5 bg-[#faa064]"
+                    as={Link}
+                    href="/projects"
                   >
-                    <Link href="/" color="foreground">
                       <div className="grid grid-columns-2 grid-flow-col gap-1 h-auto w-auto items-end">
                         <h1 className="font-bold text-2xl py-5">
                           See our work
@@ -53,7 +54,6 @@ export default function About() {
                           ></path>
                         </svg>
                       </div>
-                    </Link>
                   </Button>
                 </div>
               </div>
@@ -107,8 +107,9 @@ export default function About() {
                     radius="none"
                     size="lg"
                     className="my-auto w-1/3"
+                    as={Link}
+                    href="/team"
                   >
-                    <Link href="/" color="foreground">
                       <div className="grid grid-columns-2 grid-flow-col gap-1 h-auto w-auto items-end">
                         <h1 className="font-bold text-2xl py-5 text-black">
                           Meet our team
@@ -120,7 +121,6 @@ export default function About() {
                           ></path>
                         </svg>
                       </div>
-                    </Link>
                   </Button>
                 </div>
               </div>
@@ -148,8 +148,9 @@ export default function About() {
                     radius="none"
                     size="lg"
                     className="my-auto  w-auto bg-[#656565]"
+                    as={Link}
+                    href="/webforms"
                   >
-                    <Link href="/" color="foreground">
                       <div className="grid grid-columns-2 grid-flow-col gap-1 h-auto w-auto items-end">
                         <h1 className="font-bold text-2xl py-5">
                           Connect with us
@@ -161,7 +162,6 @@ export default function About() {
                           ></path>
                         </svg>
                       </div>
-                    </Link>
                   </Button>
                 </div>
               </div>

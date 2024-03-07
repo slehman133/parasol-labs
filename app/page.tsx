@@ -182,7 +182,7 @@ export default function Home() {
                 at Parasol Laboratories, all aimed at enriching lives and
                 transforming global health.
               </p>
-              <Link href="/products" color="foreground">
+              <Link href="/projects" color="foreground">
                 <div className="grid grid-columns-2 grid-flow-col gap-4">
                   <h1 className="font-bold text-2xl py-5">Find out more</h1>
                   <svg id="right" className="arrow-right my-auto ">
@@ -397,7 +397,11 @@ export default function Home() {
                     src="/images/strl.jpg"
                   />
                 </Card>
-                <Card className="h-[300px] " isPressable={true}>
+                <Card className="h-[300px] " isPressable={true}
+                  onClick={() => {
+                    window.open("news/moms-wanted-be-the-face-of-strl");
+                  }}
+                >
                   <CardHeader className="z-10 absolute flex-col !items-start top-1">
                     <div className="grid grid-cols-2 gap-3">
                       <p className="text-tiny text-white/60 uppercase font-bold">
