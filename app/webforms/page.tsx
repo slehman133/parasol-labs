@@ -1,6 +1,6 @@
 import { Link, Image, Divider, Button } from '@nextui-org/react'
+
 import React from 'react'
-import "./webformpagestyles.css"
 
 export default function page() {
     return (
