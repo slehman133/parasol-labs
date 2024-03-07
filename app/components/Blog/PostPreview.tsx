@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { PostMetadata } from "./PostMetadata";
 import { createClient } from '@sanity/client'
-import Image from 'next/image'
+// import Image from 'next/image'
+import { Card, CardBody, CardFooter, CardHeader, Image } from "@nextui-org/react";
 
 //Written by Nicholas Whitehorn
 
@@ -35,22 +36,30 @@ const PostPreview = async (props: PostMetadata) => {
 
     return (
         <>
-            <div className="flex flex-row border border-solid border-slate-500 p-2 hover:ring-4 gap-4">
-                <div className="basis-2/12 md:basis-1/3">
-                    {/* imageURL && */
-                        <Image height={1600} width={1600} className='mx-auto' src="/images/placeholderimage.jpg" alt="image" />
-                    }
-                </div>
-
-                <div className="basis-10/12 md:basis-2/3">
-                    <Link key={props.slug?.current} href={`/news/${props.slug?.current}`}>
-                        <h2 className="text-xl">{props.title}</h2>
-                    </Link>
-                    <p className="invisible md:visible">{props.subtitle}</p>
-                    <p className="invisible md:visible">{props.date}</p>
-                    {/* <p">{author}</p> */}
-                </div>
-            </div>
+            <Card
+                isPressable 
+                as={Link}
+                href={`/news/${props.slug?.current}`}
+                className="h-auto mx-auto"
+            >
+                <CardHeader className="p-0">
+                    <Image 
+                        src='/images/placeholderimage.jpg'
+                        shadow="sm"
+                        radius="lg"
+                        alt="default title"
+                        width="100%"
+                        className="w-full object-cover h-auto "
+                    />
+                </CardHeader>
+                <CardBody>
+                    <div>
+                        <h2 className="m-5 top-0 text-pretty font-bold text-2xl">{props.title}</h2>
+                        <h3>{props.subtitle}</h3>
+                        <p>{props.date}</p>
+                    </div>
+                </CardBody>
+            </Card>
         </>
     )
 };
