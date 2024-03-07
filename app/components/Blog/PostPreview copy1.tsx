@@ -1,16 +1,7 @@
+import Link from "next/link";
 import { PostMetadata } from "./PostMetadata";
 import { createClient } from '@sanity/client'
-import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  Divider,
-  Image,
-  Input,
-  Link,
-  Textarea,
-} from "@nextui-org/react";
+import Image from 'next/image'
 
 //Written by Nicholas Whitehorn
 
@@ -41,38 +32,25 @@ const PostPreview = async (props: PostMetadata) => {
     const slug = props.slug
     const page = await client.fetch(`*[_type == "post"]`, { slug }, { cache: "no-store" })
     const { imageURL, /* author */ } = await parseArticleData(page)
-    console.log(slug)
     
 
     return (
         <>
             <div className="flex flex-row border border-solid border-slate-500 p-2 hover:ring-4 gap-4">
-              <Link key={props.slug?.current} href={`/news/${props.slug?.current}`}>
-                <Card
-                  className="h-[300px] "
-                >
-                  <CardHeader className="z-10 absolute flex-col !items-start top-1">
-                    <p className="text-tiny text-white/60 uppercase font-bold">
-                      {props.title}
-                    </p>
-                    <h4 className="text-white font-medium text-large">
-                      {props.subtitle}
-                    </h4>
-                    <h4 className="text-white font-medium text-large">
-                      {props.date}
-                    </h4>
-                  </CardHeader>
-                  
-                  {imageURL && 
-                    <Image
-                      removeWrapper
-                      alt= {props.title}
-                      className="z-0 w-auto h-full object-cover brightness-50"
-                      src={imageURL}
-                    />
-                  }
-                </Card>
-              </Link>
+                <div className="basis-2/12 md:basis-1/3">
+                    {/* imageURL && */
+                        <Image height={1600} width={1600} className='mx-auto' src="/images/placeholderimage.jpg" alt={props.title} />
+                    }
+                </div>
+
+                <div className="basis-10/12 md:basis-2/3">
+                    <Link key={props.slug?.current} href={`/news/${props.slug?.current}`}>
+                        <h2 className="text-xl">{props.title}</h2>
+                    </Link>
+                    <p className="invisible md:visible">{props.subtitle}</p>
+                    <p className="invisible md:visible">{props.date}</p>
+                    {/* <p">{author}</p> */}
+                </div>
             </div>
         </>
     )

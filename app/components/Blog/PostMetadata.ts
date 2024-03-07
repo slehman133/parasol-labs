@@ -9,4 +9,5 @@ export interface PostMetadata {
     subtitle: string;
     slug: any;
     author:string;
+    mainImage:any;
 }

@@ -18,6 +18,7 @@ const NewsPage = async () => {
     const postPreviews = res.map((post:any) => (
         <PostPreview key = {post.slug?.current} {...post} />
     ));
+    
 
     return (
         <>
