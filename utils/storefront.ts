@@ -25,6 +25,57 @@ const storefront = async (query: string, variables = {}) => {
   return response
 }
 
+const admin = async (query:string, variables = {}) => {
+  const storefrontAPIUrl = process.env.SHOPIFY_ADMIN_API_URL as string
+
+  const response = await fetch(
+    storefrontAPIUrl,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Shopify-Storefront-Access-Token": process.env.SHOPIFY_ADMIN_ACCESS_TOKEN as string,
+
+      },
+      body: JSON.stringify({
+        query, variables
+      }),
+      cache: "no-store",
+    }).then(res => res.json())
+
+  return response
+}
+
+const adminGetProducts = async () => {
+  const query =
+  `query AdminProducts {
+  products(first: 10) {
+    edges {
+      node {
+        id
+        totalInventory
+        priceRangeV2 {
+          minVariantPrice {
+            amount
+          }
+        }
+        images(first: 10) {
+          edges {
+            node {
+              altText
+              src
+            }
+          }
+        }
+        description
+      }
+    }
+  }
+}`
+const products = await admin(query)
+return products
+}
+
 const getProduct = async (variables: { handle: string }) => {
   const query =
     `query SingleProduct($handle: String!){
@@ -148,4 +199,4 @@ const buyItNow = async (variantId: string, quantity: number) => {
 
 
 export default storefront
-export { getProduct, getProducts, createCheckout, buyItNow }
+export { getProduct, getProducts, createCheckout, buyItNow, adminGetProducts }
