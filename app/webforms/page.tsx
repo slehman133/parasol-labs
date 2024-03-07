@@ -14,13 +14,13 @@ export default function page() {
                     </span>.
                 </h1>
                 <Divider orientation="horizontal" className='bg-white' />
-                <p className='font-medium'>Whether you're interested in working with us, or have a general inquiry. We're here to provide.
+                <p className='font-medium'>Whether you&apos;re interested in working with us, or have a general inquiry. We&apos;re here to provide.
                     <br />
                     <br />
                     Please select the form you feel appropriate for your needs and we will get back to you as soon as possible.</p>
                 <div className='my-auto p-2 border-1 border-white text-left leading-loose'>
                     <h1 className='font-bold text-3xl'>Become a <span className='text-[#9B59B6]'>Partner</span></h1>
-                    <p>Let's work together. We'd love to collaborate with your company to build a better tomorrow.</p>
+                    <p>Let&apos;s work together. We&apos;d love to collaborate with your company to build a better tomorrow.</p>
                     <div className='flex items-end'>
                         <Button className='ml-auto bg-[#9B59B6] w-[50%]' radius='none' as={Link} href='/webforms/partnershipform'>
                             <div className='flex items-start'>
@@ -37,7 +37,7 @@ export default function page() {
                 </div>
                 <div className='my-auto p-2 border-1 border-white text-left leading-loose '>
                     <h1 className='font-bold text-3xl'>Got an <span className='text-[#FBB17E]'>inquiry?</span></h1>
-                    <p>From a specific request, to a general inquiry, we're here to help. Fill out our general form and we will get in touch.</p>
+                    <p>From a specific request, to a general inquiry, we&apos;re here to help. Fill out our general form and we will get in touch.</p>
                     <div className='flex items-end'>
                         <Button className='ml-auto bg-[#FBB17E] w-[50%]' href='/webforms/generalform' as={Link} radius='none'>
                             <div className='flex items-start'>
