@@ -1,6 +1,7 @@
 // code by Samuel Lehman
 
 import { CartItem } from "@/app/context/CartContext"
+import { createAdminApiClient } from '@shopify/admin-api-client'
 
 
 const storefront = async (query: string, variables = {}) => {
@@ -25,30 +26,21 @@ const storefront = async (query: string, variables = {}) => {
   return response
 }
 
-const admin = async (query:string, variables = {}) => {
-  const storefrontAPIUrl = process.env.SHOPIFY_ADMIN_API_URL as string
+const admin = async (query: string) => {
+  const client = createAdminApiClient({
+    storeDomain: process.env.NEXT_PUBLIC_STORE_URL as string,
+    apiVersion: '2023-04',
+    accessToken: process.env.SHOPIFY_ADMIN_ACCESS_TOKEN as string,
+  })
 
-  const response = await fetch(
-    storefrontAPIUrl,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Shopify-Storefront-Access-Token": process.env.SHOPIFY_ADMIN_ACCESS_TOKEN as string,
 
-      },
-      body: JSON.stringify({
-        query, variables
-      }),
-      cache: "no-store",
-    }).then(res => res.json())
-
+  const response = await client.request(query)
   return response
 }
 
 const adminGetProducts = async () => {
   const query =
-  `query AdminProducts {
+    `query AdminProducts {
   products(first: 10) {
     edges {
       node {
@@ -68,12 +60,36 @@ const adminGetProducts = async () => {
           }
         }
         description
+        title
       }
     }
   }
 }`
-const products = await admin(query)
-return products
+  const products = await admin(query)
+  return products.data.products.edges.map((e: any) => e.node)
+}
+
+const adminEditQuantity = async (id: string, quantity: number) => {
+  const query =
+    `
+    mutation productUpdate{
+      productUpdate(input: $input) {
+        product(id: "${id}") {
+          variants {
+            inventoryQuantities {
+              availableQuantity: input
+            }
+          }
+        }
+        userErrors {
+          field
+          message
+        }
+      }
+    }
+    `
+  const product = await admin(query)
+  return product
 }
 
 const getProduct = async (variables: { handle: string }) => {
@@ -199,4 +215,4 @@ const buyItNow = async (variantId: string, quantity: number) => {
 
 
 export default storefront
-export { getProduct, getProducts, createCheckout, buyItNow, adminGetProducts }
+export { getProduct, getProducts, createCheckout, buyItNow, adminGetProducts, adminEditQuantity }
