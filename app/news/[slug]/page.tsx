@@ -3,7 +3,6 @@ import { client } from '@/sanity/lib/client'
 
 const parseArticleData = async (article: any) => {
     const sanityPrefix = `https://cdn.sanity.io/images/${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}/${process.env.NEXT_PUBLIC_SANITY_DATASET}/`
-
     const imageURL = article.mainImage ?
         sanityPrefix + article.mainImage.asset._ref
             .replace("image-", "")
