@@ -38,3 +38,20 @@ enum user_type {
   admin
   user
 }
+
+model PartnershipForm {
+  id              Int      @id @default(autoincrement())
+  companyName     String   @db.VarChar(255)
+  companyWebpage  String?  @db.VarChar(255)
+  streetAddress   String   @db.VarChar(255)
+  streetAddress2  String?  @db.VarChar(255)
+  city            String   @db.VarChar(255)
+  stateOrProvince String   @db.VarChar(255)
+  postalCode      String   @db.VarChar(255)
+  services        String[]
+  additionalInfo  String?  @db.Text
+  contactName     String   @db.VarChar(255)
+  phoneNumber     String   @db.VarChar(255)
+  emailAddress    String   @db.VarChar(255)
+  createdAt       DateTime @default(now())
+}

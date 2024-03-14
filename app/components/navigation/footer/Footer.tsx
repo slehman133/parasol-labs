@@ -38,7 +38,7 @@ export default function Footer() {
 
       <nav>
         <header className="footer-title">Research</header>
-        <Link href="/Products" className="link link-hover">
+        <Link href="/products" className="link link-hover">
           Products
         </Link>
         <Link href="/projects#strlproject" className="link link-hover">

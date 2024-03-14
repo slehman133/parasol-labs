@@ -40,8 +40,9 @@ export default function page() {
                     <p>From a specific request, to a general inquiry, we're here to help. Fill out our general form and we will get in touch.</p>
                     <div className='flex items-end'>
                         <Button className='ml-auto bg-[#FBB17E] w-[50%]' href='/webforms/generalform' as={Link} radius='none'>
+                            General Form
                             <div className='flex items-start'>
-                                <h5 className='text-lg font-bold'>General Form</h5>
+                                <h5 className='text-lg font-bold text-white'>General Form</h5>
                                 <svg id="right" className="arrow-right my-auto px-2 ">
                                     <path
                                         d="M0.5 9.35772H20.9956L14.2001 2.29941L16.4134 0L27 11L16.4134 22L14.2001 19.7006L20.9956 12.6423H0.5V9.35772Z"
