@@ -6,7 +6,7 @@ export default function About() {
     <>
       <div>
         <div>
-          <h1 className=" font-bold text-4xl text-center ">
+          <h1 className="font-bold text-2xl md:text-4xl text-center">
             About <span className="text-amber-600">Parasol</span> Laboratories
           </h1>
           <Divider
@@ -15,57 +15,23 @@ export default function About() {
           />
         </div>
         <div>
-          <section id="mission-statement" className="content grid grid-cols-2 grid-rows-1 gap-10 mt-12 relative bg-background ">
-            <div className="w-full text-wrap text-left">
-              <h1 className="font-bold text-7xl">Our Mission Statement.</h1>
-              <Divider orientation="horizontal" className="my-5" />
-              <div className="grid grid-rows-2 gap-5">
-                <div>
-                  <p className="font-light text-3xl">
-                    Parasol Laboratories Incorporated is dedicated to pioneering
-                    transformative solutions that solve global health needs,
-                    empower marginalized communities, and target underserved
-                    markets.
-                    <br />
-                    <br />
-                    Every product we design, every decision we make, is anchored
-                    in creating a tangible, positive impact, with no compromise.
-                    Our responsibility extends beyond profit, as we reinvest in
-                    our community, ensuring equitable care and quality of life
-                    are forever at the forefront of our endeavors.
-                  </p>
-                </div>
-                <div className=" justify-end inline-flex items-end h-1/6">
-                  <Button
-                    radius="none"
-                    size="lg"
-                    className="my-auto w-2/5 bg-[#faa064]"
-                    as={Link}
-                    href="/projects"
-                  >
-                      <div className="grid grid-columns-2 grid-flow-col gap-1 h-auto w-auto items-end">
-                        <h1 className="font-bold text-2xl py-5">
-                          See our work
-                        </h1>
-                        <svg id="right" className="arrow-right my-auto ">
-                          <path
-                            d="M0.5 9.35772H20.9956L14.2001 2.29941L16.4134 0L27 11L16.4134 22L14.2001 19.7006L20.9956 12.6423H0.5V9.35772Z"
-                            fill="#ffffff"
-                          ></path>
-                        </svg>
-                      </div>
-                  </Button>
-                </div>
-              </div>
-            </div>
-            <div className="p-10 w-2/3 h-auto mx-auto">
-              <Image
-                src="/images/logo.png"
-                alt="Parasol Laboratories Logo"
-                className="w-auto h-auto mx-auto top-0"
-              />
-            </div>
-          </section>
+        <section id="mission-statement" className="content grid grid-cols-1 md:grid-cols-2 gap-10 mt-12 bg-background">
+      <div className="text-wrap text-left">
+        <h1 className="font-bold text-3xl md:text-7xl">Our Mission Statement.</h1>
+        <Divider className="my-5" />
+        <p className="font-light text-xl md:text-3xl">
+          Parasol Laboratories Incorporated is dedicated to pioneering transformative solutions that solve global health needs...
+        </p>
+        <div className="mt-5 flex justify-center md:justify-end">
+          <Button className="bg-[#faa064]" as={Link} href="/projects">
+            See our work
+          </Button>
+        </div>
+      </div>
+      <div className="mx-auto my-10 md:my-auto">
+        <Image src="/images/logo.png" alt="Parasol Laboratories Logo" className="mx-auto" />
+      </div>
+    </section>
           <section
             id="operational-statement"
             className="content grid grid-cols-[30%_70%] gap-10 bg-slate-300 text-black box-shadow"

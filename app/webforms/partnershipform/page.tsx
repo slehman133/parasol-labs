@@ -52,12 +52,12 @@ export default function PartnershipFormPage() {
     }
   };
   return (
-    <div className='h-auto w-full p-10'>
-      <div className='border-1 border-white p-10 h-2/3 w-3/4 mx-auto my-auto grid grid-cols-2 grid-row-[50vh] gap-5 rounded-md'>
-        <div className='mx-auto text-left'>
-          <h3 className='font-bold text-3xl'>Let&apos;s build a better tomorrow.</h3>
-          <p className='font-thin w-2/3'>We want to grow with our community. Fill out the form and our partnership manager will reach out as soon as possible.</p>
-          <Image src='/images/logo.png' alt='Parasol Laboratories Logo' className='h-auto w-1/3 mx-auto pt-12'/>
+    <div className='p-4 md:p-10'>
+      <div className='border-1 border-whitep-4 md:p-10 rounded-md shadow-lg mx-auto my-auto md:grid md:grid-cols-2 md:gap-5'>
+        <div className='text-left space-y-4'>
+          <h3 className='font-bold text-xl md:text-3xl'>Let&apos;s build a better tomorrow.</h3>
+          <p className='font-thin'>We want to grow with our community. Fill out the form and our partnership manager will reach out as soon as possible.</p>
+          <Image src='/images/logo.png' alt='Parasol Laboratories Logo' className='h-auto w-1/4 mx-auto pt-12 md:mb-5'/>
         </div>
         <div className='h-[50vh] scroll-container'>
           <h1 className='text-center font-bold text-2xl border-b-1 border-white'>Partnership Form</h1>

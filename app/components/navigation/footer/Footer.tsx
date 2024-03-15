@@ -6,7 +6,7 @@ import { Divider } from "@nextui-org/react";
 
 export default function Footer() {
   return (
-    <footer className="dark bg-background footer p-10 border-t-1">
+    <footer className="dark bg-background footer p-10 border-t-1 mx-auto">
       <aside>
         <div className="sm:flex sm:items-center justify-center mx-auto">
           <img
