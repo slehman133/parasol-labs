@@ -91,3 +91,8 @@ span::after {
 .strl-shadow {
   box-shadow: -60px -20px gray;
 }
+
+.contact-box {
+  display: flex;
+  align-items: center;
+}
