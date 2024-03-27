@@ -66,6 +66,12 @@ enum user_type {
 //   company         Company
 // }
 
+//Logistically, you could refactor and create a model for:
+// - Company
+// - CompanyAddress
+// - PersonOfContact
+// - PartnershipForm
+// However, with the current schema, there isn't much to gain from the refactor as there is not much data to query.
 model PartnershipForm {
   id              Int      @id @default(autoincrement())
   companyName     String   @db.VarChar(255)
@@ -82,6 +88,7 @@ model PartnershipForm {
   emailAddress    String   @db.VarChar(255)
   createdAt       DateTime @default(now())
 }
+
 model ContactForm {
   id      Int    @id @default(autoincrement())
   name    String @db.VarChar(255)

@@ -5,7 +5,7 @@ import { SendEmail } from '@/app/api/email/contact';
 import { Input, Textarea, Button, Checkbox, CheckboxGroup, Divider, Image } from '@nextui-org/react';
 import "./partnershipformstyles.css";
 export default function PartnershipFormPage() {
-  const [selected, setSelected] = useState(['']);
+  const [selected, setSelected] = useState([""]);
   const [formData, setFormData] = useState({
     companyName: "",
     companyWebpage: "",
@@ -14,7 +14,7 @@ export default function PartnershipFormPage() {
     city: "",
     stateOrProvince: "",
     postalCode: "",
-    services: [],
+    services: [""],
     additionalInfo: "",
     contactName: "",
     phoneNumber: "",
@@ -23,10 +23,15 @@ export default function PartnershipFormPage() {
   const [sending, setSending] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
 
+  //Potentially could do, if the person of contact has an account, we could store the partnership in the account's dashboard
   //Create a handler for the submit button to push the form data to the database
   const handleSubmitForm = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     setSending(true);
+    
+    //Filter out null or empty strings from selected services
+    formData.services = selected.filter((service) => service !== "");
+    console.log(formData.services)
     try {
       //Check if any of the required fields are empty
       if (!formData.companyName || !formData.streetAddress || !formData.city || !formData.stateOrProvince || !formData.postalCode || !formData.contactName || !formData.phoneNumber || !formData.emailAddress) {
@@ -34,7 +39,7 @@ export default function PartnershipFormPage() {
         setSending(false);
         return;
       }
-      await fetch('/api/webforms/post', {
+      await fetch('/api/webforms/partnershipform', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
@@ -57,7 +62,7 @@ export default function PartnershipFormPage() {
           <p className='font-thin'>We want to grow with our community. Fill out the form and our partnership manager will reach out as soon as possible.</p>
           <Image src='/images/logo.png' alt='Parasol Laboratories Logo' className='h-auto w-1/4 mx-auto pt-12 md:mb-5'/>
         </div>
-        <div className='h-[50vh] scroll-container'>
+        <div className=''>
           <h1 className='text-center font-bold text-2xl border-b-1 border-white'>Partnership Form</h1>
           <div className='py-5 grid grid-cols-2 gap-4'>
             <Input

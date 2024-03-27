@@ -19,7 +19,7 @@ export async function POST(req: Request) {
             data: {
                 name: formData.name,
                 email: formData.email,
-                message: formData.message,
+                message: formData.html,
             }
         })
         return NextResponse.json({ status: 200 });
