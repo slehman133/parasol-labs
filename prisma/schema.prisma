@@ -39,6 +39,33 @@ enum user_type {
   user
 }
 
+//TODO: Rewrite the partnership form according to an ERD
+//A partnership has a company and the person of contact, the company has an address
+// model CompanyAddress {
+//   id              Int      @id @default(autoincrement())
+//   streetAddress   String   @db.VarChar(255)
+//   streetAddress2  String?  @db.VarChar(255)
+//   city            String   @db.VarChar(255)
+//   stateOrProvince String   @db.VarChar(255)
+//   postalCode      String   @db.VarChar(255)
+// }
+// model Company {
+//   id              Int             @id @default(autoincrement())
+//   name            String          @db.VarChar(255)
+//   webpage         String?         @db.VarChar(255)
+//   address         CompanyAddress? @relation(fields: [addressId], references: [id])
+//   services        String[]
+//   addressId       Int
+//   additionalInfo  String?         @db.Text
+// }
+// model PersonOfContact {
+//   id              Int      @id @default(autoincrement())
+//   name            String   @db.VarChar(255)
+//   phoneNumber     String   @db.VarChar(255)
+//   emailAddress    String   @db.VarChar(255)
+//   company         Company
+// }
+
 model PartnershipForm {
   id              Int      @id @default(autoincrement())
   companyName     String   @db.VarChar(255)
@@ -54,4 +81,10 @@ model PartnershipForm {
   phoneNumber     String   @db.VarChar(255)
   emailAddress    String   @db.VarChar(255)
   createdAt       DateTime @default(now())
+}
+model ContactForm {
+  id      Int    @id @default(autoincrement())
+  name    String @db.VarChar(255)
+  email   String @db.VarChar(255)
+  message String @db.Text
 }

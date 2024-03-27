@@ -13,7 +13,7 @@ const SwiperButton: React.FC<SwiperButtonProps> = ({ targetId }) => {
     };
     return (
         <button
-            className="absolute bottom-0 left-1/2 transform -translate-x-1/2 rounded-full md:invisible lg:visible"
+            className="absolute bottom-0 left-1/2 transform -translate-x-1/2 rounded-full hidden lg:block"
             onClick={scrollToSection}>
             <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import prisma from '@/utils/db';
+
 import { SendEmail } from '@/app/api/email/contact';
 import { Input, Textarea, Button, Checkbox, CheckboxGroup, Divider, Image } from '@nextui-org/react';
 import "./partnershipformstyles.css";
@@ -23,34 +23,32 @@ export default function PartnershipFormPage() {
   const [sending, setSending] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
 
-
-  const handleSendEmail = async () => {
+  //Create a handler for the submit button to push the form data to the database
+  const handleSubmitForm = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
     setSending(true);
     try {
-      setMessage('Email sent successfully!');
-      await prisma.partnershipForm.create({
-        data: {
-          companyName: formData.companyName,
-          companyWebpage: formData.companyWebpage,
-          streetAddress: formData.streetAddress,
-          streetAddress2: formData.streetAddress2,
-          city: formData.city,
-          stateOrProvince: formData.stateOrProvince,
-          postalCode: formData.postalCode,
-          services: formData.services,
-          additionalInfo: formData.additionalInfo,
-          contactName: formData.contactName,
-          phoneNumber: formData.phoneNumber,
-          emailAddress: formData.emailAddress,
-        },
-      })
-    } catch (error) {
-      setMessage('Failed to send email. Please check the console for more details.');
-      console.error(error);
-    } finally {
+      //Check if any of the required fields are empty
+      if (!formData.companyName || !formData.streetAddress || !formData.city || !formData.stateOrProvince || !formData.postalCode || !formData.contactName || !formData.phoneNumber || !formData.emailAddress) {
+        setMessage('Please fill out all required fields.');
+        setSending(false);
+        return;
+      }
+      await fetch('/api/webforms/post', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      setMessage('Form submitted successfully!');
       setSending(false);
     }
+    catch (error) {
+      setSending(false);
+      console.error(error);
+      setMessage('There was an error submitting the form. Please try again later.');
+    }
   };
+
   return (
     <div className='p-4 md:p-10'>
       <div className='border-1 border-whitep-4 md:p-10 rounded-md shadow-lg mx-auto my-auto md:grid md:grid-cols-2 md:gap-5'>
@@ -209,7 +207,7 @@ export default function PartnershipFormPage() {
           <div className='pt-5 w-full mx-auto grid grid-cols-2 gap-4'>
             <Button
               disabled={sending}
-              onClick={handleSendEmail}
+              onClick={handleSubmitForm}
             >
               Submit
             </Button>

@@ -31,7 +31,7 @@ span::after {
   object-position: center center;
   transform-origin: center center;
   height: 80%;
-  width: 80%;
+  width: auto;
   opacity: 80%;
 }
 
@@ -82,16 +82,24 @@ span::after {
   padding: 2%;
 }
 
-.boxshadow {
-  box-shadow: 60px -16px rgb(248 113 113);
+@media (min-width: 768px) {
+  .boxshadow {
+    box-shadow: 60px -16px rgb(248 113 113);
+  }
+  .box-shadow-under {
+    box-shadow: 60px 16px rgb(248 113 113);
+  }
+  .strl-shadow {
+    box-shadow: -60px -20px gray;
+  }
 }
-.box-shadow-under {
-  box-shadow: 60px 16px rgb(248 113 113);
+.content {
+  min-height: 50vh;
+  margin: 1% auto; 
+  padding: 5%;
+  text-align: center;
+  position: relative;
 }
-.strl-shadow {
-  box-shadow: -60px -20px gray;
-}
-
 .contact-box {
   display: flex;
   align-items: center;

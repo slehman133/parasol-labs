@@ -32,12 +32,20 @@ export default function Home() {
   //controls used for animating text to be in view
   const controls = useAnimation();
   const [ref, inView] = useInView();
+  const [strlRef, inStrlView] = useInView();
   const [isVisible, setIsVisible] = useState(false);
+  const [isStrlVisible, setIsStrlVisible] = useState(false);
+
 
   if (inView && !isVisible) {
     controls.start("visible");
     setIsVisible(true);
   }
+  if (inStrlView && !isStrlVisible) {
+    controls.start("visible");
+    setIsStrlVisible(true);
+  }
+
   return (
     <div>
       <section className="z-10">
@@ -47,31 +55,27 @@ export default function Home() {
         <SwiperButton targetId="landing-section" />
       </section>
       <section className="content min-h-screen" id="landing-section">
-        <div className="row">
-          <div className="column p-10 mx-auto my-auto">
-            <h1 className="text-8xl font-bold text-left">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div className=" px-10 py-5 mx-auto my-auto">
+            <h1 className="text-3xl lg:text-6xl font-bold text-center lg:text-left">
               Fueled by innovation,
-            </h1>
-            <h1 className="text-8xl font-bold text-right" data-end="YOU">
-              Inspired by&nbsp;
-            </h1>
-            <Divider
-              orientation="horizontal"
-              className="mt-10  w-1/2 float-right"
-            />
-            <p className="text-left text-2xl pt-10 font-thin">
               <br />
-              At Parasol Labs, we are fueled by an unwavering commitment to
-              innovate and deliver life-changing biotechnology solutions for
-              marginalized communities and women`s health. Through our
-              relentless pursuit of rigorous research and the deployment of
-              cutting-edge technology, we develop products that are safe,
-              effective, and accessible.
+              <span className="lg:text-right" data-end="YOU">
+                Inspired by&nbsp;
+              </span>
+            </h1>
+            <Divider orientation="horizontal" className="mt-10 lg:w-1/2 mx-auto lg:float-right" />
+            <p className="text-center lg:text-left text-md lg:text-xl pt-10 font-thin">
+              <br />
+              At Parasol Labs, we are fueled by an unwavering commitment to innovate and deliver
+              life-changing biotechnology solutions for marginalized communities and women's health. Through
+              our relentless pursuit of rigorous research and the deployment of cutting-edge technology, we
+              develop products that are safe, effective, and accessible.
             </p>
-            <div className="py-10 text-left">
+            <div className="py-10 text-center lg:text-left">
               <Link href="/about" color="foreground">
-                <div className="grid grid-columns-2 grid-flow-col gap-4">
-                  <h1 className="font-bold text-2xl py-5">About us</h1>
+                <div className="grid grid-cols-2 gap-4">
+                  <h1 className="font-bold text-lg lg:text-2xl py-5">About us</h1>
                   <svg id="right" className="arrow-right my-auto ">
                     <path
                       d="M0.5 9.35772H20.9956L14.2001 2.29941L16.4134 0L27 11L16.4134 22L14.2001 19.7006L20.9956 12.6423H0.5V9.35772Z"
@@ -82,10 +86,10 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          <div className="column p-10 mx-auto h-min-screen ">
+          <div className=" mx-auto">
             {/* todo: make image look like a wax seal stamp (add some flair in that page) */}
             <img
-              className="resizeableImage mx-auto my-auto p-5 lg:visible md:invisible"
+              className="resizeableImage mx-auto my-auto p-5"
               src="/images/logo.png"
               alt=""
             />
@@ -95,78 +99,84 @@ export default function Home() {
       <div className="py-1">
         {/* TODO: Add sliding animation on entry of section */}
         {/* Potential: create a hook and utilize div refs to keep things */}
-        <div className="grid grid-cols-[50%_50%] px-10 gap-5">
-          <div className="text-left mx-auto" ref={ref}>
-            <motion.h1
-              className="mx-auto text-6xl py-10 leading-loose"
-              initial="hidden"
-              animate={controls}
-              variants={{
-                visible: { opacity: 1, y: 0 },
-                hidden: { opacity: 0, y: 50 },
-              }}
-              transition={{ duration: 1 }}
-            >
-              Our first step in{" "}
-              <span className="text-green-300 font-semibold">Bio</span>
-              technology.
-              <br />
-              Is with{" "}
-              <span className="text-red-400 font-bold">Women&apos;s Health</span>.
-            </motion.h1>
-            <svg
-              height={200}
-              width={200}
-              className="mx-auto"
-              id="eDiGStl2V6I1"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlnsXlink="http://www.w3.org/1999/xlink"
-              viewBox="0 0 300 300"
-              shape-rendering="geometricPrecision"
-              text-rendering="geometricPrecision"
-            >
-              <path
-                d="M216.201146,141.167723c-26.689497-4.919209-44.913991-2.686837-66.897827-26.258456-23.221065-23.254447-65.673291-13.6587-69.062625,22.173807s63.467703,84.919324,135.960452,4.084649Z"
-                transform="translate(1.817804 23.442574)"
-                fill="#ecc9c7"
-                stroke="#ecc9c7"
-                stroke-width="0.6"
+        <section>
+          <div className="grid grid-cols-1 md:grid-cols-[50%_50%] px-5 md:px-10 gap-5">
+            <div className="text-center md:text-left">
+              <motion.h1
+                className="mx-auto md:text-6xl py-10 leading-loose"
+                initial="hidden"
+                animate={controls}
+                variants={{
+                  visible: { opacity: 1, y: 0 },
+                  hidden: { opacity: 0, y: 50 },
+                }}
+                transition={{ duration: 1 }}
+                ref={ref}
+              >
+                Our first step in{" "}
+                <span className="text-green-300 font-semibold">Biotechnology.</span>
+                <br />
+                Is with{" "}
+                <span className="text-red-400 font-bold">Women's Health</span>.
+              </motion.h1>
+              <svg
+                height={200}
+                width={200}
+                className="mx-auto"
+                id="eDiGStl2V6I1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlnsXlink="http://www.w3.org/1999/xlink"
+                viewBox="0 0 300 300"
+                shape-rendering="geometricPrecision"
+                text-rendering="geometricPrecision"
+              >
+                <path
+                  d="M216.201146,141.167723c-26.689497-4.919209-44.913991-2.686837-66.897827-26.258456-23.221065-23.254447-65.673291-13.6587-69.062625,22.173807s63.467703,84.919324,135.960452,4.084649Z"
+                  transform="translate(1.817804 23.442574)"
+                  fill="#ecc9c7"
+                  stroke="#ecc9c7"
+                  strokeWidth="0.6"
+                />
+                <ellipse
+                  rx="25"
+                  ry="25"
+                  transform="translate(130.982868 93.32929)"
+                  fill="#ecc9c7"
+                  strokeWidth="0"
+                />
+                <ellipse
+                  rx="15"
+                  ry="15"
+                  transform="translate(189.838379 140.696999)"
+                  fill="#ecc9c7"
+                  strokeWidth="0"
+                />
+              </svg>
+            </div>
+            <div className="text-center md:text-right">
+              <img
+                src="/images/homepagelady.png"
+                alt="Teagan Paddleton and her baby, Oakley."
+                className="h-3/4 mx-auto my-auto boxshadow"
               />
-              <ellipse
-                rx="25"
-                ry="25"
-                transform="translate(130.982868 93.32929)"
-                fill="#ecc9c7"
-                stroke-width="0"
-              />
-              <ellipse
-                rx="15"
-                ry="15"
-                transform="translate(189.838379 140.696999)"
-                fill="#ecc9c7"
-                stroke-width="0"
-              />
-            </svg>
+            </div>
           </div>
-          <div>
-            <img
-              src="/images/homepagelady.png"
-              alt="Teagan Paddleton and her baby, Oakley."
-              className="h-3/4 mx-auto my-auto boxshadow"
-            />
-          </div>
-        </div>
+        </section>
         <Divider orientation="horizontal" />
         <section className="content h-screen">
-          {/* TODO (when more products are added): create mini product icons on a horizontal slider that overflows off the image. When mini product icon is clicked on, replace the background image with the selected product. */}
-          <div className="relative ">
-            <img
-              src="/images/strl.jpg"
-              className="absolute opacity-80 left-0 rounded-lg strl-shadow"
-            />
+          <div className="grid grid-cols-1 md:grid-cols-2 md:gap-12">
+            {/* Image column */}
+            <div className="relative">
+              <Image
+                src="/images/strl.jpg"
+                className="h-auto w-full z-0 opacity-80 rounded-lg strl-shadow"
+                alt="STRL background"
+              />
+            </div>
 
+            {/* Motion div column */}
             <motion.div
-              className="absolute top-0 right-0 mx-auto leading-loose text-left w-1/5"
+              className="flex flex-col justify-center p-5 text-left"
               initial="hidden"
               animate={controls}
               variants={{
@@ -174,17 +184,18 @@ export default function Home() {
                 hidden: { opacity: 0, y: 50 },
               }}
               transition={{ duration: 1 }}
+              ref={strlRef}
             >
-              <h1 className="font-bold text-2xl py-5">Liquid Sterilization</h1>
-              <h1 className="font-bold text-9xl py-5">STRL</h1>
+              <h1 className="font-bold text-2xl md:text-4xl py-5">Liquid Sterilization</h1>
+              <h1 className="font-bold text-9xl md:text-8xl py-5">STRL</h1>
               <p>
                 Our inaugural project, STRL paves the way for future innovations
                 at Parasol Laboratories, all aimed at enriching lives and
                 transforming global health.
               </p>
               <Link href="/projects" color="foreground">
-                <div className="grid grid-columns-2 grid-flow-col gap-4">
-                  <h1 className="font-bold text-2xl py-5">Find out more</h1>
+                <div className="grid grid-cols-2 gap-4 items-center">
+                  <h1 className="font-bold text-2xl md:text-4xl py-5">Find out more</h1>
                   <svg id="right" className="arrow-right my-auto ">
                     <path
                       d="M0.5 9.35772H20.9956L14.2001 2.29941L16.4134 0L27 11L16.4134 22L14.2001 19.7006L20.9956 12.6423H0.5V9.35772Z"
@@ -196,6 +207,7 @@ export default function Home() {
             </motion.div>
           </div>
         </section>
+
         <section className="content">
           <div className="text-center">
             {/* TODO: add animation to the following header text */}
@@ -254,7 +266,7 @@ export default function Home() {
                 .
               </h1>
               <p className="py-5 font-thin text-lg">
-                We're here to help. Whether you have general questions or inquiries - we're here to provide information and answer questions.
+                We&apos;re here to help. Whether you have general questions or inquiries - we&apos;re here to provide information and answer questions.
               </p>
               <div className="py-5">
                 <div className="contact-box py-2">
@@ -277,11 +289,11 @@ export default function Home() {
                   <div className="ml-4">
                     <h2 className="text-xl md:text-4xl font-bold">Partnership Inquiries</h2>
                     <p className="py-2 text-sm md:text-base">
-                      Let's work and grow together. Click the link below to fill out the forms and our partnership manager will reach out to you.
+                      Let&apos;s work and grow together. Click the link below to fill out the forms and our partnership manager will reach out to you.
                     </p>
-                    <Link href="/webforms/partnershipform" underline="always" color="foreground">
+                    <Button as={Link} href="/webforms/partnershipform" color="success" className="text-white font-semibold" size="lg">
                       Partnership Form
-                    </Link>
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -308,11 +320,11 @@ export default function Home() {
                   <div className="ml-4">
                     <h2 className="text-xl md:text-4xl font-bold">General Inquiries</h2>
                     <p className="py-2 text-sm md:text-base">
-                      Need more information? Have an inquiry for an issue? We're here to help. Fill out our form and we will get in touch.
+                      Need more information? Have an inquiry for an issue? We&apos;re here to help. Fill out our form and we will get in touch.
                     </p>
-                    <Link href="/webforms/generalform" underline="always" color="foreground">
+                    <Button as={Link} href="/webforms/generalform" color="success" className="text-white font-semibold" size="lg">
                       Contact Us
-                    </Link>
+                    </Button>
                   </div>
                 </div>
               </div>
