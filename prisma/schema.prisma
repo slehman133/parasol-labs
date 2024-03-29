@@ -71,7 +71,7 @@ model ContactForm {
   email   String @db.VarChar(255)
   message String @db.Text
 
-  user      User      @relation(fields: [userId], references: [id])
+  user      User?      @relation(fields: [userId], references: [id])
   userId    Int
   messages  Message[]
   createdAt DateTime  @default(now())

@@ -13,6 +13,15 @@ const SendEmailForm: React.FC = () => {
   const [sending, setSending] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
 
+  const validateEmail = (email: string) =>
+    email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
+
+  const isInvalid = React.useMemo(() => {
+    if (email === "") return false;
+
+    return validateEmail(email) ? false : true;
+  }, [email]);
+
   const handleSendEmail = async () => {
     //combine first and last name
     const name = `${firstName} ${lastName}`;
@@ -22,10 +31,15 @@ const SendEmailForm: React.FC = () => {
       return;
     }
 
+    if (isInvalid) {
+      setMessage("Please enter a valid email.");
+      return;
+    }
+
     setSending(true);
     try {
       setSubject("test");
-      const error = await SendEmail({ from: email, subject, html }); 
+      const error = await SendEmail({ from: email, subject, html });
       createDBRecord(name);
       // console.log(error);
       setMessage("Email sent successfully!");
@@ -53,7 +67,9 @@ const SendEmailForm: React.FC = () => {
 
   return (
     <div className="p-10">
-      <h1 className="text-2xl font-bold text-center underline py-4">Contact Form</h1>
+      <h1 className="text-2xl font-bold text-center underline py-4">
+        Contact Form
+      </h1>
       <div className="grid grid-cols-2 gap-5">
         <Input
           variant="bordered"
@@ -83,6 +99,9 @@ const SendEmailForm: React.FC = () => {
         size="lg"
         placeholder="From: name@example.com"
         value={email}
+        isInvalid={isInvalid}
+        color={isInvalid ? "danger" : "success"}
+        errorMessage={isInvalid && "Please enter a valid email"}
         onChange={(e) => setEmail(e.target.value)}
         className="py-4"
       />
