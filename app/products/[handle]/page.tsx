@@ -47,12 +47,12 @@ const ProductPage = async (props: ProductPageProps) => {
           <h3 className='font-semibold text-xl'>${product.priceRange.minVariantPrice.amount}</h3>
           <p>{product.description}</p>
           {quantityAvailable > 0 ?
-            <AddToCart 
-            name={product.title} 
-            handle={product.handle} 
-            price={product.priceRange.minVariantPrice.amount} 
-            image={image.transformedSrc} 
-            variantId={variantId} />
+            <AddToCart
+              name={product.title}
+              handle={product.handle}
+              price={product.priceRange.minVariantPrice.amount}
+              image={image.transformedSrc}
+              variantId={variantId} />
             :
             <div className='flex flex-col items-center border-2 border-white 
             m-12 p-5 rounded text-xl rounded-2xl'>

@@ -1,7 +1,7 @@
 // code by Samuel Lehman
 
 import { CartItem } from "@/app/context/CartContext"
-import { createAdminApiClient } from '@shopify/admin-api-client'
+
 
 
 const storefront = async (query: string, variables = {}) => {
@@ -24,72 +24,6 @@ const storefront = async (query: string, variables = {}) => {
     }).then(res => res.json())
 
   return response
-}
-
-const admin = async (query: string) => {
-  const client = createAdminApiClient({
-    storeDomain: process.env.NEXT_PUBLIC_STORE_URL as string,
-    apiVersion: '2023-04',
-    accessToken: process.env.SHOPIFY_ADMIN_ACCESS_TOKEN as string,
-  })
-
-
-  const response = await client.request(query)
-  return response
-}
-
-const adminGetProducts = async () => {
-  const query =
-    `query AdminProducts {
-  products(first: 10) {
-    edges {
-      node {
-        id
-        totalInventory
-        priceRangeV2 {
-          minVariantPrice {
-            amount
-          }
-        }
-        images(first: 10) {
-          edges {
-            node {
-              altText
-              src
-            }
-          }
-        }
-        description
-        title
-      }
-    }
-  }
-}`
-  const products = await admin(query)
-  return products.data.products.edges.map((e: any) => e.node)
-}
-
-const adminEditQuantity = async (id: string, quantity: number) => {
-  const query =
-    `
-    mutation productUpdate{
-      productUpdate(input: $input) {
-        product(id: "${id}") {
-          variants {
-            inventoryQuantities {
-              availableQuantity: input
-            }
-          }
-        }
-        userErrors {
-          field
-          message
-        }
-      }
-    }
-    `
-  const product = await admin(query)
-  return product
 }
 
 const getProduct = async (variables: { handle: string }) => {
@@ -150,6 +84,7 @@ const getProducts = async () => {
                 }
               }
             }
+            totalInventory
           }
         }
       }
@@ -159,7 +94,7 @@ const getProducts = async () => {
   return products.data.products.edges
 }
 
-const createCheckout = async (cartItems: CartItem[]) => {
+const createCheckout = async (cartItems: CartItem[], email = "") => {
   const lineItems = cartItems.map((e) => {
     return {
       variantId: e.variantId.id,
@@ -170,6 +105,7 @@ const createCheckout = async (cartItems: CartItem[]) => {
   const query = `
     mutation {
     checkoutCreate(input: {
+      email: "${email}",
       lineItems:[
         ${lineItems.map(e =>
     `{variantId: "${e.variantId}",
@@ -180,7 +116,7 @@ const createCheckout = async (cartItems: CartItem[]) => {
       checkout {
          id
          webUrl
-         lineItems(first: 5) {
+         lineItems(first: 100) {
            edges {
              node {
                title
@@ -196,9 +132,10 @@ const createCheckout = async (cartItems: CartItem[]) => {
   return checkout
 }
 
-const buyItNow = async (variantId: string, quantity: number) => {
+const buyItNow = async (variantId: string, quantity: number, email = "") => {
   const query = `mutation{
   checkoutCreate(input:{
+    email: "${email}",
     lineItems:{
       variantId: "${variantId}",
       quantity: ${quantity}
@@ -215,4 +152,4 @@ const buyItNow = async (variantId: string, quantity: number) => {
 
 
 export default storefront
-export { getProduct, getProducts, createCheckout, buyItNow, adminGetProducts, adminEditQuantity }
+export { getProduct, getProducts, createCheckout, buyItNow }
