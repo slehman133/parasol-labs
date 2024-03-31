@@ -7,6 +7,7 @@ import EyeFilledIcon from '@/components/account/signin/EyeFilledIcon'
 import EyeSlashFilledIcon from "@/components/account/signin/EyeSlashFilledIcon"
 import { Spinner } from "@nextui-org/react";
 import Link from 'next/link'
+import TagManager from 'react-gtm-module';
 
 const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
     const [formData, setFormData] = useState({
@@ -44,6 +45,18 @@ const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
                                                         setIsLoading(true)
                                                         const res = await signIn('credentials', { ...formData, redirect: false })
                                                         // console.log(res)
+                                                        // Update Analytics on successful login
+
+                                                        if(res?.ok) {
+                                                            const userName = formData.email
+                                                            console.log(userName)
+                                                            TagManager.dataLayer({
+                                                                dataLayer:{
+                                                                    event: 'login',
+                                                                    userName: userName
+                                                                }
+                                                            })
+                                                        }
                                                         setIsLoading(false)
                                                     }}>
                                                     <Input type='email' placeholder='Email' value={formData.email}
