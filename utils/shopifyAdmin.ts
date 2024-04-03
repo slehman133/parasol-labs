@@ -57,7 +57,7 @@ export const adminGetProduct = async (id: string) => {
   return response
 }
 
-export const adminEditQuantity = async (id: string, quantity: number) => {
+export const adminEditQuantity = async (id: string, quantity: number, variantId: string) => {
   const inventoryLevelIdProductQuery =
     `
     {
@@ -71,7 +71,7 @@ export const adminEditQuantity = async (id: string, quantity: number) => {
         }
       }
     }
-    productVariant(id: "gid://shopify/ProductVariant/48289019560225") {
+    productVariant(id: "${variantId}") {
       inventoryManagement
       inventoryItem {
         inventoryLevel(locationId: "gid://shopify/Location/92259844385") {

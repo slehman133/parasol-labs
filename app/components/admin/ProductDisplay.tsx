@@ -9,6 +9,7 @@ const ProductDisplay = ({ products }: { products: any }) => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const [inventoryToChange, setInventoryToChange] = useState({
         id: 0,
+        variantId: 0,
         totalInventory: 0
     });
 
@@ -23,11 +24,11 @@ const ProductDisplay = ({ products }: { products: any }) => {
                             </ModalHeader>
                             <ModalBody className="gap-1">
                                 <form>
-                                    <label>Enter New Quantity:</label>
+                                    <label>Enter Change:</label>
                                     <input
                                         className='ml-2'
                                         type="number"
-                                        placeholder={inventoryToChange.totalInventory.toString()}
+                                        // placeholder={inventoryToChange.totalInventory.toString()}
                                         onChange={(e) =>
                                             setInventoryToChange({
                                                 ...inventoryToChange,
@@ -48,6 +49,7 @@ const ProductDisplay = ({ products }: { products: any }) => {
                                                 {
                                                     event: "edit-quantity",
                                                     id: inventoryToChange.id,
+                                                    variantId: inventoryToChange.variantId,
                                                     quantity: inventoryToChange.totalInventory
                                                 }),
                                         })
@@ -78,7 +80,8 @@ const ProductDisplay = ({ products }: { products: any }) => {
                 <TableBody>
                     {products.map((e: any) => {
                         const { id, title, description, totalInventory,
-                            priceRange: { minVariantPrice: { amount } } } = e.node
+                            priceRange: { minVariantPrice: { amount } }, variants: { edges } } = e.node
+                        const variantId = edges[0].node.id
                         return (
                             <TableRow key={id}>
                                 <TableCell>{title}</TableCell>
@@ -86,7 +89,8 @@ const ProductDisplay = ({ products }: { products: any }) => {
                                     <div
                                         className='cursor-pointer'
                                         onClick={() => {
-                                            setInventoryToChange({ id, totalInventory })
+                                            setInventoryToChange(
+                                                { id, totalInventory, variantId })
                                             onOpen()
                                         }}>
                                         {totalInventory}

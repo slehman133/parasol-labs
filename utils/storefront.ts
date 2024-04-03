@@ -85,6 +85,13 @@ const getProducts = async () => {
               }
             }
             totalInventory
+            variants(first: 10) {
+              edges {
+                node {
+                  id
+                }
+              }
+            }
           }
         }
       }

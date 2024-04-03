@@ -5,7 +5,8 @@ import { adminEditQuantity } from "@/utils/shopifyAdmin";
 
 export async function PATCH(request: Request) {
     const req = await request.json()
-    const { id, quantity } = req
-    const response = await adminEditQuantity(id.replace('gid://shopify/Product/', ''), quantity)
+    const { id, quantity, variantId } = req
+    const response = await adminEditQuantity(id.replace('gid://shopify/Product/', ''),
+        quantity, variantId)
     return NextResponse.json(response)
 }

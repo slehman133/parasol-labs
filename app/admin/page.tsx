@@ -12,6 +12,7 @@ export async function generateMetadata() {
 
 const AdminPage = async () => {
     const products = await getProducts()
+    console.log(products)
     // const adminProducts = await adminGetProducts()
     const orders = await getOrders()
     // console.log(adminProducts)
