@@ -86,7 +86,7 @@ export default function About() {
                   The Future of healthcare, begins now.
                 </h1>
                 <p className="font-light text-xl md:text-3xl text-left">
-                  At Parasol Labs, we believe that our values are the cornerstone of our identity. Driven by a commitment to excellence, integrity, and innovation, we strive to transcend the ordinary in everything we do. We're not just about making promises; we're about embodying them in every project, every breakthrough, and every interaction. Here, our actions speak louder than words, reflecting our unwavering dedication to impacting the world positively and paving the way for a brighter, healthier future.
+                  At Parasol Labs, we believe that our values are the cornerstone of our identity. Driven by a commitment to excellence, integrity, and innovation, we strive to transcend the ordinary in everything we do. We&apos;re not just about making promises; we&apos;re about embodying them in every project, every breakthrough, and every interaction. Here, our actions speak louder than words, reflecting our unwavering dedication to impacting the world positively and paving the way for a brighter, healthier future.
                 </p>
                 <div className="justify-start inline-flex items-start w-full md:w-4/5">
                   <Button
