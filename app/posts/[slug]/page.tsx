@@ -19,20 +19,20 @@ const getPostContent = (slug: string) => {
 // Static Params Definition
 //integrated as part of postpreview
 //source: https://github.com/pixegami/nextjs-blog-tutorial
-export const generateStaticParams = async () => {
-    const posts = getPostMetadata();
-    return posts.map((post) => [{
-        slug: post.slug
-    }]);
-};
+// export const generateStaticParams = async () => {
+//     const posts = getPostMetadata();
+//     return posts.map((post) => [{
+//         slug: post.slug
+//     }]);
+// };
 
 //integrated as part of postpreview
 //source: https://github.com/pixegami/nextjs-blog-tutorial
-const PostPage = (props:any) => {
+const PostPage = (props: any) => {
     const slug = props.params.slug;
     const post = getPostContent(slug);
 
-    return(
+    return (
         <div className='flex flex-col p-24 bg-white gap-4'>
             <div className='flex flex-col gap-2'>
                 {/* <Image 
