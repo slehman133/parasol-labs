@@ -9,12 +9,15 @@ import Spinner from '@/components/Spinner';
 import { motion } from "framer-motion"
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react"
 import Link from 'next/link';
-import {calcTotalPrice} from '@/utils/cart';
+import { calcTotalPrice } from '@/utils/cart';
+import { useSession } from 'next-auth/react';
 
 const CartPage = () => {
     const { cartItems, clearCart, removeFromCart, editItemQuantity } = useCart();
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const [loading, setLoading] = useState(false)
+
+    const { data: session } = useSession()
 
     let itemToRemove = 0
 
@@ -113,7 +116,7 @@ const CartPage = () => {
                             onClick={async (e) => {
                                 e.preventDefault()
                                 setLoading(true)
-                                const res = await createCheckout(cartItems)
+                                const res = await createCheckout(cartItems, session?.user?.email as string)
                                 clearCart();
                                 window.location.replace(res.data.checkoutCreate.checkout.webUrl)
                             }}

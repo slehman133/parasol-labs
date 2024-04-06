@@ -1,5 +1,4 @@
 .styled-box {
-  height: 60vh;
   width: 75%;
   margin: auto;
   background-color: #8191ed;
@@ -8,7 +7,7 @@
   justify-content: center;
 }
 .box-shadow {
-  box-shadow: -40px -100px gray;
+  box-shadow: -10px -50px gray;
 }
 
 .arrow-right {
@@ -36,32 +35,7 @@
   );
   d: "M0 9.35772H50.9956L44.2001 2.29941L46.4134 0L57 11L46.4134 22L44.2001 19.7006L50.9956 12.6423H0V9.35772Z";
 }
-
-#wave {
-  position: relative;
-  height: 70px;
-  width: auto;
-  background: #e0efe3;
-}
-#wave:before {
-  content: "";
-  display: block;
-  position: absolute;
-  border-radius: 100% 50%;
-  width: 340px;
-  height: 80px;
-  background-color: white;
-  right: -5px;
-  top: 40px;
-}
-#wave:after {
-  content: "";
-  display: block;
-  position: absolute;
-  border-radius: 100% 50%;
-  width: 300px;
-  height: 70px;
-  background-color: #e0efe3;
-  left: 0;
-  top: 27px;
+img {
+  max-width: 100%;
+  height: auto;
 }
