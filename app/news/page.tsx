@@ -17,8 +17,10 @@ export async function generateMetadata() {
 const NewsPage = async () => {
     const res = await client.fetch(`*[_type == "post"]`, {}, { cache: "no-store" })
     const postPreviews = res.map((post:any) => (
-        <PostPreview key = {post.slug?.current} {...post} />
+        <PostPreview key = {post.slug?.current}{...post}/>
     ));
+    
+    
 
     return (
         <>
