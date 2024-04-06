@@ -6,7 +6,7 @@ import { Divider } from "@nextui-org/react";
 
 export default function Footer() {
   return (
-    <footer className="dark bg-background footer p-10 border-t-1">
+    <footer className="dark bg-background footer p-10 border-t-1 mx-auto">
       <aside>
         <div className="sm:flex sm:items-center justify-center mx-auto">
           <img
@@ -38,7 +38,7 @@ export default function Footer() {
 
       <nav>
         <header className="footer-title">Research</header>
-        <Link href="/Products" className="link link-hover">
+        <Link href="/products" className="link link-hover">
           Products
         </Link>
         <Link href="/projects#strlproject" className="link link-hover">

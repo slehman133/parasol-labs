@@ -42,18 +42,18 @@ export default function CookieBanner() {
   return (
     <div
       className={`cookie-consent-banner ${
-        cookieConsent != null ? "hidden" : "flex"
-      }`}
+        cookieConsent != null ? "hidden" : "flex flex-col sm:flex-row"
+      } p-4 sm:p-6 gap-4`}
     >
-      <div className="flex justify-between gap-5 p-1">
-        <header className="mt-2 font-bold">
+      <div className="flex flex-col gap-2 sm:flex-row justify-between gap-5 p-1">
+        <header className="text-sm sm:text-base font-bold my-auto">
           We value your{" "}
           <Link href="/privacy" color="success" underline="hover">
             Privacy
           </Link>
           .
         </header>
-        <p className="text-xs mt-4">
+        <p className="text-xs sm:text-sm my-auto">
           We use cookies to enhance your browsing experience by serving
           personalized ads or content, and analyze our traffic. By clicking
           &quot;Accept All&quot;, you consent to the use of cookies.
@@ -62,95 +62,13 @@ export default function CookieBanner() {
           href="/privacy"
           color="success"
           underline="always"
-          className="text-xs mt-0 mb-5"
+          className="text-xs sm:text-sm"
         >
           Privacy Policy
         </Link>
       </div>
-      <div>
-        <Divider className="bg-black" orientation="vertical" />
-      </div>
-      <div className="flex gap-4 mx-5 ">
-        {/* Argument is not assignable, yet it assigns on click properly and adjusts gcs tag??? 
-          Only fix is if const [cookieConsent, setCookieConsent] = useState(false);
-          Buuut that assigns our user's cookie consent to false, and it automatically hides since it has a value. cool.*/}
-
-        {/* <Button
-          className="my-auto text-green-500 font-medium"
-          variant="light"
-          onPress={onOpen} //TODO - create a pop up that allows user to customize their cookie consent
-        >
-          Customize Cookies
-        </Button> */}
-        <Modal
-          placement="top-center"
-          isOpen={isOpen}
-          onOpenChange={onOpenChange}
-          motionProps={{
-            variants: {
-              enter: {
-                y: 0,
-                opacity: 1,
-                transition: {
-                  duration: 0.2,
-                  ease: "easeOut",
-                },
-              },
-              exit: {
-                y: -20,
-                opacity: 0,
-                transition: {
-                  duration: 0.2,
-                  ease: "easeIn",
-                },
-              },
-            },
-          }}
-        >
-          <ModalContent>
-            {(onClose) => (
-              <>
-                <ModalHeader className="flex flex-col gap-1 text-left">
-                  <img src="/images/logo.png" width={25} height={30} />
-                  <h1 className="text-xl">We value your privacy.</h1>
-                </ModalHeader>
-                <ModalBody>
-                  <p>
-                    We utilize cookies to provide you with the best experience
-                    possible. With cookies, we can serve personalized ads and
-                    content while also analyzing our traffic for user behavior
-                    so that we can constantly improve our website, for you.
-                  </p>
-                  <br />
-                  <p>
-                    Click &quot;Accept All&quot; to give us content to use cookies for
-                    those services. You can also personalize your consent to
-                    specific purposes by clicking &quot;Personalize&quot; and selecting
-                    the checkboxes.
-                  </p>
-                  <br />
-                  <p>
-                    You can change your preferences at any time in the privacy
-                    settings. Read more about how we use cookies and other
-                    technologies to collect personal dadta.{" "}
-                    <Link href="/privacy" color="success" underline="always">
-                      Privacy Policy
-                    </Link>
-                    .
-                  </p>
-                </ModalBody>
-                <ModalFooter>
-                  <Button color="danger" variant="bordered" onPress={onClose}>
-                    Close
-                  </Button>
-                  <Button color="default" variant="bordered" onPress={onClose}>
-                    Personalize
-                  </Button>
-                </ModalFooter>
-              </>
-            )}
-          </ModalContent>
-        </Modal>
+      <Divider className="bg-black hidden sm:block" orientation="vertical" />
+      <div className="flex flex-col sm:flex-row gap-4 justify-center items-center ">
         <Button
           className="my-auto text-green-500 font-medium"
           color="success"
