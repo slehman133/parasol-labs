@@ -16,7 +16,6 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ imageUrl, linkedinUrl }
         </Link>
       </div>
     </>
-
   );
 };
 

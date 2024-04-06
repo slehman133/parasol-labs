@@ -1,128 +1,45 @@
-'use client'
+import React, { useEffect } from "react";
 
-import React from 'react'
-
-import { signOut, useSession } from 'next-auth/react'
-import { redirect } from 'next/navigation'
-import { useState } from 'react'
+import { signOut, useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
+import { useState } from "react";
 import { Input } from "@nextui-org/react";
-import { Button, ButtonGroup } from "@nextui-org/react";
+import { Button, ButtonGroup, Divider } from "@nextui-org/react";
+import { getOrders, getOrdersByEmail } from '@/utils/shopifyAdmin'
+import OrdersDisplay from '@/components/admin/OrderDisplay'
+import UserSettings from "@/app/components/account/signin/UserSettings";
 
 
-const AccountSettingsPage = (props: { params: { id: string } }) => {
+const AccountSettingsPage = async (props: { params: { id: string } }) => {
+  const variables = { userId: props.params.id };
 
-  const variables = { userId: props.params.id }
+  const user = await fetch(`http://localhost:3000/api/user/${variables.userId}`)
+    .then(res => res.json())
 
-  const { data: session }: any = useSession()
-
-  const [formData, setFormData] = useState({
-    email: session?.user?.email,
-    firstName: session?.user?.firstName,
-    lastName: session?.user.lastName,
-    currentPassword: "",
-    newPassword: "",
-    confirmNewPassword: "",
-  })
-
-
-  if (session?.user.id !== variables.userId) {
-    redirect("/404")
-  }
+  const orders = await getOrders()
+    .then(res => res.filter((e: any) => e.email === user.email))
 
   return (
     <>
-      <div className='mx-auto my-32 text-white w-[40%] '>
-        <div>
-          <div className='flex flex-col my-2'>
-            <h3 className='text-2xl'>Basic Information</h3>
-            <form className='flex flex-col form-control'
-              onSubmit={async (e) => {
-                e.preventDefault()
-                await fetch("http://localhost:3000/api/user/edit", {
-                  method: "PATCH",
-                  body: JSON.stringify({
-                    ...formData,
-                    event: 'edit-basic-information',
-                  })
-                })
-                signOut()
-                redirect("/api/auth/signin")
-              }}
-            >
-              <label htmlFor="email">Email</label>
-              <Input type="email"
-                placeholder={session?.user?.email} value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
-              <div className='flex justify-between my-2'>
-                <div className='flex flex-col w-[48%]'>
-                  <label htmlFor="first_name">First Name</label>
-                  <Input
-                    placeholder={session?.user.firstName} value={formData.firstName}
-                    onChange={(e) => setFormData({ ...formData, firstName: e.target.value })} />
-                </div>
-                <div className='flex flex-col w-[48%]'>
-                  <label htmlFor="last_name">Last Name</label>
-                  <Input
-                    type="text"
-                    placeholder={session?.user.lastName} value={formData.lastName}
-                    onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                  />
-                </div>
-              </div>
-              <Input className='w-[40%] mx-auto' type="submit" value="Submit Changes" />
-            </form>
+      <div className="m-[5%_10%_2%_10%]">
+        <div className="grid grid-rows-auto gap-10">
+          <div className=" text-center md:text-left p-4">
+            <h1 className="font-bold text-4xl">Account Settings</h1>
           </div>
-          <div className='flex flex-col my-2'>
-            <h3 className='text-2xl'>Change Password</h3>
-            <form className='flex flex-col' action=""
-              onSubmit={async (e) => {
-                e.preventDefault()
-                await fetch("http://localhost:3000/api/user/edit", {
-                  method: "PATCH",
-                  body: JSON.stringify({
-                    ...formData,
-                    event: 'change-password',
-                  })
-                })
-                signOut({ callbackUrl: '/' })
-              }}>
-              <label htmlFor="currentPassword">Current Password</label>
-              <Input type="password"
-                placeholder="Current Password" value={formData.currentPassword}
-                onChange={(e) => { setFormData({ ...formData, currentPassword: e.target.value }) }}
-              />
-              <label htmlFor="new_password">New Password</label>
-              <Input
-                placeholder="New Password" value={formData.newPassword}
-                onChange={(e) => { setFormData({ ...formData, newPassword: e.target.value }) }}
-              />
-              <label htmlFor="confirm_password">Confirm New Password</label>
-              <Input type="password"
-                placeholder="Confirm New Password" value={formData.confirmNewPassword}
-                onChange={(e) => { setFormData({ ...formData, confirmNewPassword: e.target.value }) }}
-              />
-              <Input className='w-[40%] mx-auto' type="submit" value="Change Password" />
-            </form>
-          </div>
-          <div className='flex flex-col'>
-            <h3 className='text-2xl'>Delete Account</h3>
-            <Button className='w-[40%] mx-auto' onPress={async (e) => {
-              // e.preventDefault()
-              await fetch("http://localhost:3000/api/user/edit", {
-                method: "PATCH",
-                body: JSON.stringify({
-                  event: "delete",
-                  email: session?.user?.email
-                })
-              })
-              signOut({ callbackUrl: '/' })
-            }}>
-              Delete Account</Button>
+          <Divider orientation="horizontal" />
+          <div className="md:flex md:justify-between grid grid-cols-1 gap-10 text">
+            {/* make the background color of the child div slightly brighter than the color of the parent div */}
+            <UserSettings userId={variables.userId} />
+            <div className="w-1/2 bg-[#160914] p-4 rounded-lg">
+              <h1 className="font-bold text-4xl pt-5">Orders</h1>
+              <Divider orientation="horizontal" />
+              <OrdersDisplay orders={orders} />
+            </div>
           </div>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default AccountSettingsPage
+export default AccountSettingsPage;

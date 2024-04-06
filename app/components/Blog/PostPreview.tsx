@@ -13,6 +13,7 @@ import {
   Textarea,
 } from "@nextui-org/react";
 
+
 //Written by Nicholas Whitehorn
 
 //integrated as part of postpreview
@@ -37,6 +38,7 @@ const parseArticleData = async (article: any) => {
 
     return { imageURL,  author, subtitle, date  }
 }
+
 const PostPreview = async (props:PostMetadata ) => {
   const slug = props.slug.current
   const article = await client.fetch(`*[_type == "post" && slug.current == $slug][0]`, { slug }, { cache: "no-store" })
@@ -76,6 +78,7 @@ const PostPreview = async (props:PostMetadata ) => {
           </Link>
         </div>
       </>
+
     )
 
     
