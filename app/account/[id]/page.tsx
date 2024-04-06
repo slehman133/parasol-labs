@@ -20,7 +20,7 @@ const AccountSettingsPage = async (props: { params: { id: string } }) => {
     redirect("/404")
   }
 
-  const user = await fetch(`http://localhost:3000/api/user/${variables.userId}`)
+  const user = await fetch(`/api/user/${variables.userId}`)
     .then(res => res.json())
 
   const orders = await getOrders()
