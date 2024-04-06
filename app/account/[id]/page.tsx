@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 
 import { signOut, useSession } from "next-auth/react";
@@ -10,12 +8,12 @@ import { Button, ButtonGroup, Divider } from "@nextui-org/react";
 import { getOrders, getOrdersByEmail } from '@/utils/shopifyAdmin'
 import OrdersDisplay from '@/components/admin/OrderDisplay'
 
-const AccountSettingsPage = (props: { params: { id: string } }) => {
+const AccountSettingsPage = async (props: { params: { id: string } }) => {
   const variables = { userId: props.params.id };
 
   const user = await fetch(`http://localhost:3000/api/user/${variables.userId}`)
     .then(res => res.json())
-  
+
   const orders = await getOrders()
     .then(res => res.filter((e: any) => e.email === user.email))
 

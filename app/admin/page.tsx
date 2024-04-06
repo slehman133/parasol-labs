@@ -7,15 +7,15 @@ import { getProducts } from '@/utils/storefront';
 import { adminGetProducts, getOrders } from '@/utils/shopifyAdmin';
 
 export async function generateMetadata() {
-  return {
-    title: "Admin - Parasol Labs",
-  };
+    return {
+        title: "Admin - Parasol Labs",
+    };
 }
 
 
 const AdminPage = async () => {
     const products = await getProducts()
-    console.log(products)
+    // console.log(products)
     // const adminProducts = await adminGetProducts()
     const orders = await getOrders()
     // console.log(adminProducts)
@@ -23,8 +23,11 @@ const AdminPage = async () => {
     return (
         <>
             <div className='m-24'>
-               {/* <PartnershipFormTable /> */}
-                <GeneralFormTable />
+                <h1 className='text-4xl font-bold'>Messages</h1>
+                <div className='my-5'>
+                    {/* <PartnershipFormTable /> */}
+                    <GeneralFormTable />
+                </div>
                 <h1 className='text-4xl font-bold'>Orders</h1>
                 <div className='my-5'>
                     <OrderDisplay orders={orders} />
