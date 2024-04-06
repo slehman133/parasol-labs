@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { useCart } from '@/app/context/CartContext';
 import { buyItNow } from '@/utils/storefront';
 import Spinner from '@/components/Spinner';
+import { useSession } from 'next-auth/react';
 
 const AddToCart = (props) => {
     const [loading, setLoading] = useState(false)
@@ -18,6 +19,8 @@ const AddToCart = (props) => {
         variantId: props.variantId,
     })
     const { addToCart } = useCart()
+
+    const { data: session } = useSession()
 
     const [isItemAdded, setIsItemAdded] = useState(false)
 
@@ -65,7 +68,9 @@ const AddToCart = (props) => {
                     onClick={async (e) => {
                         e.preventDefault()
                         setLoading(true)
-                        const res = await buyItNow(productToAdd.variantId.id, productToAdd.quantity)
+                        const res = await buyItNow(productToAdd.variantId.id,
+                            productToAdd.quantity,
+                            session?.user.email)
                         window.location.replace(res.data.checkoutCreate.checkout.webUrl)
                     }}>
                     Buy It Now

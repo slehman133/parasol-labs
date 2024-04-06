@@ -3,6 +3,7 @@
 import { CartItem } from "@/app/context/CartContext"
 
 
+
 const storefront = async (query: string, variables = {}) => {
 
   const storefrontAPIUrl = process.env.NEXT_PUBLIC_API_URL || ""
@@ -83,6 +84,14 @@ const getProducts = async () => {
                 }
               }
             }
+            totalInventory
+            variants(first: 10) {
+              edges {
+                node {
+                  id
+                }
+              }
+            }
           }
         }
       }
@@ -92,7 +101,7 @@ const getProducts = async () => {
   return products.data.products.edges
 }
 
-const createCheckout = async (cartItems: CartItem[]) => {
+const createCheckout = async (cartItems: CartItem[], email = "") => {
   const lineItems = cartItems.map((e) => {
     return {
       variantId: e.variantId.id,
@@ -103,6 +112,7 @@ const createCheckout = async (cartItems: CartItem[]) => {
   const query = `
     mutation {
     checkoutCreate(input: {
+      email: "${email}",
       lineItems:[
         ${lineItems.map(e =>
     `{variantId: "${e.variantId}",
@@ -113,7 +123,7 @@ const createCheckout = async (cartItems: CartItem[]) => {
       checkout {
          id
          webUrl
-         lineItems(first: 5) {
+         lineItems(first: 100) {
            edges {
              node {
                title
@@ -129,9 +139,10 @@ const createCheckout = async (cartItems: CartItem[]) => {
   return checkout
 }
 
-const buyItNow = async (variantId: string, quantity: number) => {
+const buyItNow = async (variantId: string, quantity: number, email = "") => {
   const query = `mutation{
   checkoutCreate(input:{
+    email: "${email}",
     lineItems:{
       variantId: "${variantId}",
       quantity: ${quantity}
