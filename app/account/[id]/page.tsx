@@ -7,9 +7,17 @@ import { redirect } from "next/navigation";
 import { useState } from "react";
 import { Input } from "@nextui-org/react";
 import { Button, ButtonGroup, Divider } from "@nextui-org/react";
+import { getOrders, getOrdersByEmail } from '@/utils/shopifyAdmin'
+import OrdersDisplay from '@/components/admin/OrderDisplay'
 
 const AccountSettingsPage = (props: { params: { id: string } }) => {
   const variables = { userId: props.params.id };
+
+  const user = await fetch(`http://localhost:3000/api/user/${variables.userId}`)
+    .then(res => res.json())
+  
+  const orders = await getOrders()
+    .then(res => res.filter((e: any) => e.email === user.email))
 
   const { data: session }: any = useSession();
 
@@ -205,6 +213,7 @@ const AccountSettingsPage = (props: { params: { id: string } }) => {
             <div className="w-1/2 bg-[#160914] p-4 rounded-lg">
               <h1 className="font-bold text-4xl pt-5">Orders</h1>
               <Divider orientation="horizontal" />
+              <OrdersDisplay orders={orders} />
             </div>
           </div>
         </div>

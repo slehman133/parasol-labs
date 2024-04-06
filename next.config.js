@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+
     images: {
         remotePatterns: [
             {
@@ -12,6 +13,19 @@ const nextConfig = {
             },
         ],
     },
+    async headers() {
+        return [
+            {
+                source: '/admin',
+                headers: [
+                    {
+                        key: 'Cache-Control',
+                        value: 'no-store',
+                    },
+                ],
+            }
+        ]
+    }
 }
 
 module.exports = nextConfig

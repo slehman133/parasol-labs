@@ -27,6 +27,7 @@ const ProductsPage = async () => {
 
             return (
               <ProductCard
+                data-testid="ProductCard"
                 key={item.handle}
                 handle={item.handle}
                 image={image}
