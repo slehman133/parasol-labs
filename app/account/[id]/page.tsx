@@ -20,11 +20,11 @@ const AccountSettingsPage = async (props: { params: { id: string } }) => {
     redirect("/404")
   }
 
-  const user = await fetch(`/api/user/${variables.userId}`)
-    .then(res => res.json())
+  // const user = await fetch(`http://localhost:3000/api/user/${variables.userId}`)
+  //   .then(res => res.json())
 
   const orders = await getOrders()
-    .then(res => res.filter((e: any) => e.email === user.email))
+    .then(res => res.filter((e: any) => e.email === session.user.email))
 
 
   // console.log(session)

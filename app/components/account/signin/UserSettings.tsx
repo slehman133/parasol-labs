@@ -20,10 +20,6 @@ const UserSettings = ({ userId }: { userId: string }) => {
     });
     const [updateEnabled, setUpdateEnabled] = useState(false);
 
-    // if (session?.user.id !== userId) {
-    //     redirect("/");
-    // }
-
     return (
         <>
             <div className="w-1/2 bg-[#160914] p-4 rounded-lg">
