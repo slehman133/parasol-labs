@@ -1,33 +1,36 @@
-'use client'
+"use client";
 //Kaeden
-import React from 'react'
-import Script from 'next/script'
-import { usePathname, useSearchParams } from 'next/navigation'
-import { useEffect } from 'react'
-import { pageview } from '@/lib/gtagHelper'
+import React from "react";
+import Script from "next/script";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
+import { pageview } from "@/lib/gtagHelper";
 
+export default function GoogleAnalytics({
+  GA_MEASUREMENT_ID,
+}: {
+  GA_MEASUREMENT_ID: string;
+}) {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  //To keep track of what page the user is on upon pageview effect.
+  useEffect(() => {
+    const url = pathname + searchParams.toString();
 
-export default function GoogleAnalytics({ GA_MEASUREMENT_ID }: { GA_MEASUREMENT_ID: string }) {
-    const pathname = usePathname()
-    const searchParams = useSearchParams()
-    //To keep track of what page the user is on upon pageview effect.
-    useEffect(() => {
-        const url = pathname + searchParams.toString()
+    pageview(GA_MEASUREMENT_ID, url);
+  }, [pathname, searchParams, GA_MEASUREMENT_ID]);
 
-        pageview(GA_MEASUREMENT_ID, url);
-    }, [pathname, searchParams, GA_MEASUREMENT_ID]);
-    
-    return (
-      <>
-        <Script
-          strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-        />
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
+  return (
+    <>
+      <Script
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+      />
+      <Script
+        id="google-analytics"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
@@ -40,8 +43,8 @@ export default function GoogleAnalytics({ GA_MEASUREMENT_ID }: { GA_MEASUREMENT_
             page_path: window.location.pathname,
         });
         `,
-          }}
-        />
-      </>
-    );
+        }}
+      />
+    </>
+  );
 }

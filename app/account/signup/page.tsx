@@ -17,19 +17,35 @@ const SignUpPage = () => {
         confirmPassword: "",
     })
 
+    const event = ({ action, category, label, value }: any) => {
+        const measurementId = process.env.NEXT_PUBLIC_MEASUREMENT_ID || ""; // Ensure measurementId is defined
+        window.gtag('config', measurementId, { // Use measurementId as argument
+            event_category: category,
+            event_label: label,
+            value: value,
+        })
+    }
+
+    const handleSubmit = async (e: any) => {
+        event({
+            action: 'user_signup',
+            category: 'user',
+            label: 'New user created.',
+            value: formData,
+        })
+        e.preventDefault();
+        await fetch("/api/user", {
+            method: 'POST',
+            body: JSON.stringify(formData),
+        });
+        router.push("/api/auth/signin")
+    }
+
     return (
         <>
             <div className='text-black'>
                 <form className='flex flex-col max-w-xl mx-auto my-40 p-5 gap-3'
-                    onSubmit={async (e) => {
-                        e.preventDefault();
-                        await fetch("/api/user", {
-                            method: 'POST',
-                            body: JSON.stringify(formData),
-
-                        });
-                        router.push("/api/auth/signin")
-                    }}>
+                    onSubmit={handleSubmit}>
                     <label>Email</label>
                     <input className='bg-white text-black' type="text"
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
