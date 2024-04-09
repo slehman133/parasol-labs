@@ -9,7 +9,7 @@ export default function GeneralFormPage() {
     <div className='border border-white p-4 md:p-10 mx-auto my-4 md:my-auto rounded-md md:grid md:grid-cols-2 gap-5'>
       <div className='text-center md:text-left'>
         <h3 className='font-bold text-2xl md:text-3xl'>Let&apos;s get in touch!</h3>
-        <p className='font-thin mt-2 md:w-2/3 mx-auto'>We&apos;re here to help. Get the conversation started by filling out the form and we will get back to you as soon as possible.</p>
+        <p className='font-thin mt-2 md:w-2/3 '>We&apos;re here to help. Get the conversation started by filling out the form and we will get back to you as soon as possible.</p>
         <Image src='/images/logo.png' alt='Parasol Laboratories Logo' className='h-auto w-2/3 md:w-1/3 mx-auto pt-4 md:pt-12' />
       </div>
       <div className='mt-6 md:mt-0'>
