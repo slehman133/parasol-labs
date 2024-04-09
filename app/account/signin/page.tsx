@@ -5,12 +5,21 @@ import { Input } from '@nextui-org/react'
 import { signIn } from 'next-auth/react'
 import EyeFilledIcon from '@/components/account/signin/EyeFilledIcon'
 import EyeSlashFilledIcon from "@/components/account/signin/EyeSlashFilledIcon"
+import * as ga from '@/lib/gtagHelper'
 
 const SignInPage = () => {
     const [formData, setFormData] = React.useState({
         email: '',
         password: '',
     })
+    const createGAEvent = async () => {
+        ga.event({
+          action: "p_user_sign_in",
+          category: "p_user_access",
+          label: "p_user_log_in",
+          value: `${formData.email} - User logged in`,
+        })
+      };
     const [isVisible, setIsVisible] = React.useState(false)
     return (
         <>
@@ -19,6 +28,7 @@ const SignInPage = () => {
                     <h1 className='text-3xl text-center my-5'>Sign In to Parasol Labs</h1>
                     <form className='flex flex-col gap-5'
                         onSubmit={async (e) => {
+                            createGAEvent();
                             e.preventDefault()
                             await signIn('credentials', { ...formData, callbackUrl: '/' })
                         }}>
