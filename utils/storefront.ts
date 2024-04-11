@@ -64,7 +64,7 @@ const getProduct = async (variables: { handle: string }) => {
 const getProducts = async () => {
   const query =
     `query Products{
-      products(first:6){
+      products(first:10){
         edges{
           node {
             id
