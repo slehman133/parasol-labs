@@ -5,6 +5,7 @@ import ProductDisplay from '../components/admin/ProductDisplay';
 import OrderDisplay from '../components/admin/OrderDisplay';
 import { getProducts } from '@/utils/storefront';
 import { adminGetProducts, getOrders } from '@/utils/shopifyAdmin';
+import ProductSection from "../components/admin/ProductSection";
 
 export async function generateMetadata() {
     return {
@@ -32,10 +33,14 @@ const AdminPage = async () => {
                 <div className='my-5'>
                     <OrderDisplay orders={orders} />
                 </div>
-                <h1 className='text-4xl font-bold'>Products</h1>
+                {/* <div className="flex justify-between">
+                    <h1 className='text-4xl font-bold'>Products</h1>
+                    <button className="h-12 rounded-lg border-white border-2 font-bold px-5">Add Product</button>
+                </div>
                 <div className='my-5'>
                     <ProductDisplay products={products} />
-                </div>
+                </div> */}
+                <ProductSection products={products} />
             </div>
         </>
 
