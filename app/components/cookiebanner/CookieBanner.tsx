@@ -15,6 +15,7 @@ import {
   ModalBody,
   ModalFooter,
 } from "@nextui-org/react";
+import GoogleAnalytics from "../googleanalytics/GoogleAnalytics";
 
 export default function CookieBanner() {
   const [cookieConsent, setCookieConsent] = useState<true | false>();
@@ -36,6 +37,7 @@ export default function CookieBanner() {
   }, [cookieConsent]);
 
   return (
+    <>
     <div
       className={`cookie-consent-banner ${
         cookieConsent != null ? "hidden" : "flex flex-col sm:flex-row"
@@ -84,6 +86,8 @@ export default function CookieBanner() {
         </Button>
       </div>
     </div>
+    <GoogleAnalytics GA_MEASUREMENT_ID="G-2QHVKTJB8F" cookieConsent={cookieConsent}/> 
+    </>
   );
 }
 

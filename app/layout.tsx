@@ -34,7 +34,6 @@ export default async function RootLayout({
   const session = await getServerSession(authOptions);
   return (
     <html lang="en">
-      <GoogleAnalytics GA_MEASUREMENT_ID="G-2QHVKTJB8F" />
       <head>
         <link rel="icon" type="image/x-icon" href="/images/favicon.ico"></link>
       </head>
@@ -45,7 +44,7 @@ export default async function RootLayout({
           <Provider session={session}>
             <CartProvider>
               <HeadNavbar />
-              <main className=" min-h-[69vh]">{children}</main>
+              <main className=" min-h-[69vh] flex-grow">{children}</main>
               <Footer />
             </CartProvider>
           </Provider>
