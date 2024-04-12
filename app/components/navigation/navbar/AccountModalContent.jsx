@@ -7,6 +7,7 @@ import EyeFilledIcon from '@/components/account/signin/EyeFilledIcon'
 import EyeSlashFilledIcon from "@/components/account/signin/EyeSlashFilledIcon"
 import { Spinner } from "@nextui-org/react";
 import Link from 'next/link'
+import * as ga from '@/lib/gtagHelper'
 
 const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
     const [formData, setFormData] = useState({
@@ -21,6 +22,23 @@ const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
     const [isVisible, setIsVisible] = useState(false)
     const [isConfirmVisible, setIsConfirmVisible] = useState(false)
     const [activeTab, setActiveTab] = useState("signin")
+    const createGAEvent = async () => {
+        ga.event({
+          action: "user_sign_in",
+          category: "user_access",
+          label: "user_log_in",
+          value: `${formData.email} - User logged in`,
+        })
+    };
+    const createGAEventSignOut = async () => {
+        ga.event({
+          action: "user_sign_out",
+          category: "user_sign_out",
+          label: "user_sign_out",
+          value: `${formData.email} - User logged out`,
+        })
+    };
+
     return (
         <ModalContent>
             {(onClose) =>
@@ -40,6 +58,7 @@ const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
                                             <div className='col-start-2'>
                                                 <form className='flex flex-col gap-5'
                                                     onSubmit={async (e) => {
+                                                        createGAEvent();
                                                         e.preventDefault()
                                                         setIsLoading(true)
                                                         const res = await signIn('credentials', { ...formData, redirect: false })
@@ -146,6 +165,7 @@ const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
                                             <Button>My Account</Button>
                                         </Link>
                                         <Button onClick={async () => {
+                                            createGAEventSignOut();
                                             setIsLoading(true)
                                             await signOut({ redirect: false })
                                             setIsLoading(false)

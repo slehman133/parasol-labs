@@ -6,7 +6,7 @@
 import React, { useState } from 'react'
 import prisma from '@/utils/db'
 import { useRouter } from 'next/navigation'
-
+import * as ga from '@/lib/gtagHelper'
 const SignUpPage = () => {
     const router = useRouter()
     const [formData, setFormData] = useState({
@@ -16,23 +16,18 @@ const SignUpPage = () => {
         password: "",
         confirmPassword: "",
     })
-
-    const event = ({ action, category, label, value }: any) => {
-        const measurementId = process.env.NEXT_PUBLIC_MEASUREMENT_ID || ""; // Ensure measurementId is defined
-        window.gtag('config', measurementId, { // Use measurementId as argument
-            event_category: category,
-            event_label: label,
-            value: value,
+    
+    const createGAEvent = async () => {
+        ga.event({
+          action: "User_Sign_Up",
+          category: "user",
+          label: "user_creation",
+          value: `${formData.email} - sent email successfully`,
         })
-    }
+      };
 
     const handleSubmit = async (e: any) => {
-        event({
-            action: 'user_signup',
-            category: 'user',
-            label: 'New user created.',
-            value: formData,
-        })
+        createGAEvent();
         e.preventDefault();
         await fetch("/api/user", {
             method: 'POST',

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import "./style.css";
-import { Divider, Link } from "@nextui-org/react";
+import { Divider } from "@nextui-org/react";
 
 //TODO: Whenever a section is in focus. i.e. user is on 1., create a focus event where it bolds/makes the section it correlates to on the privacysection appear
 const PrivacyPage = () => {
@@ -48,116 +48,46 @@ const PrivacyPage = () => {
               1. INFORMATION YOU CHOOSE TO SUBMIT
             </header>
             <p className="sectionText">
-              Nulla a purus ante. Donec finibus vel mi eu vestibulum. Aliquam
-              suscipit venenatis lacus id malesuada. Proin fringilla mattis
-              sapien et suscipit. Phasellus rhoncus risus ac dui tempor tempor.
-              Mauris et cursus lorem, non ultricies sem. Donec interdum nulla
-              aliquam elementum condimentum. Sed accumsan odio a molestie
-              mattis.
-              <header className="spacing ">I. Lorem Ipsum</header>
+              When you interact with our application, you actively provide certain information. This includes details such as:
+              <header className="spacing ">I. Pages you view</header>
               <p className="sectionText">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                molestie risus sit amet augue egestas feugiat. Nulla interdum
-                massa in leo rutrum condimentum. Duis quis eleifend urna. Fusce
-                nec sodales est, at feugiat ex. Praesent at dolor non augue
-                rhoncus efficitur. Vestibulum magna nunc, lacinia ut egestas ut,
-                luctus quis nisi. Cras et ultrices erat, nec volutpat nulla. Nam
-                orci enim, aliquam id sapien gravida, tristique molestie nulla.
-                In varius, lorem a dictum suscipit, nibh dui fermentum arcu, sit
-                amet aliquet magna tellus at libero. In ipsum orci, mollis a
-                tellus nec, fermentum malesuada erat. Pellentesque eget faucibus
-                magna. Aenean mollis lorem et turpis ultricies ultrices. Sed non
-                semper eros. Pellentesque orci quam, lacinia ut luctus at,
-                suscipit ac magna. Fusce sed lorem risus. Quisque id dictum
-                metus.
+                We track the pages you visit within our application to understand your preferences and improve our content and services accordingly.
               </p>
-              <header className="spacing ">II. Lorem</header>
+              <header className="spacing ">II. Account creation and login details</header>
               <p className="sectionText">
-                Nulla vel ipsum vel velit bibendum rutrum. Nullam ullamcorper
-                lectus et lacus pellentesque accumsan. Phasellus convallis
-                sapien dui, nec tempus ante dapibus vitae. Fusce consequat eu
-                risus finibus malesuada. Phasellus molestie nibh quis cursus
-                consectetur. Morbi congue sodales feugiat. In tempus turpis
-                magna, vitae egestas metus aliquet eu. Ut malesuada rhoncus enim
-                quis euismod. Quisque ipsum libero, gravida sit amet urna quis,
-                rhoncus fringilla leo. Integer posuere justo ac diam iaculis,
-                quis tempus massa scelerisque. In ut vestibulum enim. Integer
-                facilisis erat libero, nec aliquet magna pretium a. Class aptent
-                taciti sociosqu ad litora torquent per conubia nostra, per
-                inceptos himenaeos. Donec molestie lectus commodo, condimentum
-                tellus at, pulvinar massa. Etiam id orci orci.
+                When you create an account or log in, we collect information such as your name, email address, username, password, and any additional details you provide to facilitate account management and personalize your experience.
+              </p>
+              <header className="spacing ">III. Device information</header>
+              <p className="sectionText">
+                We gather data about the device you use to access our application, including device type, operating system, browser type, IP address, and unique device identifiers. This information helps us optimize our application for various devices and provide a seamless user experience.
+              </p>
+              <header className="spacing ">IV. Sessions</header>
+              <p className="sectionText">
+                We monitor the sessions you initiate within our application to analyze user engagement patterns and enhance usability. Session data enables us to identify areas for improvement and implement changes to better serve our users.
               </p>
             </p>
           </div>
           <div>
             <header className="spacing ">2. INFORMATION WE COLLECT</header>
             <p className="sectionText">
-              Nulla a purus ante. Donec finibus vel mi eu vestibulum. Aliquam
-              suscipit venenatis lacus id malesuada. Proin fringilla mattis
-              sapien et suscipit. Phasellus rhoncus risus ac dui tempor tempor.
-              Mauris et cursus lorem, non ultricies sem. Donec interdum nulla
-              aliquam elementum condimentum. Sed accumsan odio a molestie
-              mattis.
-              <header className="spacing">I. Lorem Ipsum</header>
-              <p className="sectionText">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                molestie risus sit amet augue egestas feugiat. Nulla interdum
-                massa in leo rutrum condimentum. Duis quis eleifend urna. Fusce
-                nec sodales est, at feugiat ex. Praesent at dolor non augue
-                rhoncus efficitur. Vestibulum magna nunc, lacinia ut egestas ut,
-                luctus quis nisi. Cras et ultrices erat, nec volutpat nulla. Nam
-                orci enim, aliquam id sapien gravida, tristique molestie nulla.
-                In varius, lorem a dictum suscipit, nibh dui fermentum arcu, sit
-                amet aliquet magna tellus at libero. In ipsum orci, mollis a
-                tellus nec, fermentum malesuada erat. Pellentesque eget faucibus
-                magna. Aenean mollis lorem et turpis ultricies ultrices. Sed non
-                semper eros. Pellentesque orci quam, lacinia ut luctus at,
-                suscipit ac magna. Fusce sed lorem risus. Quisque id dictum
-                metus.
-              </p>
+              We collect the same information detailed in Section 1, which includes the data you actively provide while interacting with our application. This information forms the basis of our analytics and helps us understand user behavior and preferences.
             </p>
           </div>
           <div>
             <header className="spacing ">3. HOW WE USE INFORMATION</header>
             <p className="sectionText">
-              Nulla a purus ante. Donec finibus vel mi eu vestibulum. Aliquam
-              suscipit venenatis lacus id malesuada. Proin fringilla mattis
-              sapien et suscipit. Phasellus rhoncus risus ac dui tempor tempor.
-              Mauris et cursus lorem, non ultricies sem. Donec interdum nulla
-              aliquam elementum condimentum. Sed accumsan odio a molestie
-              mattis.
-              <header className="spacing">I. Lorem Ipsum</header>
+              The information we collect is used solely for analytic purposes and to enhance your experience with our application. This includes:
+              <header className="spacing">I. Improving user experience</header>
               <p className="sectionText">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                molestie risus sit amet augue egestas feugiat. Nulla interdum
-                massa in leo rutrum condimentum. Duis quis eleifend urna. Fusce
-                nec sodales est, at feugiat ex. Praesent at dolor non augue
-                rhoncus efficitur. Vestibulum magna nunc, lacinia ut egestas ut,
-                luctus quis nisi. Cras et ultrices erat, nec volutpat nulla. Nam
-                orci enim, aliquam id sapien gravida, tristique molestie nulla.
-                In varius, lorem a dictum suscipit, nibh dui fermentum arcu, sit
-                amet aliquet magna tellus at libero. In ipsum orci, mollis a
-                tellus nec, fermentum malesuada erat. Pellentesque eget faucibus
-                magna. Aenean mollis lorem et turpis ultricies ultrices. Sed non
-                semper eros. Pellentesque orci quam, lacinia ut luctus at,
-                suscipit ac magna. Fusce sed lorem risus. Quisque id dictum
-                metus.
+                By analyzing the pages you view, account creation and login details, device information, and sessions created, we gain insights into user preferences and behavior. This enables us to optimize our application&apos;s layout, features, and functionality to better meet your needs.
               </p>
-              <header className="spacing">II. Lorem</header>
+              <header className="spacing">II. Optimizing performance</header>
               <p className="sectionText">
-                Nulla vel ipsum vel velit bibendum rutrum. Nullam ullamcorper
-                lectus et lacus pellentesque accumsan. Phasellus convallis
-                sapien dui, nec tempus ante dapibus vitae. Fusce consequat eu
-                risus finibus malesuada. Phasellus molestie nibh quis cursus
-                consectetur. Morbi congue sodales feugiat. In tempus turpis
-                magna, vitae egestas metus aliquet eu. Ut malesuada rhoncus enim
-                quis euismod. Quisque ipsum libero, gravida sit amet urna quis,
-                rhoncus fringilla leo. Integer posuere justo ac diam iaculis,
-                quis tempus massa scelerisque. In ut vestibulum enim. Integer
-                facilisis erat libero, nec aliquet magna pretium a. Class aptent
-                taciti sociosqu ad litora torquent per conubia nostra, per
-                inceptos himenaeos. Donec molestie lectus commodo, condimentum
-                tellus at, pulvinar massa. Etiam id orci orci.
+                Understanding how users interact with our application helps us identify performance bottlenecks and technical issues. By addressing these issues promptly, we ensure a smooth and responsive user experience.
+              </p>
+              <header className="spacing">III. Personalizing content</header>
+              <p className="sectionText">
+                We use the data collected to deliver personalized content, recommendations, and advertisements based on your preferences and interests. This enhances your overall experience with our application and increases the relevance of the content you encounter.
               </p>
             </p>
           </div>
@@ -166,59 +96,19 @@ const PrivacyPage = () => {
               4. HOW WE SHARE YOUR INFORMATION
             </header>
             <p className="sectionText">
-              Nulla a purus ante. Donec finibus vel mi eu vestibulum. Aliquam
-              suscipit venenatis lacus id malesuada. Proin fringilla mattis
-              sapien et suscipit. Phasellus rhoncus risus ac dui tempor tempor.
-              Mauris et cursus lorem, non ultricies sem. Donec interdum nulla
-              aliquam elementum condimentum. Sed accumsan odio a molestie
-              mattis.
-              <header className="spacing">I. Lorem</header>
-              <p className="sectionText">
-                Nulla vel ipsum vel velit bibendum rutrum. Nullam ullamcorper
-                lectus et lacus pellentesque accumsan. Phasellus convallis
-                sapien dui, nec tempus ante dapibus vitae. Fusce consequat eu
-                risus finibus malesuada. Phasellus molestie nibh quis cursus
-                consectetur. Morbi congue sodales feugiat. In tempus turpis
-                magna, vitae egestas metus aliquet eu. Ut malesuada rhoncus enim
-                quis euismod. Quisque ipsum libero, gravida sit amet urna quis,
-                rhoncus fringilla leo. Integer posuere justo ac diam iaculis,
-                quis tempus massa scelerisque. In ut vestibulum enim. Integer
-                facilisis erat libero, nec aliquet magna pretium a. Class aptent
-                taciti sociosqu ad litora torquent per conubia nostra, per
-                inceptos himenaeos. Donec molestie lectus commodo, condimentum
-                tellus at, pulvinar massa. Etiam id orci orci.
-              </p>
+              We prioritize the protection of your privacy and do not share your private information with third parties. However, we may share aggregated and anonymized data, such as total traffic and sessions, for analytical and reporting purposes. This information does not contain any personally identifiable details and is used strictly for statistical analysis and business insights.
             </p>
           </div>
           <div>
             <header className="spacing">5. GOOGLE ANALYTICS</header>
             <p className="sectionText">
-              Nulla a purus ante. Donec finibus vel mi eu vestibulum. Aliquam
-              suscipit venenatis lacus id malesuada. Proin fringilla mattis
-              sapien et suscipit. Phasellus rhoncus risus ac dui tempor tempor.
-              Mauris et cursus lorem, non ultricies sem. Donec interdum nulla
-              aliquam elementum condimentum. Sed accumsan odio a molestie
-              mattis.
+              We utilize Google Analytics (GA) to gather detailed insights into user interactions with our application. GA uses first-party cookies to collect information such as page views, session duration, and traffic sources. Google Analytics helps us analyze user behavior, track performance metrics, and identify areas for improvement. We adhere to Google&apos;s privacy policies and terms of service when using GA, ensuring that user data is handled securely and responsibly.
             </p>
           </div>
           <div>
             <header className="spacing">6. AUTHORIZED DISCLOSURES</header>
             <p className="sectionText">
-              Nulla a purus ante. Donec finibus vel mi eu vestibulum. Aliquam
-              suscipit venenatis lacus id malesuada. Proin fringilla mattis
-              sapien et suscipit. Phasellus rhoncus risus ac dui tempor tempor.
-              Mauris et cursus lorem, non ultricies sem. Donec interdum nulla
-              aliquam elementum condimentum. Sed accumsan odio a molestie
-              mattis. Quisque suscipit facilisis aliquet. Donec fermentum at ex
-              nec imperdiet. Praesent orci lectus, semper eget tempus a, commodo
-              eget urna. Proin ac nulla nulla. Praesent a accumsan justo. Nulla
-              blandit neque libero, quis malesuada odio auctor quis. Phasellus
-              nec pulvinar neque. Pellentesque finibus lorem risus, sed
-              convallis nisl cursus ut. Curabitur interdum sapien urna, non
-              suscipit nulla consequat eget. Curabitur porta felis nec velit
-              vehicula, in dignissim nisi posuere. Phasellus condimentum, dolor
-              nec rutrum consectetur, diam est ultrices arcu, vitae fermentum
-              lorem urna vel sapien. Sed pulvinar pulvinar erat in dignissim.
+              In certain situations, we may be required to disclose your information for legal compliance, protection of rights, or investigation of violations.
             </p>
           </div>
           <div>
@@ -226,36 +116,15 @@ const PrivacyPage = () => {
               7. DATA PROCESSING IN THE UNITED STATES
             </header>
             <p className="sectionText">
-              Quisque suscipit facilisis aliquet. Donec fermentum at ex nec
-              imperdiet. Praesent orci lectus, semper eget tempus a, commodo
-              eget urna. Proin ac nulla nulla. Praesent a accumsan justo. Nulla
-              blandit neque libero, quis malesuada odio auctor quis. Phasellus
-              nec pulvinar neque. Pellentesque finibus lorem risus, sed
-              convallis nisl cursus ut. Curabitur interdum sapien urna, non
-              suscipit nulla consequat eget. Curabitur porta felis nec velit
-              vehicula, in dignissim nisi posuere. Phasellus condimentum, dolor
-              nec rutrum consectetur, diam est ultrices arcu, vitae fermentum
-              lorem urna vel sapien. Sed pulvinar pulvinar erat in dignissim.
+              Your information may be processed and stored in the United States or other countries where our servers or service providers are located. By using our application, you consent to the transfer of your information to these locations.
             </p>
           </div>
           <div>
             <header className="spacing">8. QUESTIONS AND OPT IN/OUT</header>
             <p className="sectionText">
-              Nulla a purus ante. Donec finibus vel mi eu vestibulum. Aliquam
-              suscipit venenatis lacus id malesuada. Proin fringilla mattis
-              sapien et suscipit. Phasellus rhoncus risus ac dui tempor tempor.
-              Mauris et cursus lorem, non ultricies sem. Donec interdum nulla
-              aliquam elementum condimentum. Sed accumsan odio a molestie
-              mattis. Quisque suscipit facilisis aliquet. Donec fermentum at ex
-              nec imperdiet. Praesent orci lectus, semper eget tempus a, commodo
-              eget urna. Proin ac nulla nulla. Praesent a accumsan justo. Nulla
-              blandit neque libero, quis malesuada odio auctor quis. Phasellus
-              nec pulvinar neque. Pellentesque finibus lorem risus, sed
-              convallis nisl cursus ut. Curabitur interdum sapien urna, non
-              suscipit nulla consequat eget. Curabitur porta felis nec velit
-              vehicula, in dignissim nisi posuere. Phasellus condimentum, dolor
-              nec rutrum consectetur, diam est ultrices arcu, vitae fermentum
-              lorem urna vel sapien. Sed pulvinar pulvinar erat in dignissim.
+              If you have any questions, concerns, or wish to opt in/out of certain data collection practices, please contact us at info@parasollabs.org. Additionally, guests and users have the option to manage their cookie preferences by clearing cookies through their browser&apos;s history tab.
+
+              This detailed information aims to provide clarity on how we collect, use, and protect your information while using our application. If you have any further inquiries or require additional assistance, please do not hesitate to contact us.
             </p>
           </div>
         </div>
