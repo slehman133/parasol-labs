@@ -21,9 +21,6 @@ import {
 import SwiperButton from "./components/navigation/swiperbutton/SwiperButton";
 import { useInView } from "react-intersection-observer";
 import ProfilePicture from "./components/profile/circularprofile";
-import PostPreview from '../components/Blog/PostPreview';
-
-import { client } from '@/sanity/lib/client';
 
 //Kaeden
 //TODO: figure out how the hell to hide the header and have it fade in at a certain point
@@ -49,10 +46,6 @@ export default function Home() {
     controls.start("visible");
     setIsStrlVisible(true);
   }
-  const res = await client.fetch(`*[_type == "post"]`, {}, { cache: "no-store" })
-    const postPreviews = res.map((post:any) => (
-        <PostPreview key = {post.slug?.current} {...post} />
-  ));
   return (
     <div>
       <section className="z-10">
