@@ -37,7 +37,6 @@ export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
   const [isStrlVisible, setIsStrlVisible] = useState(false);
 
-
   if (inView && !isVisible) {
     controls.start("visible");
     setIsVisible(true);
@@ -64,18 +63,25 @@ export default function Home() {
                 Inspired by&nbsp;
               </span>
             </h1>
-            <Divider orientation="horizontal" className="mt-10 lg:w-1/2 mx-auto lg:float-right" />
+            <Divider
+              orientation="horizontal"
+              className="mt-10 lg:w-1/2 mx-auto lg:float-right"
+            />
             <p className="text-center lg:text-left text-md lg:text-xl pt-10 font-thin">
               <br />
-              At Parasol Labs, we are fueled by an unwavering commitment to innovate and deliver
-              life-changing biotechnology solutions for marginalized communities and women&apos;s health. Through
-              our relentless pursuit of rigorous research and the deployment of cutting-edge technology, we
-              develop products that are safe, effective, and accessible.
+              At Parasol Labs, we are fueled by an unwavering commitment to
+              innovate and deliver life-changing biotechnology solutions for
+              marginalized communities and women&apos;s health. Through our
+              relentless pursuit of rigorous research and the deployment of
+              cutting-edge technology, we develop products that are safe,
+              effective, and accessible.
             </p>
             <div className="py-10 text-center lg:text-left">
               <Link href="/about" color="foreground">
                 <div className="grid grid-cols-2 gap-4">
-                  <h1 className="font-bold text-lg lg:text-2xl py-5">About us</h1>
+                  <h1 className="font-bold text-lg lg:text-2xl py-5">
+                    About us
+                  </h1>
                   <svg id="right" className="arrow-right my-auto ">
                     <path
                       d="M0.5 9.35772H20.9956L14.2001 2.29941L16.4134 0L27 11L16.4134 22L14.2001 19.7006L20.9956 12.6423H0.5V9.35772Z"
@@ -99,7 +105,7 @@ export default function Home() {
       <div className="py-1">
         {/* TODO: Add sliding animation on entry of section */}
         {/* Potential: create a hook and utilize div refs to keep things */}
-        <section>
+        {/* <section>
           <div className="grid grid-cols-1 md:grid-cols-[50%_50%] px-5 md:px-10 gap-5">
             <div className="text-center md:text-left">
               <motion.h1
@@ -114,10 +120,15 @@ export default function Home() {
                 ref={ref}
               >
                 Our first step in{" "}
-                <span className="text-green-300 font-semibold">Biotechnology.</span>
+                <span className="text-green-300 font-semibold">
+                  Biotechnology.
+                </span>
                 <br />
                 Is with{" "}
-                <span className="text-red-400 font-bold">Women&apos;s Health</span>.
+                <span className="text-red-400 font-bold">
+                  Women&apos;s Health
+                </span>
+                .
               </motion.h1>
               <svg
                 height={200}
@@ -161,12 +172,12 @@ export default function Home() {
               />
             </div>
           </div>
-        </section>
+        </section> */}
         <Divider orientation="horizontal" />
         <section className="content ">
           <div className="grid grid-cols-1 md:grid-cols-2 md:gap-12">
             {/* Image column */}
-            <div className="relative">
+            <div className="relative flex justify-end p-5">
               <Image
                 src="/images/strl.jpg"
                 className="h-auto w-full z-0 opacity-80 rounded-lg strl-shadow"
@@ -186,7 +197,9 @@ export default function Home() {
               transition={{ duration: 1 }}
               ref={strlRef}
             >
-              <h1 className="font-bold text-2xl md:text-4xl py-5">Liquid Sterilization</h1>
+              <h1 className="font-bold text-2xl md:text-4xl py-5">
+                Liquid Sterilization
+              </h1>
               <h1 className="font-bold text-9xl md:text-8xl py-5">STRL</h1>
               <p>
                 Our inaugural project, STRL paves the way for future innovations
@@ -195,7 +208,9 @@ export default function Home() {
               </p>
               <Link href="/projects" color="foreground">
                 <div className="grid grid-cols-2 gap-4 items-center">
-                  <h1 className="font-bold text-2xl md:text-4xl py-5">Find out more</h1>
+                  <h1 className="font-bold text-2xl md:text-4xl py-5">
+                    Find out more
+                  </h1>
                   <svg id="right" className="arrow-right my-auto ">
                     <path
                       d="M0.5 9.35772H20.9956L14.2001 2.29941L16.4134 0L27 11L16.4134 22L14.2001 19.7006L20.9956 12.6423H0.5V9.35772Z"
@@ -218,8 +233,13 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-x-unit-3xl mx-auto">
             <div className="mx-auto">
-              <ProfilePicture imageUrl="/images/ashraf_affan.webp" linkedinUrl="" />
-              <h1 className="font-semibold text-lg md:text-xl lg:text-2xl">Dr. Ashraf Affan</h1>
+              <ProfilePicture
+                imageUrl="/images/ashraf_affan.webp"
+                linkedinUrl="https://www.linkedin.com/in/draffan/"
+              />
+              <h1 className="font-semibold text-lg md:text-xl lg:text-2xl">
+                Dr. Ashraf Affan
+              </h1>
               <p className="font-semibold text-slate-400 text-sm md:text-base">
                 Angel Kids Pediatrics
                 <br />I Nurse My Baby
@@ -228,7 +248,10 @@ export default function Home() {
               </p>
             </div>
             <div className="mx-auto">
-              <ProfilePicture imageUrl="/images/christine_davies.jpg" linkedinUrl="" />
+              <ProfilePicture
+                imageUrl="/images/christine_davies.jpg"
+                linkedinUrl="https://www.linkedin.com/in/christine-davies20n/"
+              />
               <h1 className="font-semibold">Christine Davies</h1>
               <p className="font-semibold text-slate-400">
                 Angel Kids Pediatrics
@@ -237,7 +260,10 @@ export default function Home() {
               </p>
             </div>
             <div className="mx-auto">
-              <ProfilePicture imageUrl="/images/megan_gregg.jpg" linkedinUrl="" />
+              <ProfilePicture
+                imageUrl="/images/megan_gregg.jpg"
+                linkedinUrl="https://www.linkedin.com/in/businesswithmeg/"
+              />
               <h1 className="font-semibold">Megan Gregg</h1>
               <p className="font-semibold text-slate-400">
                 15+ years of experience building startups in SaaS, MarTech, F&B,
@@ -246,7 +272,10 @@ export default function Home() {
               </p>
             </div>
             <div className="mx-auto">
-              <ProfilePicture imageUrl="/images/scott_kelly.jpeg" linkedinUrl="" />
+              <ProfilePicture
+                imageUrl="/images/scott_kelly.jpeg"
+                linkedinUrl="https://www.linkedin.com/in/blackdogceo/"
+              />
               <h1 className="font-semibold">Scott Kelly</h1>
               <p className="font-semibold text-slate-400">
                 Black Dog Venture Partners
@@ -266,7 +295,9 @@ export default function Home() {
                 .
               </h1>
               <p className="py-5 font-thin text-lg">
-                We&apos;re here to help. Whether you have general questions or inquiries - we&apos;re here to provide information and answer questions.
+                We&apos;re here to help. Whether you have general questions or
+                inquiries - we&apos;re here to provide information and answer
+                questions.
               </p>
               <div className="py-5">
                 <div className="contact-box py-2">
@@ -287,11 +318,21 @@ export default function Home() {
                     </g>
                   </svg>
                   <div className="ml-4">
-                    <h2 className="text-xl md:text-4xl font-bold">Partnership Inquiries</h2>
+                    <h2 className="text-xl md:text-4xl font-bold">
+                      Partnership Inquiries
+                    </h2>
                     <p className="py-2 text-sm md:text-base">
-                      Let&apos;s work and grow together. Click the link below to fill out the forms and our partnership manager will reach out to you.
+                      Let&apos;s work and grow together. Click the link below to
+                      fill out the forms and our partnership manager will reach
+                      out to you.
                     </p>
-                    <Button as={Link} href="/webforms/partnershipform" color="success" className="text-white font-semibold" size="lg">
+                    <Button
+                      as={Link}
+                      href="/webforms/partnershipform"
+                      color="success"
+                      className="text-white font-semibold"
+                      size="lg"
+                    >
                       Partnership Form
                     </Button>
                   </div>
@@ -318,11 +359,21 @@ export default function Home() {
                     </g>
                   </svg>
                   <div className="ml-4">
-                    <h2 className="text-xl md:text-4xl font-bold">General Inquiries</h2>
+                    <h2 className="text-xl md:text-4xl font-bold">
+                      General Inquiries
+                    </h2>
                     <p className="py-2 text-sm md:text-base">
-                      Need more information? Have an inquiry for an issue? We&apos;re here to help. Fill out our form and we will get in touch.
+                      Need more information? Have an inquiry for an issue?
+                      We&apos;re here to help. Fill out our form and we will get
+                      in touch.
                     </p>
-                    <Button as={Link} href="/webforms/generalform" color="success" className="text-white font-semibold" size="lg">
+                    <Button
+                      as={Link}
+                      href="/webforms/generalform"
+                      color="success"
+                      className="text-white font-semibold"
+                      size="lg"
+                    >
                       Contact Us
                     </Button>
                   </div>
@@ -335,7 +386,9 @@ export default function Home() {
               </h1>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 py-5">
                 {/* ACTUALLY PULL FROM NEWS PAGE */}
-                <Card className="h-[300px] " isPressable={true}
+                <Card
+                  className="h-[300px] "
+                  isPressable={true}
                   onClick={() => {
                     window.open("news/moms-wanted-be-the-face-of-strl");
                   }}
@@ -371,6 +424,46 @@ export default function Home() {
                     alt="Moms Wanted! Be the face of STRL"
                     className="z-0 w-auto h-full object-cover brightness-50"
                     src="/images/strlnews.webp"
+                  />
+                </Card>
+                <Card
+                  className="h-[300px] "
+                  isPressable={true}
+                  onClick={() => {
+                    window.open("news/moms-wanted-be-the-face-of-strl");
+                  }}
+                >
+                  <CardHeader className="z-10 absolute flex-col !items-start top-1">
+                    <div className="grid grid-cols-2 gap-3">
+                      <p className="text-tiny text-white/60 uppercase font-bold">
+                        Teagan Paddleton
+                      </p>
+                      <svg
+                        width="15px"
+                        height="15px"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="opacity-60"
+                      >
+                        <path
+                          d="M4 19H20M11.2929 5.70711L8.70711 8.2929C8.31658 8.68342 7.68342 8.68342 7.29289 8.2929L5.70711 6.70711C5.07714 6.07714 4 6.52331 4 7.41422V15C4 15.5523 4.44772 16 5 16H19C19.5523 16 20 15.5523 20 15V7.41421C20 6.52331 18.9229 6.07714 18.2929 6.70711L16.7071 8.2929C16.3166 8.68342 15.6834 8.68342 15.2929 8.2929L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711Z"
+                          stroke="#FFFFFF"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </div>
+                    <h4 className="text-white font-medium text-large text-left">
+                      Elevate healthcare with us: Support Parasol labs on Wefundr
+                    </h4>
+                  </CardHeader>
+                  <Image
+                    removeWrapper
+                    alt="Moms Wanted! Be the face of STRL"
+                    className="z-0 w-auto h-full object-cover brightness-50"
+                    src="/images/strl.jpg"
                   />
                 </Card>
               </div>

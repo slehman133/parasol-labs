@@ -20,8 +20,25 @@ export default function GeneralFormTable() {
   const [selectedColor, setSelectedColor] = React.useState("default");
   const [forms, setForms] = React.useState([]);
 
-  const handleViewForm = () => { };
-
+  const handleViewForm = () => {};
+  const classNames = React.useMemo(
+    () => ({
+      wrapper: ["max-h-[382px]", "max-w-3xl"],
+      th: ["bg-transparent", "text-default-500", "border-b", "border-divider"],
+      td: [
+        // changing the rows border radius
+        // first
+        "group-data-[first=true]:first:before:rounded-none",
+        "group-data-[first=true]:last:before:rounded-none",
+        // middle
+        "group-data-[middle=true]:before:rounded-none",
+        // last
+        "group-data-[last=true]:first:before:rounded-none",
+        "group-data-[last=true]:last:before:rounded-none",
+      ],
+    }),
+    []
+  );
   React.useEffect(() => {
     async function fetchForms() {
       const response = await fetch("/api/webforms/generalform");
@@ -31,12 +48,23 @@ export default function GeneralFormTable() {
     }
     fetchForms();
   }, []);
+  //allow the table to have sortable columns based on name
+  //allow the table to have a search bar
+
+  
+
+
   return (
     <div className="flex flex-col gap-3">
+      <h1>General Forms</h1>
       <Table
         color={selectedColor}
         selectionMode="single"
         aria-label="General Form Table"
+        isCompact
+        removeWrapper
+        classNames={classNames}
+        className=""
       >
         <TableHeader>
           <TableColumn>Name</TableColumn>

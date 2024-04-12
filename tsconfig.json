@@ -35,6 +35,6 @@
     "test/hash.test.js",
     "test/homepage.test.jsx",
     "test/gtag.test.js"
-  ],
+, "lib/gtagHelper.js"  ],
   "exclude": ["node_modules"]
 }
