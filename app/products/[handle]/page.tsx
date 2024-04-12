@@ -25,22 +25,20 @@ const ProductPage = async (props: ProductPageProps) => {
   const image = product.images.edges[0]?.node
   const variantId = product.variants.edges[0].node
 
+  // console.log(image?.transformedSrc)
+
+  const imageSrc = image?.transformedSrc || `/images/${props.params.handle}.jpg`
+
 
   return (
     <>
       <div className='flex flex-row text-white m-12 mb-auto mt-26 mx-24'>
         <div className='m-5 mb-auto mt-16'>
-          {image ?
-            <Image
-              src={image.transformedSrc}
-              alt={image.altText}
-              width={7000}
-              height={7000} />
-            :
-            <div className='bg-white w-[500px] h-[500px]'>
-
-            </div>
-          }
+          <Image
+            src={imageSrc}
+            alt={image?.altText || 'Product image'}
+            width={7000}
+            height={7000} />
         </div>
         <div className='m-12 max-w-3xl'>
           <h1 className='font-bold text-5xl'>{product.title}</h1>
@@ -51,7 +49,7 @@ const ProductPage = async (props: ProductPageProps) => {
               name={product.title}
               handle={product.handle}
               price={product.priceRange.minVariantPrice.amount}
-              image={image.transformedSrc}
+              image={image?.transformedSrc}
               variantId={variantId} />
             :
             <div className='flex flex-col items-center border-2 border-white 
@@ -61,7 +59,7 @@ const ProductPage = async (props: ProductPageProps) => {
             </div>
           }
         </div>
-      </div >
+      </div>
     </>
   )
 }

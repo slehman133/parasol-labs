@@ -63,7 +63,11 @@ const ProductSection = ({ products }: { products: any }) => {
                                             name="image"
                                             id="image"
                                             className="file-input file-input-bordered w-full max-w-xs"
-                                            onChange={(e) => setProduct({ ...product, imageUrl: e.target.value })}
+                                            onChange={(e) => {
+                                                console.log(e.target)
+
+                                                // setProduct({ ...product, imageUrl: e.target.value })
+                                            }}
                                         />
                                         {/* <input
                                             type="text"
