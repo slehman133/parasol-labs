@@ -12,9 +12,13 @@ interface ProductPageProps {
   };
 }
 
+const unSlug = (str: string) => {
+  return str.replace(/-/g, ' ').replace(/^\w|\s\w/g, c => c.toUpperCase())
+}
+
 export async function generateMetadata({ params }: { params: { handle: string } }) {
   return {
-    title: `${params.handle} at Parasol Labs`,
+    title: `${unSlug(params.handle)} at Parasol Labs`,
   }
 }
 

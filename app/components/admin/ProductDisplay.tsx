@@ -80,7 +80,7 @@ const ProductDisplay = ({ products }: { products: any }) => {
                                             <label>Enter Price:</label>
                                             <input
                                                 className='ml-2'
-                                                type="number"
+                                                type="float"
                                                 // placeholder={inventoryToChange.totalInventory.toString()}
                                                 onChange={(e) =>
                                                     setPriceToChange({
@@ -159,7 +159,7 @@ const ProductDisplay = ({ products }: { products: any }) => {
                                             setChanging("price")
                                             onOpen()
                                         }}>
-                                        ${amount}
+                                        ${Number(amount).toFixed(2)}
                                     </div>
                                 </TableCell>
                                 <TableCell>{description}</TableCell>

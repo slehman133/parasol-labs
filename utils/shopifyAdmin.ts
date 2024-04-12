@@ -1,6 +1,4 @@
 import { createAdminApiClient, createAdminRestApiClient } from '@shopify/admin-api-client'
-const fs = require('fs')
-
 
 
 const restAdminClient = createAdminRestApiClient({
@@ -264,11 +262,7 @@ const publishProductQuery = async (id: string) => {
 }
 
 const uploadImage = async (product: any) => {
-  console.log(product)
-  const newFile = await fs.copyFile(product.imageUrl, `/images/${product.handle}.jpg`, (err: ErrorCallback) => {
-    if (err) console.log(err)
-  })
-  console.log(newFile)
+  return
 
 }
 export const createProduct = async (product:
