@@ -1,4 +1,4 @@
-import PartnershipFormTable from "../components/webforms/tables/partnershipformtable";
+import PartnershipFormTable  from "../components/webforms/tables/partnershipformtable";
 import GeneralFormTable from "../components/webforms/tables/generalformtable";
 import React from 'react'
 import ProductDisplay from '../components/admin/ProductDisplay';
@@ -27,7 +27,7 @@ const AdminPage = async () => {
             <div className='m-24'>
                 <h1 className='text-4xl font-bold'>Messages</h1>
                 <div className='my-5'>
-                    {/* <PartnershipFormTable /> */}
+                    <PartnershipFormTable />
                     <GeneralFormTable />
                 </div>
                 <h1 className='text-4xl font-bold'>Orders</h1>

@@ -1,6 +1,8 @@
+"use server";
+
 import { Resend } from "resend";
 
-const resend = new Resend("re_9HFzCxfW_93jYyAGW5tseFVxfr3AEVq7V");
+const resend = new Resend("re_J41TAqXJ_UhGEifEb5SW4XyvhZ446UDau");
 
 interface EmailOptions {
   from: string;
@@ -10,8 +12,8 @@ interface EmailOptions {
 export async function SendEmail(options: EmailOptions) {
   try {
     const { data, error } = await resend.emails.send({
-      from: options.from,
-      to: "carver.kaeden@gmail.com",
+      from: "info@parasollaboratories.org",
+      to: options.from,
       subject: options.subject,
       html: options.html,
     });
