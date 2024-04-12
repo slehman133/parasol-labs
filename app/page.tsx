@@ -68,7 +68,7 @@ export default function Home() {
             <p className="text-center lg:text-left text-md lg:text-xl pt-10 font-thin">
               <br />
               At Parasol Labs, we are fueled by an unwavering commitment to innovate and deliver
-              life-changing biotechnology solutions for marginalized communities and women's health. Through
+              life-changing biotechnology solutions for marginalized communities and women&apos;s health. Through
               our relentless pursuit of rigorous research and the deployment of cutting-edge technology, we
               develop products that are safe, effective, and accessible.
             </p>
@@ -117,7 +117,7 @@ export default function Home() {
                 <span className="text-green-300 font-semibold">Biotechnology.</span>
                 <br />
                 Is with{" "}
-                <span className="text-red-400 font-bold">Women's Health</span>.
+                <span className="text-red-400 font-bold">Women&apos;s Health</span>.
               </motion.h1>
               <svg
                 height={200}
@@ -335,7 +335,7 @@ export default function Home() {
               </h1>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 py-5">
                 {/* ACTUALLY PULL FROM NEWS PAGE */}
-              <Card className="h-[300px] " isPressable={true}
+                <Card className="h-[300px] " isPressable={true}
                   onClick={() => {
                     window.open("news/moms-wanted-be-the-face-of-strl");
                   }}
@@ -376,7 +376,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section> 
+        </section>
       </div>
     </div>
   );

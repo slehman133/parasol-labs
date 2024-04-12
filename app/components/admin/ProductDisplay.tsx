@@ -79,12 +79,12 @@ const ProductDisplay = ({ products }: { products: any }) => {
                 </TableHeader>
                 <TableBody>
                     {products.map((e: any) => {
-                        const { id, title, description, totalInventory,
+                        const { id, title, description, totalInventory, handle,
                             priceRange: { minVariantPrice: { amount } }, variants: { edges } } = e.node
                         const variantId = edges[0].node.id
                         return (
                             <TableRow key={id}>
-                                <TableCell>{title}</TableCell>
+                                <TableCell>{<a href={`/products/${handle}`}>{title}</a>}</TableCell>
                                 <TableCell>
                                     <div
                                         className='cursor-pointer'

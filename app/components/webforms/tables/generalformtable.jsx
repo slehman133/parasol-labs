@@ -20,7 +20,7 @@ export default function GeneralFormTable() {
   const [selectedColor, setSelectedColor] = React.useState("default");
   const [forms, setForms] = React.useState([]);
 
-  const handleViewForm = () => {};
+  const handleViewForm = () => { };
 
   React.useEffect(() => {
     async function fetchForms() {
@@ -44,7 +44,7 @@ export default function GeneralFormTable() {
           <TableColumn>Message</TableColumn>
           <TableColumn>Actions</TableColumn>
         </TableHeader>
-        <TableBody>
+        <TableBody emptyContent="No messages found">
           {forms.map((form) => (
             <TableRow key={form.id}>
               <TableCell>{form.name}</TableCell>

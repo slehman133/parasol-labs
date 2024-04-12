@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export async function generateMetadata() {
     return {
-        title: 'Ahmed Munoz at Parasol Labs',
+        title: 'Cass Kirby at Parasol Labs',
     }
 }
 
@@ -16,21 +16,21 @@ const MemberPage = () => {
                 <div className="flex flex-row gap-8">
                     <div className="flex basis-1/3">
                         <Image
-                        src="/images/AhmedPic.jpeg"
-                        alt='Picture of Ahmed Munoz, founder of Parasol Labs'
-                        width = "600"
-                        height = "600"
+                            alt = 'Picture of Cass Kirby, CEO of Parasol Labs'
+                            src="/images/CassKirby.jpeg"
+                            width = "600"
+                            height = "600"
                         />
                     </div>
                     <div className="flex flex-col basis-2/3 text-xl gap-4">
-                        <h1 className="text-3xl">Ahmed Munoz</h1>
-                        <h2 className="">Founder and CEO</h2>
-                        <p> Innovative and driven IT consultant with proven leadership experience in architecture, infrastructure, solutions delivery, IT Operations, enterprise security, project management, hyper-converged systems, vendor relations, and agile/waterfall development workflows. Recognized for working on the bleeding edge of technology to promote individual development, optimize business processes, increase profitability, boost productivity, and enhancing team cohesion while reducing overhead.Innovative and driven IT consultant with proven leadership experience in architecture, infrastructure, solutions delivery, IT Operations, enterprise security, project management, hyper-converged systems, vendor relations, and agile/waterfall development workflows. Recognized for working on the bleeding edge of technology to promote individual development, optimize business processes, increase profitability, boost productivity, and enhancing team cohesion while reducing overhead.</p>
+                        <h1 className="text-3xl">Cass Kirby</h1>
+                        <h2 className="">CEO</h2>
+                        <p></p>
                         <div className="flex flex-column py-4 gap-4">
                             <a
                                 className=''
                                 target="_blank"
-                                href="https://www.linkedin.com/in/ahmed-munoz-/"
+                                href="https://www.linkedin.com/in/cass-kirby/"
                             >
                                 <svg
                                 xmlns="http://www.w3.org/2000/svg"

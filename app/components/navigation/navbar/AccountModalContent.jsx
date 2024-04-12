@@ -63,6 +63,18 @@ const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
                                                         setIsLoading(true)
                                                         const res = await signIn('credentials', { ...formData, redirect: false })
                                                         // console.log(res)
+                                                        // Update Analytics on successful login
+
+                                                        if(res?.ok) {
+                                                            const userName = formData.email
+                                                            console.log(userName)
+                                                            TagManager.dataLayer({
+                                                                dataLayer:{
+                                                                    event: 'login',
+                                                                    userName: userName
+                                                                }
+                                                            })
+                                                        }
                                                         setIsLoading(false)
                                                     }}>
                                                     <Input type='email' placeholder='Email' value={formData.email}
