@@ -5,8 +5,8 @@ import ProductDisplay from '../components/admin/ProductDisplay';
 import OrderDisplay from '../components/admin/OrderDisplay';
 import { getProducts } from '@/utils/storefront';
 import { getOrders } from '@/utils/shopifyAdmin';
-// import { adminGetProducts, getOrders } from '@/utils/shopifyAdmin';
 import ProductSection from "../components/admin/ProductSection";
+import DisplayPannel from "../components/admin/DisplayPannel";
 
 export async function generateMetadata() {
     return {
@@ -24,32 +24,7 @@ const AdminPage = async () => {
     return (
         <>
             <div className='m-24'>
-                <h1 className='text-4xl font-bold'>Web Forms</h1>
-                <div className='my-5 '>
-                    <div className="my-5">
-                        <h1>Partnership Form</h1>
-                        <PartnershipFormTable />
-                    </div>
-                    <div className="my-5">
-                        <h1>General Form</h1>
-                        <GeneralFormTable />
-                    </div>
-                </div>
-                <h1 className='text-4xl font-bold'>Orders</h1>
-                <div className='my-5'>
-                    <OrderDisplay orders={orders} />
-                </div>
-                <h1 className='text-4xl font-bold'>Analytics</h1>
-                <div className='my-5'>
-                    <iframe
-                        width="1200"
-                        height="900"
-                        src="https://lookerstudio.google.com/embed/reporting/985175c2-a8e5-44a1-97df-dcbec3c2e0d8/page/9HNjD"
-                        sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" />
-                </div>
-                <div>
-                    <ProductSection products={products} />
-                </div>
+                <DisplayPannel orders={orders} products={products} />
             </div>
         </>
 
