@@ -37,7 +37,7 @@ const ProductPage = async (props: ProductPageProps) => {
   return (
     <>
       <div className='flex flex-row text-white m-12 mb-auto mt-26 mx-24'>
-        <div className='m-5 mb-auto mt-16'>
+        <div className='m-5 mb-auto mt-16 max-w-[50%]'>
           <Image
             src={imageSrc}
             alt={image?.altText || 'Product image'}
@@ -46,7 +46,7 @@ const ProductPage = async (props: ProductPageProps) => {
         </div>
         <div className='m-12 max-w-3xl'>
           <h1 className='font-bold text-5xl'>{product.title}</h1>
-          <h3 className='font-semibold text-xl'>${product.priceRange.minVariantPrice.amount}</h3>
+          <h3 className='font-semibold text-xl'>${Number(product.priceRange.minVariantPrice.amount).toFixed(2)}</h3>
           <p>{product.description}</p>
           {quantityAvailable > 0 ?
             <AddToCart
