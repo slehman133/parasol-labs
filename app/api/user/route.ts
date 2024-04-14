@@ -10,6 +10,10 @@ export async function POST(request: Request) {
         const formData = await request.json()
         const hashedPassword = await saltAndHash(formData.password)
 
+        if (!formData.email || !formData.password) {
+            return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+        }
+
         await prisma.user.create({
             data: {
                 email: formData.email,
