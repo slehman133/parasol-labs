@@ -7,6 +7,7 @@ import { getProducts } from '@/utils/storefront';
 import { getOrders } from '@/utils/shopifyAdmin';
 // import { adminGetProducts, getOrders } from '@/utils/shopifyAdmin';
 import ProductSection from "../components/admin/ProductSection";
+import DisplayPannel from "../components/admin/DisplayPannel";
 
 export async function generateMetadata() {
     return {
@@ -25,9 +26,8 @@ const AdminPage = async () => {
     return (
         <>
             <div className='m-24'>
-                <h1 className='text-4xl font-bold'>Messages</h1>
+                {/* <h1 className='text-4xl font-bold'>Messages</h1>
                 <div className='my-5'>
-                    {/* <PartnershipFormTable /> */}
                     <GeneralFormTable />
                 </div>
                 <h1 className='text-4xl font-bold'>Orders</h1>
@@ -44,7 +44,8 @@ const AdminPage = async () => {
                 </div>
                 <div>
                     <ProductSection products={products} />
-                </div>
+                </div> */}
+                <DisplayPannel orders={orders} products={products} />
             </div>
         </>
 
