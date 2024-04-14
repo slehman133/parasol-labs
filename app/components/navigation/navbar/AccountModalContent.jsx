@@ -221,7 +221,7 @@ const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
                                                     {errors.confirmPassword && <p className='text-red-500 text-center'>Passwords do not match.</p>}
                                                     {errors.signUpFailed && <p className='text-red-500 text-center'>Sign up failed. Please try again or use different credentials.</p>}
                                                     <p onClick={() => setActiveTab("signin")} className='text-center hover:cursor-pointer'>Have an account? <span className='underline'> Sign In</span></p>
-                                                    <Input type='submit' value='Sign Up' disabled={errors.email || errors.password || errors.confirmPassword} />
+                                                    <Input type='submit' value='Sign Up' disabled={(errors.email || errors.password || errors.confirmPassword)} />
                                                 </form>
                                             </div>
                                         </div>
