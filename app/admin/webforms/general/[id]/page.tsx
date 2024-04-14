@@ -10,14 +10,14 @@ const statuses = [
     { name: 'Completed', value: 'Completed' },
 ]
 
-// const GeneralWebformsPage = (props: { params: { id: string } }) => {
-const GeneralWebformsPage = (props) => {
+const GeneralWebformsPage = (props: { params: { id: string } }) => {
     const variables = { formId: props.params.id }
-    const [form, setForm] = useState([])
+    const [form, setForm] = useState<any>([])
     //obtain the generalwebform that has the formId
-    const [htmlMessage, setHtmlMessage] = useState < string > ('');
-    const [successMessage, setMessage] = useState < string > ('');
-    const [status, setStatus] = useState < Selection > (new Set([]));
+    const [htmlMessage, setHtmlMessage] = useState<string>('');
+    const [successMessage, setMessage] = useState<string>('');
+    // const [status, setStatus] = useState<Selection>(new Set([]));
+    const [status, setStatus] = useState<any>(new Set([]));
 
     const handleSendEmail = async () => {
         if (htmlMessage === '' || form.status === 'Delivered') {
