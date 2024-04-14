@@ -1,7 +1,6 @@
 import { createAdminApiClient, createAdminRestApiClient } from '@shopify/admin-api-client'
 
 
-
 const restAdminClient = createAdminRestApiClient({
   storeDomain: process.env.NEXT_PUBLIC_STORE_URL as string,
   apiVersion: '2023-04',
@@ -182,4 +181,109 @@ export const getOrdersByEmail = async (email: string) => {
 
 
   return orders
+}
+
+export const editPrice = async (id: string, variantId: string, price: number) => {
+  const editPriceQuery =
+    `mutation  {
+  productVariantUpdate(input: {
+    id: "${variantId}",
+    price: ${price}
+  }) {
+    productVariant {
+      id
+      title
+      inventoryPolicy
+      inventoryQuantity
+      price
+      compareAtPrice
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}`
+  const newPrice = await admin(editPriceQuery)
+  // console.log(newPrice)
+  return newPrice
+}
+
+// Product creation functions
+
+const createProductQuery = async (product:
+  {
+    title: string,
+    descriptionHtml: string,
+    handle: string,
+    imageUrl: string,
+    altText: string
+  }) => {
+  const createProdQuery =
+    `
+    mutation{
+      productCreate(input: {
+        title: "${product.title}",
+        descriptionHtml: "${product.descriptionHtml}",
+        handle: "${product.handle}"
+      }) 
+      {
+        product {
+          id
+          title
+          handle
+          descriptionHtml
+        }
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+  `
+  const newProduct = await admin(createProdQuery)
+  return newProduct
+}
+
+const publishProductQuery = async (id: string) => {
+  const pubQuery =
+    `mutation {
+      publishablePublish(id: "${id}", 
+      input: {publicationId: "gid://shopify/Publication/207711338785"}){
+      userErrors {
+        field
+        message
+      }
+    }
+  }`
+  const pubRes = await admin(pubQuery)
+  return pubRes
+
+}
+
+const uploadImage = async (product: any) => {
+  return
+
+}
+export const createProduct = async (product:
+  {
+    title: string,
+    descriptionHtml: string,
+    handle: string,
+    imageUrl: string,
+    altText: string
+  }) => {
+
+
+
+  const newProduct = await createProductQuery(product)
+  console.log(newProduct)
+
+  const pubQuery = await publishProductQuery(newProduct.data.productCreate.product.id)
+  console.log(pubQuery)
+
+  const imageRes = await uploadImage(product)
+
+  return newProduct
+
 }

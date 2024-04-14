@@ -31,7 +31,7 @@ const ProductCard = (props: ProductCardProps) => {
                 transition={{ duration: 0.75 }}>
                 <div className='flex flex-col justify-evenly m-5 p-5 gap-3'>
                     <h2 className="text-5xl font-bold">{props.title}</h2>
-                    <p className='font-semibold'>${props.price}</p>
+                    <p className='font-semibold'>${Number(props.price).toFixed(2)}</p>
                     <div className='h-60 overflow-hidden max-w-5xl'>
                         <p className='text-clip'>{props.description}</p>
                     </div>
