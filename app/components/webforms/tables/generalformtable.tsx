@@ -34,18 +34,18 @@ const statusColorMap: Record<string, ChipProps["color"]> = {
 const statusOptions = ["Delivered", "Active", "Completed"];
 
 const columns = [
-  {name: "Name", uid: "name", sortable: true},
-  {name: "Message", uid: "message"},
-  {name: "Status", uid: "status", sortable: true},
-  {name: "Actions", uid: "actions"},
+  { name: "Name", uid: "name", sortable: true },
+  { name: "Message", uid: "message" },
+  { name: "Status", uid: "status", sortable: true },
+  { name: "Actions", uid: "actions" },
 ];
 const init_columns = [
-  "name", "role", "status", "actions" 
+  "name", "role", "status", "actions"
 ]
 
 export default function GeneralFormTable() {
   const [selectedColor, setSelectedColor] = React.useState("default");
-  const [forms, setForms] = React.useState([]);
+  const [forms, setForms] = React.useState<any>([]);
   const [filterValue, setFilterValue] = React.useState("");
   const [selectedKeys, setSelectedKeys] = React.useState<Selection>(new Set([]));
   const [visibleColumns, setVisibleColumns] = React.useState<Selection>(new Set(init_columns));
@@ -66,7 +66,7 @@ export default function GeneralFormTable() {
     const start = (page - 1) * rowsPerPage;
     const end = start + rowsPerPage;
 
-    return forms.slice(start,end);
+    return forms.slice(start, end);
   }, [page, forms]);
 
   const sortedItems = React.useMemo(() => {
@@ -83,72 +83,72 @@ export default function GeneralFormTable() {
 
   const filteredItems = React.useMemo(() => {
     let filteredForms = [...forms];
-    if(hasSearchFilter){
-      filteredForms = filteredForms.filter((form) => 
+    if (hasSearchFilter) {
+      filteredForms = filteredForms.filter((form) =>
         form.name.toLowerCase().includes(filterValue.toLowerCase())
       );
     }
-    if(statusFilter !== "all" && Array.from(statusFilter).length !== statusOptions.length){
+    if (statusFilter !== "all" && Array.from(statusFilter).length !== statusOptions.length) {
       filteredForms = filteredForms.filter((form) => form.status === statusFilter);
     }
 
     return filteredForms;
   }, [forms, filterValue, statusFilter]);
   const onNextPage = React.useCallback(() => {
-      if (page < pages) {
-        setPage(page + 1);
-      }
-    }, [page, pages]);
+    if (page < pages) {
+      setPage(page + 1);
+    }
+  }, [page, pages]);
 
-    const onPreviousPage = React.useCallback(() => {
-      if (page > 1) {
-        setPage(page - 1);
-      }
-    }, [page]);
+  const onPreviousPage = React.useCallback(() => {
+    if (page > 1) {
+      setPage(page - 1);
+    }
+  }, [page]);
 
-    const onRowsPerPageChange = React.useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
-      setRowsPerPage(Number(e.target.value));
+  const onRowsPerPageChange = React.useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+    setRowsPerPage(Number(e.target.value));
+    setPage(1);
+  }, []);
+
+  const onSearchChange = React.useCallback((value?: string) => {
+    if (value) {
+      setFilterValue(value);
       setPage(1);
-    }, []);
+    } else {
+      setFilterValue("");
+    }
+  }, []);
 
-    const onSearchChange = React.useCallback((value?: string) => {
-      if (value) {
-        setFilterValue(value);
-        setPage(1);
-      } else {
-        setFilterValue("");
-      }
-    }, []);
+  const onClear = React.useCallback(() => {
+    setFilterValue("")
+    setPage(1)
+  }, [])
 
-    const onClear = React.useCallback(()=>{
-      setFilterValue("")
-      setPage(1)
-    },[])
+  const bottomContent = React.useMemo(() => {
+    return (
+      <div className="py-2 px-2 flex justify-between items-center">
+        <Pagination
+          showControls
+          variant="bordered"
 
-    const bottomContent = React.useMemo(() => {
-      return (
-        <div className="py-2 px-2 flex justify-between items-center">
-          <Pagination
-            showControls
-            variant="bordered"
-
-            page={page}
-            total={pages}
-            onChange={setPage}
-            color="warning"
-          />
-          <div className="hidden sm:flex w-[30%] justify-end gap-2">
-            <Button isDisabled={pages === 1} size="sm" variant="flat" onPress={onPreviousPage}>
-              Previous
-            </Button>
-            <Button isDisabled={pages === 1} size="sm" variant="flat" onPress={onNextPage}>
-              Next
-            </Button>
-          </div>
-
+          page={page}
+          total={pages}
+          onChange={setPage}
+          color="warning"
+        />
+        <div className="hidden sm:flex w-[30%] justify-end gap-2">
+          <Button isDisabled={pages === 1} size="sm" variant="flat" onPress={onPreviousPage}>
+            Previous
+          </Button>
+          <Button isDisabled={pages === 1} size="sm" variant="flat" onPress={onNextPage}>
+            Next
+          </Button>
         </div>
-      )
-    }, [items.length, page, pages]);
+
+      </div>
+    )
+  }, [items.length, page, pages]);
 
   const renderCell = React.useCallback((form: Form, columnKey: React.Key) => {
     const cellValue = form[columnKey as keyof Form];
@@ -165,19 +165,19 @@ export default function GeneralFormTable() {
       case "actions":
         return (
           <>
-          <div className="relative flex justify-end items-center gap-2">
-            <Dropdown>
-              <DropdownTrigger>
-                <Button isIconOnly size="sm" variant="light">
-                  <VerticalDotsIcon />
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu >
-                <DropdownItem key='view' href={`/admin/webforms/general/${form.id}`}>View</DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
+            <div className="relative flex justify-end items-center gap-2">
+              <Dropdown>
+                <DropdownTrigger>
+                  <Button isIconOnly size="sm" variant="light">
+                    <VerticalDotsIcon width={24} height={24} />
+                  </Button>
+                </DropdownTrigger>
+                <DropdownMenu >
+                  <DropdownItem key='view' href={`/admin/webforms/general/${form.id}`}>View</DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
 
-          </div>
+            </div>
           </>
         );
       default:
