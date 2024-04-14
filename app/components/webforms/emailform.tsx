@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Button, Input, Textarea } from "@nextui-org/react";
 import { SendEmail } from "../../api/email/contact"; // Adjust the path as necessary
+import * as ga from "@/lib/gtagHelper";
 
 //Create a db record as well as send an email to keep traces of the email sent
 const SendEmailForm: React.FC = () => {
@@ -39,7 +40,8 @@ const SendEmailForm: React.FC = () => {
     setSending(true);
     try {
       setSubject("test");
-      const error = await SendEmail({ from: email, subject, html });
+      createGAEvent();
+      const error = await SendEmail({ to: email, subject, html });
       createDBRecord(name);
       // console.log(error);
       setMessage("Email sent successfully!");
@@ -53,12 +55,20 @@ const SendEmailForm: React.FC = () => {
     }
   };
 
+  const createGAEvent = async () => {
+    ga.event({
+      action: "general_form_submission",
+      category: "general_form",
+      label: "general_form",
+      value: `${email} - sent email successfully`,
+    })
+  };
   const createDBRecord = async (name: string) => {
     try {
       await fetch("/api/webforms/generalform", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, html }),
+        body: JSON.stringify({ name, email, html}),
       });
     } catch (error) {
       console.error(error);

@@ -1,0 +1,10 @@
+.email-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+.colorized-name{
+    color: #680763;
+}
