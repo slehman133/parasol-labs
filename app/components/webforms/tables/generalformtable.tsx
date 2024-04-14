@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useRouter } from "next/router";
 import {
   Button,
   Table,
@@ -14,30 +15,77 @@ import {
   DropdownMenu,
   DropdownItem,
   ChipProps,
+  useDisclosure,
+  Chip
 } from "@nextui-org/react";
 import { VerticalDotsIcon } from "@/public/VerticalDotsIcon.jsx";
+import { SendEmail } from "@/app/api/email/contact";
+import GeneralFormModal from "../modals/generalformmodal";
 
 const statusColorMap: Record<string, ChipProps["color"]> = {
   Delivered: "warning",
   Active: "success",
   Completed: "default",
 };
+
+const columns = [
+  {name: "Name", uid: "name"},
+  {name: "Message", uid: "message"},
+  {name: "Status", uid: "status"},
+  {name: "Actions", uid: "actions"},
+];
+
 export default function GeneralFormTable() {
   const [selectedColor, setSelectedColor] = React.useState("default");
   const [forms, setForms] = React.useState([]);
 
-  const handleViewForm = () => {};
+  type Form = typeof forms[0];
 
-  const handleDeleteForm = (form: any) => {
-    fetch(`/api/webforms/generalform`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id: form.id }),
-    });
-  };
+  const generalformModal = useDisclosure();
 
+  const renderCell = React.useCallback((form: Form, columnKey: React.Key) => {
+    const cellValue = form[columnKey as keyof Form];
+    switch (columnKey) {
+      case "name":
+        return (
+          <>
+            <p>{form.name}</p>
+            <p className="text-gray-400">{form.email}</p>
+          </>
+        )
+      case "status":
+        return <Chip color={statusColorMap[form.status]}>{form.status}</Chip>;
+      case "actions":
+        return (
+          <>
+          <div className="relative flex justify-end items-center gap-2">
+            <Dropdown>
+              <DropdownTrigger>
+                <Button isIconOnly size="sm" variant="light">
+                  <VerticalDotsIcon />
+                </Button>
+              </DropdownTrigger>
+              <DropdownMenu 
+                onAction={(key) => {
+                  if (key === 'view'){
+                    generalformModal.onOpen();
+                  }
+                }}
+              >
+                <DropdownItem key='view'>View</DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+
+          </div>
+          <GeneralFormModal disclosure={generalformModal} form={form} />
+          </>
+        );
+      default:
+        return cellValue;
+    }
+  }, [])
+
+  //allows the admin to view the form's contents, and provide an email.
   React.useEffect(() => {
     async function fetchForms() {
       const response = await fetch("/api/webforms/generalform");
@@ -46,7 +94,7 @@ export default function GeneralFormTable() {
       setForms(data);
     }
     fetchForms();
-  }, []);
+  }, [generalformModal.onClose]);
   const classNames = React.useMemo(
     () => ({
       wrapper: ["max-h-[382px]"],
@@ -73,35 +121,51 @@ export default function GeneralFormTable() {
         isCompact
         removeWrapper
       >
-        <TableHeader>
-          <TableColumn>Name</TableColumn>
-          <TableColumn>Email</TableColumn>
-          <TableColumn>Message</TableColumn>
-          <TableColumn>Status</TableColumn>
-          <TableColumn>Actions</TableColumn>
+        <TableHeader columns={columns}>
+          {(column) => (
+            <TableColumn key={column.uid}>{column.name}</TableColumn>
+          )}
         </TableHeader>
-        <TableBody emptyContent="No general inquiries found">
+        <TableBody emptyContent="No general inquiries found" items={forms}>
+          {/* {(item) => (
+            <TableRow key={item.id}>
+              {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
+            </TableRow>
+          )} */}
           {forms.map((form: any) => (
             <TableRow key={form.id}>
-              <TableCell>{form.name}</TableCell>
-              <TableCell>{form.email}</TableCell>
-              <TableCell>{form.message}</TableCell>
-              <TableCell>{form.status}</TableCell>
               <TableCell>
-                <div className="relative flex justify-center items-center gap-2">
+                <>
+                  <p>{form.name}</p>
+                  <p className="text-gray-400">{form.email}</p>
+                </>
+              </TableCell>
+              <TableCell>
+                <p className="text-ellipsis overflow-hidden">
+                  {form.message}
+                </p>
+                </TableCell>
+              <TableCell >{form.status}</TableCell>
+              <TableCell>
+                <div className="relative flex justify-end items-center gap-2">
                   <Dropdown>
                     <DropdownTrigger>
                       <Button isIconOnly size="sm" variant="light">
-                        <VerticalDotsIcon className="text-default-300" />
+                        <VerticalDotsIcon />
                       </Button>
                     </DropdownTrigger>
-                    <DropdownMenu>
-                      <DropdownItem onClick={handleViewForm}>View</DropdownItem>
-                      {/* <DropdownItem onClick={}>
-                        Delete
-                      </DropdownItem> */}
+                    <DropdownMenu 
+                      onAction={(key) => {
+                        // if (key === 'view'){
+                        //   generalformModal.onOpen();
+                        //   console.log(form.id);
+                        // }
+                      }}
+                    >
+                      <DropdownItem key='view' href={`/admin/webforms/general/${form.id}`}>View</DropdownItem>
                     </DropdownMenu>
                   </Dropdown>
+                  <GeneralFormModal disclosure={generalformModal} form={form} />
                 </div>
               </TableCell>
             </TableRow>

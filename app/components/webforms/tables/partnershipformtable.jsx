@@ -17,7 +17,10 @@ import {
   Chip,
   User,
   Pagination,
+  useDisclosure,
 } from "@nextui-org/react";
+import { VerticalDotsIcon } from "@/public/VerticalDotsIcon";
+import PartnershipFormModal from "../modals/partnershipformmodal";
 //TODO: add pub/sub functionality to update the table when new forms are submitted with ABLY
 
 const INITIAL_VISIBLE_COLUMNS = [
@@ -40,6 +43,8 @@ export default function PartnershipFormTable() {
   //get all the partnership forms from the database table
   //We also need to recurringly update the table when new forms are submitted
   //have the partnership forms stored in a react usestate
+  const generalformModal = useDisclosure();
+
   const [forms, setForms] = React.useState([
     {
       id: "",
@@ -55,17 +60,17 @@ export default function PartnershipFormTable() {
       contactName: "",
       phoneNumber: "",
       emailAddress: "",
+      status: "",
     },
   ]);
 
   const columns = [
-    { name: "ID", uid: "id", sortable: true },
-    { name: "COMPANY", uid: "company", sortable: true },
-    { name: "SERVICES", uid: "services"},
-    { name: "Contact Name", uid: "contactName"},
-    { name: "PHONE", uid: "phoneNumber" },
-    { name: "EMAIL", uid: "emailAddress" },
-    { name: "ACTIONS", uid: "actions" },
+    { name: "Company", uid: "company", sortable: true },
+    { name: "Services", uid: "services"},
+    { name: "Person of Contact", uid: "personOfContact"},
+    { name: "Additonal Information", uid: "additionalInfo"},
+    { name: "Status", uid: "status"},
+    { name: "Actions", uid: "actions" },
   ]
 
   React.useEffect(() => {
@@ -79,13 +84,31 @@ export default function PartnershipFormTable() {
     fetchForms();
   }, []);
   //return the table of partnership forms
-
+  const classNames = React.useMemo(
+    () => ({
+      wrapper: ["max-h-[382px]"],
+      th: ["bg-transparent", "text-default-500", "border-b", "border-divider"],
+      td: [
+        // changing the rows border radius
+        // first
+        "group-data-[first=true]:first:before:rounded-none",
+        "group-data-[first=true]:last:before:rounded-none",
+        // middle
+        "group-data-[middle=true]:before:rounded-none",
+        // last
+        "group-data-[last=true]:first:before:rounded-none",
+        "group-data-[last=true]:last:before:rounded-none",
+      ],
+    }),
+    []
+  );
   return (
     <>
-      <div>gfl</div>
       <Table 
-        selectionMode="single"
         aria-label="Partnership Form Table"
+        classNames={classNames}
+        isCompact
+        removeWrapper
       >
         <TableHeader>
           {columns.map((column) => (
@@ -95,31 +118,45 @@ export default function PartnershipFormTable() {
         <TableBody emptyContent="No Partnership inquiries found.">
           {forms.map((form) => (
             <TableRow key={form.id}>
-              <TableCell>{form.id}</TableCell>
               <TableCell>{form.companyName}</TableCell>
               <TableCell>
-                {form.services.map((service) => (
-                  <Chip key={service} color="primary">{service}</Chip>
-                ))}
+                <div className="flex flex-col">
+                  {form.services.map((service) => (
+                    <Chip key={service} color="warning" variant="dot">{service}</Chip>
+                  ))}
+                </div>
               </TableCell>
-              <TableCell>{form.contactName}</TableCell>
-              <TableCell>{form.phoneNumber}</TableCell>
-              <TableCell>{form.emailAddress}</TableCell>
+              <TableCell>
+                <>
+                    <p className="py-1">{form.contactName}</p>
+                    <p className="py-1 text-gray-400">{form.phoneNumber}</p>
+                    <p className="py-1 text-gray-400">{form.emailAddress}</p>
+                </>
+              </TableCell>
+              <TableCell>{form.additionalInfo}</TableCell>
+              <TableCell>
+                {form.status}
+              </TableCell>
               <TableCell>
                 <div className="relative flex justify-end items-center gap-2">
                   <Dropdown>
                     <DropdownTrigger>
                       <Button isIconOnly size="sm" variant="light">
-                        <User />
+                        <VerticalDotsIcon />
                       </Button>
                     </DropdownTrigger>
-                    <DropdownMenu>
-                      <DropdownItem>View</DropdownItem>
-                      <DropdownItem>Edit</DropdownItem>
-                      <DropdownItem>Delete</DropdownItem>
+                    <DropdownMenu 
+                      // onAction={(key) => {
+                      //   if (key === 'view'){
+                      //     generalformModal.onOpen();
+                      //   }
+                      // }}
+                    >
+                      <DropdownItem key='view' href={`/admin/webforms/partnership/${form.id}`}>View</DropdownItem>
                     </DropdownMenu>
                   </Dropdown>
                 </div>
+                <PartnershipFormModal disclosure={generalformModal} form={form} />
               </TableCell>
             </TableRow>
           ))}

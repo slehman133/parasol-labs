@@ -41,7 +41,7 @@ const SendEmailForm: React.FC = () => {
     try {
       setSubject("test");
       createGAEvent();
-      const error = await SendEmail({ from: email, subject, html });
+      const error = await SendEmail({ to: email, subject, html });
       createDBRecord(name);
       // console.log(error);
       setMessage("Email sent successfully!");
@@ -68,7 +68,7 @@ const SendEmailForm: React.FC = () => {
       await fetch("/api/webforms/generalform", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, html }),
+        body: JSON.stringify({ name, email, html}),
       });
     } catch (error) {
       console.error(error);

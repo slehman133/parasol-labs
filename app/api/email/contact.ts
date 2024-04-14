@@ -1,21 +1,24 @@
 "use server";
 
 import { Resend } from "resend";
+import EmailTemplate from "@/app/components/webforms/templates/emailtemplate";
+
 
 const resend = new Resend("re_J41TAqXJ_UhGEifEb5SW4XyvhZ446UDau");
 
 interface EmailOptions {
-  from: string;
+  to: string;
   subject: string;
   html: string;
+  name: string;
 }
 export async function SendEmail(options: EmailOptions) {
   try {
     const { data, error } = await resend.emails.send({
       from: "info@parasollaboratories.org",
-      to: options.from,
+      to: options.to,
       subject: options.subject,
-      html: options.html,
+      react: EmailTemplate({ message: options.html, name: options.name}),
     });
     return true;
   } catch (error) {

@@ -47,9 +47,9 @@ export default function Home() {
     setIsStrlVisible(true);
   }
   return (
-    <div>
+    <div className="">
       <section className="z-10">
-        <video loop muted autoPlay>
+        <video loop={true} muted={true} autoPlay={true}>
           <source src="/videos/parasolHome.mp4" type="video/mp4" />
         </video>
         <SwiperButton targetId="landing-section" />

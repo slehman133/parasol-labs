@@ -20,6 +20,7 @@ export async function POST(req: Request) {
                 name: formData.name,
                 email: formData.email,
                 message: formData.html,
+                status: 'Delivered'
             }
         })
         return NextResponse.json({ status: 200 });
@@ -41,15 +42,42 @@ export async function GET() {
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }
 }
-//Develop a method to delete a general form
-export async function DELETE(req: Request) {
+
+//develop a patch method that handles either the update or the deletion of a general form
+export async function PATCH(req: Request) {
     try {
         const formData = await req.json();
-        await prisma.contactForm.delete({
-            where: {
-                id: formData.id
-            }
-        });
+        if (formData.event === 'delete') {
+            await prisma.contactForm.delete({
+                where: {
+                    id: formData.id
+                }
+            });
+        }
+        else if (formData.event === 'edit') {
+            await prisma.contactForm.update({
+                where: {
+                    id: formData.id
+                },
+                data: {
+                        name: formData.name,
+                        email: formData.email,
+                        message: formData.message,
+                        status: formData.status
+                }
+            });
+        }
+        else if (formData.event === 'single'){
+            const form = await prisma.contactForm.findUnique({
+                where: {
+                    id: formData.id
+                }
+            });
+            return NextResponse.json(form);
+        }
+        else {
+            throw new Error("Invalid event type.");
+        }
         return NextResponse.json({ status: 200 });
     }
     catch(e) {

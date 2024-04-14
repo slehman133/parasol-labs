@@ -21,14 +21,19 @@ const AdminPage = async () => {
     // const adminProducts = await adminGetProducts()
     const orders = await getOrders()
     // console.log(adminProducts)
-
     return (
         <>
             <div className='m-24'>
-                <h1 className='text-4xl font-bold'>Messages</h1>
-                <div className='my-5'>
-                    <PartnershipFormTable />
-                    <GeneralFormTable />
+                <h1 className='text-4xl font-bold'>Web Forms</h1>
+                <div className='my-5 '>
+                    <div className="my-5">
+                        <h1>Partnership Form</h1>
+                        <PartnershipFormTable />
+                    </div>
+                    <div className="my-5">
+                        <h1>General Form</h1>
+                        <GeneralFormTable />
+                    </div>
                 </div>
                 <h1 className='text-4xl font-bold'>Orders</h1>
                 <div className='my-5'>

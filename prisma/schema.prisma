@@ -61,7 +61,7 @@ model PartnershipForm {
   contactName     String   @db.VarChar(255)
   phoneNumber     String   @db.VarChar(255)
   emailAddress    String   @db.VarChar(255)
-  status          String   @default("Delivered")
+  status          String   
   createdAt       DateTime @default(now())
 }
 
@@ -70,7 +70,7 @@ model ContactForm {
   name    String @db.VarChar(255)
   email   String @db.VarChar(255)
   message String @db.Text
-  status  String @default("Delivered")
+  status  String 
 
   user      User?     @relation(fields: [userId], references: [id])
   userId    Int?
