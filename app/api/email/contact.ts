@@ -1,19 +1,24 @@
-import { Resend } from "resend";
+"use server";
 
-const resend = new Resend("re_9HFzCxfW_93jYyAGW5tseFVxfr3AEVq7V");
+import { Resend } from "resend";
+import EmailTemplate from "@/app/components/webforms/templates/emailtemplate";
+
+
+const resend = new Resend("re_J41TAqXJ_UhGEifEb5SW4XyvhZ446UDau");
 
 interface EmailOptions {
-  from: string;
+  to: string;
   subject: string;
   html: string;
+  name: string;
 }
 export async function SendEmail(options: EmailOptions) {
   try {
     const { data, error } = await resend.emails.send({
-      from: options.from,
-      to: "carver.kaeden@gmail.com",
+      from: "info@parasollaboratories.org",
+      to: options.to,
       subject: options.subject,
-      html: options.html,
+      react: EmailTemplate({ message: options.html, name: options.name}),
     });
     return true;
   } catch (error) {

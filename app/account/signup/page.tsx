@@ -6,7 +6,7 @@
 import React, { useState } from 'react'
 import prisma from '@/utils/db'
 import { useRouter } from 'next/navigation'
-
+import * as ga from '@/lib/gtagHelper'
 const SignUpPage = () => {
     const router = useRouter()
     const [formData, setFormData] = useState({
@@ -16,20 +16,31 @@ const SignUpPage = () => {
         password: "",
         confirmPassword: "",
     })
+    
+    const createGAEvent = async () => {
+        ga.event({
+          action: "User_Sign_Up",
+          category: "user",
+          label: "user_creation",
+          value: `${formData.email} - sent email successfully`,
+        })
+      };
+
+    const handleSubmit = async (e: any) => {
+        createGAEvent();
+        e.preventDefault();
+        await fetch("/api/user", {
+            method: 'POST',
+            body: JSON.stringify(formData),
+        });
+        router.push("/api/auth/signin")
+    }
 
     return (
         <>
             <div className='text-black'>
                 <form className='flex flex-col max-w-xl mx-auto my-40 p-5 gap-3'
-                    onSubmit={async (e) => {
-                        e.preventDefault();
-                        await fetch("/api/user", {
-                            method: 'POST',
-                            body: JSON.stringify(formData),
-
-                        });
-                        router.push("/api/auth/signin")
-                    }}>
+                    onSubmit={handleSubmit}>
                     <label>Email</label>
                     <input className='bg-white text-black' type="text"
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}

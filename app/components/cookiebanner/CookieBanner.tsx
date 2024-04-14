@@ -15,10 +15,10 @@ import {
   ModalBody,
   ModalFooter,
 } from "@nextui-org/react";
+import GoogleAnalytics from "../googleanalytics/GoogleAnalytics";
 
 export default function CookieBanner() {
   const [cookieConsent, setCookieConsent] = useState<true | false>();
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   
   useEffect(() => {
     const storedCookieConsent = getLocalStorage("cookie_consent", null);
@@ -27,19 +27,17 @@ export default function CookieBanner() {
   }, [setCookieConsent]);
 
   useEffect(() => {
-    const newValue = cookieConsent ? "granted" : "denied";
+    const newValue = cookieConsent ? 'granted' : 'denied';
 
-    window.gtag("consent", "update", {
-      analytics_storage: newValue,
+    window.gtag("consent", 'update', {
+      'analytics_storage': newValue,
     });
 
     setLocalStorage("cookie_consent", cookieConsent);
-
-    //For Testing
-    console.log("Cookie Consent: ", cookieConsent);
   }, [cookieConsent]);
 
   return (
+    <>
     <div
       className={`cookie-consent-banner ${
         cookieConsent != null ? "hidden" : "flex flex-col sm:flex-row"
@@ -88,6 +86,8 @@ export default function CookieBanner() {
         </Button>
       </div>
     </div>
+    <GoogleAnalytics GA_MEASUREMENT_ID="G-2QHVKTJB8F" cookieConsent={cookieConsent}/> 
+    </>
   );
 }
 
