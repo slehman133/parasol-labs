@@ -49,18 +49,18 @@ const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
 
     const createGAEvent = async () => {
         ga.event({
-          action: "user_sign_in",
-          category: "user_access",
-          label: "user_log_in",
-          value: `${formData.email} - User logged in`,
+            action: "user_sign_in",
+            category: "user_access",
+            label: "user_log_in",
+            value: `${formData.email} - User logged in`,
         })
     };
     const createGAEventSignOut = async () => {
         ga.event({
-          action: "user_sign_out",
-          category: "user_sign_out",
-          label: "user_sign_out",
-          value: `${formData.email} - User logged out`,
+            action: "user_sign_out",
+            category: "user_sign_out",
+            label: "user_sign_out",
+            value: `${formData.email} - User logged out`,
         })
     };
 
@@ -127,7 +127,7 @@ const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
                                                             </button>
                                                         }
                                                         type={isVisible ? "text" : "password"} />
-                                                    {errors.signInFailed && <p className='text-red-500 text-center'>Incorrect email or password</p>}
+                                                    {errors.signInFailed && <p className='text-red-500 text-center'>Incorrect email or password.</p>}
                                                     <p onClick={() => setActiveTab("signup")} className='text-center hover:cursor-pointer'>Don&apos;t have an account? <span className='underline'> Sign Up</span></p>
                                                     <Input type='submit' value='Sign In' />
                                                 </form>
@@ -171,7 +171,7 @@ const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
                                                         }}
                                                     />
 
-                                                    {errors.email && <p className='text-red-500 text-center'>Valid email is required</p>}
+                                                    {errors.email && <p className='text-red-500 text-center'>Valid email is required.</p>}
                                                     <Input type='text' placeholder='First Name' value={formData.firstName}
                                                         onChange={(e) => setFormData({ ...formData, firstName: e.target.value })} />
                                                     <Input type='text' placeholder='Last Name' value={formData.lastName}
@@ -197,7 +197,7 @@ const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
                                                             </button>
                                                         }
                                                         type={isVisible ? "text" : "password"} />
-                                                    {errors.password && <p className='text-red-500 text-center'>Valid password is required. Must contain one uppercase letter, one lowercase letter, one number, and one special character, and be at least 8 characters long</p>}
+                                                    {errors.password && <p className='text-red-500 text-center'>Valid password is required. Must contain one uppercase letter, one lowercase letter, one number, and one special character, and be at least 8 characters long.</p>}
                                                     <Input placeholder='Confirm Password' value={formData.confirmPassword}
                                                         onChange={(e) => {
                                                             const confirmPassword = e.target.value
@@ -218,8 +218,8 @@ const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
                                                             </button>
                                                         }
                                                         type={isConfirmVisible ? "text" : "password"} />
-                                                    {errors.confirmPassword && <p className='text-red-500 text-center'>Passwords do not match</p>}
-                                                    {errors.signUpFailed && <p className='text-red-500 text-center'>Sign up failed. Please try again or use a different credentials.</p>}
+                                                    {errors.confirmPassword && <p className='text-red-500 text-center'>Passwords do not match.</p>}
+                                                    {errors.signUpFailed && <p className='text-red-500 text-center'>Sign up failed. Please try again or use different credentials.</p>}
                                                     <p onClick={() => setActiveTab("signin")} className='text-center hover:cursor-pointer'>Have an account? <span className='underline'> Sign In</span></p>
                                                     <Input type='submit' value='Sign Up' disabled={errors.email || errors.password || errors.confirmPassword} />
                                                 </form>
