@@ -24,7 +24,7 @@ export async function generateMetadata() {
 const TeamPage = () => {
     return (
         <>
-            <div className = "flex md:px-48 md:py-16 flex-col flex-wrap gap-4">
+            <div className = "flex md:px-48 md:py-16 flex-col flex-wrap p-4 gap-4">
                 <h2 className="flex text-3xl justify-center px-4">
                     <Image
                         as={NextImage}
@@ -34,7 +34,7 @@ const TeamPage = () => {
                     />
                 </h2>
                 <Divider/>
-                <div className="flex md:flex-row flex-col justify-center items-center gap-4 md:gap-16 md:px-24">
+                <div className="flex md:flex-row flex-col justify-center items-center gap-4 p-4 md:gap-16 md:px-24">
                     <Link href ={'/team/ahmed_munoz'}>
                         <Card className='py-4 flex-col hover:scale-105'>
                             <CardHeader className='overflow-visible z-0 items-start'>
