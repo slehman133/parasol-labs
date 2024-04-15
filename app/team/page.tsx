@@ -24,7 +24,7 @@ export async function generateMetadata() {
 const TeamPage = () => {
     return (
         <>
-            <div className = "flex md:px-48 md:py-16 flex-col gap-4">
+            <div className = "flex md:px-48 md:py-16 flex-col flex-wrap gap-4">
                 <h2 className="flex text-3xl justify-center px-4">
                     <Image
                         as={NextImage}

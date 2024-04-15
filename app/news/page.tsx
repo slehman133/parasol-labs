@@ -35,7 +35,7 @@ const NewsPage = async () => {
                     />
                     <p className='text-center font-light text-xl my-5'>The latest updates on our journey. For you.</p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 p-4 md:p-12 gap-12">
+                <div className="flex flex-row flex-wrap md:p-12 gap-4 justify-between">
                     {postPreviews}    
                 </div>
             </div>

@@ -58,7 +58,7 @@ const PostPreview = async (props:PostMetadata ) => {
                 <h4 className="text-white font-medium text-large">
                   {article.subtitle}
                 </h4>
-                <p className="text-tiny text-white font-medium text-large">
+                <p className="text-tiny text-white font-medium md:text-large">
                   <time dateTime={article._createdAt}>{format(date, 'LLLL d, yyyy')}</time>
                 </p>
                 <h4 className="text-white font-medium text-large">

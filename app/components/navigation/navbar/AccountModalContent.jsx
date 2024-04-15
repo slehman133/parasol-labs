@@ -22,6 +22,33 @@ const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
     const [isVisible, setIsVisible] = useState(false)
     const [isConfirmVisible, setIsConfirmVisible] = useState(false)
     const [activeTab, setActiveTab] = useState("signin")
+
+    const createGAEvent = async () => {
+        ga.event({
+            action: "user_sign_in",
+            category: "user_access",
+            label: "user_log_in",
+            value: `${formData.email}`,
+            username: `${formData.email}`
+        })
+    };
+    const createGAEventSignOut = async () => {
+        ga.event({
+            action: "user_sign_out",
+            category: "user_sign_out",
+            label: "user_sign_out",
+            value: `${formData.email}`,
+        })
+    };
+
+    const [errors, setErrors] = useState({
+        email: false,
+        password: false,
+        confirmPassword: false,
+        signInFailed: false,
+        signUpFailed: false
+    })
+
     return (
         <ModalContent>
             {(onClose) =>
