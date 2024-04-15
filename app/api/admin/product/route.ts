@@ -9,7 +9,7 @@ export async function POST(request: Request) {
     // console.log(response)
 
     const response = await createProduct(product)
-    console.log(response)
+    // console.log(response)
 
     return NextResponse.json(response)
 }

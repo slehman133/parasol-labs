@@ -21,7 +21,10 @@ const ProductsPage = async () => {
             const item = e.node;
             const id = item.id.slice(-13);
             const description = item.description;
-            const image = item.images.edges[0]?.node.transformedSrc;
+            const image = item.images.edges[0]?.node.transformedSrc ?
+              item.images.edges[0]?.node.transformedSrc
+              :
+              `/images/${item.handle}.jpg`;
             const altText = item.images.edges[0]?.node.altText;
             const price = item.priceRange.minVariantPrice.amount;
 

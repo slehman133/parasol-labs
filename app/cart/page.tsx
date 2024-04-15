@@ -19,6 +19,8 @@ const CartPage = () => {
 
     const { data: session } = useSession()
 
+    console.log(cartItems)
+
     let itemToRemove = 0
 
     return (
@@ -72,7 +74,7 @@ const CartPage = () => {
                                 {cartItems.map((item, index) => (
                                     <div key={index} className='relative flex flex-row overflow-hidden mx-28 shadow-small my-5'>
                                         <div className='overflow-hidden'>
-                                            <img className="object-cover h-48 w-48" src={item.image} alt={item.name} />
+                                            <img className="object-cover h-48 w-48" src={item.image ? item.image : `/images/${item.handle}.jpg`} alt={item.name} />
                                         </div>
                                         <div className='p-5'>
                                             <h1 className='font-bold text-2xl'>{item.name}</h1>
@@ -122,7 +124,6 @@ const CartPage = () => {
                             }}
                         >Proceed To Checkout &rarr;</button>
                     </div>
-
                 </div>
             </motion.div >
         </>

@@ -7,11 +7,20 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure
 
 const ProductDisplay = ({ products }: { products: any }) => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
     const [inventoryToChange, setInventoryToChange] = useState({
         id: 0,
         variantId: 0,
         totalInventory: 0
     });
+
+    const [priceToChange, setPriceToChange] = useState({
+        id: 0,
+        variantId: 0,
+        price: 0
+    });
+
+    const [changing, setChanging] = useState("")
 
     return (
         <>
@@ -19,45 +28,90 @@ const ProductDisplay = ({ products }: { products: any }) => {
                 <ModalContent>
                     {(onClose) => (
                         <>
-                            <ModalHeader className="flex flex-col gap-1 items-center">
-                                Change Quantity
-                            </ModalHeader>
-                            <ModalBody className="gap-1">
-                                <form>
-                                    <label>Enter Change:</label>
-                                    <input
-                                        className='ml-2'
-                                        type="number"
-                                        // placeholder={inventoryToChange.totalInventory.toString()}
-                                        onChange={(e) =>
-                                            setInventoryToChange({
-                                                ...inventoryToChange,
-                                                totalInventory: parseInt(e.target.value)
-                                            })}
-                                    />
-                                </form>
-                            </ModalBody>
-                            <ModalFooter>
-                                <Button color="danger" variant="light" onPress={onClose}>
-                                    Close
-                                </Button>
-                                <Button color="primary" onPress={async () => {
-                                    const res = await fetch('/api/admin',
-                                        {
-                                            method: "PATCH",
-                                            body: JSON.stringify(
+                            {changing === "inventory" &&
+                                <>
+                                    <ModalHeader className="flex flex-col gap-1 items-center">
+                                        Change Quantity
+                                    </ModalHeader>
+                                    <ModalBody className="gap-1">
+                                        <form>
+                                            <label>Enter Change:</label>
+                                            <input
+                                                className='ml-2'
+                                                type="number"
+                                                // placeholder={inventoryToChange.totalInventory.toString()}
+                                                onChange={(e) =>
+                                                    setInventoryToChange({
+                                                        ...inventoryToChange,
+                                                        totalInventory: parseInt(e.target.value)
+                                                    })}
+                                            />
+                                        </form>
+                                    </ModalBody>
+                                    <ModalFooter>
+                                        <Button color="danger" variant="light" onPress={onClose}>
+                                            Close
+                                        </Button>
+                                        <Button color="primary" onPress={async () => {
+                                            const res = await fetch('/api/admin',
                                                 {
-                                                    event: "edit-quantity",
-                                                    id: inventoryToChange.id,
-                                                    variantId: inventoryToChange.variantId,
-                                                    quantity: inventoryToChange.totalInventory
-                                                }),
-                                        })
-                                    onClose()
-                                }}>
-                                    Change
-                                </Button>
-                            </ModalFooter>
+                                                    method: "PATCH",
+                                                    body: JSON.stringify(
+                                                        {
+                                                            event: "edit-quantity",
+                                                            id: inventoryToChange.id,
+                                                            variantId: inventoryToChange.variantId,
+                                                            quantity: inventoryToChange.totalInventory
+                                                        }),
+                                                })
+                                            onClose()
+                                        }}>
+                                            Change
+                                        </Button>
+                                    </ModalFooter>
+                                </>}
+                            {changing === "price" &&
+                                <>
+                                    <ModalHeader className="flex flex-col gap-1 items-center">
+                                        Change Price
+                                    </ModalHeader>
+                                    <ModalBody className="gap-1">
+                                        <form>
+                                            <label>Enter Price:</label>
+                                            <input
+                                                className='ml-2'
+                                                type="float"
+                                                // placeholder={inventoryToChange.totalInventory.toString()}
+                                                onChange={(e) =>
+                                                    setPriceToChange({
+                                                        ...priceToChange,
+                                                        price: parseFloat(e.target.value)
+                                                    })}
+                                            />
+                                        </form>
+                                    </ModalBody>
+                                    <ModalFooter>
+                                        <Button color="danger" variant="light" onPress={onClose}>
+                                            Close
+                                        </Button>
+                                        <Button color="primary" onPress={async () => {
+                                            const res = await fetch('/api/admin/product/price',
+                                                {
+                                                    method: "PATCH",
+                                                    body: JSON.stringify(
+                                                        {
+                                                            event: "edit-price",
+                                                            id: priceToChange.id,
+                                                            variantId: priceToChange.variantId,
+                                                            price: priceToChange.price
+                                                        }),
+                                                })
+                                            onClose()
+                                        }}>
+                                            Change
+                                        </Button>
+                                    </ModalFooter>
+                                </>}
                         </>
                     )}
                 </ModalContent>
@@ -91,18 +145,29 @@ const ProductDisplay = ({ products }: { products: any }) => {
                                         onClick={() => {
                                             setInventoryToChange(
                                                 { id, totalInventory, variantId })
+                                            setChanging("inventory")
                                             onOpen()
                                         }}>
                                         {totalInventory}
                                     </div>
                                 </TableCell>
-                                <TableCell>{amount}</TableCell>
+                                <TableCell>
+                                    <div className='cursor-pointer'
+                                        onClick={() => {
+                                            setPriceToChange(
+                                                { id, price: amount, variantId })
+                                            setChanging("price")
+                                            onOpen()
+                                        }}>
+                                        ${Number(amount).toFixed(2)}
+                                    </div>
+                                </TableCell>
                                 <TableCell>{description}</TableCell>
                             </TableRow>
                         )
                     })}
-                </TableBody>
-            </Table>
+                </TableBody >
+            </Table >
         </>
     )
 }
