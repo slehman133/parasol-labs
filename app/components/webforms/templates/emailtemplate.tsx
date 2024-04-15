@@ -27,16 +27,16 @@ console.log(baseUrl);
 export const EmailTemplate = ({message, name}: EmailTemplateProps) => (
   <Html>
     <Head />
-    <Preview>Google Play developers</Preview>
+    <Preview>You asked, we answered.</Preview>
     <Body style={main}>
       <Container style={container}>
         <Section>
           <Row>
             <Column>
               {/* <Img
-                src={`${baseUrl}/images/logo.png`}
-                width="305"
-                height="28"
+                src={`/images/logo.png`}
+                width="30"
+                height="30"
                 alt="Parasol Laboratories Logo"
               /> */}
               <Text style={{ ...paragraph, fontSize: "30px" }}>
