@@ -4,7 +4,6 @@ import React from 'react'
 import ProductDisplay from '../components/admin/ProductDisplay';
 import OrderDisplay from '../components/admin/OrderDisplay';
 import { getProducts } from '@/utils/storefront';
-import { getOrders } from '@/utils/shopifyAdmin';
 import { adminGetProducts, getOrders } from '@/utils/shopifyAdmin';
 import ProductSection from "../components/admin/ProductSection";
 
