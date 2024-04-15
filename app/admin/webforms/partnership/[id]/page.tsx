@@ -19,7 +19,7 @@ const PartnershipWebformsPage = (props: { params: { id: string } }) => {
     const [status, setStatus] = useState<Selection>(new Set([]));
 
     const handleSendEmail = async () => {
-        if(htmlMessage === '' || form.status === 'Delivered') {
+        if(htmlMessage === '' && form.status === 'Delivered') {
             setMessage('Please enter a message before sending.');
             return;
         }

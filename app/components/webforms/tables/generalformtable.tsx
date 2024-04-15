@@ -25,6 +25,13 @@ import { VerticalDotsIcon } from "@/public/VerticalDotsIcon.jsx";
 import { SendEmail } from "@/app/api/email/contact";
 import GeneralFormModal from "../modals/generalformmodal";
 
+interface form {
+  id: number;
+  name: string;
+  email: string;
+  status: string;
+}
+
 const statusColorMap: Record<string, ChipProps["color"]> = {
   Delivered: "warning",
   Active: "success",
@@ -45,7 +52,7 @@ const init_columns = [
 
 export default function GeneralFormTable() {
   const [selectedColor, setSelectedColor] = React.useState("default");
-  const [forms, setForms] = React.useState([]);
+  const [forms, setForms] = React.useState<form[]>([]);
   const [filterValue, setFilterValue] = React.useState("");
   const [selectedKeys, setSelectedKeys] = React.useState<Selection>(new Set([]));
   const [visibleColumns, setVisibleColumns] = React.useState<Selection>(new Set(init_columns));
@@ -89,7 +96,7 @@ export default function GeneralFormTable() {
       );
     }
     if(statusFilter !== "all" && Array.from(statusFilter).length !== statusOptions.length){
-      filteredForms = filteredForms.filter((form) => form.status === statusFilter);
+      filteredForms = filteredForms.filter((form) => form.status === statusFilter.toString());
     }
 
     return filteredForms;
@@ -169,7 +176,7 @@ export default function GeneralFormTable() {
             <Dropdown>
               <DropdownTrigger>
                 <Button isIconOnly size="sm" variant="light">
-                  <VerticalDotsIcon />
+                  <VerticalDotsIcon width={undefined} height={undefined} />
                 </Button>
               </DropdownTrigger>
               <DropdownMenu >
