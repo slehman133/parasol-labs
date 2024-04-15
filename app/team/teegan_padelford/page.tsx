@@ -16,8 +16,8 @@ const MemberPage = () => {
                 <div className="flex flex-row gap-8">
                     <div className="flex basis-1/3">
                         <Image
-                            alt = 'Picture of Teagan Padelford, Co-founder and CSO of Parasol Labs'
-                            src="/images/teagan_and_frankie.webp"
+                            alt = 'Picture of Teegan Padelford, Co-founder and CSO of Parasol Labs'
+                            src="/images/TeeganPadelford.jpeg"
                             width = "600"
                             height = "600"
                         />

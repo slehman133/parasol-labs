@@ -34,7 +34,7 @@ const TeamPage = () => {
                     />
                 </h2>
                 <Divider/>
-                <div className="flex flex-row justify-center gap-16 md:px-24">
+                <div className="flex md:flex-row flex-col justify-center items-center gap-4 md:gap-16 md:px-24">
                     <Link href ={'/team/ahmed_munoz'}>
                         <Card className='py-4 flex-col hover:scale-105'>
                             <CardHeader className='overflow-visible z-0 items-start'>
@@ -71,12 +71,12 @@ const TeamPage = () => {
                             </CardBody>
                         </Card>   
                     </Link>
-                    <Link href ={'/team/teagan_padelford'}>
-                        <Card className='py-2 flex-col hover:scale-105 gap-32'>
+                    <Link href ={'/team/teegan_padelford'}>
+                        <Card className='py-4 flex-col hover:scale-105'>
                             <CardHeader className='overflow-visible z-0 items-start'>
                                 <Image
-                                        alt = 'Picture of Teagan Padelford, Co-founder and CSO of Parasol Labs'
-                                        src="/images/teagan_and_frankie.webp"
+                                        alt = 'Picture of Teegan Padelford, Co-founder and CSO of Parasol Labs'
+                                        src="/images/TeeganPadelford.jpeg"
                                         className="z-0 object-cover"
                                         height = {300}
                                         width = {300}
