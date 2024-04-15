@@ -26,15 +26,15 @@ const parseArticleData = async (article: any) => {
             .replace("-webp", ".webp")
             .replace("-jpeg", ".jpeg")
             .replace("-png", ".png")    // Best we remove PNGs but for now, this renders
-        : "/images/placeholderimage.jpg"
+        : "/images/placeholder_news.jpeg"
 
-    const author = await client.fetch(`*[_type == 'author' && _id == $ref][0]`,
-    { ref: article.author["_ref"] }) 
+    const author = article.author ? await client.fetch(`*[_type == 'author' && _id == $ref][0]`,
+    { ref: article.author["_ref"] }) : "Parasol Labs"
 
     const subtitle = article.subtitle ? await client.fetch(`*[_type == 'subtitle' && _id == $ref][0]`,
-    { ref: article.subtitle["_ref"] }) : null
+    { ref: article.subtitle["_ref"] }) : ""
 
-    const date = parseISO(article._createdAt)
+    const date = article._createdAt ? parseISO(article._createdAt) : ""
 
     return { imageURL,  author, subtitle, date  }
 }
@@ -46,7 +46,7 @@ const PostPreview = async (props:PostMetadata ) => {
   const { imageURL, author, date, subtitle} = await parseArticleData(article)
   return (
     <>
-        <div className="flex flex-row p-2 hover:ring-4 gap-4">
+        <div className="flex flex-row p-2 gap-4">
           <Link key={slug} href={`/news/${slug}`}>
             <Card
               className="h-[300px] max-w-[600px]"

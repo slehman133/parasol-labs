@@ -26,7 +26,7 @@ const NewsPage = async () => {
         <>
             <div className="flex flex-col md:p-24">
                 <div>
-                    <h1 className=" font-bold text-4xl text-center ">
+                    <h1 className="font-bold text-4xl text-center ">
                         Parasol News
                     </h1>
                     <Divider
@@ -35,7 +35,7 @@ const NewsPage = async () => {
                     />
                     <p className='text-center font-light text-xl my-5'>The latest updates on our journey. For you.</p>
                 </div>
-                <div className="flex flex-row flex-wrap md:p-12 gap-4 justify-between">
+                <div className="flex flex-row flex-wrap md:p-12 gap-4">
                     {postPreviews}    
                 </div>
             </div>
