@@ -161,7 +161,7 @@ const ProductDisplay = ({ products }: { products: any }) => {
                         const { id, title, description, totalInventory, handle,
                             priceRange: { minVariantPrice: { amount } }, variants: { edges } } = e.node
                         const variantId = edges[0].node.id
-                        const image = e.node.images.edges[0].node.transformedSrc
+                        const image = e.node.images?.edges[0]?.node.transformedSrc ? e.node.images.edges[0].node.transformedSrc : `/images/${handle}.jpg`
                         return (
                             <TableRow key={id}>
                                 <TableCell>{<a href={`/products/${handle}`}>{title}</a>}</TableCell>
