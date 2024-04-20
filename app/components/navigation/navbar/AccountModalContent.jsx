@@ -53,7 +53,7 @@ const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
             category: "user_access",
             label: "user_log_in",
             value: `${formData.email}`,
-            username: `${formData.email}`
+            username: `${formData.email}`,
             value: `${formData.email} - User logged in`,
         })
     };
