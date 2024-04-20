@@ -13,7 +13,7 @@ const SendEmailForm: React.FC = () => {
   const [message, setMessage] = useState<string>("");
 
   const validateEmail = (email: string) =>
-    email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z ]{2,4}$/i );
+    email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z ]{2,4}$/i);
 
   const isInvalid = React.useMemo(() => {
     if (email === "") return false;
@@ -69,6 +69,7 @@ const SendEmailForm: React.FC = () => {
       category: "general_form",
       label: "general_form",
       value: `${email} - sent email successfully`,
+      username: `${email}`,
     })
   };
   const createDBRecord = async (name: string) => {
