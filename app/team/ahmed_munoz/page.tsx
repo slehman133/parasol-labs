@@ -12,20 +12,20 @@ export async function generateMetadata() {
 const MemberPage = () => {
     return (
         <>
-            <div className="flex md:px-48 md:py-36">
-                <div className="flex flex-row gap-8">
-                    <div className="flex basis-1/3">
+            <div className="flex p-8 md:px-48 md:py-36">
+                <div className="flex md:flex-row flex-col items-start gap-8">
+                    <div className="flex">
                         <Image
                         src="/images/AhmedPic.jpeg"
                         alt='Picture of Ahmed Munoz, founder of Parasol Labs'
-                        width = "600"
-                        height = "600"
+                        width = "400"
+                        height = "400"
                         />
                     </div>
-                    <div className="flex flex-col basis-2/3 text-xl gap-4">
+                    <div className="flex flex-col basis-3/4 text-xl gap-4">
                         <h1 className="text-3xl">Ahmed Munoz</h1>
                         <h2 className="">Founder and CEO</h2>
-                        <p> Innovative and driven IT consultant with proven leadership experience in architecture, infrastructure, solutions delivery, IT Operations, enterprise security, project management, hyper-converged systems, vendor relations, and agile/waterfall development workflows. Recognized for working on the bleeding edge of technology to promote individual development, optimize business processes, increase profitability, boost productivity, and enhancing team cohesion while reducing overhead.Innovative and driven IT consultant with proven leadership experience in architecture, infrastructure, solutions delivery, IT Operations, enterprise security, project management, hyper-converged systems, vendor relations, and agile/waterfall development workflows. Recognized for working on the bleeding edge of technology to promote individual development, optimize business processes, increase profitability, boost productivity, and enhancing team cohesion while reducing overhead.</p>
+                        <p className="md:text-xl text-medium"> Innovative and driven IT consultant with proven leadership experience in architecture, infrastructure, solutions delivery, IT Operations, enterprise security, project management, hyper-converged systems, vendor relations, and agile/waterfall development workflows. Recognized for working on the bleeding edge of technology to promote individual development, optimize business processes, increase profitability, boost productivity, and enhancing team cohesion while reducing overhead.Innovative and driven IT consultant with proven leadership experience in architecture, infrastructure, solutions delivery, IT Operations, enterprise security, project management, hyper-converged systems, vendor relations, and agile/waterfall development workflows. Recognized for working on the bleeding edge of technology to promote individual development, optimize business processes, increase profitability, boost productivity, and enhancing team cohesion while reducing overhead.</p>
                         <div className="flex flex-column py-4 gap-4">
                             <a
                                 className=''
