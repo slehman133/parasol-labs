@@ -76,7 +76,7 @@ const SendEmailForm: React.FC = () => {
       await fetch("/api/webforms/generalform", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, html}),
+        body: JSON.stringify({ name, email, html }),
       });
     } catch (error) {
       console.error(error);

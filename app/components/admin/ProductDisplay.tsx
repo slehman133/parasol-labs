@@ -1,5 +1,5 @@
 "use client"
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { Table, TableHeader, TableBody, TableColumn, TableRow, TableCell } from "@nextui-org/react";
 import { adminGetProducts, adminEditQuantity } from '@/utils/shopifyAdmin';
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Button } from "@nextui-org/react";
@@ -21,6 +21,25 @@ const ProductDisplay = ({ products }: { products: any }) => {
     });
 
     const [changing, setChanging] = useState("")
+
+    const classNames = useMemo(
+        () => ({
+            wrapper: ["max-h-[382px]"],
+            th: ["bg-transparent", "text-default-500", "border-b", "border-divider"],
+            td: [
+                // changing the rows border radius
+                // first
+                "group-data-[first=true]:first:before:rounded-none",
+                "group-data-[first=true]:last:before:rounded-none",
+                // middle
+                "group-data-[middle=true]:before:rounded-none",
+                // last
+                "group-data-[last=true]:first:before:rounded-none",
+                "group-data-[last=true]:last:before:rounded-none",
+            ],
+        }),
+        []
+    );
 
     return (
         <>
@@ -116,7 +135,10 @@ const ProductDisplay = ({ products }: { products: any }) => {
                     )}
                 </ModalContent>
             </Modal>
-            <Table>
+            <Table
+                classNames={classNames}
+                isCompact
+                removeWrapper>
                 <TableHeader>
                     <TableColumn>
                         Title
@@ -130,12 +152,16 @@ const ProductDisplay = ({ products }: { products: any }) => {
                     <TableColumn>
                         Description
                     </TableColumn>
+                    <TableColumn>
+                        Image
+                    </TableColumn>
                 </TableHeader>
                 <TableBody>
                     {products.map((e: any) => {
                         const { id, title, description, totalInventory, handle,
                             priceRange: { minVariantPrice: { amount } }, variants: { edges } } = e.node
                         const variantId = edges[0].node.id
+                        const image = e.node.images?.edges[0]?.node.transformedSrc ? e.node.images.edges[0].node.transformedSrc : `/images/${handle}.jpg`
                         return (
                             <TableRow key={id}>
                                 <TableCell>{<a href={`/products/${handle}`}>{title}</a>}</TableCell>
@@ -163,6 +189,7 @@ const ProductDisplay = ({ products }: { products: any }) => {
                                     </div>
                                 </TableCell>
                                 <TableCell>{description}</TableCell>
+                                <TableCell><img src={image} /></TableCell>
                             </TableRow>
                         )
                     })}

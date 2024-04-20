@@ -92,7 +92,6 @@ export default function GeneralFormTable() {
   const items = useMemo(() => {
     const start = (page - 1) * rowsPerPage;
     const end = start + rowsPerPage;
-
     return filteredItems.slice(start, end);
   }, [page, rowsPerPage, filteredItems]);
 
@@ -115,9 +114,9 @@ export default function GeneralFormTable() {
   const onPreviousPage = useCallback(() => {
     if (page > 1) {
       setPage(page - 1);
+
     }
   }, [page]);
-
   const onRowsPerPageChange = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
       setRowsPerPage(Number(e.target.value));
@@ -125,16 +124,15 @@ export default function GeneralFormTable() {
     },
     []
   );
-
   const onSearchChange = useCallback((value?: string) => {
     if (value) {
       setFilterValue(value);
       setPage(1);
+
     } else {
       setFilterValue("");
     }
   }, []);
-
   const onClear = useCallback(() => {
     setFilterValue("");
     setPage(1);
@@ -202,6 +200,7 @@ export default function GeneralFormTable() {
   }, [filterValue, onSearchChange, statusFilter, forms.length, onRowsPerPageChange, onClear]);
 
   const bottomContent = useMemo(() => {
+
     return (
       <div className="py-2 px-2 flex justify-between items-center">
         <Pagination
