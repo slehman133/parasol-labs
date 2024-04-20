@@ -1,11 +1,12 @@
-import PartnershipFormTable from "../components/webforms/tables/partnershipformtable";
+import PartnershipFormTable  from "../components/webforms/tables/partnershipformtable";
 import GeneralFormTable from "../components/webforms/tables/generalformtable";
 import React from 'react'
 import ProductDisplay from '../components/admin/ProductDisplay';
 import OrderDisplay from '../components/admin/OrderDisplay';
 import { getProducts } from '@/utils/storefront';
-import { adminGetProducts, getOrders } from '@/utils/shopifyAdmin';
+import { getOrders } from '@/utils/shopifyAdmin';
 import ProductSection from "../components/admin/ProductSection";
+import DisplayPannel from "../components/admin/DisplayPannel";
 
 export async function generateMetadata() {
     return {
@@ -20,10 +21,10 @@ const AdminPage = async () => {
     // const adminProducts = await adminGetProducts()
     const orders = await getOrders()
     // console.log(adminProducts)
-
     return (
         <>
             <div className='m-24'>
+                {// this needs to moved inside display pannel}
                 <h1 className='text-4xl font-bold'>Messages</h1>
                 <div className='my-5'>
                     {/* <PartnershipFormTable /> */}
@@ -52,6 +53,7 @@ const AdminPage = async () => {
                 </div> */}
                 <ProductSection products={products} />
                 </div>
+                <DisplayPannel orders={orders} products={products} />
             </div>
         </>
 

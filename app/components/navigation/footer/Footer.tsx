@@ -44,6 +44,9 @@ export default function Footer() {
         <Link href="/projects#strlproject" className="link link-hover">
           Liquid Sterilization
         </Link>
+        <Link href="/disclaimers" className="link link-hover">
+          Disclaimers
+        </Link>
       </nav>
       <Divider orientation="vertical" />
       <nav>

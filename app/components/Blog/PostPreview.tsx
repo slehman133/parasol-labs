@@ -1,6 +1,6 @@
 import { PostMetadata } from "./PostMetadata";
 import { client } from '@/sanity/lib/client'
-import { parseISO, format} from 'date-fns'
+import { parseISO, format } from 'date-fns'
 import {
   Button,
   Card,
@@ -36,16 +36,18 @@ const parseArticleData = async (article: any) => {
 
     const date = article._createdAt ? parseISO(article._createdAt) : ""
 
-    return { imageURL,  author, subtitle, date  }
+
+  return { imageURL, author, subtitle, date }
 }
 
-const PostPreview = async (props:PostMetadata ) => {
+const PostPreview = async (props: PostMetadata) => {
   const slug = props.slug.current
   const article = await client.fetch(`*[_type == "post" && slug.current == $slug][0]`, { slug }, { cache: "no-store" })
-  
-  const { imageURL, author, date, subtitle} = await parseArticleData(article)
+
+  const { imageURL, author, date, subtitle } = await parseArticleData(article)
   return (
     <>
+
         <div className="flex flex-row p-2 gap-4">
           <Link key={slug} href={`/news/${slug}`}>
             <Card
@@ -80,11 +82,6 @@ const PostPreview = async (props:PostMetadata ) => {
       </>
 
     )
-
-    
-    
-
-    
 };
 
 export default PostPreview;

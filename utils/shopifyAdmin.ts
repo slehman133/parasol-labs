@@ -1,6 +1,4 @@
 import { createAdminApiClient, createAdminRestApiClient } from '@shopify/admin-api-client'
-const fs = require('fs')
-
 
 
 const restAdminClient = createAdminRestApiClient({
@@ -185,6 +183,32 @@ export const getOrdersByEmail = async (email: string) => {
   return orders
 }
 
+export const editPrice = async (id: string, variantId: string, price: number) => {
+  const editPriceQuery =
+    `mutation  {
+  productVariantUpdate(input: {
+    id: "${variantId}",
+    price: ${price}
+  }) {
+    productVariant {
+      id
+      title
+      inventoryPolicy
+      inventoryQuantity
+      price
+      compareAtPrice
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}`
+  const newPrice = await admin(editPriceQuery)
+  // console.log(newPrice)
+  return newPrice
+}
+
 // Product creation functions
 
 const createProductQuery = async (product:
@@ -238,52 +262,9 @@ const publishProductQuery = async (id: string) => {
 }
 
 const uploadImage = async (product: any) => {
-  const filename = `${product.handle}.jpg`
-
-  const stagedUploadQuery =
-    `mutation {
-  stagedUploadsCreate(input: [
-    {
-      filename: "${filename}",
-      mimeType: "image/jpeg",
-      resource: IMAGE,
-      fileSize: "899765"
-    }
-  ])
-    {
-    stagedTargets {
-      url
-      resourceUrl
-      parameters {
-        name
-        value
-      }
-    }
-    userErrors {
-      field, message
-    }
-  }
-}`
-  const stagedUploadRes = await admin(stagedUploadQuery)
-  const { url, resourceUrl } = stagedUploadRes.data.stagedUploadsCreate.stagedTargets[0]
-  const params = stagedUploadRes.data.stagedUploadsCreate.stagedTargets[0].parameters[0]
-
-
-  const form = new FormData();
-  params.forEach(({ name, value }: { name: string, value: string }) => {
-    form.append(name, value)
-  })
-
-
-  const res = await fetch('https://shopify-staged-uploads.storage.googleapis.com/', {
-    method: 'POST',
-    body: form
-  })
-
-  console.log(res)
+  return
 
 }
-
 export const createProduct = async (product:
   {
     title: string,

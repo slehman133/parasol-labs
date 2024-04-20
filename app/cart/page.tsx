@@ -19,6 +19,8 @@ const CartPage = () => {
 
     const { data: session } = useSession()
 
+    console.log(cartItems)
+
     let itemToRemove = 0
 
     return (
@@ -61,8 +63,8 @@ const CartPage = () => {
                 }}
                 transition={{ duration: 0.75 }}>
 
-                <div className='grid grid-cols-2 gap-5 h-[95vh]'>
-                    <div className='col-start-1 m-16 overflow-y-scroll max-h-[80vh]'>
+                <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 container mx-auto'>
+                    <div className=' m-16 overflow-y-scroll max-h-[80vh]'>
                         {
                             cartItems.length > 0 &&
                             <Link href="/products"><h1 className='text-xl font-bold mx-28'>&larr; View more products</h1></Link>
@@ -72,7 +74,7 @@ const CartPage = () => {
                                 {cartItems.map((item, index) => (
                                     <div key={index} className='relative flex flex-row overflow-hidden mx-28 shadow-small my-5'>
                                         <div className='overflow-hidden'>
-                                            <img className="object-cover h-48 w-48" src={item.image} alt={item.name} />
+                                            <img className="object-cover h-48 w-48" src={item.image ? item.image : `/images/${item.handle}.jpg`} alt={item.name} />
                                         </div>
                                         <div className='p-5'>
                                             <h1 className='font-bold text-2xl'>{item.name}</h1>
@@ -107,7 +109,7 @@ const CartPage = () => {
                         )
                         }
                     </div>
-                    <div className='col-start-2 m-16'>
+                    <div className='m-16'>
                         <h1 className='text-5xl font-bold'>Order Summary</h1>
                         <p className='my-5 text-2xl'>Total Price: ${calcTotalPrice(cartItems)}</p>
                         <button className='border-2 border-white p-5 mt-56 text-xl font-semibold
@@ -122,7 +124,6 @@ const CartPage = () => {
                             }}
                         >Proceed To Checkout &rarr;</button>
                     </div>
-
                 </div>
             </motion.div >
         </>
