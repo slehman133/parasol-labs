@@ -34,7 +34,7 @@ const TeamPage = () => {
                     />
                 </h2>
                 <Divider/>
-                <div className="flex flex-row justify-center gap-16 md:px-24">
+                <div className="flex flex-col md:flex-row justify-center gap-16 md:px-24">
                     <Link href ={'/team/ahmed_munoz'}>
                         <Card className='py-4 flex-col hover:scale-105'>
                             <CardHeader className='overflow-visible z-0 items-start'>
