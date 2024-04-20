@@ -12,20 +12,20 @@ export async function generateMetadata() {
 const MemberPage = () => {
     return (
         <>
-            <div className="flex md:px-48 md:py-36">
-                <div className="flex flex-row gap-8">
-                    <div className="flex basis-1/3">
+            <div className="flex p-8 md:px-48 md:py-36">
+                <div className="flex md:flex-row flex-col items-start gap-8">
+                    <div className="flex">
                         <Image
-                            alt = 'Picture of Teagan Padelford, Co-founder and CSO of Parasol Labs'
-                            src="/images/teagan_and_frankie.webp"
-                            width = "600"
-                            height = "600"
+                            alt = 'Picture of Teegan Padelford, Co-founder and CSO of Parasol Labs'
+                            src="/images/TeeganPadelford.jpeg"
+                            width = "400"
+                            height = "400"
                         />
                     </div>
-                    <div className="flex flex-col basis-2/3 text-xl gap-4">
+                    <div className="flex flex-col basis-3/4 text-xl gap-4">
                         <h1 className="text-3xl">Teagan Padelford</h1>
                         <h2 className="">Co-founder and CSO</h2>
-                        <p>Passionate about biology and equipped with a background that encompassed both healthcare and biotechnology, a strong foundation that had been established in both fields. Through five years of experience in a dynamic healthcare role, was directly involved in the building of the first COVID-19 response team for Indian River Medical Center - highlighting the importance of crisis management and collaborative efforts in ensuring community well-being. The expertise extends beyond healthcare, encompassing the spearheading of research and development initiatives, and the cultivation of strategic partnerships. </p>
+                        <p className="md:text-xl text-medium">Passionate about biology and equipped with a background that encompassed both healthcare and biotechnology, a strong foundation that had been established in both fields. Through five years of experience in a dynamic healthcare role, was directly involved in the building of the first COVID-19 response team for Indian River Medical Center - highlighting the importance of crisis management and collaborative efforts in ensuring community well-being. The expertise extends beyond healthcare, encompassing the spearheading of research and development initiatives, and the cultivation of strategic partnerships. </p>
                         <div className="flex flex-column py-4 gap-4">
                             <a
                                 className=''

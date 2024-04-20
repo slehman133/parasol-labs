@@ -14,12 +14,13 @@ const SignInPage = () => {
     })
     const createGAEvent = async () => {
         ga.event({
-          action: "p_user_sign_in",
-          category: "p_user_access",
-          label: "p_user_log_in",
-          value: `${formData.email} - User logged in`,
+            action: "p_user_sign_in",
+            category: "p_user_access",
+            label: "p_user_log_in",
+            value: `${formData.email} - User logged in`,
+            username: `${formData.email}`
         })
-      };
+    };
     const [isVisible, setIsVisible] = React.useState(false)
     return (
         <>

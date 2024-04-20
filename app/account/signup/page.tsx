@@ -16,15 +16,16 @@ const SignUpPage = () => {
         password: "",
         confirmPassword: "",
     })
-    
+
     const createGAEvent = async () => {
         ga.event({
-          action: "User_Sign_Up",
-          category: "user",
-          label: "user_creation",
-          value: `${formData.email} - sent email successfully`,
+            action: "User_Sign_Up",
+            category: "user",
+            label: "user_creation",
+            value: `${formData.email} - sent email successfully`,
+            username: `${formData.email}`,
         })
-      };
+    };
 
     const handleSubmit = async (e: any) => {
         createGAEvent();

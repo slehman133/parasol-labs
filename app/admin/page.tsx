@@ -1,4 +1,4 @@
-import PartnershipFormTable  from "../components/webforms/tables/partnershipformtable";
+import PartnershipFormTable from "../components/webforms/tables/partnershipformtable";
 import GeneralFormTable from "../components/webforms/tables/generalformtable";
 import React from 'react'
 import ProductDisplay from '../components/admin/ProductDisplay';

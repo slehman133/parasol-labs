@@ -19,14 +19,12 @@ const NewsPage = async () => {
     const postPreviews = res.map((post:any) => (
         <PostPreview key = {post.slug?.current}{...post}/>
     ));
-    
-    
 
     return (
         <>
-            <div className="flex flex-col md:p-24">
+            <div className="flex flex-col md:p-24 container mx-auto">
                 <div>
-                    <h1 className=" font-bold text-4xl text-center ">
+                    <h1 className="font-bold text-4xl text-center ">
                         Parasol News
                     </h1>
                     <Divider
@@ -35,7 +33,7 @@ const NewsPage = async () => {
                     />
                     <p className='text-center font-light text-xl my-5'>The latest updates on our journey. For you.</p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 p-4 md:p-12 gap-12">
+                <div className="flex flex-row flex-wrap md:p-12 gap-4">
                     {postPreviews}    
                 </div>
             </div>

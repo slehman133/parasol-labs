@@ -6,10 +6,13 @@ export const pageview = (GA_MEASUREMENT_ID : string, url : string) => {
     });
 };
 
-export const event = ({ action, category, label, value}: { action: string, category: string, label: string, value: any}) => {
+export const event = ({ action, category, label, value, username}: { action: string, category: string, label: string, value: any, username:string}) => {
+
     window.gtag('event', action, {
         event_category: category,
         event_label: label,
         value: value,
+        username: username,
     });
 };
+

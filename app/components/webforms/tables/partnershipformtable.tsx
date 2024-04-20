@@ -1,36 +1,28 @@
 "use client";
-
-import React, { useState, useMemo, useCallback, useEffect } from "react";
-import { useRouter } from "next/router";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import {
-  Button,
   Table,
   TableHeader,
   TableColumn,
   TableBody,
   TableRow,
   TableCell,
-  Dropdown,
+  Input,
+  Button,
   DropdownTrigger,
+  Dropdown,
   DropdownMenu,
   DropdownItem,
-  ChipProps,
-  Input,
   Chip,
+  ChipProps,
+  Pagination,
   Selection,
   SortDescriptor,
-  Pagination,
 } from "@nextui-org/react";
 import { VerticalDotsIcon } from "@/public/VerticalDotsIcon";
 import { SearchIcon } from "@/public/SearchIcon";
 import { ChevronDownIcon } from "@/public/ChevronDownIcon";
-
-interface form {
-  id: number;
-  name: string;
-  email: string;
-  status: string;
-}
+//TODO: add pub/sub functionality to update the table when new forms are submitted with ABLY
 
 const statusColorMap: Record<string, ChipProps["color"]> = {
   Delivered: "warning",
@@ -45,19 +37,38 @@ const statusOptions = [
 ];
 
 const columns = [
-  { name: "Name", uid: "name", sortable: true },
-  { name: "Message", uid: "message" },
+  { name: "Company", uid: "company" },
+  { name: "Person of Contact", uid: "personofcontact" },
+  { name: "Services", uid: "services" },
   { name: "Status", uid: "status", sortable: true },
   { name: "Actions", uid: "actions" },
 ];
-export default function GeneralFormTable() {
+
+interface form {
+  id: number;
+  companyName: string;
+  companyWebpage: string;
+  streetAddress: string;
+  streetAddress2: string;
+  city: string;
+  stateOrProvince: string;
+  postalCode: string;
+  services: string[];
+  additionalInfo: string;
+  contactName: string;
+  phoneNumber: string;
+  emailAddress: string;
+  status: string;
+}
+
+export default function PartnershipFormTable() {
   const [forms, setForms] = useState<form[]>([]);
   const [filterValue, setFilterValue] = useState("");
   const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set([]));
   const [statusFilter, setStatusFilter] = useState<Selection>("all");
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>({
-    column: "name",
+    column: "company",
     direction: "ascending",
   });
 
@@ -71,7 +82,7 @@ export default function GeneralFormTable() {
     let filteredForms = [...forms];
     if (hasSearchFilter) {
       filteredForms = filteredForms.filter((form) =>
-        form.name.toLowerCase().includes(filterValue.toLowerCase())
+        form.companyName.toLowerCase().includes(filterValue.toLowerCase())
       );
     }
     if (
@@ -79,8 +90,8 @@ export default function GeneralFormTable() {
       Array.from(statusFilter).length !== statusOptions.length
     ) {
       console.log("statusFilter: ", statusFilter.toString());
-      filteredForms = filteredForms.filter( (form) =>
-        Array.from(statusFilter).includes(form.status),
+      filteredForms = filteredForms.filter((form) =>
+        Array.from(statusFilter).includes(form.status)
       );
     }
 
@@ -92,8 +103,9 @@ export default function GeneralFormTable() {
   const items = useMemo(() => {
     const start = (page - 1) * rowsPerPage;
     const end = start + rowsPerPage;
+
     return filteredItems.slice(start, end);
-  }, [page, rowsPerPage, filteredItems]);
+  }, [page, filteredItems, rowsPerPage]);
 
   const sortedItems = useMemo(() => {
     return [...items].sort((a: Form, b: Form) => {
@@ -114,25 +126,26 @@ export default function GeneralFormTable() {
   const onPreviousPage = useCallback(() => {
     if (page > 1) {
       setPage(page - 1);
-
     }
   }, [page]);
-  const onRowsPerPageChange = useCallback(
+
+  const onRowsPerPageChange = React.useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
       setRowsPerPage(Number(e.target.value));
       setPage(1);
     },
     []
   );
+
   const onSearchChange = useCallback((value?: string) => {
     if (value) {
       setFilterValue(value);
       setPage(1);
-
     } else {
       setFilterValue("");
     }
   }, []);
+
   const onClear = useCallback(() => {
     setFilterValue("");
     setPage(1);
@@ -181,7 +194,7 @@ export default function GeneralFormTable() {
         </div>
         <div className="flex justify-between items-center">
           <span className="text-default-400 text-small">
-            Total forms: {forms.length} 
+            Total forms: {forms.length}
           </span>
           <label className="flex items-center text-default-400 text-small">
             Rows per page:
@@ -197,10 +210,16 @@ export default function GeneralFormTable() {
         </div>
       </div>
     );
-  }, [filterValue, onSearchChange, statusFilter, forms.length, onRowsPerPageChange, onClear]);
+  }, [
+    filterValue,
+    onSearchChange,
+    statusFilter,
+    forms.length,
+    onRowsPerPageChange,
+    onClear,
+  ]);
 
   const bottomContent = useMemo(() => {
-
     return (
       <div className="py-2 px-2 flex justify-between items-center">
         <Pagination
@@ -231,16 +250,58 @@ export default function GeneralFormTable() {
         </div>
       </div>
     );
-  }, [onNextPage, onPreviousPage, page, pages]);
+  }, [items.length, page, pages]);
 
   const renderCell = useCallback((form: Form, columnKey: React.Key) => {
     const cellValue = form[columnKey as keyof Form];
     switch (columnKey) {
-      case "name":
+      case "company":
         return (
           <>
-            <p>{form.name}</p>
-            <p className="text-gray-400">{form.email}</p>
+            <p>
+              {form.companyName}
+              <br />
+              {form.companyName && (
+                <a
+                  href={`https://${form.companyWebpage}`}
+                  target="_blank"
+                  className="underline text-blue-100"
+                >
+                  {form.companyWebpage}
+                </a>
+              )}
+              <br />
+              <p className="text-gray-400">
+                {form.streetAddress}
+                <br />
+                {form.streetAddress2}
+                <br />
+                {form.city}, {form.stateOrProvince} {form.postalCode}
+              </p>
+            </p>
+          </>
+        );
+      case "personofcontact":
+        return (
+          <>
+            <p>{form.contactName}</p>
+            <p className="text-gray-400">
+              {form.phoneNumber}
+              <br />
+              {form.emailAddress}
+            </p>
+          </>
+        );
+      case "services":
+        return (
+          <>
+            <div className="flex flex-col">
+              {form.services.map((service) => (
+                <Chip key={service} color="warning" variant="dot">
+                  {service}
+                </Chip>
+              ))}
+            </div>
           </>
         );
       case "status":
@@ -258,7 +319,7 @@ export default function GeneralFormTable() {
                 <DropdownMenu>
                   <DropdownItem
                     key="view"
-                    href={`/admin/webforms/general/${form.id}`}
+                    href={`/admin/webforms/partnership/${form.id}`}
                   >
                     View
                   </DropdownItem>
@@ -272,17 +333,17 @@ export default function GeneralFormTable() {
     }
   }, []);
 
-  //allows the admin to view the form's contents, and provide an email.
   useEffect(() => {
     async function fetchForms() {
-      const response = await fetch("/api/webforms/generalform");
+      const response = await fetch("/api/webforms/partnershipform");
       const data = await response.json();
       console.log(data);
       setForms(data);
+      console.log(data);
     }
     fetchForms();
   }, []);
-
+  //return the table of partnership forms
   const classNames = useMemo(
     () => ({
       wrapper: ["max-h-[382px]"],
@@ -302,9 +363,9 @@ export default function GeneralFormTable() {
     []
   );
   return (
-    <div className="flex flex-col gap-3">
+    <>
       <Table
-        aria-label="General Form Table"
+        aria-label="Partnership Form Table"
         classNames={classNames}
         isCompact
         removeWrapper
@@ -324,7 +385,7 @@ export default function GeneralFormTable() {
           )}
         </TableHeader>
         <TableBody
-          emptyContent="No general inquiries found."
+          emptyContent="No Partnership inquiries found."
           items={sortedItems}
         >
           {(item) => (
@@ -336,6 +397,65 @@ export default function GeneralFormTable() {
           )}
         </TableBody>
       </Table>
-    </div>
+      {/* <Table
+        aria-label="Partnership Form Table"
+        classNames={classNames}
+        isCompact
+        removeWrapper
+      >
+        <TableHeader>
+          {columns.map((column) => (
+            <TableColumn key={column.uid}>{column.name}</TableColumn>
+          ))}
+        </TableHeader>
+        <TableBody emptyContent="No Partnership inquiries found.">
+          {forms.map((form) => (
+            <TableRow key={form.id}>
+              <TableCell>{form.companyName}</TableCell>
+              <TableCell>
+                <div className="flex flex-col">
+                  {form.services.map((service) => (
+                    <Chip key={service} color="warning" variant="dot">
+                      {service}
+                    </Chip>
+                  ))}
+                </div>
+              </TableCell>
+              <TableCell>
+                <>
+                  <p className="py-1">{form.contactName}</p>
+                  <p className="py-1 text-gray-400">{form.phoneNumber}</p>
+                  <p className="py-1 text-gray-400">{form.emailAddress}</p>
+                </>
+              </TableCell>
+              <TableCell>{form.additionalInfo}</TableCell>
+              <TableCell>{form.status}</TableCell>
+              <TableCell>
+                <div className="relative flex justify-end items-center gap-2">
+                  <Dropdown>
+                    <DropdownTrigger>
+                      <Button isIconOnly size="sm" variant="light">
+                        <VerticalDotsIcon
+                          width={undefined}
+                          height={undefined}
+                        />
+                      </Button>
+                    </DropdownTrigger>
+                    <DropdownMenu>
+                      <DropdownItem
+                        key="view"
+                        href={`/admin/webforms/partnership/${form.id}`}
+                      >
+                        View
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
+                </div>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table> */}
+    </>
   );
 }

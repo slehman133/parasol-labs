@@ -4,7 +4,7 @@ import React from 'react'
 
 export default function page() {
   return (
-    <div className='mx-auto px-4 sm:px-8 lg:px-14 py-8 grid grid-cols-1 lg:grid-cols-2 gap-5'>
+    <div className='mx-auto px-4 sm:px-8 lg:px-14 py-8 grid grid-cols-1 lg:grid-cols-2 gap-5 container'>
       <div className='space-y-5'>
         <h1 className='text-2xl lg:text-4xl font-bold'>
           Contact us at,

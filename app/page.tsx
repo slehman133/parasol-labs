@@ -1,16 +1,11 @@
 "use client";
-import React, { useState } from "react";
-import HeadNavbar from "./components/navigation/navbar/HeadNavbar";
+import React, { useEffect, useState } from "react";
 import "./homestyles.css";
 import {
   Button,
-  Card,
-  CardHeader,
   Divider,
   Image,
-  Input,
   Link,
-  Textarea,
 } from "@nextui-org/react";
 import {
   motion,
@@ -21,10 +16,15 @@ import {
 import SwiperButton from "./components/navigation/swiperbutton/SwiperButton";
 import { useInView } from "react-intersection-observer";
 import ProfilePicture from "./components/profile/circularprofile";
+import { client } from "@/sanity/lib/client";
+import dynamic from "next/dynamic";
 
-//Kaeden
-//TODO: figure out how the hell to hide the header and have it fade in at a certain point
-//ALSO: figure out how to make the video scroll into the div below and not have it be its own section.
+const PostPreview = dynamic(() => import("./components/Blog/PostPreview"), {
+  loading: () => <p>Loading...</p>,
+});
+
+// import PostPreview from "./components/Blog/PostPreview";
+
 export default function Home() {
   //Used for the section wipe for the video section
   const { scrollY } = useViewportScroll();
@@ -36,7 +36,7 @@ export default function Home() {
   const [strlRef, inStrlView] = useInView();
   const [isVisible, setIsVisible] = useState(false);
   const [isStrlVisible, setIsStrlVisible] = useState(false);
-
+  const [postPreviews, setPostPreviews] = useState<any>([]);
 
   if (inView && !isVisible) {
     controls.start("visible");
@@ -46,15 +46,30 @@ export default function Home() {
     controls.start("visible");
     setIsStrlVisible(true);
   }
+
+  useEffect(() => {
+    //fetch news articles from sanity
+    const fetchNews = async () => {
+      const res = await client.fetch(`*[_type == "post"]`, {}, { cache: "no-store" })
+      const articleNum = res.length;
+      // //limit the ref to the last four articles
+      setPostPreviews(res.slice(articleNum-2, articleNum).map((post:any) => (
+        <PostPreview key = {post.slug?.current}{...post}/>
+      )))
+    }
+    fetchNews();
+  }, [])
+
   return (
-    <div className="">
-      <section className="z-10">
-        <video loop={true} muted={true} autoPlay={true}>
+    <div >
+      <section className="z-10 md:block">
+        <video loop={true} muted={true} autoPlay={true} className="w-full object-cover h-full">
           <source src="/videos/parasolHome.mp4" type="video/mp4" />
         </video>
         <SwiperButton targetId="landing-section" />
       </section>
-      <section className="content min-h-screen" id="landing-section">
+      <div className="container mx-auto">
+      <section className="" id="landing-section">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
           <div className=" px-10 py-5 mx-auto my-auto">
             <h1 className="text-3xl lg:text-6xl font-bold text-center lg:text-left">
@@ -96,74 +111,8 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <div className="py-1">
-        {/* TODO: Add sliding animation on entry of section */}
-        {/* Potential: create a hook and utilize div refs to keep things */}
-        <section>
-          <div className="grid grid-cols-1 md:grid-cols-[50%_50%] px-5 md:px-10 gap-5">
-            <div className="text-center md:text-left">
-              <motion.h1
-                className="mx-auto md:text-6xl py-10 leading-loose"
-                initial="hidden"
-                animate={controls}
-                variants={{
-                  visible: { opacity: 1, y: 0 },
-                  hidden: { opacity: 0, y: 50 },
-                }}
-                transition={{ duration: 1 }}
-                ref={ref}
-              >
-                Our first step in{" "}
-                <span className="text-green-300 font-semibold">Biotechnology.</span>
-                <br />
-                Is with{" "}
-                <span className="text-red-400 font-bold">Women&apos;s Health</span>.
-              </motion.h1>
-              <svg
-                height={200}
-                width={200}
-                className="mx-auto"
-                id="eDiGStl2V6I1"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlnsXlink="http://www.w3.org/1999/xlink"
-                viewBox="0 0 300 300"
-                shape-rendering="geometricPrecision"
-                text-rendering="geometricPrecision"
-              >
-                <path
-                  d="M216.201146,141.167723c-26.689497-4.919209-44.913991-2.686837-66.897827-26.258456-23.221065-23.254447-65.673291-13.6587-69.062625,22.173807s63.467703,84.919324,135.960452,4.084649Z"
-                  transform="translate(1.817804 23.442574)"
-                  fill="#ecc9c7"
-                  stroke="#ecc9c7"
-                  strokeWidth="0.6"
-                />
-                <ellipse
-                  rx="25"
-                  ry="25"
-                  transform="translate(130.982868 93.32929)"
-                  fill="#ecc9c7"
-                  strokeWidth="0"
-                />
-                <ellipse
-                  rx="15"
-                  ry="15"
-                  transform="translate(189.838379 140.696999)"
-                  fill="#ecc9c7"
-                  strokeWidth="0"
-                />
-              </svg>
-            </div>
-            <div className="text-center md:text-right">
-              <img
-                src="/images/homepagelady.png"
-                alt="Teagan Paddleton and her baby, Oakley."
-                className="h-3/4 mx-auto my-auto boxshadow"
-              />
-            </div>
-          </div>
-        </section>
-        <Divider orientation="horizontal" />
-        <section className="content ">
+      <div className="py-1 ">
+        <section className="">
           <div className="grid grid-cols-1 md:grid-cols-2 md:gap-12">
             {/* Image column */}
             <div className="relative">
@@ -184,7 +133,7 @@ export default function Home() {
                 hidden: { opacity: 0, y: 50 },
               }}
               transition={{ duration: 1 }}
-              ref={strlRef}
+              ref={ref}
             >
               <h1 className="font-bold text-2xl md:text-4xl py-5">Liquid Sterilization</h1>
               <h1 className="font-bold text-9xl md:text-8xl py-5">STRL</h1>
@@ -207,8 +156,7 @@ export default function Home() {
             </motion.div>
           </div>
         </section>
-
-        <section className="content">
+        <section className="mt-[20%]">
           <div className="text-center">
             {/* TODO: add animation to the following header text */}
             <motion.h1 className="mx-auto text-4xl md:text-6xl py-10 md:py-20 leading-loose">
@@ -218,9 +166,9 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-x-unit-3xl mx-auto">
             <div className="mx-auto">
-              <ProfilePicture imageUrl="/images/ashraf_affan.webp" linkedinUrl="" />
-              <h1 className="font-semibold text-lg md:text-xl lg:text-2xl">Dr. Ashraf Affan</h1>
-              <p className="font-semibold text-slate-400 text-sm md:text-base">
+              <ProfilePicture imageUrl="/images/ashraf_affan.webp" linkedinUrl="https://www.linkedin.com/in/draffan/" />
+              <h1 className="font-semibold text-lg md:text-xl lg:text-2xl text-center">Dr. Ashraf Affan</h1>
+              <p className="font-semibold text-slate-400 text-sm md:text-base text-center">
                 Angel Kids Pediatrics
                 <br />I Nurse My Baby
                 <br />
@@ -228,34 +176,34 @@ export default function Home() {
               </p>
             </div>
             <div className="mx-auto">
-              <ProfilePicture imageUrl="/images/christine_davies.jpg" linkedinUrl="" />
-              <h1 className="font-semibold">Christine Davies</h1>
-              <p className="font-semibold text-slate-400">
+              <ProfilePicture imageUrl="/images/christine_davies.jpg" linkedinUrl="https://www.linkedin.com/in/christine-davies20n/" />
+              <h1 className="font-semibold text-center">Christine Davies</h1>
+              <p className="font-semibold text-slate-400 text-center">
                 Angel Kids Pediatrics
                 <br />
                 Board Certified Lactation Consultant
               </p>
             </div>
             <div className="mx-auto">
-              <ProfilePicture imageUrl="/images/megan_gregg.jpg" linkedinUrl="" />
-              <h1 className="font-semibold">Megan Gregg</h1>
-              <p className="font-semibold text-slate-400">
+              <ProfilePicture imageUrl="/images/megan_gregg.jpg" linkedinUrl="https://www.linkedin.com/in/businesswithmeg/" />
+              <h1 className="font-semibold text-center">Megan Gregg</h1>
+              <p className="font-semibold text-slate-400 text-center">
                 15+ years of experience building startups in SaaS, MarTech, F&B,
                 and E-commerce <br />
                 Founding Member of Women in Tech
               </p>
             </div>
             <div className="mx-auto">
-              <ProfilePicture imageUrl="/images/scott_kelly.jpeg" linkedinUrl="" />
-              <h1 className="font-semibold">Scott Kelly</h1>
-              <p className="font-semibold text-slate-400">
+              <ProfilePicture imageUrl="/images/scott_kelly.jpeg" linkedinUrl="https://www.linkedin.com/in/blackdogceo/" />
+              <h1 className="font-semibold text-center">Scott Kelly</h1>
+              <p className="font-semibold text-slate-400 text-center">
                 Black Dog Venture Partners
               </p>
             </div>
           </div>
         </section>
         <Divider orientation="horizontal" className="my-10" />
-        <section className="content" id="contact">
+        <section className="mt-[20%]" id="contact">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 md:gap-x-8">
             <div className="text-center md:text-left py-2">
               <h1 className="font-thin text-4xl md:text-7xl">
@@ -334,50 +282,13 @@ export default function Home() {
                 Recent News
               </h1>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 py-5">
-                {/* ACTUALLY PULL FROM NEWS PAGE */}
-                <Card className="h-[300px] " isPressable={true}
-                  onClick={() => {
-                    window.open("news/moms-wanted-be-the-face-of-strl");
-                  }}
-                >
-                  <CardHeader className="z-10 absolute flex-col !items-start top-1">
-                    <div className="grid grid-cols-2 gap-3">
-                      <p className="text-tiny text-white/60 uppercase font-bold">
-                        Teagan Paddleton
-                      </p>
-                      <svg
-                        width="15px"
-                        height="15px"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="opacity-60"
-                      >
-                        <path
-                          d="M4 19H20M11.2929 5.70711L8.70711 8.2929C8.31658 8.68342 7.68342 8.68342 7.29289 8.2929L5.70711 6.70711C5.07714 6.07714 4 6.52331 4 7.41422V15C4 15.5523 4.44772 16 5 16H19C19.5523 16 20 15.5523 20 15V7.41421C20 6.52331 18.9229 6.07714 18.2929 6.70711L16.7071 8.2929C16.3166 8.68342 15.6834 8.68342 15.2929 8.2929L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711Z"
-                          stroke="#FFFFFF"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    </div>
-                    <h4 className="text-white font-medium text-large">
-                      Moms Wanted! Be the face of STRL.
-                    </h4>
-                  </CardHeader>
-                  <Image
-                    removeWrapper
-                    alt="Moms Wanted! Be the face of STRL"
-                    className="z-0 w-auto h-full object-cover brightness-50"
-                    src="/images/strlnews.webp"
-                  />
-                </Card>
+                {postPreviews}
               </div>
             </div>
           </div>
         </section>
       </div>
+    </div>
     </div>
   );
 }

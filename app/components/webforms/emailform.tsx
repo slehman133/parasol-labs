@@ -1,10 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import { Button, Input, Textarea } from "@nextui-org/react";
-import { SendEmail } from "../../api/email/contact"; // Adjust the path as necessary
 import * as ga from "@/lib/gtagHelper";
 
-//Create a db record as well as send an email to keep traces of the email sent
 const SendEmailForm: React.FC = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -15,13 +13,21 @@ const SendEmailForm: React.FC = () => {
   const [message, setMessage] = useState<string>("");
 
   const validateEmail = (email: string) =>
-    email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
+    email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z ]{2,4}$/i);
 
   const isInvalid = React.useMemo(() => {
     if (email === "") return false;
 
     return validateEmail(email) ? false : true;
   }, [email]);
+
+  const clearForm = async () => {
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setHtml("");
+    setMessage("");
+  }
 
   const handleSendEmail = async () => {
     //combine first and last name
@@ -41,13 +47,15 @@ const SendEmailForm: React.FC = () => {
     try {
       setSubject("test");
       createGAEvent();
-      const error = await SendEmail({ to: email, subject, html, name });
+      //trim email
+      email.trim();
       createDBRecord(name);
       // console.log(error);
-      setMessage("Email sent successfully!");
+      setMessage("Form sent successfully!");
+      clearForm();
     } catch (error) {
       setMessage(
-        "Failed to send email. Please check the console for more details."
+        "Failed to send form. Please check the console for more details."
       );
       console.error(error);
     } finally {
@@ -61,6 +69,7 @@ const SendEmailForm: React.FC = () => {
       category: "general_form",
       label: "general_form",
       value: `${email} - sent email successfully`,
+      username: `${email}`,
     })
   };
   const createDBRecord = async (name: string) => {

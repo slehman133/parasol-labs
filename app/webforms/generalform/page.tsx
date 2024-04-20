@@ -5,7 +5,7 @@ import React from 'react'
 
 export default function GeneralFormPage() {
   return (
-    <div className='w-full p-4 md:p-10'>
+    <div className='w-full p-4 md:p-10 container mx-auto'>
     <div className='border border-white p-4 md:p-10 mx-auto my-4 md:my-auto rounded-md md:grid md:grid-cols-2 gap-5'>
       <div className='text-center md:text-left'>
         <h3 className='font-bold text-2xl md:text-3xl'>Let&apos;s get in touch!</h3>
