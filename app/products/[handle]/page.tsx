@@ -37,12 +37,14 @@ const ProductPage = async (props: ProductPageProps) => {
   return (
     <>
       <div className='flex flex-row text-white m-12 mb-auto mt-26 mx-24'>
-        <div className='m-5 mb-auto mt-16 max-w-[50%]'>
+        <div className='m-5 mb-auto mt-16 max-w-[50%] justify-center'>
           <Image
             src={imageSrc}
             alt={image?.altText || 'Product image'}
             width={7000}
-            height={7000} />
+            height={7000} 
+            className='mx-auto'
+          />
         </div>
         <div className='m-12 max-w-3xl'>
           <h1 className='font-bold text-5xl'>{product.title}</h1>

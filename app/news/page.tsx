@@ -19,12 +19,10 @@ const NewsPage = async () => {
     const postPreviews = res.map((post:any) => (
         <PostPreview key = {post.slug?.current}{...post}/>
     ));
-    
-    
 
     return (
         <>
-            <div className="flex flex-col md:p-24">
+            <div className="flex flex-col md:p-24 container mx-auto">
                 <div>
                     <h1 className=" font-bold text-4xl text-center ">
                         Parasol News

@@ -23,7 +23,25 @@ export default function PartnershipFormPage() {
   const [sending, setSending] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
 
-  //Potentially could do, if the person of contact has an account, we could store the partnership in the account's dashboard
+  const clearForm = () => {
+    setFormData({
+      companyName: "",
+      companyWebpage: "",
+      streetAddress: "",
+      streetAddress2: "",
+      city: "",
+      stateOrProvince: "",
+      postalCode: "",
+      services: [""],
+      additionalInfo: "",
+      contactName: "",
+      phoneNumber: "",
+      emailAddress: "",
+    });
+    setSelected([""]);
+  }
+
+    //Potentially could do, if the person of contact has an account, we could store the partnership in the account's dashboard
   //Create a handler for the submit button to push the form data to the database
   const handleSubmitForm = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -45,6 +63,7 @@ export default function PartnershipFormPage() {
         body: JSON.stringify(formData)
       });
       setMessage('Form submitted successfully!');
+      clearForm();
       setSending(false);
     }
     catch (error) {
@@ -55,7 +74,7 @@ export default function PartnershipFormPage() {
   };
 
   return (
-    <div className='p-4 md:p-10'>
+    <div className='p-4 md:p-10 container mx-auto'>
       <div className='border-1 border-whitep-4 md:p-10 rounded-md shadow-lg mx-auto my-auto md:grid md:grid-cols-2 md:gap-5'>
         <div className='text-left space-y-4'>
           <h3 className='font-bold text-xl md:text-3xl'>Let&apos;s build a better tomorrow.</h3>
