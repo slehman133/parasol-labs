@@ -12,8 +12,11 @@ const ProductSection = ({ products }: { products: any }) => {
         title: "",
         descriptionHtml: "",
         handle: "",
-        altText: ""
+        altText: "",
+        imageUrl: ""
     })
+
+    const [image, setImage] = useState("")
 
     const [formData, setFormData] = useState(new FormData())
 
@@ -71,16 +74,8 @@ const ProductSection = ({ products }: { products: any }) => {
                                                 fd.append('file', image)
                                                 fd.append('handle', product.handle)
                                                 setFormData(fd)
-                                                // setProduct({ ...product, image: fd })
                                             }}
                                         />
-                                        {/* <input
-                                            type="text"
-                                            name="handle"
-                                            id="handle"
-                                            className="input input-bordered w-full max-w-xs"
-                                            onChange={(e) => setProduct({ ...product, imageUrl: e.target.value })}
-                                        /> */}
                                     </div>
                                     <div className='flex flex-col'>
                                         <label htmlFor="handle">Alt Text For Image</label>
@@ -99,13 +94,14 @@ const ProductSection = ({ products }: { products: any }) => {
                                     Close
                                 </Button>
                                 <Button color="primary" onPress={async () => {
-                                    const prodRes = await fetch("/api/admin/product", {
-                                        method: "POST",
-                                        body: JSON.stringify(product),
-                                    })
                                     const imageRes = await fetch("/api/admin/product/image", {
                                         method: "POST",
                                         body: formData
+                                    }).then(res => res.json())
+                                    setProduct({ ...product, imageUrl: imageRes.imageUrl })
+                                    const prodRes = await fetch("/api/admin/product", {
+                                        method: "POST",
+                                        body: JSON.stringify(product),
                                     })
                                     onClose()
                                 }}>
