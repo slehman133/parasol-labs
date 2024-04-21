@@ -4,6 +4,8 @@ import PartnershipFormTable from "@/components/webforms/tables/partnershipformta
 import GeneralFormTable from "@/components/webforms/tables/generalformtable";
 import OrderDisplay from "@/components/admin/OrderDisplay";
 import ProductSection from "@/components/admin/ProductSection";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 const DisplayPannel = ({
   orders,
   products,
@@ -11,32 +13,46 @@ const DisplayPannel = ({
   orders: any;
   products: any;
 }) => {
-  const [activeTab, setActiveTab] = React.useState("analytics")
+  const router = useRouter()
+  const tab = useSearchParams().get("tab")
+  const [activeTab, setActiveTab] = React.useState(tab)
 
   return (
     <>
       <div className="border-b-2 border-slate-500 flex text-2xl gap-5 mb-5">
         <h1
           className="hover:bg-white hover:cursor-pointer hover:text-black"
-          onClick={() => setActiveTab("analytics")}
+          onClick={() => {
+            setActiveTab("analytics")
+            router.push('/admin?tab=analytics')
+          }}
         >
           Analytics
         </h1>
         <h1
           className="hover:bg-white hover:cursor-pointer hover:text-black"
-          onClick={() => setActiveTab("orders")}
+          onClick={() => {
+            setActiveTab("orders")
+            router.push('/admin?tab=orders')
+          }}
         >
           Orders
         </h1>
         <h1
           className="hover:bg-white hover:cursor-pointer hover:text-black"
-          onClick={() => setActiveTab("products")}
+          onClick={() => {
+            setActiveTab("products")
+            router.push('/admin?tab=products')
+          }}
         >
           Products
         </h1>
         <h1
           className="hover:bg-white hover:cursor-pointer hover:text-black"
-          onClick={() => setActiveTab("messages")}
+          onClick={() => {
+            setActiveTab("messages")
+            router.push('/admin?tab=messages')
+          }}
         >
           Messages
         </h1>
