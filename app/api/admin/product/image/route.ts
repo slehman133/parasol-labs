@@ -1,6 +1,7 @@
 // code by Samuel Lehman
 
 import { NextResponse } from "next/server";
+
 import { cloudinary } from '@/utils/cloudinary'
 
 
@@ -11,9 +12,9 @@ export async function POST(request: Request) {
     const arrayBuffer = await image.arrayBuffer()
     const buffer = new Uint8Array(arrayBuffer)
 
-    const imageUrl = await new Promise((resolve, reject) => {
+    const imageUrl = await new Promise((resolve: any, reject: any) => {
         cloudinary.uploader.upload_stream({
-        }, function (error, result) {
+        }, function (error: any, result: any) {
             if (error) {
                 console.log(error)
                 reject(error);
