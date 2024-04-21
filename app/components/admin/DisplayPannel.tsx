@@ -15,7 +15,7 @@ const DisplayPannel = ({
 }) => {
   const router = useRouter()
   const tab = useSearchParams().get("tab")
-  const [activeTab, setActiveTab] = React.useState(tab)
+  const [activeTab, setActiveTab] = React.useState(tab || "analytics")
 
   return (
     <>
