@@ -272,7 +272,7 @@ export const createProduct = async (product:
     altText: string
   }) => {
   const newProduct = await createProductQuery(product)
-  // console.log(newProduct)
+  console.log(newProduct)
 
   const pubQuery = await publishProductQuery(newProduct.data.productCreate.product.id)
 

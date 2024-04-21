@@ -16,7 +16,6 @@ const ProductSection = ({ products }: { products: any }) => {
         imageUrl: ""
     })
 
-    const [image, setImage] = useState("")
 
     const [formData, setFormData] = useState(new FormData())
 
