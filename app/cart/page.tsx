@@ -64,7 +64,7 @@ const CartPage = () => {
                 transition={{ duration: 0.75 }}>
 
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 container mx-auto'>
-                    <div className=' m-16 overflow-y-scroll max-h-[80vh]'>
+                    <div className='m-16 overflow-y-scroll max-h-[80vh]'>
                         {
                             cartItems.length > 0 &&
                             <Link href="/products"><h1 className='text-xl font-bold mx-28'>&larr; View more products</h1></Link>
@@ -95,6 +95,7 @@ const CartPage = () => {
                                                 src="/images/trash.png"
                                                 alt="trash button"
                                                 onClick={(e) => {
+                                                    0
                                                     itemToRemove = index
                                                     onOpen()
                                                 }} />

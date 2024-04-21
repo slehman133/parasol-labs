@@ -11,7 +11,7 @@ const DisplayPannel = ({
   orders: any;
   products: any;
 }) => {
-  const [activeTab, setActiveTab] = React.useState("");
+  const [activeTab, setActiveTab] = React.useState("analytics")
 
   return (
     <>
@@ -43,11 +43,12 @@ const DisplayPannel = ({
       </div>
       {activeTab === "messages" && (
         <>
-          <h1 className="text-4xl font-bold">Messages</h1>
           <div className="my-5">
+            <h1 className="text-4xl font-bold">General Form</h1>
             <GeneralFormTable />
           </div>
           <div className="my-5">
+            <h1 className="text-4xl font-bold">Partnership Form</h1>
             <PartnershipFormTable />
           </div>
         </>
