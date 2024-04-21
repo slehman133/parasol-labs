@@ -26,7 +26,6 @@ const SendEmailForm: React.FC = () => {
     setLastName("");
     setEmail("");
     setHtml("");
-    setMessage("");
   }
 
   const handleSendEmail = async () => {
