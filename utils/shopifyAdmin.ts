@@ -21,7 +21,7 @@ const admin = async (query: string) => {
 export const adminGetProducts = async () => {
   const query =
     `query AdminProducts {
-  products(first: 10) {
+  products(first: 100) {
     edges {
       node {
         id
@@ -62,7 +62,7 @@ export const adminEditQuantity = async (id: string, quantity: number, variantId:
     product(id: "gid://shopify/Product/${id}") {
       id
     }
-    productVariants(first: 10) {
+    productVariants(first: 100) {
       edges {
         node {
           id
@@ -218,7 +218,6 @@ const createProductQuery = async (product:
     imageUrl: string,
     altText: string,
   }) => {
-  console.log(product.imageUrl)
   const createProdQuery =
     `mutation{
       productCreate(input: {
@@ -271,6 +270,7 @@ export const createProduct = async (product:
     imageUrl: string,
     altText: string
   }) => {
+  console.log(product)
   const newProduct = await createProductQuery(product)
   console.log(newProduct)
 

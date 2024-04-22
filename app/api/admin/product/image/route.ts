@@ -25,5 +25,7 @@ export async function POST(request: Request) {
             .end(buffer);
     })
 
+    // console.log(imageUrl)
+
     return NextResponse.json({ imageUrl })
 }

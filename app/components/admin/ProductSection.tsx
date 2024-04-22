@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import ProductDisplay from './ProductDisplay'
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Button } from "@nextui-org/react";
-
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const ProductSection = ({ products }: { products: any }) => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -17,7 +17,16 @@ const ProductSection = ({ products }: { products: any }) => {
     })
 
 
+
+    // const [image, setImage] = useState("")
+
+
     const [formData, setFormData] = useState(new FormData())
+
+
+    const router = useRouter()
+
+    const image = useSearchParams().get("image")
 
     return (
         <>
@@ -29,7 +38,8 @@ const ProductSection = ({ products }: { products: any }) => {
                                 Create Item
                             </ModalHeader>
                             <ModalBody className="gap-1 items-center">
-                                <form className='flex flex-col gap-3'>
+                                <form id="create-form" method='POST'
+                                    className='flex flex-col gap-3'>
                                     <div className='flex flex-col'>
                                         <label htmlFor="title">Title </label>
                                         <input
@@ -38,6 +48,7 @@ const ProductSection = ({ products }: { products: any }) => {
                                             id="title"
                                             className="input input-bordered w-full max-w-xs"
                                             onChange={(e) => setProduct({ ...product, title: e.target.value })}
+                                            value={product.title}
                                         />
                                     </div>
                                     <div className='flex flex-col'>
@@ -47,6 +58,7 @@ const ProductSection = ({ products }: { products: any }) => {
                                             id="description"
                                             className="textarea textarea-bordered w-full max-w-xs"
                                             onChange={(e) => setProduct({ ...product, descriptionHtml: e.target.value })}
+                                            value={product.descriptionHtml}
                                         />
                                     </div>
                                     <div className='flex flex-col'>
@@ -57,6 +69,7 @@ const ProductSection = ({ products }: { products: any }) => {
                                             id="handle"
                                             className="input input-bordered w-full max-w-xs"
                                             onChange={(e) => setProduct({ ...product, handle: e.target.value })}
+                                            value={product.handle}
                                         />
                                     </div>
                                     <div className='flex flex-col'>
@@ -75,6 +88,18 @@ const ProductSection = ({ products }: { products: any }) => {
                                                 setFormData(fd)
                                             }}
                                         />
+                                        <button className='btn btn-primary my-2'
+                                            onClick={async (e) => {
+                                                e.preventDefault()
+                                                const imageRes = await fetch("/api/admin/product/image", {
+                                                    method: "POST",
+                                                    body: formData
+                                                }).then(res => res.json())
+                                                const img = imageRes.imageUrl
+                                                router.push(`/admin?tab=products&image=${img}`)
+
+                                            }}
+                                        >Add Image</button>
                                     </div>
                                     <div className='flex flex-col'>
                                         <label htmlFor="handle">Alt Text For Image</label>
@@ -84,6 +109,7 @@ const ProductSection = ({ products }: { products: any }) => {
                                             id="handle"
                                             className="input input-bordered w-full max-w-xs"
                                             onChange={(e) => setProduct({ ...product, altText: e.target.value })}
+                                            value={product.altText}
                                         />
                                     </div>
                                 </form>
@@ -93,15 +119,11 @@ const ProductSection = ({ products }: { products: any }) => {
                                     Close
                                 </Button>
                                 <Button color="primary" onPress={async () => {
-                                    const imageRes = await fetch("/api/admin/product/image", {
-                                        method: "POST",
-                                        body: formData
-                                    }).then(res => res.json())
-                                    setProduct({ ...product, imageUrl: imageRes.imageUrl })
                                     const prodRes = await fetch("/api/admin/product", {
                                         method: "POST",
-                                        body: JSON.stringify(product),
+                                        body: JSON.stringify({ ...product, imageUrl: image }),
                                     })
+                                    router.push(`/admin?tab=products`)
                                     onClose()
                                 }}>
                                     Add Item
@@ -110,7 +132,7 @@ const ProductSection = ({ products }: { products: any }) => {
                         </>
                     )}
                 </ModalContent>
-            </Modal>
+            </Modal >
             <div className="flex justify-between">
                 <h1 className='text-4xl font-bold'>Products</h1>
                 <button
