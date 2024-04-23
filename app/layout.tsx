@@ -37,10 +37,10 @@ export default async function RootLayout({
       <head>
         <link rel="icon" type="image/x-icon" href="/images/favicon.ico"></link>
       </head>
-      <body className={` ${inter.className} dark bg-background`}>
-        <NextProviders
-          themeProps={{ attribute: "class", defaultTheme: "dark" }}
-        >
+      <NextProviders
+        themeProps={{ attribute: "class", defaultTheme: "dark" }}
+      >
+        <body className={` ${inter.className} bg-background`}>
           <Provider session={session}>
             <CartProvider>
               <HeadNavbar />
@@ -48,9 +48,9 @@ export default async function RootLayout({
               <Footer />
             </CartProvider>
           </Provider>
-          <CookieBanner />
-        </NextProviders>
-      </body>
+        <CookieBanner />
+        </body>
+      </NextProviders>
     </html>
   );
 }

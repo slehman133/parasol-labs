@@ -12,7 +12,7 @@ export interface ProviderProps {
 export function NextProviders({children, themeProps}: ProviderProps){
   return (
     <NextUIProvider>
-        <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
+        <NextThemesProvider {...themeProps} themes={['dark', 'light']}>{children}</NextThemesProvider>
     </NextUIProvider>
   );
 }
