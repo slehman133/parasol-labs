@@ -19,7 +19,7 @@ interface ProductCardProps {
 const ProductCard = (props: ProductCardProps) => {
     return (
         <>
-            <motion.div className="flex flex-wrap shadow-2xl flex-row w-[90%] mx-auto my-5 justify-between text-white"
+            <motion.div className="flex flex-wrap shadow-2xl flex-row w-[90%] mx-auto my-5 justify-between"
                 initial={{
                     opacity: 0,
                     y: 100

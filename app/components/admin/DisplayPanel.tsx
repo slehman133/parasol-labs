@@ -6,7 +6,7 @@ import OrderDisplay from "@/components/admin/OrderDisplay";
 import ProductSection from "@/components/admin/ProductSection";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
-const DisplayPannel = ({
+const DisplayPanel = ({
   orders,
   products,
 }: {
@@ -100,4 +100,4 @@ const DisplayPannel = ({
   );
 };
 
-export default DisplayPannel;
+export default DisplayPanel;
