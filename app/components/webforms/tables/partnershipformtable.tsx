@@ -323,6 +323,8 @@ export default function PartnershipFormTable() {
                   >
                     View
                   </DropdownItem>
+                  <DropdownItem key="edit">Edit</DropdownItem>
+                  <DropdownItem key="delete">Delete</DropdownItem>
                 </DropdownMenu>
               </Dropdown>
             </div>

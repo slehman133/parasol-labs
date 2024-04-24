@@ -135,6 +135,7 @@ const PartnershipWebformsPage = (props: { params: { id: string } }) => {
           </div>
           <div>
             <h1 className="my-2 font-medium text-xl">Info:</h1>
+            <p>{form.services.join(", ")}</p>
             <p>{form.additionalInfo}</p>
           </div>
           <div></div>
