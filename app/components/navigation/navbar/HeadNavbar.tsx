@@ -23,6 +23,7 @@ import { Modal, useDisclosure } from "@nextui-org/react";
 import { siteConfig } from "@/app/config/site";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { ThemeSwitch } from "../../ThemeSwitch";
 
 const HeadNavbar = () => {
   const { cartItems } = useCart();
@@ -86,8 +87,8 @@ const HeadNavbar = () => {
             }
           </div>
         </NavbarContent> */}
-
         <NavbarContent className="visible" justify="end">
+          <ThemeSwitch />
           <div className="w-[35px] mx-2 hover:cursor-pointer hover:animate-pulse"
             onClick={onOpen}>
             <img src="/images/profile-avatar.png" alt="profile avatar" />
