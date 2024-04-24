@@ -1,30 +1,39 @@
 "use client";
-
-import {FC} from "react";
-import {VisuallyHidden} from "@react-aria/visually-hidden";
-import {SwitchProps, useSwitch} from "@nextui-org/react";
-import {useTheme} from "next-themes";
-import {clsx} from "@nextui-org/shared-utils";
-import {useIsSSR} from "@react-aria/ssr";
+import { FC } from "react";
+import { VisuallyHidden } from "@react-aria/visually-hidden";
+import { SwitchProps, useSwitch } from "@nextui-org/react";
+import { useTheme } from "next-themes";
+import { clsx } from "@nextui-org/shared-utils";
+import { useIsSSR } from "@react-aria/ssr";
 import { SunIcon } from "@/public/SunIcon";
 import { MoonIcon } from "@/public/MoonIcon";
-
-
 
 export interface ThemeSwitchProps {
   className?: string;
   classNames?: SwitchProps["classNames"];
 }
 
-export const ThemeSwitch: FC<ThemeSwitchProps> = ({className, classNames}) => {
-  const {theme, setTheme} = useTheme();
+
+export const ThemeSwitch: FC<ThemeSwitchProps> = ({
+  className,
+  classNames,
+}) => {
+  const { theme, setTheme } = useTheme();
+
   const isSSR = useIsSSR();
 
   const onChange = () => {
     theme === "light" ? setTheme("dark") : setTheme("light");
   };
 
-  const {Component, slots, isSelected, getBaseProps, getInputProps, getWrapperProps} = useSwitch({
+  const {
+    Component,
+    slots,
+    isSelected,
+    getBaseProps,
+    getInputProps,
+    getWrapperProps,
+  } = useSwitch({
     isSelected: theme === "light",
     "aria-label": `Switch to ${theme === "light" ? "dark" : "light"} mode`,
     onChange,
@@ -36,7 +45,7 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({className, classNames}) => {
         className: clsx(
           "p-1 w-8 h-8 transition-opacity hover:opacity-80 cursor-pointer",
           className,
-          classNames?.base,
+          classNames?.base
         ),
       })}
     >
@@ -58,11 +67,11 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({className, classNames}) => {
               "px-0",
               "mx-0",
             ],
-            classNames?.wrapper,
+            classNames?.wrapper
           ),
         })}
       >
-        {!isSelected || isSSR ? <SunIcon  /> : <MoonIcon  />}
+        {!isSelected || isSSR ? <SunIcon /> : <MoonIcon />}
       </div>
     </Component>
   );

@@ -56,7 +56,7 @@ const HeadNavbar = () => {
                 alt="Parasol"
               />
             </Link>
-            <Divider orientation="vertical" className="bg-white" />
+            <Divider orientation="vertical" />
           </NavbarBrand>
           <NavbarBrand>
             <p className="font-bold text-inherit text-lg">
