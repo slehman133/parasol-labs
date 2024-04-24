@@ -59,7 +59,7 @@ const HeadNavbar = () => {
             <Divider orientation="vertical" className="bg-white" />
           </NavbarBrand>
           <NavbarBrand>
-            <p className="font-bold text-inherit text-white text-lg">
+            <p className="font-bold text-inherit text-lg">
               PARASOL LABORATORIES
               <br />
               INCORPORATED
@@ -121,10 +121,10 @@ const HeadNavbar = () => {
               size="lg"
             >
               Cart {(cartItems && cartItems.length > 0) &&
-                    <div className="bg-red-500 rounded text-white p-[0.1rem] ml-2">
-                      <p>{cartItems.length}</p>
-                    </div>
-                  }
+                <div className="bg-red-500 rounded text-white p-[0.1rem] ml-2">
+                  <p>{cartItems.length}</p>
+                </div>
+              }
             </Link>
           </NavbarMenuItem>
         </NavbarMenu>
