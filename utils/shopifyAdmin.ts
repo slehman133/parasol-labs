@@ -1,6 +1,5 @@
 import { createAdminApiClient, createAdminRestApiClient } from '@shopify/admin-api-client'
 
-
 const restAdminClient = createAdminRestApiClient({
   storeDomain: process.env.NEXT_PUBLIC_STORE_URL as string,
   apiVersion: '2023-04',
@@ -22,7 +21,7 @@ const admin = async (query: string) => {
 export const adminGetProducts = async () => {
   const query =
     `query AdminProducts {
-  products(first: 10) {
+  products(first: 100) {
     edges {
       node {
         id
@@ -63,7 +62,7 @@ export const adminEditQuantity = async (id: string, quantity: number, variantId:
     product(id: "gid://shopify/Product/${id}") {
       id
     }
-    productVariants(first: 10) {
+    productVariants(first: 100) {
       edges {
         node {
           id
@@ -217,17 +216,19 @@ const createProductQuery = async (product:
     descriptionHtml: string,
     handle: string,
     imageUrl: string,
-    altText: string
+    altText: string,
   }) => {
   const createProdQuery =
-    `
-    mutation{
+    `mutation{
       productCreate(input: {
         title: "${product.title}",
         descriptionHtml: "${product.descriptionHtml}",
         handle: "${product.handle}"
-      }) 
-      {
+      }, media: {
+        alt: "${product.altText}",
+        mediaContentType: IMAGE,
+        originalSource: "${product.imageUrl}"
+      }) {
         product {
           id
           title
@@ -261,10 +262,6 @@ const publishProductQuery = async (id: string) => {
 
 }
 
-const uploadImage = async (product: any) => {
-  return
-
-}
 export const createProduct = async (product:
   {
     title: string,
@@ -273,17 +270,11 @@ export const createProduct = async (product:
     imageUrl: string,
     altText: string
   }) => {
-
-
-
+  console.log(product)
   const newProduct = await createProductQuery(product)
   console.log(newProduct)
 
   const pubQuery = await publishProductQuery(newProduct.data.productCreate.product.id)
-  console.log(pubQuery)
-
-  const imageRes = await uploadImage(product)
 
   return newProduct
-
 }
