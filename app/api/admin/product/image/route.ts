@@ -4,6 +4,8 @@ import { NextResponse } from "next/server";
 
 import { cloudinary } from '@/utils/cloudinary'
 
+import { editImage } from "@/utils/shopifyAdmin";
+
 
 export async function POST(request: Request) {
     const response = await request.formData()
@@ -28,4 +30,11 @@ export async function POST(request: Request) {
     // console.log(imageUrl)
 
     return NextResponse.json({ imageUrl })
+}
+
+export async function PATCH(request: Request) {
+    const product = await request.json()
+    const response = await editImage(product)
+    // console.log(response)
+    return NextResponse.json(response)
 }

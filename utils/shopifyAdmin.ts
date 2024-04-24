@@ -176,7 +176,7 @@ export const getOrdersByEmail = async (email: string) => {
     }`
 
   const orders = await admin(query).then(res => res)
-  console.log(orders)
+  // console.log(orders)
 
 
   return orders
@@ -207,6 +207,109 @@ export const editPrice = async (id: string, variantId: string, price: number) =>
   // console.log(newPrice)
   return newPrice
 }
+
+export const deleteProduct = async (product: {
+  id: string,
+  variantId: string,
+  title: string
+}) => {
+  const deleteProductQuery =
+    `mutation {
+      productDelete(input:{
+        id: "${product.id}"
+      }) {
+        deletedProductId
+        userErrors {
+          field
+          message
+        }
+      }
+    }`
+  const res = await admin(deleteProductQuery)
+  // console.log(res)
+  return res
+
+}
+export const editTitle = async (product: {
+  id: string,
+  variantId: string,
+  title: string
+}) => {
+  const editTitleQuery =
+    `mutation {
+      productUpdate(input:{
+        id: "${product.id}",
+        title: "${product.title}"
+      }) {
+        userErrors {
+          field
+          message
+        }
+      }
+    }`
+  const res = await admin(editTitleQuery)
+  // console.log(res)
+  return res
+
+}
+
+export const editDescription = async (product: {
+  id: string,
+  variantId: string,
+  description: string
+}) => {
+  const editDescriptionQuery =
+    `mutation {
+      productUpdate(input:{
+        id: "${product.id}",
+        descriptionHtml: "${product.description}"
+      }) {
+        userErrors {
+          field
+          message
+        }
+      }
+    }`
+  const res = await admin(editDescriptionQuery)
+  // console.log(res)
+  return res
+
+}
+
+export const editImage = async (product: {
+  id: string,
+  variantId: string,
+  imageUrl: string,
+  altText: string
+}) => {
+  console.log(product)
+
+  const editImageQuery =
+    `mutation {
+      productUpdateMedia(productId: ${product.id}, 
+        media: {
+          altText: "${product.altText}",
+          src: "${product.imageUrl}"
+      }) {
+        image {
+          id
+          altText
+          src
+        }
+        userErrors {
+          field
+          message
+        }
+    }
+  }
+}`
+  const res = await admin(editImageQuery)
+  console.log(res)
+  return res
+
+}
+
+
 
 // Product creation functions
 
@@ -270,9 +373,9 @@ export const createProduct = async (product:
     imageUrl: string,
     altText: string
   }) => {
-  console.log(product)
+  // console.log(product)
   const newProduct = await createProductQuery(product)
-  console.log(newProduct)
+  // console.log(newProduct)
 
   const pubQuery = await publishProductQuery(newProduct.data.productCreate.product.id)
 

@@ -3,7 +3,8 @@ import { useState, useMemo } from 'react'
 import { Table, TableHeader, TableBody, TableColumn, TableRow, TableCell } from "@nextui-org/react";
 import { adminGetProducts, adminEditQuantity } from '@/utils/shopifyAdmin';
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Button } from "@nextui-org/react";
-
+import { title } from 'process';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const ProductDisplay = ({ products }: { products: any }) => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -20,7 +21,38 @@ const ProductDisplay = ({ products }: { products: any }) => {
         price: 0
     });
 
+    const [itemToDelete, setItemToDelete] = useState({
+        id: 0,
+        variantId: 0,
+        title: ""
+    })
+
+    const [titleToChange, setTitleToChange] = useState({
+        id: 0,
+        variantId: 0,
+        title: ""
+    })
+
+    const [descriptionToChange, setDescriptionToChange] = useState({
+        id: 0,
+        variantId: 0,
+        description: ""
+    })
+
+    const [imageToChange, setImageToChange] = useState({
+        id: 0,
+        variantId: 0,
+        imageUrl: "",
+        altText: ""
+    })
+
     const [changing, setChanging] = useState("")
+    const [formData, setFormData] = useState(new FormData())
+    const [loading, setLoading] = useState(false)
+    const router = useRouter()
+
+    const image = useSearchParams().get("image")
+
 
     const classNames = useMemo(
         () => ({
@@ -58,7 +90,6 @@ const ProductDisplay = ({ products }: { products: any }) => {
                                             <input
                                                 className='ml-2'
                                                 type="number"
-                                                // placeholder={inventoryToChange.totalInventory.toString()}
                                                 onChange={(e) =>
                                                     setInventoryToChange({
                                                         ...inventoryToChange,
@@ -100,7 +131,6 @@ const ProductDisplay = ({ products }: { products: any }) => {
                                             <input
                                                 className='ml-2'
                                                 type="float"
-                                                // placeholder={inventoryToChange.totalInventory.toString()}
                                                 onChange={(e) =>
                                                     setPriceToChange({
                                                         ...priceToChange,
@@ -124,6 +154,101 @@ const ProductDisplay = ({ products }: { products: any }) => {
                                                             variantId: priceToChange.variantId,
                                                             price: priceToChange.price
                                                         }),
+                                                })
+                                            onClose()
+                                        }}>
+                                            Change
+                                        </Button>
+                                    </ModalFooter>
+                                </>}
+                            {changing === "delete" &&
+                                <>
+                                    <ModalHeader className="flex flex-col gap-1 items-center">
+                                        Delete Item
+                                    </ModalHeader>
+                                    <ModalBody className="gap-1">
+                                        <div className='text-center'>
+                                            Are you sure you want to delete {itemToDelete.title}?
+                                        </div>
+                                    </ModalBody>
+                                    <ModalFooter>
+                                        <Button color="danger" variant="light" onPress={onClose}>
+                                            Close
+                                        </Button>
+                                        <Button color="primary" onPress={async () => {
+                                            const res = await fetch('/api/admin/product',
+                                                {
+                                                    method: "DELETE",
+                                                    body: JSON.stringify(itemToDelete),
+                                                })
+                                            onClose()
+                                        }}>
+                                            Delete
+                                        </Button>
+                                    </ModalFooter>
+                                </>}
+                            {changing === "title" &&
+                                <>
+                                    <ModalHeader className="flex flex-col gap-1 items-center">
+                                        Change Title
+                                    </ModalHeader>
+                                    <ModalBody className="gap-1">
+                                        <form>
+                                            <label>Enter New Title:</label>
+                                            <input
+                                                className='ml-2'
+                                                type="text"
+                                                onChange={(e) =>
+                                                    setTitleToChange({
+                                                        ...titleToChange,
+                                                        title: e.target.value
+                                                    })}
+                                            />
+                                        </form>
+                                    </ModalBody>
+                                    <ModalFooter>
+                                        <Button color="danger" variant="light" onPress={onClose}>
+                                            Close
+                                        </Button>
+                                        <Button color="primary" onPress={async () => {
+                                            const res = await fetch('/api/admin/product/title',
+                                                {
+                                                    method: "PATCH",
+                                                    body: JSON.stringify(titleToChange),
+                                                })
+                                            onClose()
+                                        }}>
+                                            Change
+                                        </Button>
+                                    </ModalFooter>
+                                </>}
+                            {changing === "description" &&
+                                <>
+                                    <ModalHeader className="flex flex-col gap-1 items-center">
+                                        Change Description
+                                    </ModalHeader>
+                                    <ModalBody className="gap-1">
+                                        <form className='flex flex-col'>
+                                            <label>Enter New Description:</label>
+                                            <textarea
+                                                className='h-40'
+                                                onChange={(e) =>
+                                                    setDescriptionToChange({
+                                                        ...descriptionToChange,
+                                                        description: e.target.value
+                                                    })}
+                                            />
+                                        </form>
+                                    </ModalBody>
+                                    <ModalFooter>
+                                        <Button color="danger" variant="light" onPress={onClose}>
+                                            Close
+                                        </Button>
+                                        <Button color="primary" onPress={async () => {
+                                            const res = await fetch('/api/admin/product/description',
+                                                {
+                                                    method: "PATCH",
+                                                    body: JSON.stringify(descriptionToChange),
                                                 })
                                             onClose()
                                         }}>
@@ -155,6 +280,9 @@ const ProductDisplay = ({ products }: { products: any }) => {
                     <TableColumn>
                         Image
                     </TableColumn>
+                    <TableColumn>
+                        Delete Item
+                    </TableColumn>
                 </TableHeader>
                 <TableBody>
                     {products.map((e: any) => {
@@ -164,7 +292,16 @@ const ProductDisplay = ({ products }: { products: any }) => {
                         const image = e.node.images?.edges[0]?.node.transformedSrc ? e.node.images.edges[0].node.transformedSrc : `/images/${handle}.jpg`
                         return (
                             <TableRow key={id}>
-                                <TableCell>{<a href={`/products/${handle}`}>{title}</a>}</TableCell>
+                                <TableCell><div
+                                    className='cursor-pointer'
+                                    onClick={() => {
+                                        setTitleToChange(
+                                            { id, variantId, title })
+                                        setChanging("title")
+                                        onOpen()
+                                    }}>
+                                    {title}
+                                </div></TableCell>
                                 <TableCell>
                                     <div
                                         className='cursor-pointer'
@@ -178,7 +315,8 @@ const ProductDisplay = ({ products }: { products: any }) => {
                                     </div>
                                 </TableCell>
                                 <TableCell>
-                                    <div className='cursor-pointer'
+                                    <div
+                                        className='cursor-pointer'
                                         onClick={() => {
                                             setPriceToChange(
                                                 { id, price: amount, variantId })
@@ -188,8 +326,33 @@ const ProductDisplay = ({ products }: { products: any }) => {
                                         ${Number(amount).toFixed(2)}
                                     </div>
                                 </TableCell>
-                                <TableCell>{description}</TableCell>
-                                <TableCell><img src={image} /></TableCell>
+                                <TableCell><div
+                                    className='cursor-pointer'
+                                    onClick={() => {
+                                        setDescriptionToChange(
+                                            { id, variantId, description })
+                                        setChanging("description")
+                                        onOpen()
+                                    }}>
+                                    {description}
+                                </div>
+                                </TableCell>
+                                <TableCell>
+                                    <img src={image} />
+                                </TableCell>
+                                <TableCell>
+                                    <div
+                                        className='cursor-pointer bg-red-600 text-white p-2
+                                        rounded-md text-center'
+                                        onClick={() => {
+                                            setItemToDelete(
+                                                { id, variantId, title })
+                                            setChanging("delete")
+                                            onOpen()
+                                        }}>
+                                        Delete
+                                    </div>
+                                </TableCell>
                             </TableRow>
                         )
                     })}

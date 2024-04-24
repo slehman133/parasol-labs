@@ -37,7 +37,10 @@ model Order {
 }
 
 enum user_type {
+  superadmin
   admin
+  admin_products
+  admin_forms
   user
 }
 
