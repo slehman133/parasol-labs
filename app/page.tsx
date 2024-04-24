@@ -250,7 +250,7 @@ export default function Home() {
                   </span>
                   .
                 </h1>
-                <p className="py-5 font-thin text-lg">
+                <p className="py-5 font-light text-lg">
                   We&apos;re here to help. Whether you have general questions or
                   inquiries - we&apos;re here to provide information and answer
                   questions.
@@ -267,6 +267,7 @@ export default function Home() {
                       viewBox="0 0 24 24"
                       enable-background="new 0 0 24 24"
                       xmlSpace="preserve"
+                      className="fill-foreground"
                     >
                       <g id="stakeholder">
                         <path d="M18,1.9l-6,3V12l6,3l6-3V4.8L18,1.9z M20.7,5.5L18,6.8l-2.7-1.3L18,4.1L20.7,5.5z M14,7.1l3,1.5v3.7l-3-1.5V7.1z M19,12.2V8.5l3-1.5v3.7L19,12.2z" />
@@ -301,9 +302,10 @@ export default function Home() {
                       height="100px"
                       viewBox="0 0 32 32"
                       xmlns="http://www.w3.org/2000/svg"
+                      className="fill-foreground"
                     >
                       <g fill="none">
-                        <g transform="translate(6 5)" fill="#FFF">
+                        <g transform="translate(6 5)" className="fill-foreground">
                           <path d="M10.02.53c-1.295 0-2.345 4.697-2.345 10.49s1.05 10.49 2.345 10.49c1.294 0 2.344-4.697 2.344-10.49S11.314.53 10.02.53zm.162 20.387c-.148.198-.297.05-.297.05-.596-.692-.894-1.975-.894-1.975-1.043-3.357-.795-10.564-.795-10.564.49-5.721 1.382-7.073 1.685-7.373a.185.185 0 01.238-.019c.44.313.81 1.617.81 1.617 1.09 4.048.991 7.848.991 7.848.099 3.308-.546 7.01-.546 7.01-.497 2.814-1.192 3.406-1.192 3.406z" />
                           <path d="M19.118 5.8c-.645-1.124-5.24.303-10.267 3.186-5.027 2.883-8.573 6.13-7.93 7.254.645 1.124 5.241-.303 10.268-3.186 5.027-2.883 8.574-6.131 7.93-7.254zM1.515 16.085c-.246-.03-.19-.234-.19-.234.302-.86 1.266-1.758 1.266-1.758 2.393-2.575 8.769-5.946 8.769-5.946 5.206-2.422 6.823-2.32 7.233-2.208a.185.185 0 01.135.198c-.05.537-1 1.507-1 1.507-2.966 2.961-6.312 4.768-6.312 4.768-2.82 1.732-6.353 3.013-6.353 3.013-2.688.968-3.548.66-3.548.66z" />
                           <path d="M19.095 16.277c.65-1.12-2.887-4.383-7.898-7.288C6.187 6.085 1.593 4.641.944 5.763c-.65 1.123 2.888 4.383 7.9 7.288 5.013 2.904 9.602 4.348 10.251 3.226zM1.375 6.196c-.097-.228.106-.283.106-.283.897-.17 2.157.217 2.157.217 3.427.78 9.538 4.608 9.538 4.608 4.705 3.292 5.427 4.743 5.535 5.154a.185.185 0 01-.103.215c-.49.225-1.805-.11-1.805-.11-4.05-1.086-7.289-3.075-7.289-3.075-2.91-1.57-5.788-3.985-5.788-3.985-2.187-1.842-2.35-2.74-2.35-2.74l-.002-.001z" />
@@ -337,7 +339,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="py-5 text-center md:text-left">
-                <h1 className="font-bold text-2xl md:text-4xl border-b-2 border-white">
+                <h1 className="font-bold text-2xl md:text-4xl border-b-2 border-foreground">
                   Recent News
                 </h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 py-5">

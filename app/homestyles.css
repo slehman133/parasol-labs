@@ -76,7 +76,12 @@ span::after {
 }
 
 .contact-box {
-  border: 1px solid white;
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: hsl(
+    var(--nextui-foreground) /
+      var(--nextui-foreground-opacity, var(--tw-border-opacity))
+  );
   width: auto;
   height: auto;
   padding: 2%;
@@ -153,8 +158,8 @@ span::after {
 }
 
 .tracking-in-contract {
-  -webkit-animation: tracking-in-contract 2s
-    cubic-bezier(0.215, 0.61, 0.355, 1) both;
+  -webkit-animation: tracking-in-contract 2s cubic-bezier(0.215, 0.61, 0.355, 1)
+    both;
   animation: tracking-in-contract 2s cubic-bezier(0.215, 0.61, 0.355, 1) both;
 }
 
