@@ -7,6 +7,7 @@ import { Divider } from "@nextui-org/react";
 const PrivacyPage = () => {
   return (
     <>
+    <div className="container">
       <div className="leftSection">
         <header className="text-3xl font-bold pb-4">
           Your Privacy matters.
@@ -129,6 +130,8 @@ const PrivacyPage = () => {
           </div>
         </div>
       </div>
+    </div>
+
     </>
   );
 };
