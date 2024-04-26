@@ -73,7 +73,7 @@ export default function Home() {
             className="absolute inset-0 animate-fade-in animate-pulse"
             quantity={200}
           />
-          <div className="text-left leading-tight text-xl md:text-6xl mb-24 tracking-in-contract">
+          <div className="leading-tight text-xl md:text-6xl mb-24  tracking-in-contract">
             <h1>Parasol Laboratories</h1>
             <Divider />
             <h2 className="text-foreground-500">Incorporated</h2>
@@ -128,16 +128,18 @@ export default function Home() {
         <div className="py-1 " id="strl">
           <section>
             <div className="grid grid-cols-1 md:grid-cols-2 md:gap-12">
-              {/* Image column */}
-              <div className="relative">
-                <Image
-                  src="/images/strl.jpg"
-                  className="h-auto w-full z-0 opacity-80 rounded-lg strl-shadow"
-                  alt="STRL background"
-                />
+              <div className="relative my-auto">
+                  <Image
+                    src="/images/strlPanel.jpg"
+                    className="h-auto w-full z-0 opacity-80 rounded-lg block lg:hidden "
+                    alt="STRL background"
+                  />
+                  <Image
+                    src="/images/strl.jpg"
+                    className="h-auto w-full z-0 opacity-80 rounded-lg strl-shadow hidden lg:block"
+                    alt="STRL background"
+                  />
               </div>
-
-              {/* Motion div column */}
               <motion.div
                 className="flex flex-col justify-center p-5 text-left"
                 initial="hidden"

@@ -163,3 +163,16 @@ span::after {
     opacity: 1;
   }
 }
+
+#strl-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  transform-origin: center center;
+}
+@media screen and (max-width: 768px) {
+  .column {
+    width: 100%;
+  }
+}

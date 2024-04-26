@@ -7,7 +7,7 @@ import { redirect } from 'next/navigation'
 import { useState } from 'react'
 import { Input } from "@nextui-org/react";
 import { Button, ButtonGroup } from "@nextui-org/react";
-
+import * as ga from '@/lib/gtagHelper'
 
 const AccountSettingsPage = (props: { params: { id: string } }) => {
 
@@ -24,6 +24,25 @@ const AccountSettingsPage = (props: { params: { id: string } }) => {
     confirmNewPassword: "",
   })
 
+
+  const createGAEventEdit = async () => {
+    ga.event({
+      action: "User_change_settings",
+      category: "user",
+      label: "user_settings",
+      value: "user changed settings successfully",
+      username: session?.user?.username 
+    })
+  };
+    const createGAEventDelete = async () => {
+    ga.event({
+      action: "User_delete_account",
+      category: "user",
+      label: "user_delete_account",
+      value: "user deleted account successfully",
+      username: session?.user?.username
+    })
+  };
 
   if (session?.user.id !== variables.userId) {
     redirect("/404")
@@ -84,6 +103,7 @@ const AccountSettingsPage = (props: { params: { id: string } }) => {
                     event: 'change-password',
                   })
                 })
+                createGAEventEdit()
                 signOut({ callbackUrl: '/' })
               }}>
               <label htmlFor="currentPassword">Current Password</label>
@@ -115,6 +135,7 @@ const AccountSettingsPage = (props: { params: { id: string } }) => {
                   email: session?.user?.email
                 })
               })
+              createGAEventDelete()
               signOut({ callbackUrl: '/' })
             }}>
               Delete Account</Button>

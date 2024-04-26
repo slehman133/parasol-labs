@@ -52,8 +52,7 @@ export default function CookieBanner() {
           .
         </header>
         <p className="text-xs sm:text-sm my-auto">
-          We use cookies to enhance your browsing experience by serving
-          personalized ads or content, and analyze our traffic. By clicking
+          We use cookies to analyze our traffic. By analyzing our web traffic, we aim to enhance your browsing experience and make the website more enjoyable for you. By clicking
           &quot;Accept All&quot;, you consent to the use of cookies.
         </p>
         <Link

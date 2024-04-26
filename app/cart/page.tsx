@@ -67,14 +67,14 @@ const CartPage = () => {
                     <div className='m-16 overflow-y-scroll max-h-[80vh]'>
                         {
                             cartItems.length > 0 &&
-                            <Link href="/products"><h1 className='text-xl font-bold mx-28'>&larr; View more products</h1></Link>
+                            <Link href="/products"><h1 className='text-xl font-bold flex justify-end'>&larr; View more products</h1></Link>
                         }
                         {cartItems.length > 0 ? (
                             <>
                                 {cartItems.map((item, index) => (
-                                    <div key={index} className='relative flex flex-row overflow-hidden mx-28 shadow-small my-5'>
-                                        <div className='overflow-hidden'>
-                                            <img className="object-cover h-48 w-48" src={item.image ? item.image : `/images/${item.handle}.jpg`} alt={item.name} />
+                                    <div key={index} className='relative flex flex-row overflow-hidden shadow-small my-5'>
+                                        <div className='overflow-hidden w-1/2'>
+                                            <img className="object-cover h-48 w-full lg:w-48" src={item.image ? item.image : `/images/${item.handle}.jpg`} alt={item.name} />
                                         </div>
                                         <div className='p-5'>
                                             <h1 className='font-bold text-2xl'>{item.name}</h1>
@@ -110,11 +110,11 @@ const CartPage = () => {
                         )
                         }
                     </div>
-                    <div className='m-16'>
+                    <div className='m-16 mx-auto'>
                         <h1 className='text-5xl font-bold'>Order Summary</h1>
                         <p className='my-5 text-2xl'>Total Price: ${calcTotalPrice(cartItems)}</p>
-                        <button className='border-2 border-white p-5 mt-56 text-xl font-semibold
-                    hover:bg-white hover:text-black hover:border-black hover: cursor-pointer transition-all'
+                        <button className='border-2 border-foreground p-5 mt-56 text-xl font-semibold
+                    hover:bg-foreground hover:text-background hover:border-background hover: cursor-pointer transition-all'
                             disabled={cartItems.length == 0}
                             onClick={async (e) => {
                                 e.preventDefault()
