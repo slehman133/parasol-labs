@@ -48,7 +48,17 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     }, [])
 
     const addToCart = (item: CartItem) => {
-        cartItems ? setCartItems([...cartItems, item]) : setCartItems([item])
+        // console.log(item)
+        // cartItems ? setCartItems([...cartItems, item]) : setCartItems([item])
+        // if item in cart already, increase quantity by 1 if not, add item to cart
+        const itemInCart = cartItems.find((cartItem) => cartItem.variantId.id === item.variantId.id)
+        if (itemInCart) {
+            editItemQuantity(itemInCart, cartItems.indexOf(itemInCart), item.quantity)
+        } else {
+            setCartItems([...cartItems, item])
+        }
+        // console.log(cartItems)
+
     };
 
     const removeFromCart = (index: number) => {
@@ -68,7 +78,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         setCartItems(() => {
             let newArr = [...cartItems]
             const newItem = { ...item }
-            newItem.quantity += newQuantity
+            newItem.quantity += Number(newQuantity)
             newArr.splice(index, 1, newItem)
             return newArr
         })
