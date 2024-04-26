@@ -60,7 +60,7 @@ const OrderDisplay = ({ orders }: { orders: any }) => {
                                                     method: "PATCH",
                                                     body: JSON.stringify(orderToChange)
                                                 })
-                                            console.log(res)
+                                            // console.log(res)
                                             onClose()
                                         }}>
                                             Change
