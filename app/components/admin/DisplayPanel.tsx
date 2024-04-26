@@ -8,6 +8,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import UsersSection from "./UsersSection";
+import Link from "next/link";
 const DisplayPanel = ({
   orders,
   products,
@@ -74,6 +75,9 @@ const DisplayPanel = ({
         >
           Users
         </h1>
+        <Link href="/admin/studio" className="hover:bg-white hover:cursor-pointer hover:text-black">
+          News
+        </Link>
       </div>
       {activeTab === "messages" && (
         <>
