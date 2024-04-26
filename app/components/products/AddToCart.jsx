@@ -27,7 +27,7 @@ const AddToCart = (props) => {
     return (
         <>
             {isItemAdded &&
-                <div id="toast-default" className="flex items-center w-full max-w-xs p-4 bg-green-500 text-foreground font-semibold 
+                <div id="toast-default" className=" flex items-center w-full max-w-xs p-4 bg-green-500 text-foreground font-semibold 
                 rounded-lg shadow 
                 fixed top-20 right-10 
                 animate-appearance-in"

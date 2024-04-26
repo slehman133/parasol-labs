@@ -7,12 +7,12 @@ import { clsx } from "@nextui-org/shared-utils";
 import { useIsSSR } from "@react-aria/ssr";
 import { SunIcon } from "@/public/SunIcon";
 import { MoonIcon } from "@/public/MoonIcon";
+import * as ga from "@/lib/gtagHelper";
 
 export interface ThemeSwitchProps {
   className?: string;
   classNames?: SwitchProps["classNames"];
 }
-
 
 export const ThemeSwitch: FC<ThemeSwitchProps> = ({
   className,
@@ -23,6 +23,7 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
   const isSSR = useIsSSR();
 
   const onChange = () => {
+    createGAEvent();
     theme === "light" ? setTheme("dark") : setTheme("light");
   };
 
@@ -38,6 +39,16 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
     "aria-label": `Switch to ${theme === "light" ? "dark" : "light"} mode`,
     onChange,
   });
+
+  const createGAEvent = () => {
+    ga.event({
+      action: "Theme_Switch",
+      category: "theme",
+      label: "theme_switch",
+      value: `${theme} - theme switch successfully`,
+      username: "",
+    });
+  };
 
   return (
     <Component

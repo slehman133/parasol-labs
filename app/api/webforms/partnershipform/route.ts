@@ -64,40 +64,58 @@ export async function GET() {
 
 //develop a method that will delete the specified partnership form
 export async function PATCH(req: Request) {
-    try {
-        const formData = await req.json();
-        if (formData.event === 'delete') {
-            await prisma.partnershipForm.delete({
-                where: {
-                    id: formData.id
-                }
-            });
-        }
-        else if (formData.event === 'edit') {
-            await prisma.partnershipForm.update({
-                where: {
-                  id: formData.id
-                },
-                data: {
-                  status: formData.status
-                }
-            });
-        }
-        else if (formData.event === 'single'){
-            const form = await prisma.partnershipForm.findUnique({
-                where: {
-                    id: formData.id
-                }
-            });
-            return NextResponse.json(form);
-        }
-        else {
-            throw new Error("Invalid event type.");
-        }
-        return NextResponse.json({ status: 200 });
+  try {
+    const formData = await req.json();
+    if (formData.event === "delete") {
+      await prisma.partnershipForm.delete({
+        where: {
+          id: formData.id,
+        },
+      });
+    } else if (formData.event === "edit") {
+      await prisma.partnershipForm.update({
+        where: {
+          id: formData.id,
+        },
+        data: {
+          status: formData.status,
+        },
+      });
+    } else if (formData.event === "single") {
+      const form = await prisma.partnershipForm.findUnique({
+        where: {
+          id: formData.id,
+        },
+      });
+      return NextResponse.json(form);
+    } else {
+      throw new Error("Invalid event type.");
     }
-    catch(e) {
-        console.error("ERROR: ", e);
-        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
-    }
+    return NextResponse.json({ status: 200 });
+  } catch (e) {
+    console.error("ERROR: ", e);
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
+}
+
+//delete method
+export async function DELETE(req: Request) {
+  try {
+    const formData = await req.json();
+    await prisma.partnershipForm.delete({
+      where: {
+        id: formData.id,
+      },
+    });
+    return NextResponse.json({ status: 200 });
+  } catch (e) {
+    console.error("ERROR: ", e);
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
 }

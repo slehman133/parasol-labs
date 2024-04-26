@@ -37,7 +37,7 @@ const AccountSettingsPage = async (props: { params: { id: string } }) => {
             <h1 className="font-bold text-4xl">Account Settings</h1>
           </div>
           <Divider orientation="horizontal" />
-          <div className="md:flex md:justify-between grid grid-cols-1 gap-10 text">
+          <div className="lg:flex lg:justify-between grid grid-cols-1 gap-10 text">
             {/* make the background color of the child div slightly brighter than the color of the parent div */}
             <UserSettings userId={variables.userId} />
             <div>

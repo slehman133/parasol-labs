@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useMemo, useCallback, useEffect } from "react";
-import { useRouter } from "next/router";
 import {
   Button,
   Table,
@@ -20,6 +19,13 @@ import {
   Selection,
   SortDescriptor,
   Pagination,
+  useDisclosure,
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Spinner,
 } from "@nextui-org/react";
 import { VerticalDotsIcon } from "@/public/VerticalDotsIcon";
 import { SearchIcon } from "@/public/SearchIcon";
@@ -33,15 +39,15 @@ interface form {
 }
 
 const statusColorMap: Record<string, ChipProps["color"]> = {
-  Delivered: "warning",
-  Active: "success",
-  Completed: "danger",
+  delivered: "warning",
+  active: "success",
+  completed: "danger",
 };
 
 const statusOptions = [
-  { name: "Delivered", uid: "Delivered" },
-  { name: "Active", uid: "Active" },
-  { name: "Completed", uid: "Completed" },
+  { name: "delivered", uid: "delivered" },
+  { name: "active", uid: "active" },
+  { name: "completed", uid: "completed" },
 ];
 
 const columns = [
@@ -51,6 +57,11 @@ const columns = [
   { name: "Actions", uid: "actions" },
 ];
 export default function GeneralFormTable() {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [loading, setLoading] = useState(false);
+  const [selectedForm, setSelectedForm] = useState<form>();
+  const [updatedForm, setUpdatedForm] = useState(false);
+
   const [forms, setForms] = useState<form[]>([]);
   const [filterValue, setFilterValue] = useState("");
   const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set([]));
@@ -79,8 +90,8 @@ export default function GeneralFormTable() {
       Array.from(statusFilter).length !== statusOptions.length
     ) {
       console.log("statusFilter: ", statusFilter.toString());
-      filteredForms = filteredForms.filter( (form) =>
-        Array.from(statusFilter).includes(form.status),
+      filteredForms = filteredForms.filter((form) =>
+        Array.from(statusFilter).includes(form.status)
       );
     }
 
@@ -114,7 +125,6 @@ export default function GeneralFormTable() {
   const onPreviousPage = useCallback(() => {
     if (page > 1) {
       setPage(page - 1);
-
     }
   }, [page]);
   const onRowsPerPageChange = useCallback(
@@ -128,7 +138,6 @@ export default function GeneralFormTable() {
     if (value) {
       setFilterValue(value);
       setPage(1);
-
     } else {
       setFilterValue("");
     }
@@ -181,7 +190,7 @@ export default function GeneralFormTable() {
         </div>
         <div className="flex justify-between items-center">
           <span className="text-default-400 text-small">
-            Total forms: {forms.length} 
+            Total forms: {forms.length}
           </span>
           <label className="flex items-center text-default-400 text-small">
             Rows per page:
@@ -197,10 +206,16 @@ export default function GeneralFormTable() {
         </div>
       </div>
     );
-  }, [filterValue, onSearchChange, statusFilter, forms.length, onRowsPerPageChange, onClear]);
+  }, [
+    filterValue,
+    onSearchChange,
+    statusFilter,
+    forms.length,
+    onRowsPerPageChange,
+    onClear,
+  ]);
 
   const bottomContent = useMemo(() => {
-
     return (
       <div className="py-2 px-2 flex justify-between items-center">
         <Pagination
@@ -244,7 +259,11 @@ export default function GeneralFormTable() {
           </>
         );
       case "status":
-        return <Chip color={statusColorMap[form.status]}>{form.status}</Chip>;
+        return (
+          <Chip color={statusColorMap[form.status]}>
+            {form.status.toUpperCase()}
+          </Chip>
+        );
       case "actions":
         return (
           <>
@@ -261,6 +280,15 @@ export default function GeneralFormTable() {
                     href={`/admin/webforms/general/${form.id}`}
                   >
                     View
+                  </DropdownItem>
+                  <DropdownItem
+                    key="edit"
+                    onClick={() => {
+                      setSelectedForm(form);
+                      onOpen();
+                    }}
+                  >
+                    Edit
                   </DropdownItem>
                 </DropdownMenu>
               </Dropdown>
@@ -281,7 +309,7 @@ export default function GeneralFormTable() {
       setForms(data);
     }
     fetchForms();
-  }, []);
+  }, [updatedForm]);
 
   const classNames = useMemo(
     () => ({
@@ -302,40 +330,111 @@ export default function GeneralFormTable() {
     []
   );
   return (
-    <div className="flex flex-col gap-3">
-      <Table
-        aria-label="General Form Table"
-        classNames={classNames}
-        isCompact
-        removeWrapper
-        topContent={topContent}
-        topContentPlacement="outside"
-        bottomContent={bottomContent}
-        sortDescriptor={sortDescriptor}
-        selectedKeys={selectedKeys}
-        onSelectionChange={setSelectedKeys}
-        onSortChange={setSortDescriptor}
-      >
-        <TableHeader columns={columns}>
-          {(column) => (
-            <TableColumn key={column.uid} allowsSorting={column.sortable}>
-              {column.name}
-            </TableColumn>
-          )}
-        </TableHeader>
-        <TableBody
-          emptyContent="No general inquiries found."
-          items={sortedItems}
-        >
-          {(item) => (
-            <TableRow key={item.id}>
-              {(columnKey) => (
-                <TableCell>{renderCell(item, columnKey)}</TableCell>
+    <>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+        <ModalContent>
+          {(onClose) => (
+            <>
+              {loading ? (
+                <div className="h-[25vh] grid grid-cols-3 grid-rows-3 place-items-center">
+                  <div className="col-start-2 row-start-2">
+                    <Spinner className="mx-auto" />
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <ModalHeader className="flex flex-col gap-1 items-center">
+                    Change Status
+                  </ModalHeader>
+                  <ModalBody className="gap-1 items-center">
+                    <form className="flex flex-col gap-3">
+                      <div className="flex flex-col">
+                        <label htmlFor="Status">
+                          Choose new status for selected forms:{" "}
+                          {selectedForm?.id}
+                        </label>
+                        <select
+                          name="status"
+                          id="status"
+                          onChange={(e) => {
+                            setSelectedForm({
+                              ...selectedForm,
+                              status: e.target.value,
+                            } as form); // Update the type of selectedForm
+                          }}
+                        >
+                          <option value=""></option>
+                          <option value="active">Active</option>
+                          <option value="completed">Completed</option>
+                        </select>
+                      </div>
+                    </form>
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button color="danger" variant="light" onPress={onClose}>
+                      Close
+                    </Button>
+                    <Button
+                      color="primary"
+                      onPress={async () => {
+                        setLoading(true);
+                        const res = await fetch(
+                          `/api/webforms/generalform/${selectedForm?.id}/status`,
+                          {
+                            method: "PATCH",
+                            body: JSON.stringify({
+                              status: selectedForm?.status,
+                            }),
+                          }
+                        );
+                        console.log(res);
+                        setUpdatedForm(true);
+                        setLoading(false);
+                        onClose();
+                      }}
+                    ></Button>
+                  </ModalFooter>
+                </>
               )}
-            </TableRow>
+            </>
           )}
-        </TableBody>
-      </Table>
-    </div>
+        </ModalContent>
+      </Modal>
+      <div className="flex flex-col gap-3">
+        <Table
+          aria-label="General Form Table"
+          classNames={classNames}
+          isCompact
+          removeWrapper
+          topContent={topContent}
+          topContentPlacement="outside"
+          bottomContent={bottomContent}
+          sortDescriptor={sortDescriptor}
+          selectedKeys={selectedKeys}
+          onSelectionChange={setSelectedKeys}
+          onSortChange={setSortDescriptor}
+        >
+          <TableHeader columns={columns}>
+            {(column) => (
+              <TableColumn key={column.uid} allowsSorting={column.sortable}>
+                {column.name}
+              </TableColumn>
+            )}
+          </TableHeader>
+          <TableBody
+            emptyContent="No general inquiries found."
+            items={sortedItems}
+          >
+            {(item) => (
+              <TableRow key={item.id}>
+                {(columnKey) => (
+                  <TableCell>{renderCell(item, columnKey)}</TableCell>
+                )}
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </div>
+    </>
   );
 }
