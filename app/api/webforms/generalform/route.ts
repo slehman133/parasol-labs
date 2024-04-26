@@ -5,9 +5,9 @@ import { NextResponse } from "next/server";
 
 // POST /api/webforms/generalform
 // Required fields in body: formData: {
-    // name    String @db.VarChar(255)
-    // email   String @db.VarChar(255)
-    // message String @db.Text
+// name    String @db.VarChar(255)
+// email   String @db.VarChar(255)
+// message String @db.Text
 // }
 
 export async function POST(req: Request) {
@@ -20,12 +20,12 @@ export async function POST(req: Request) {
                 name: formData.name,
                 email: formData.email,
                 message: formData.html,
-                status: 'Delivered'
+                status: 'delivered'
             }
         })
         return NextResponse.json({ status: 200 });
     }
-    catch(e) {
+    catch (e) {
         console.error("ERROR: ", e);
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }
@@ -37,7 +37,7 @@ export async function GET() {
         const forms = await prisma.contactForm.findMany();
         return NextResponse.json(forms);
     }
-    catch(e) {
+    catch (e) {
         console.error("ERROR: ", e);
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }
@@ -60,14 +60,14 @@ export async function PATCH(req: Request) {
                     id: formData.id
                 },
                 data: {
-                        name: formData.name,
-                        email: formData.email,
-                        message: formData.message,
-                        status: formData.status
+                    name: formData.name,
+                    email: formData.email,
+                    message: formData.message,
+                    status: formData.status
                 }
             });
         }
-        else if (formData.event === 'single'){
+        else if (formData.event === 'single') {
             const form = await prisma.contactForm.findUnique({
                 where: {
                     id: formData.id
@@ -80,7 +80,7 @@ export async function PATCH(req: Request) {
         }
         return NextResponse.json({ status: 200 });
     }
-    catch(e) {
+    catch (e) {
         console.error("ERROR: ", e);
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }

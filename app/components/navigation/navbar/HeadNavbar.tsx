@@ -23,6 +23,7 @@ import { Modal, useDisclosure } from "@nextui-org/react";
 import { siteConfig } from "@/app/config/site";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { ThemeSwitch } from "../../ThemeSwitch";
 
 const HeadNavbar = () => {
   const { cartItems } = useCart();
@@ -55,10 +56,10 @@ const HeadNavbar = () => {
                 alt="Parasol"
               />
             </Link>
-            <Divider orientation="vertical" className="bg-white" />
+            <Divider orientation="vertical" />
           </NavbarBrand>
           <NavbarBrand>
-            <p className="font-bold text-inherit text-white text-lg">
+            <p className="font-bold text-inherit text-lg">
               PARASOL LABORATORIES
               <br />
               INCORPORATED
@@ -86,8 +87,8 @@ const HeadNavbar = () => {
             }
           </div>
         </NavbarContent> */}
-
         <NavbarContent className="visible" justify="end">
+          <ThemeSwitch />
           <div className="w-[35px] mx-2 hover:cursor-pointer hover:animate-pulse"
             onClick={onOpen}>
             <img src="/images/profile-avatar.png" alt="profile avatar" />
@@ -120,10 +121,10 @@ const HeadNavbar = () => {
               size="lg"
             >
               Cart {(cartItems && cartItems.length > 0) &&
-                    <div className="bg-red-500 rounded text-white p-[0.1rem] ml-2">
-                      <p>{cartItems.length}</p>
-                    </div>
-                  }
+                <div className="bg-red-500 rounded text-white p-[0.1rem] ml-2">
+                  <p>{cartItems.length}</p>
+                </div>
+              }
             </Link>
           </NavbarMenuItem>
         </NavbarMenu>

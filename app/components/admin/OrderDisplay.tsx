@@ -8,7 +8,7 @@ const ProductDisplay = ({ orders }: { orders: any }) => {
     const classNames = React.useMemo(
     () => ({
       wrapper: ["max-h-[382px]"],
-      th: ["bg-transparent", "text-default-500", "border-b", "border-divider"],
+      th: ["bg-[inherit]", "text-default-500", "border-b", "border-divider"],
       td: [
         // changing the rows border radius
         // first
@@ -37,7 +37,7 @@ const ProductDisplay = ({ orders }: { orders: any }) => {
                     <TableColumn>
                         Product(s)
                     </TableColumn>
-                    <TableColumn>
+                    {/* <TableColumn>
                         First Name
                     </TableColumn>
                     <TableColumn>
@@ -45,7 +45,7 @@ const ProductDisplay = ({ orders }: { orders: any }) => {
                     </TableColumn>
                     <TableColumn>
                         Email
-                    </TableColumn>
+                    </TableColumn> */}
 
                     <TableColumn>
                         Shipping Address
@@ -85,9 +85,9 @@ const ProductDisplay = ({ orders }: { orders: any }) => {
                                         })
                                     }
                                 </TableCell>
-                                <TableCell>{firstName}</TableCell>
+                                {/* <TableCell>{firstName}</TableCell>
                                 <TableCell>{lastName}</TableCell>
-                                <TableCell>{email}</TableCell>
+                                <TableCell>{email}</TableCell> */}
                                 <TableCell>{formatted.join(' ')}</TableCell>
                                 <TableCell>${amount}</TableCell>
                             </TableRow>

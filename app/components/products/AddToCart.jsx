@@ -27,7 +27,7 @@ const AddToCart = (props) => {
     return (
         <>
             {isItemAdded &&
-                <div id="toast-default" className="flex items-center w-full max-w-xs p-4 bg-green-500 text-white font-semibold 
+                <div id="toast-default" className=" flex items-center w-full max-w-xs p-4 bg-green-500 text-foreground font-semibold 
                 rounded-lg shadow 
                 fixed top-20 right-10 
                 animate-appearance-in"
@@ -49,13 +49,13 @@ const AddToCart = (props) => {
             {loading && <Spinner />}
             <div className='flex flex-col gap-3 my-4 text-[var(--text-color)] mx-2'>
                 <input
-                    className='h-12 text-xl text-center rounded-full bg-white text-black'
+                    className='h-12 text-xl text-center rounded-full bg-transparent text-foreground border-foreground border-1'
                     type="number"
                     value={productToAdd.quantity}
                     onChange={(e) => setProductToAdd({ ...productToAdd, quantity: e.target.value })}
                 />
-                <button className='border-2 border-white rounded-full text-white p-2 text-xl
-                hover:bg-blue-600 hover:text-white hover:border-white'
+                <button className='border-1 border-foreground rounded-full text-foreground p-2 text-xl
+                hover:bg-blue-600 hover:text-white hover:border-foreground'
                     onClick={async (e) => {
                         e.preventDefault()
                         setIsItemAdded(false)
@@ -63,7 +63,7 @@ const AddToCart = (props) => {
                         setIsItemAdded(true)
                     }}>Add To Cart
                 </button>
-                <button className='border-2 bg-black border-black text-white rounded-full p-2 text-xl
+                <button className='border-2 bg-foreground border-black text-background rounded-full p-2 text-xl
                 hover:bg-blue-600 hover:text-white hover:border-white'
                     onClick={async (e) => {
                         e.preventDefault()

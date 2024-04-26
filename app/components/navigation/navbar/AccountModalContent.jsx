@@ -26,12 +26,13 @@ const validateConfirmPassword = (password, confirmPassword) => {
     return password === confirmPassword
 }
 
-const validateCreds = async (formData, setErrors) => {
+const validateCreds = (formData, setErrors, errors) => {
     validateEmail(formData.email) ? setErrors({ ...errors, email: false }) : setErrors({ ...errors, email: true })
     validatePassword(formData.password) ? setErrors({ ...errors, password: false }) : setErrors({ ...errors, password: true })
     validateConfirmPassword(formData.password, formData.confirmPassword) ? setErrors({ ...errors, confirmPassword: false }) : setErrors({ ...errors, confirmPassword: true })
 
 }
+
 
 const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
     const [formData, setFormData] = useState({
@@ -46,6 +47,8 @@ const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
     const [isVisible, setIsVisible] = useState(false)
     const [isConfirmVisible, setIsConfirmVisible] = useState(false)
     const [activeTab, setActiveTab] = useState("signin")
+
+
 
     const createGAEvent = async () => {
         ga.event({
@@ -74,6 +77,11 @@ const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
         signUpFailed: false
     })
 
+    useEffect(() => {
+        // console.log(formData)
+        validateCreds(formData, setErrors, errors)
+    }, [formData])
+
     return (
         <ModalContent>
             {(onClose) =>
@@ -93,8 +101,8 @@ const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
                                             <div className='col-start-2'>
                                                 <form className='flex flex-col gap-5'
                                                     onSubmit={async (e) => {
-                                                        createGAEvent();
                                                         e.preventDefault()
+                                                        createGAEvent();
                                                         setIsLoading(true)
                                                         const res = await signIn('credentials', { ...formData, redirect: false })
                                                         // console.log(res)
@@ -102,7 +110,7 @@ const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
 
                                                         if (res?.ok) {
                                                             const userName = formData.email
-                                                            console.log(userName)
+                                                            // console.log(userName)
                                                             TagManager.dataLayer({
                                                                 dataLayer: {
                                                                     event: 'login',
@@ -164,7 +172,8 @@ const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
                                                     }}>
                                                     <Input type='email' placeholder='Email' value={formData.email}
                                                         onChange={(e) => {
-                                                            setFormData({ ...formData, email: e.target.value })
+                                                            const email = e.target.value
+                                                            setFormData({ ...formData, email })
                                                             if (validateEmail(formData.email)) {
                                                                 setErrors({ ...errors, email: false })
                                                             } else {
@@ -223,7 +232,8 @@ const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
                                                     {errors.confirmPassword && <p className='text-red-500 text-center'>Passwords do not match.</p>}
                                                     {errors.signUpFailed && <p className='text-red-500 text-center'>Sign up failed. Please try again or use different credentials.</p>}
                                                     <p onClick={() => setActiveTab("signin")} className='text-center hover:cursor-pointer'>Have an account? <span className='underline'> Sign In</span></p>
-                                                    <Input type='submit' value='Sign Up' disabled={(errors.email || errors.password || errors.confirmPassword)} />
+                                                    <Input type='submit' value='Sign Up' disabled={(errors.email || errors.password || errors.confirmPassword)
+                                                        || (formData.password !== formData.confirmPassword)} />
                                                 </form>
                                             </div>
                                         </div>

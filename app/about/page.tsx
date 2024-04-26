@@ -150,7 +150,7 @@ export default function About() {
           </section>
           <section id="mission-statement" className="content grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-4 md:gap-10 mt-12 relative bg-background ">
             <div className="p-4 md:p-10 w-full h-auto mx-auto">
-              <Image src="/images/msa_test 5log10 reduction.webp" alt="MSA Test Result" className="hidden md:block" />
+              <Image src="/images/msa_test 5log10 reduction.webp" alt="MSA Test Result" className="hidden lg:block w-auto h-full"/>
             </div>
             <div className="w-full px-4 md:px-0 text-wrap text-left">
               <h1 className="font-thin text-4xl md:text-7xl">The Future of healthcare, begins now.</h1>

@@ -7,6 +7,7 @@ import { Divider } from "@nextui-org/react";
 const PrivacyPage = () => {
   return (
     <>
+    <div className="container">
       <div className="leftSection">
         <header className="text-3xl font-bold pb-4">
           Your Privacy matters.
@@ -48,18 +49,18 @@ const PrivacyPage = () => {
               1. INFORMATION YOU CHOOSE TO SUBMIT
             </header>
             <p className="sectionText">
-              When you interact with our application, you actively provide certain information. This includes details such as:
+              When you interact with our application, you actively provide certain information. We do not store personally identifiable information (PII). This includes details such as:
               <header className="spacing ">I. Pages you view</header>
               <p className="sectionText">
                 We track the pages you visit within our application to understand your preferences and improve our content and services accordingly.
               </p>
-              <header className="spacing ">II. Account creation and login details</header>
+              <header className="spacing ">II. Events</header>
               <p className="sectionText">
-                When you create an account or log in, we collect information such as your name, email address, username, password, and any additional details you provide to facilitate account management and personalize your experience.
+                We gather data about what events you perform on our site. This includes account creation, theme switching, account editing, ecommerce transactions, and more. This information helps us understand user behavior and preferences to enhance our application&apos;s functionality and user experience.
               </p>
               <header className="spacing ">III. Device information</header>
               <p className="sectionText">
-                We gather data about the device you use to access our application, including device type, operating system, browser type, IP address, and unique device identifiers. This information helps us optimize our application for various devices and provide a seamless user experience.
+                We gather data about the device you use to access our application, including device type, operating system, and browser type. This information helps us optimize our application for various devices and provide a seamless user experience.
               </p>
               <header className="spacing ">IV. Sessions</header>
               <p className="sectionText">
@@ -84,10 +85,6 @@ const PrivacyPage = () => {
               <header className="spacing">II. Optimizing performance</header>
               <p className="sectionText">
                 Understanding how users interact with our application helps us identify performance bottlenecks and technical issues. By addressing these issues promptly, we ensure a smooth and responsive user experience.
-              </p>
-              <header className="spacing">III. Personalizing content</header>
-              <p className="sectionText">
-                We use the data collected to deliver personalized content, recommendations, and advertisements based on your preferences and interests. This enhances your overall experience with our application and increases the relevance of the content you encounter.
               </p>
             </p>
           </div>
@@ -129,6 +126,8 @@ const PrivacyPage = () => {
           </div>
         </div>
       </div>
+    </div>
+
     </>
   );
 };

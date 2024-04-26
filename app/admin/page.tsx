@@ -1,13 +1,12 @@
-import PartnershipFormTable from "../components/webforms/tables/partnershipformtable";
-import GeneralFormTable from "../components/webforms/tables/generalformtable";
 import React from 'react'
-import ProductDisplay from '../components/admin/ProductDisplay';
-import OrderDisplay from '../components/admin/OrderDisplay';
 import { getProducts } from '@/utils/storefront';
 import { getOrders } from '@/utils/shopifyAdmin';
-import ProductSection from "../components/admin/ProductSection";
-import DisplayPannel from "../components/admin/DisplayPannel";
-
+import DisplayPanel from "../components/admin/DisplayPanel";
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/utils/authOptions';
+import AdminPanel from '../components/admin/AdminPanel';
+import AdminProductsPanel from '../components/admin/AdminProductsPanel';
+import AdminFormsPanel from '../components/admin/AdminFormsPanel';
 export async function generateMetadata() {
     return {
         title: "Admin - Parasol Labs",
@@ -16,6 +15,8 @@ export async function generateMetadata() {
 
 
 const AdminPage = async () => {
+    const { user: { role } } = await getServerSession(authOptions) as { user: any }
+    console.log(role)
     const products = await getProducts()
     // console.log(products)
     // const adminProducts = await adminGetProducts()
@@ -24,7 +25,18 @@ const AdminPage = async () => {
     return (
         <>
             <div className='m-24'>
-                <DisplayPannel orders={orders} products={products} />
+                {role === 'superadmin' &&
+                    <DisplayPanel orders={orders} products={products} />
+                }
+                {role === 'admin' &&
+                    <AdminPanel orders={orders} products={products} />
+                }
+                {role === 'admin_products' &&
+                    <AdminProductsPanel orders={orders} products={products} />
+                }
+                {role === 'admin_forms' &&
+                    <AdminFormsPanel />
+                }
             </div>
         </>
 

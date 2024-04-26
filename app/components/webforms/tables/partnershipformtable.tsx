@@ -18,22 +18,30 @@ import {
   Pagination,
   Selection,
   SortDescriptor,
+  useDisclosure,
+  Spinner,
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
 } from "@nextui-org/react";
 import { VerticalDotsIcon } from "@/public/VerticalDotsIcon";
 import { SearchIcon } from "@/public/SearchIcon";
 import { ChevronDownIcon } from "@/public/ChevronDownIcon";
+import { set } from "date-fns";
 //TODO: add pub/sub functionality to update the table when new forms are submitted with ABLY
 
 const statusColorMap: Record<string, ChipProps["color"]> = {
-  Delivered: "warning",
-  Active: "success",
-  Completed: "danger",
+  delivered: "warning",
+  active: "success",
+  completed: "danger",
 };
 
 const statusOptions = [
-  { name: "Delivered", uid: "Delivered" },
-  { name: "Active", uid: "Active" },
-  { name: "Completed", uid: "Completed" },
+  { name: "delivered", uid: "delivered" },
+  { name: "active", uid: "active" },
+  { name: "completed", uid: "completed" },
 ];
 
 const columns = [
@@ -62,6 +70,11 @@ interface form {
 }
 
 export default function PartnershipFormTable() {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [loading, setLoading] = useState(false);
+  const [selectedForm, setSelectedForm] = useState<form>();
+  const [updatedForm, setUpdatedForm] = useState(false);
+
   const [forms, setForms] = useState<form[]>([]);
   const [filterValue, setFilterValue] = useState("");
   const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set([]));
@@ -305,7 +318,11 @@ export default function PartnershipFormTable() {
           </>
         );
       case "status":
-        return <Chip color={statusColorMap[form.status]}>{form.status}</Chip>;
+        return (
+          <Chip color={statusColorMap[form.status]}>
+            {form.status.toUpperCase()}
+          </Chip>
+        );
       case "actions":
         return (
           <>
@@ -322,6 +339,15 @@ export default function PartnershipFormTable() {
                     href={`/admin/webforms/partnership/${form.id}`}
                   >
                     View
+                  </DropdownItem>
+                  <DropdownItem
+                    key="edit"
+                    onClick={() => {
+                      setSelectedForm(form);
+                      onOpen();
+                    }}
+                  >
+                    Edit
                   </DropdownItem>
                 </DropdownMenu>
               </Dropdown>
@@ -342,7 +368,7 @@ export default function PartnershipFormTable() {
       console.log(data);
     }
     fetchForms();
-  }, []);
+  }, [updatedForm]);
   //return the table of partnership forms
   const classNames = useMemo(
     () => ({
@@ -364,6 +390,75 @@ export default function PartnershipFormTable() {
   );
   return (
     <>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+        <ModalContent>
+          {(onClose) => (
+            <>
+              {loading ? (
+                <div className="h-[25vh] grid grid-cols-3 grid-rows-3 place-items-center">
+                  <div className="col-start-2 row-start-2">
+                    <Spinner className="mx-auto" />
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <ModalHeader className="flex flex-col gap-1 items-center">
+                    Change Status
+                  </ModalHeader>
+                  <ModalBody className="gap-1 items-center">
+                    <form className="flex flex-col gap-3">
+                      <div className="flex flex-col">
+                        <label htmlFor="Status">
+                          Choose new status for selected forms:{" "}
+                          {selectedForm?.id}
+                        </label>
+                        <select
+                          name="status"
+                          id="status"
+                          onChange={(e) => {
+                            setSelectedForm({
+                              ...selectedForm,
+                              status: e.target.value,
+                            } as form); // Update the type of selectedForm
+                          }}
+                        >
+                          <option value=""></option>
+                          <option value="active">Active</option>
+                          <option value="completed">Completed</option>
+                        </select>
+                      </div>
+                    </form>
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button color="danger" variant="light" onPress={onClose}>
+                      Close
+                    </Button>
+                    <Button
+                      color="primary"
+                      onPress={async () => {
+                        setLoading(true);
+                        const res = await fetch(
+                          `/api/webforms/partnershipform/${selectedForm?.id}/status`,
+                          {
+                            method: "PATCH",
+                            body: JSON.stringify({
+                              status: selectedForm?.status,
+                            }),
+                          }
+                        );
+                        console.log(res);
+                        setUpdatedForm(true);
+                        setLoading(false);
+                        onClose();
+                      }}
+                    ></Button>
+                  </ModalFooter>
+                </>
+              )}
+            </>
+          )}
+        </ModalContent>
+      </Modal>
       <Table
         aria-label="Partnership Form Table"
         classNames={classNames}
@@ -397,65 +492,6 @@ export default function PartnershipFormTable() {
           )}
         </TableBody>
       </Table>
-      {/* <Table
-        aria-label="Partnership Form Table"
-        classNames={classNames}
-        isCompact
-        removeWrapper
-      >
-        <TableHeader>
-          {columns.map((column) => (
-            <TableColumn key={column.uid}>{column.name}</TableColumn>
-          ))}
-        </TableHeader>
-        <TableBody emptyContent="No Partnership inquiries found.">
-          {forms.map((form) => (
-            <TableRow key={form.id}>
-              <TableCell>{form.companyName}</TableCell>
-              <TableCell>
-                <div className="flex flex-col">
-                  {form.services.map((service) => (
-                    <Chip key={service} color="warning" variant="dot">
-                      {service}
-                    </Chip>
-                  ))}
-                </div>
-              </TableCell>
-              <TableCell>
-                <>
-                  <p className="py-1">{form.contactName}</p>
-                  <p className="py-1 text-gray-400">{form.phoneNumber}</p>
-                  <p className="py-1 text-gray-400">{form.emailAddress}</p>
-                </>
-              </TableCell>
-              <TableCell>{form.additionalInfo}</TableCell>
-              <TableCell>{form.status}</TableCell>
-              <TableCell>
-                <div className="relative flex justify-end items-center gap-2">
-                  <Dropdown>
-                    <DropdownTrigger>
-                      <Button isIconOnly size="sm" variant="light">
-                        <VerticalDotsIcon
-                          width={undefined}
-                          height={undefined}
-                        />
-                      </Button>
-                    </DropdownTrigger>
-                    <DropdownMenu>
-                      <DropdownItem
-                        key="view"
-                        href={`/admin/webforms/partnership/${form.id}`}
-                      >
-                        View
-                      </DropdownItem>
-                    </DropdownMenu>
-                  </Dropdown>
-                </div>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table> */}
     </>
   );
 }

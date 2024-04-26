@@ -3,14 +3,14 @@ generator client {
 }
 
 datasource db {
-  // for local dev
-  // provider = "postgresql"
-  // url      = env("DATABASE_URL")
+  //for local dev
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 
   // for prod
-  provider  = "postgresql"
-  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  // provider  = "postgresql"
+  // url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  // directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
 model User {
@@ -37,7 +37,10 @@ model Order {
 }
 
 enum user_type {
+  superadmin
   admin
+  admin_products
+  admin_forms
   user
 }
 
@@ -48,29 +51,35 @@ enum user_type {
 // - PartnershipForm
 // However, with the current schema, there isn't much to gain from the refactor as there is not much data to query.
 model PartnershipForm {
-  id              Int      @id @default(autoincrement())
-  companyName     String   @db.VarChar(255)
-  companyWebpage  String?  @db.VarChar(255)
-  streetAddress   String   @db.VarChar(255)
-  streetAddress2  String?  @db.VarChar(255)
-  city            String   @db.VarChar(255)
-  stateOrProvince String   @db.VarChar(255)
-  postalCode      String   @db.VarChar(255)
+  id              Int         @id @default(autoincrement())
+  companyName     String      @db.VarChar(255)
+  companyWebpage  String?     @db.VarChar(255)
+  streetAddress   String      @db.VarChar(255)
+  streetAddress2  String?     @db.VarChar(255)
+  city            String      @db.VarChar(255)
+  stateOrProvince String      @db.VarChar(255)
+  postalCode      String      @db.VarChar(255)
   services        String[]
-  additionalInfo  String?  @db.Text
-  contactName     String   @db.VarChar(255)
-  phoneNumber     String   @db.VarChar(255)
-  emailAddress    String   @db.VarChar(255)
-  status          String
-  createdAt       DateTime @default(now())
+  additionalInfo  String?     @db.Text
+  contactName     String      @db.VarChar(255)
+  phoneNumber     String      @db.VarChar(255)
+  emailAddress    String      @db.VarChar(255)
+  status          status_type @default(delivered)
+  createdAt       DateTime    @default(now())
+}
+
+enum status_type {
+  delivered
+  active
+  completed
 }
 
 model ContactForm {
-  id      Int    @id @default(autoincrement())
-  name    String @db.VarChar(255)
-  email   String @db.VarChar(255)
-  message String @db.Text
-  status  String
+  id      Int         @id @default(autoincrement())
+  name    String      @db.VarChar(255)
+  email   String      @db.VarChar(255)
+  message String      @db.Text
+  status  status_type @default(delivered)
 
   user      User?     @relation(fields: [userId], references: [id])
   userId    Int?
