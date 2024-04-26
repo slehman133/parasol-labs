@@ -68,12 +68,12 @@ export default function Home() {
   return (
     <div className="overflow-x-hidden">
       <section className="z-10 md:block relative ">
-        <div className="h-screen w-screen flex items-center justify-center">
+        <div className="h-screen w-screen flex items-center justify-center ">
           <Particles
             className="absolute inset-0 animate-fade-in animate-pulse"
-            quantity={200}
+            quantity={400}
           />
-          <div className="leading-tight text-xl md:text-6xl mb-24  tracking-in-contract">
+          <div className="leading-tight text-xl md:text-6xl mb-24 tracking-in-contract ">
             <h1>Parasol Laboratories</h1>
             <Divider />
             <h2 className="text-foreground-500">Incorporated</h2>

@@ -22,7 +22,7 @@ const UserSettings = ({ userId }: { userId: string }) => {
 
     return (
         <>
-            <div className="w-1/2 bg-[inherit] p-4 rounded-lg">
+            <div className="w-auto bg-[inherit] p-4 rounded-lg">
                 <h1 className="font-bold text-4xl pt-5">Profile</h1>
                 <Divider orientation="horizontal" />
                 <div className="grid grid-flow-row gap-1">

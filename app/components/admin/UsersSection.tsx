@@ -343,7 +343,6 @@ const UsersSection = () => {
                       color="primary"
                       onPress={async () => {
                         setLoading(true);
-                        console.log(userToChange);
                         const res = await fetch(
                           `/api/admin/users/${userToChange.id}/role`,
                           {
@@ -351,7 +350,6 @@ const UsersSection = () => {
                             body: JSON.stringify({ role: userToChange.role }),
                           }
                         );
-                        console.log(res);
                         setUserChanged(!userChanged);
                         setLoading(false);
                         onClose();
@@ -370,6 +368,7 @@ const UsersSection = () => {
       <div className="flex flex-col justify-between">
         <h1 className="text-4xl font-bold">Users</h1>
         <Table
+          aria-label="Users Table"
           classNames={classNames}
           isCompact
           removeWrapper
@@ -391,48 +390,6 @@ const UsersSection = () => {
                 )}
               </TableRow>
             )}
-            {/* {users.map(
-              ({
-                id,
-                email,
-                firstName,
-                lastName,
-                role,
-              }: {
-                id: Number;
-                email: string;
-                firstName: string;
-                lastName: string;
-                role: string;
-              }) => {
-                return (
-                <TableRow
-                    className="cursor-pointer hover:border-2 hover:border-primary-500"
-                    key={id.toString()}
-                    onClick={() => {
-                        setUserToChange({ id: id.toString(), role, email });
-                        onOpen();
-                    }}
-                >
-                    <TableCell>
-                      <div>{id.toString()}</div>
-                    </TableCell>
-                    <TableCell>
-                      <div>{email}</div>
-                    </TableCell>
-                    <TableCell>
-                      <div>{firstName}</div>
-                    </TableCell>
-                    <TableCell>
-                      <div>{lastName}</div>
-                    </TableCell>
-                    <TableCell>
-                      <div>{role}</div>
-                    </TableCell>
-                  </TableRow>
-                );
-              }
-            )} */}
           </TableBody>
         </Table>
       </div>
