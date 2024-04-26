@@ -35,7 +35,7 @@ export async function POST(req: Request) {
         contactName: formData.contactName,
         phoneNumber: formData.phoneNumber,
         emailAddress: formData.emailAddress,
-        status: "Delivered",
+        status: "delivered",
       },
     });
     return NextResponse.json({ status: 200 });
