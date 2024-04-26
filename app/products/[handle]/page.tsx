@@ -41,8 +41,8 @@ const ProductPage = async (props: ProductPageProps) => {
           <Image
             src={imageSrc}
             alt={image?.altText || 'Product image'}
-            width={7000}
-            height={7000}
+            width={781}
+            height={411}
             className='mx-auto object-scale-down'
           />
         </div>
