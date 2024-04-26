@@ -18,11 +18,10 @@ const ProductsDisplay = (props: { products: any }) => {
         // console.log(products)
         setProducts(props.products.filter((e: any) => e.node.title.toLowerCase().includes(search.toLowerCase())))
         setPages(Math.ceil(props.products.filter((e: any) => e.node.title.toLowerCase().includes(search.toLowerCase())).length / 5))
-        if (products.length <= 5) { setPage(1) }
+        setPage(1)
     }, [search, props.products])
 
     useEffect(() => {
-        // console.log(products)
         setProducts(props.products.slice((page - 1) * 5, page * 5))
     }, [page, pages, props.products])
 
@@ -32,7 +31,7 @@ const ProductsDisplay = (props: { products: any }) => {
         <>
             <div className="flex flex-wrap">
                 <div className="w-full flex justify-end">
-                    <div className='pr-24'>
+                    <div className='pr-16 sm:pr-20 md:pr-32 lg:pr-40'>
                         <Input
                             className='w-96'
                             placeholder='Search...'
@@ -69,7 +68,6 @@ const ProductsDisplay = (props: { products: any }) => {
                 <div className="mx-auto mt-16">
                     <Pagination
                         showControls
-                        data-active-page
                         onChange={(e) => setPage(e)}
                         total={pages}
                         initialPage={1} />
