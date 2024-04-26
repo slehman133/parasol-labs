@@ -16,7 +16,7 @@ export async function generateMetadata() {
 
 const AdminPage = async () => {
     const { user: { role } } = await getServerSession(authOptions) as { user: any }
-    console.log(role)
+    // console.log(role)
     const products = await getProducts()
     // console.log(products)
     // const adminProducts = await adminGetProducts()
