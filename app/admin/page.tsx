@@ -1,12 +1,9 @@
-import PartnershipFormTable from "../components/webforms/tables/partnershipformtable";
-import GeneralFormTable from "../components/webforms/tables/generalformtable";
 import React from 'react'
-import ProductDisplay from '../components/admin/ProductDisplay';
-import OrderDisplay from '../components/admin/OrderDisplay';
 import { getProducts } from '@/utils/storefront';
 import { getOrders } from '@/utils/shopifyAdmin';
-import ProductSection from "../components/admin/ProductSection";
-import DisplayPannel from "../components/admin/DisplayPannel";
+import DisplayPanel from "../components/admin/DisplayPanel";
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/utils/authOptions';
 
 export async function generateMetadata() {
     return {
@@ -16,6 +13,8 @@ export async function generateMetadata() {
 
 
 const AdminPage = async () => {
+    // const { user } = await getServerSession(authOptions) as { user: any }
+    // console.log(user)
     const products = await getProducts()
     // console.log(products)
     // const adminProducts = await adminGetProducts()
@@ -24,7 +23,7 @@ const AdminPage = async () => {
     return (
         <>
             <div className='m-24'>
-                <DisplayPannel orders={orders} products={products} />
+                <DisplayPanel orders={orders} products={products} />
             </div>
         </>
 

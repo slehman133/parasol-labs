@@ -4,6 +4,7 @@
 import React from "react";
 import ProductCard from "../components/products/ProductCard";
 import { getProducts } from "@/utils/storefront";
+import ProductsDisplay from "@/components/products/ProductsDisplay";
 
 export async function generateMetadata() {
   return {
@@ -16,7 +17,7 @@ const ProductsPage = async () => {
   return (
     <>
       <div className="text-[var(--text-color)] my-24 ">
-        <div className="flex flex-wrap">
+        {/* <div className="flex flex-wrap">
           {products.map((e: any) => {
             const item = e.node;
             const id = item.id.slice(-13);
@@ -41,7 +42,8 @@ const ProductsPage = async () => {
               />
             );
           })}
-        </div>
+        </div> */}
+        <ProductsDisplay products={products} />
       </div>
     </>
   );
