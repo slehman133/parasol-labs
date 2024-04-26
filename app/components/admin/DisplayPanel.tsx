@@ -20,7 +20,6 @@ const DisplayPanel = ({
   const [activeTab, setActiveTab] = React.useState(tab || "analytics")
   const { data: session } = useSession()
 
-
   // const checkIfCanAccess = (role: string, tab: string) => {
   //   if (role === "superadmin") {
   //     return true
