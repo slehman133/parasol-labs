@@ -1,9 +1,9 @@
 // code by Samuel Lehman
 
-
+import "./styles.css"
 import { getProduct } from '@/utils/storefront'
 import React from 'react'
-import Image from 'next/image'
+import {Image} from "@nextui-org/react"
 import AddToCart from '../../components/products/AddToCart'
 
 interface ProductPageProps {
@@ -36,17 +36,16 @@ const ProductPage = async (props: ProductPageProps) => {
 
   return (
     <>
-      <div className='flex flex-row text-white m-12 mb-26 mt-26 mx-24'>
-        <div className='m-5 mb-auto my-auto max-w-[50%] justify-center overflow-hidden'>
+      <div className='flex-item p-6 text-foreground m-12 mb-auto mt-26 lg:mx-24 mx-auto gap-6'>
+        <div className='m-5 mb-auto mt-16 lg:max-w-[50%] mx-auto'>
           <Image
             src={imageSrc}
             alt={image?.altText || 'Product image'}
-            width={781}
-            height={411}
-            className='mx-auto object-scale-down'
+            className='mx-auto'
+            radius='none'
           />
         </div>
-        <div className='m-12 max-w-3xl'>
+        <div className='mx-auto my-12 max-w-3xl'>
           <h1 className='font-bold text-5xl'>{product.title}</h1>
           <h3 className='font-semibold text-xl'>${Number(product.priceRange.minVariantPrice.amount).toFixed(2)}</h3>
           <p>{product.description}</p>
@@ -58,7 +57,7 @@ const ProductPage = async (props: ProductPageProps) => {
               image={image?.transformedSrc}
               variantId={variantId} />
             :
-            <div className='flex flex-col items-center border-2 border-white 
+            <div className='flex flex-col items-center border-2 border-foreground 
             m-12 p-5 rounded text-xl rounded-2xl'>
               <p>This product is currently unavailable</p>
               <p>Check back frequently to see if it becomes available</p>

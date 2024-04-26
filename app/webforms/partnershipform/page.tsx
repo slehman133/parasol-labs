@@ -91,12 +91,12 @@ export default function PartnershipFormPage() {
 
   return (
     <div className="p-4 md:p-10 container mx-auto">
-      <div className="border-1 border-whitep-4 md:p-10 rounded-md shadow-lg mx-auto my-auto md:grid md:grid-cols-2 md:gap-5">
+      <div className="border-1 p-4 md:p-10 rounded-md shadow-lg mx-auto my-auto md:grid md:grid-cols-2 md:gap-5">
         <div className="text-left space-y-4">
           <h3 className="font-bold text-xl md:text-3xl">
             Let&apos;s build a better tomorrow.
           </h3>
-          <p className="font-thin">
+          <p className="font-light">
             We want to grow with our community. Fill out the form and our
             partnership manager will reach out as soon as possible.
           </p>
@@ -107,7 +107,7 @@ export default function PartnershipFormPage() {
           />
         </div>
         <div className="">
-          <h1 className="text-center font-bold text-2xl border-b-1 border-white">
+          <h1 className="text-center font-bold text-2xl border-b-1 border-foreground">
             Partnership Form
           </h1>
           <div className="py-5 grid grid-cols-2 gap-4">

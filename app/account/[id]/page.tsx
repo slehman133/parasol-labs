@@ -31,7 +31,7 @@ const AccountSettingsPage = async (props: { params: { id: string } }) => {
 
   return (
     <>
-      <div className="m-[5%_10%_2%_10%]">
+      <div className="m-[5%_10%_2%_10%] container px-4 mx-auto">
         <div className="grid grid-rows-auto gap-10">
           <div className=" text-center md:text-left p-4">
             <h1 className="font-bold text-4xl">Account Settings</h1>
@@ -40,7 +40,7 @@ const AccountSettingsPage = async (props: { params: { id: string } }) => {
           <div className="md:flex md:justify-between grid grid-cols-1 gap-10 text">
             {/* make the background color of the child div slightly brighter than the color of the parent div */}
             <UserSettings userId={variables.userId} />
-            <div className="w-1/2 bg-[#160914] p-4 rounded-lg">
+            <div>
               <h1 className="font-bold text-4xl pt-5">Orders</h1>
               <Divider orientation="horizontal" />
               <OrdersDisplay orders={orders} />

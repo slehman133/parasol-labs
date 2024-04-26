@@ -46,7 +46,7 @@ export default function Footer() {
         <Link href="/products" className="link link-hover">
           Products
         </Link>
-        <Link href="/projects#strlproject" className="link link-hover">
+        <Link href="/#strl" className="link link-hover">
           Liquid Sterilization
         </Link>
         <Link href="/disclaimers" className="link link-hover">

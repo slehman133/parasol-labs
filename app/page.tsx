@@ -14,6 +14,7 @@ import ProfilePicture from "./components/profile/circularprofile";
 import { client } from "@/sanity/lib/client";
 import dynamic from "next/dynamic";
 import Particles from "./components/Particles";
+import { ArrowIcon } from "@/public/ArrowIcon";
 
 const PostPreview = dynamic(() => import("./components/Blog/PostPreview"), {
   loading: () => <p>Loading...</p>,
@@ -65,14 +66,14 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <section className="z-10 md:block relative ">
         <div className="h-screen w-screen flex items-center justify-center">
           <Particles
             className="absolute inset-0 animate-fade-in animate-pulse"
             quantity={200}
           />
-          <div className="text-left leading-tight text-6xl mb-24 tracking-in-contract">
+          <div className="leading-tight text-xl md:text-6xl mb-24  tracking-in-contract">
             <h1>Parasol Laboratories</h1>
             <Divider />
             <h2 className="text-foreground-500">Incorporated</h2>
@@ -109,13 +110,7 @@ export default function Home() {
                     <h1 className="font-bold text-lg lg:text-2xl py-5">
                       About us
                     </h1>
-                    <svg id="right" className="arrow-right my-auto ">
-                      <path
-                        d="M0.5 9.35772H20.9956L14.2001 2.29941L16.4134 0L27 11L16.4134 22L14.2001 19.7006L20.9956 12.6423H0.5V9.35772Z"
-                        fill=""
-                        className="bg-foreground"
-                      ></path>
-                    </svg>
+                    <ArrowIcon/>
                   </div>
                 </Link>
               </div>
@@ -130,19 +125,21 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <div className="py-1 ">
-          <section className="">
+        <div className="py-1 " id="strl">
+          <section>
             <div className="grid grid-cols-1 md:grid-cols-2 md:gap-12">
-              {/* Image column */}
-              <div className="relative">
-                <Image
-                  src="/images/strl.jpg"
-                  className="h-auto w-full z-0 opacity-80 rounded-lg strl-shadow"
-                  alt="STRL background"
-                />
+              <div className="relative my-auto">
+                  <Image
+                    src="/images/strlPanel.jpg"
+                    className="h-auto w-full z-0 opacity-80 rounded-lg block lg:hidden "
+                    alt="STRL background"
+                  />
+                  <Image
+                    src="/images/strl.jpg"
+                    className="h-auto w-full z-0 opacity-80 rounded-lg strl-shadow hidden lg:block"
+                    alt="STRL background"
+                  />
               </div>
-
-              {/* Motion div column */}
               <motion.div
                 className="flex flex-col justify-center p-5 text-left"
                 initial="hidden"
@@ -153,6 +150,7 @@ export default function Home() {
                 }}
                 transition={{ duration: 1 }}
                 ref={ref}
+                
               >
                 <h1 className="font-bold text-2xl md:text-4xl py-5">
                   Liquid Sterilization
@@ -168,12 +166,7 @@ export default function Home() {
                     <h1 className="font-bold text-2xl md:text-4xl py-5">
                       Find out more
                     </h1>
-                    <svg id="right" className="arrow-right my-auto ">
-                      <path
-                        d="M0.5 9.35772H20.9956L14.2001 2.29941L16.4134 0L27 11L16.4134 22L14.2001 19.7006L20.9956 12.6423H0.5V9.35772Z"
-                        fill="#ffffff"
-                      ></path>
-                    </svg>
+                    <ArrowIcon/>
                   </div>
                 </Link>
               </motion.div>
