@@ -319,11 +319,14 @@ const UsersSection = () => {
                         <select
                           name="role"
                           id="role"
-                          onChange={(e) =>
+                          value={userToChange.role}
+                          onChange={(e) => {
+                            // console.log(e.target.value);
                             setUserToChange({
                               ...userToChange,
                               role: e.target.value,
                             })
+                          }
                           }
                         >
                           <option value="superadmin">Super Admin</option>
@@ -363,7 +366,7 @@ const UsersSection = () => {
             </>
           )}
         </ModalContent>
-      </Modal>
+      </Modal >
 
       <div className="flex flex-col justify-between">
         <h1 className="text-4xl font-bold">Users</h1>
