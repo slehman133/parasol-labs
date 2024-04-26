@@ -6,6 +6,8 @@ import OrderDisplay from "@/components/admin/OrderDisplay";
 import ProductSection from "@/components/admin/ProductSection";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import UsersSection from "./UsersSection";
 const DisplayPanel = ({
   orders,
   products,
@@ -16,6 +18,14 @@ const DisplayPanel = ({
   const router = useRouter()
   const tab = useSearchParams().get("tab")
   const [activeTab, setActiveTab] = React.useState(tab || "analytics")
+  const { data: session } = useSession()
+
+
+  // const checkIfCanAccess = (role: string, tab: string) => {
+  //   if (role === "superadmin") {
+  //     return true
+  //   } else if (tab)
+  // }
 
   return (
     <>
@@ -56,6 +66,15 @@ const DisplayPanel = ({
         >
           Messages
         </h1>
+        <h1
+          className="hover:bg-white hover:cursor-pointer hover:text-black"
+          onClick={() => {
+            setActiveTab("users")
+            router.push('/admin?tab=users')
+          }}
+        >
+          Users
+        </h1>
       </div>
       {activeTab === "messages" && (
         <>
@@ -93,6 +112,13 @@ const DisplayPanel = ({
         <>
           <div>
             <ProductSection products={products} />
+          </div>
+        </>
+      )}
+      {activeTab === "users" && (
+        <>
+          <div>
+            <UsersSection />
           </div>
         </>
       )}
