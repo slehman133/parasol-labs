@@ -165,6 +165,39 @@ const UsersSection = () => {
     );
   }, [filterValue, onSearchChange, users.length, onRowsPerPageChange, onClear]);
 
+  const bottomContent = useMemo(() => {
+    return (
+      <div className="py-2 px-2 flex justify-between items-center">
+        <Pagination
+          showControls
+          variant="bordered"
+          page={page}
+          total={pages}
+          onChange={setPage}
+          color="warning"
+        />
+        <div className="hidden sm:flex w-[30%] justify-end gap-2">
+          <Button
+            isDisabled={pages === 1}
+            size="sm"
+            variant="flat"
+            onPress={onPreviousPage}
+          >
+            Previous
+          </Button>
+          <Button
+            isDisabled={pages === 1}
+            size="sm"
+            variant="flat"
+            onPress={onNextPage}
+          >
+            Next
+          </Button>
+        </div>
+      </div>
+    );
+  }, [items.length, page, pages]);
+
   useEffect(() => {
     const getUsers = async () => {
       const userRes = await fetch("/api/admin/users", {
@@ -341,6 +374,7 @@ const UsersSection = () => {
           isCompact
           removeWrapper
           topContent={topContent}
+          bottomContent={bottomContent}
           onSortChange={setSortDescriptor}
         >
           <TableHeader columns={columns}>
