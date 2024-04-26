@@ -1,16 +1,35 @@
 "use client"
 
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState, useMemo, useCallback } from 'react'
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Button } from "@nextui-org/react";
 import { Spinner } from "@nextui-org/react";
-import { Table, TableHeader, TableBody, TableColumn, TableRow, TableCell } from "@nextui-org/react";
+import { Table, TableHeader, TableBody, TableColumn, TableRow, TableCell, Dropdown,     DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  ChipProps,
+  Input,
+  Chip,
+  Selection,
+  SortDescriptor,
+  Pagination, } from "@nextui-org/react";
+
+import { VerticalDotsIcon } from "@/public/VerticalDotsIcon";
+import { SearchIcon } from "@/public/SearchIcon";
+import { ChevronDownIcon } from "@/public/ChevronDownIcon";
+
+const columns = [
+    { key: "id", name: "ID" },
+    { key: "email", name: "Email" },
+    { key: "firstName", name: "First Name" },
+    { key: "lastName", name: "Last Name" },
+    { key: "role", name: "Role" },
+];
 
 const UsersSection = () => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
-
     const [loading, setLoading] = useState(false)
     const [users, setUsers] = useState([])
+    const [userChanged, setUserChanged] = useState(false);
 
     const [userToChange, setUserToChange] = useState({
         id: '',
@@ -18,6 +37,67 @@ const UsersSection = () => {
         email: ''
     })
 
+    const [filterValue, setFilterValue] = useState("");
+//   const topContent = useMemo(() => {
+//     return (
+//       <div className="flex flex-col gap-4">
+//         <div className="flex justify-between gap-3 items-end">
+//           <Input
+//             isClearable
+//             variant="underlined"
+//             className="w-full sm:max-w-[44%]"
+//             placeholder="Search by name..."
+//             startContent={<SearchIcon />}
+//             value={filterValue}
+//             onClear={() => onClear()}
+//             onValueChange={onSearchChange}
+//           />
+//           <div className="flex gap-3">
+//             <Dropdown>
+//               <DropdownTrigger className="hidden sm:flex">
+//                 <Button
+//                   endContent={<ChevronDownIcon className="text-small" />}
+//                   variant="flat"
+//                 >
+//                   Status
+//                 </Button>
+//               </DropdownTrigger>
+//               <DropdownMenu
+//                 disallowEmptySelection
+//                 aria-label="Table Columns"
+//                 closeOnSelect={false}
+//                 selectedKeys={statusFilter}
+//                 selectionMode="multiple"
+//                 onSelectionChange={setStatusFilter}
+//               >
+//                 {statusOptions.map((status) => (
+//                   <DropdownItem key={status.uid} className="capitalize">
+//                     {status.name.charAt(0).toUpperCase() + status.name.slice(1)}
+//                   </DropdownItem>
+//                 ))}
+//               </DropdownMenu>
+//             </Dropdown>
+//           </div>
+//         </div>
+//         <div className="flex justify-between items-center">
+//           <span className="text-default-400 text-small">
+//             Total forms: {forms.length} 
+//           </span>
+//           <label className="flex items-center text-default-400 text-small">
+//             Rows per page:
+//             <select
+//               className="bg-transparent outline-none text-default-400 text-small"
+//               onChange={onRowsPerPageChange}
+//             >
+//               <option value="5">5</option>
+//               <option value="10">10</option>
+//               <option value="15">15</option>
+//             </select>
+//           </label>
+//         </div>
+//       </div>
+//     );
+//   }, [filterValue, onSearchChange, statusFilter, forms.length, onRowsPerPageChange, onClear]);
 
     useEffect(() => {
         const getUsers = async () => {
@@ -27,7 +107,7 @@ const UsersSection = () => {
             setUsers(userRes)
         }
         getUsers()
-    }, [])
+    }, [userChanged])
 
 
 
@@ -95,6 +175,7 @@ const UsersSection = () => {
                                                 body: JSON.stringify({ role: userToChange.role }),
                                             })
                                             // console.log(res)
+                                            setUserChanged(!userChanged);
                                             setLoading(false)
                                             onClose()
                                         }}>

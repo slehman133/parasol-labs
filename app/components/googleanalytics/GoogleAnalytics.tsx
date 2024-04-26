@@ -22,7 +22,6 @@ export default function GoogleAnalytics({
       pageview(GA_MEASUREMENT_ID, url);
     }
   }, [pathname, searchParams, GA_MEASUREMENT_ID, cookieConsent]);
-  console.log(cookieConsent);
   // if(!cookieConsent) return null;
   // else if(cookieConsent === undefined || cookieConsent)
     //enable the script if the user has consented to cookies and if the user has not made a decision yet.
