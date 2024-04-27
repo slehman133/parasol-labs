@@ -228,7 +228,7 @@ const UsersSection = () => {
     []
   );
 
-  const renderCell = useCallback((user: User, columnKey: React.Key) => {
+  const renderCell = (user: User, columnKey: React.Key) => {
     const cellValue = user[columnKey as keyof User];
     console.log("CALLED");
     switch (columnKey) {
@@ -293,7 +293,7 @@ const UsersSection = () => {
       default:
         return <p>{cellValue}</p>;
     }
-  }, [users, userChanged]);
+  }
 
   return (
     <>
