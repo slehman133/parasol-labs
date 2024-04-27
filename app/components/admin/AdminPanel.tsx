@@ -9,6 +9,10 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import UsersSection from "./UsersSection";
 import Link from "next/link";
+import { useTheme } from "next-themes";
+
+
+
 const AdminPanel = ({
     orders,
     products,
@@ -20,6 +24,7 @@ const AdminPanel = ({
     const tab = useSearchParams().get("tab")
     const [activeTab, setActiveTab] = React.useState(tab || "analytics")
     const { data: session } = useSession()
+    const theme = useTheme().theme;
 
     return (
         <>
@@ -88,13 +93,24 @@ const AdminPanel = ({
             {activeTab === "analytics" && (
                 <>
                     <h1 className='text-4xl font-bold'>Analytics</h1>
-                    <div className='my-5'>
-                        <iframe
+                    {theme === "dark" && (
+                        <div className='my-5'>
+                            <iframe
+                                width="1200"
+                                height="900"
+                                src="https://lookerstudio.google.com/embed/reporting/985175c2-a8e5-44a1-97df-dcbec3c2e0d8/page/9HNjD"
+                                sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" />
+                        </div>
+                    )}
+                    {theme === "light" && (
+                        <div className='my-5'>
+                            <iframe
                             width="1200"
                             height="900"
-                            src="https://lookerstudio.google.com/embed/reporting/985175c2-a8e5-44a1-97df-dcbec3c2e0d8/page/9HNjD"
+                            src="https://lookerstudio.google.com/embed/reporting/a97908c4-4dfe-469a-b112-006505140214/page/9HNjD"
                             sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" />
-                    </div>
+                        </div>
+                    )}
                 </>
             )}
             {activeTab === "products" && (
