@@ -37,7 +37,7 @@ const TeamPage = () => {
               
                 <div className="flex md:flex-row flex-col justify-center items-center gap-4 p-4 md:gap-16 md:px-24">
                     <Link href ={'/team/ahmed_munoz'}>
-                        <Card className='py-4 flex-col hover:scale-105'>
+                        <Card className='py-4 flex-col hover:scale-105 light:border'>
                             <CardHeader className='overflow-visible z-0 items-start'>
                                 <Image
                                         alt = 'Picture of Ahmed Munoz, founder of Parasol Labs'
@@ -55,7 +55,7 @@ const TeamPage = () => {
                         </Card>   
                     </Link>
                     <Link href ={'/team/cass_kirby'}>
-                        <Card className='py-4 flex-col hover:scale-105'>
+                        <Card className='py-4 flex-col hover:scale-105 light:border'>
                             <CardHeader className='overflow-visible z-0 items-start'>
                                 <Image
                                         alt = 'Picture of Cass Kirby, CEO of Parasol Labs'
@@ -73,7 +73,7 @@ const TeamPage = () => {
                         </Card>   
                     </Link>
                     <Link href ={'/team/teegan_padelford'}>
-                        <Card className='py-4 flex-col hover:scale-105'>
+                        <Card className='py-4 flex-col hover:scale-105 light:border'>
                             <CardHeader className='overflow-visible z-0 items-start'>
                                 <Image
                                         alt = 'Picture of Teegan Padelford, Co-founder and CSO of Parasol Labs'

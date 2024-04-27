@@ -28,7 +28,7 @@ const MemberPage = () => {
                         <p className="md:text-xl text-medium"> Innovative and driven IT consultant with proven leadership experience in architecture, infrastructure, solutions delivery, IT Operations, enterprise security, project management, hyper-converged systems, vendor relations, and agile/waterfall development workflows. Recognized for working on the bleeding edge of technology to promote individual development, optimize business processes, increase profitability, boost productivity, and enhancing team cohesion while reducing overhead.Innovative and driven IT consultant with proven leadership experience in architecture, infrastructure, solutions delivery, IT Operations, enterprise security, project management, hyper-converged systems, vendor relations, and agile/waterfall development workflows. Recognized for working on the bleeding edge of technology to promote individual development, optimize business processes, increase profitability, boost productivity, and enhancing team cohesion while reducing overhead.</p>
                         <div className="flex flex-column py-4 gap-4">
                             <a
-                                className=''
+                                className='light:invert'
                                 target="_blank"
                                 href="https://www.linkedin.com/in/ahmed-munoz-/"
                             >
