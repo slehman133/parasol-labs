@@ -109,7 +109,7 @@ const createCheckout = async (cartItems: CartItem[], email = "") => {
     }
   })
 
-  const query = `
+  const query = email !== "" ? `
     mutation {
     checkoutCreate(input: {
       email: "${email}",
@@ -135,12 +135,38 @@ const createCheckout = async (cartItems: CartItem[], email = "") => {
     }
   }
   `
+    :
+    `
+    mutation {
+    checkoutCreate(input: {
+      lineItems:[
+        ${lineItems.map(e =>
+      `{variantId: "${e.variantId}",
+          quantity: ${e.quantity}},
+        `
+    )}]
+    }) {
+      checkout {
+         id
+         webUrl
+         lineItems(first: 100) {
+           edges {
+             node {
+               title
+               quantity
+             }
+           }
+         }
+      }
+    }
+  }
+  `
   const checkout = await storefront(query)
   return checkout
 }
 
 const buyItNow = async (variantId: string, quantity: number, email = "") => {
-  const query = `mutation{
+  const query = email !== "" ? `mutation{
   checkoutCreate(input:{
     email: "${email}",
     lineItems:{
@@ -152,7 +178,20 @@ const buyItNow = async (variantId: string, quantity: number, email = "") => {
       webUrl
     }
   }
+}`:
+    `mutation{
+  checkoutCreate(input:{
+    lineItems:{
+      variantId: "${variantId}",
+      quantity: ${quantity}
+    }
+  }){
+    checkout{
+      webUrl
+    }
+  }
 }`
+
   const checkout = await storefront(query)
   return checkout
 }
