@@ -3,7 +3,7 @@ import prisma from "@/utils/db";
 
 export async function PATCH(request: NextRequest, params: { params: { id: string } }) {
     const { role } = await request.json();
-    // console.log(role)
+    console.log(role)
     try {
         const user = await prisma.user.update({
             where: {
@@ -14,7 +14,7 @@ export async function PATCH(request: NextRequest, params: { params: { id: string
             }
 
         });
-        // console.log(user)
+        console.log(user)
         return NextResponse.json(user);
     }
     catch (e) {
