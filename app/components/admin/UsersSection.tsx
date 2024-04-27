@@ -80,11 +80,12 @@ const UsersSection = () => {
   const pages = Math.ceil(filteredItems.length / rowsPerPage);
 
   const items = useMemo(() => {
+    // console.log(users);
     const start = (page - 1) * rowsPerPage;
     const end = start + rowsPerPage;
 
     return filteredItems.slice(start, end);
-  }, [page, filteredItems, rowsPerPage]);
+  }, [page, filteredItems, rowsPerPage, users]);
 
   const sortedItems = useMemo(() => {
     return [...items].sort((a: User, b: User) => {
