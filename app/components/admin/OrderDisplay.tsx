@@ -99,7 +99,7 @@ const OrderDisplay = ({ orders }: { orders: any }) => {
                     <TableColumn>
                         Product(s)
                     </TableColumn>
-                    {/* <TableColumn>
+                    <TableColumn>
                         First Name
                     </TableColumn>
                     <TableColumn>
@@ -107,7 +107,7 @@ const OrderDisplay = ({ orders }: { orders: any }) => {
                     </TableColumn>
                     <TableColumn>
                         Email
-                    </TableColumn> */}
+                    </TableColumn>
 
                     <TableColumn>
                         Shipping Address
@@ -153,9 +153,9 @@ const OrderDisplay = ({ orders }: { orders: any }) => {
                                         })
                                     }
                                 </TableCell>
-                                {/* <TableCell>{firstName}</TableCell>
+                                <TableCell>{firstName}</TableCell>
                                 <TableCell>{lastName}</TableCell>
-                                <TableCell>{email}</TableCell> */}
+                                <TableCell>{email}</TableCell>
                                 <TableCell>{formatted.join(' ')}</TableCell>
                                 <TableCell>${amount}</TableCell>
                             </TableRow>
