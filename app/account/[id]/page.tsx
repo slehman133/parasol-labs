@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Input } from "@nextui-org/react";
 import { Button, ButtonGroup, Divider } from "@nextui-org/react";
 import { getOrders, getOrdersByEmail } from '@/utils/shopifyAdmin'
-import OrdersDisplay from '@/components/admin/OrderDisplay'
+import OrdersDisplay from '@/components/account/signin/OrdersDisplay'
 import UserSettings from "@/app/components/account/signin/UserSettings";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/utils/authOptions";
