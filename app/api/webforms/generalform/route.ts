@@ -8,6 +8,9 @@ import { NextResponse } from "next/server";
 // name    String @db.VarChar(255)
 // email   String @db.VarChar(255)
 // message String @db.Text
+// name    String @db.VarChar(255)
+// email   String @db.VarChar(255)
+// message String @db.Text
 // }
 
 export async function POST(req: Request) {

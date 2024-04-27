@@ -24,7 +24,6 @@ const ProductsDisplay = (props: { products: any }) => {
     }, [search, props.products])
 
     useEffect(() => {
-        // console.log(products)
         setProducts(props.products.slice((page - 1) * 5, page * 5))
     }, [page, pages, props.products])
 
@@ -80,7 +79,6 @@ const ProductsDisplay = (props: { products: any }) => {
                 <div className="mx-auto mt-16">
                     <Pagination
                         showControls
-                        data-active-page
                         onChange={(e) => setPage(e)}
                         total={pages}
                         page={page}

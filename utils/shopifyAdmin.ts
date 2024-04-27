@@ -155,7 +155,46 @@ export const getOrders = async () => {
 }`
 
   const orders = await admin(query).then(res => res.data.orders.edges.map((e: any) => e.node))
+  // console.log(orders)
+  // getOrder("gid://shopify/Order/5760723091745")
   return orders
+}
+
+export const fulfillOrder = async (id: string) => {
+  const getOrderQuery = `
+  query{
+    order(id: "${id}") {
+      fulfillmentOrders (first:1) {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }`
+  const fulfillmentOrderId = await admin(getOrderQuery).then(res => res.data.order.fulfillmentOrders.edges[0].node.id)
+  // console.log(fulfillmentOrderId)
+
+  const fulfillOrderQuery =
+    `mutation {
+                fulfillmentCreateV2(
+                    fulfillment: {
+                        lineItemsByFulfillmentOrder:{
+                            fulfillmentOrderId:"${fulfillmentOrderId}"
+                        }
+                        notifyCustomer:true
+                    }
+                ) {
+                    fulfillment {
+                        id
+                    }
+                }
+            }`
+
+  const res = await admin(fulfillOrderQuery)
+  // console.log(res)
+  return res
 }
 
 export const getOrdersByEmail = async (email: string) => {

@@ -19,9 +19,9 @@ const CartPage = () => {
 
     const { data: session } = useSession()
 
-    console.log(cartItems)
+    // console.log(cartItems)
 
-    let itemToRemove = 0
+    const [itemToRemove, setItemToRemove] = useState(0)
 
     return (
         <>
@@ -95,8 +95,7 @@ const CartPage = () => {
                                                 src="/images/trash.png"
                                                 alt="trash button"
                                                 onClick={(e) => {
-                                                    0
-                                                    itemToRemove = index
+                                                    setItemToRemove(index)
                                                     onOpen()
                                                 }} />
                                         </div>
