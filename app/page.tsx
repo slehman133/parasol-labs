@@ -80,7 +80,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6 md:px-24">
         <section className="" id="landing-section">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
             <div className=" px-10 py-5 mx-auto my-auto">
