@@ -293,7 +293,7 @@ const UsersSection = () => {
       default:
         return <p>{cellValue}</p>;
     }
-  }, [users, userChanged]);
+  }, [userChanged, onOpen, setUserChanged, setSelectedRow]);
 
   return (
     <>
