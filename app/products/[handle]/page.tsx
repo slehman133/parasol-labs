@@ -6,6 +6,7 @@ import React from "react";
 import { Image } from "@nextui-org/react";
 import AddToCart from "../../components/products/AddToCart";
 import SubscriptionForm from "@/app/components/SubscriptionForm";
+import { redirect } from "next/navigation";
 
 interface ProductPageProps {
   params: {
@@ -30,6 +31,7 @@ export async function generateMetadata({
 const ProductPage = async (props: ProductPageProps) => {
   const variables = { handle: props.params.handle };
   const product = await getProduct(variables);
+  if (!product) { redirect("/not-found") }
   const quantityAvailable = product.variants.edges[0].node.quantityAvailable;
   const image = product.images.edges[0]?.node;
   const variantId = product.variants.edges[0].node;

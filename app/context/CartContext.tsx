@@ -53,7 +53,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         // if item in cart already, increase quantity by 1 if not, add item to cart
         const itemInCart = cartItems.find((cartItem) => cartItem.variantId.id === item.variantId.id)
         if (itemInCart) {
-            editItemQuantity(itemInCart, cartItems.indexOf(itemInCart), item.quantity)
+            editItemQuantity(itemInCart, cartItems.indexOf(itemInCart), Number(item.quantity))
         } else {
             setCartItems([...cartItems, item])
         }
@@ -78,7 +78,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         setCartItems(() => {
             let newArr = [...cartItems]
             const newItem = { ...item }
-            newItem.quantity += Number(newQuantity)
+            newItem.quantity = Number(newItem.quantity) + Number(newQuantity)
             newArr.splice(index, 1, newItem)
             return newArr
         })
