@@ -17,6 +17,7 @@ import {
 } from "@nextui-org/react";
 import GoogleAnalytics from "../googleanalytics/GoogleAnalytics";
 
+
 export default function CookieBanner() {
   const [cookieConsent, setCookieConsent] = useState<true | false>();
   
