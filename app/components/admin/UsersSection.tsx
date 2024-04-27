@@ -201,6 +201,7 @@ const UsersSection = () => {
 
   useEffect(() => {
     const getUsers = async () => {
+      console.log("FETCHING USERS");
       const userRes = await fetch("/api/admin/users", {
         method: "GET",
         cache: "no-store",
@@ -208,7 +209,7 @@ const UsersSection = () => {
       setUsers(userRes);
     };
     getUsers();
-  }, [userChanged]);
+  }, [userChanged, users]);
 
   const classNames = useMemo(
     () => ({
