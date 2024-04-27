@@ -4,6 +4,7 @@ import { IconSvgProps } from "./types";
 export const SearchIcon = (props: IconSvgProps) => (
   <svg
     aria-hidden="true"
+    alt-text="search icon"
     fill="none"
     focusable="false"
     height="1em"

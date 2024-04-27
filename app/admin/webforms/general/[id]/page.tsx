@@ -14,8 +14,8 @@ import { SendEmail } from "@/app/api/email/contact";
 import EmailTemplate from "@/app/components/webforms/templates/emailtemplate";
 
 const statuses = [
-  { name: "Active", value: "Active" },
-  { name: "Completed", value: "Completed" },
+  { name: "Active", value: "active" },
+  { name: "Completed", value: "completed" },
 ];
 
 interface form {
@@ -39,6 +39,8 @@ const GeneralWebformsPage = (props: { params: { id: string } }) => {
   const [htmlMessage, setHtmlMessage] = useState<string>("");
   const [successMessage, setMessage] = useState<string>("");
   const [status, setStatus] = useState<Selection>(new Set([]));
+
+  
 
   const handleSendEmail = async () => {
     if (htmlMessage === "" && form.status === "Delivered") {

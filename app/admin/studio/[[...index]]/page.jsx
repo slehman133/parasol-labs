@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 /**
  * This route is responsible for the built-in authoring environment using Sanity Studio.
@@ -10,15 +10,27 @@
  */
 
 import { NextStudio } from 'next-sanity/studio'
-import config from '../../../../sanity.config'
-
+import {config, lConfig} from '../../../../sanity.config'
+import { useTheme } from 'next-themes'
+import { buildLegacyTheme } from 'sanity'
 
 
 export default function StudioPage() {
+  const theme = useTheme().theme;
+  console.log(theme);
+  if(theme === "light"){ 
+    return (
+      <div className='z-[999999]'>
+        <NextStudio config={lConfig} />
+      </div>
+    )
+  }
+  else{
+    return (
+      <div className='z-[999999]'>
+        <NextStudio config={config} />
+      </div>
+    )
+  }
 
-  return (
-    <div className='z-[999999]'>
-      <NextStudio config={config} />
-    </div>
-  )
 }

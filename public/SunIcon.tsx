@@ -2,6 +2,7 @@ import React from "react";
 export const SunIcon = (props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     aria-hidden="true"
+    alt-text="sun icon"
     focusable="false"
     height="1em"
     role="presentation"

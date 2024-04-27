@@ -19,7 +19,7 @@ interface ProductCardProps {
 const ProductCard = (props: ProductCardProps) => {
     return (
         <>
-            <motion.div className="flex flex-wrap shadow-2xl flex-row  w-[90%] mx-auto my-5 justify-center text-foreground"
+            <motion.div className="flex shadow-2xl flex-col lg:flex-row w-[90%] mx-auto my-5 justify-center text-foreground"
                 initial={{
                     opacity: 0,
                     y: 100
@@ -41,8 +41,8 @@ const ProductCard = (props: ProductCardProps) => {
                         </Link>
                     </div>
                 </div>
-                <div className='overflow-hidden max-w-lg mx-auto sm:p-2 lg:p-0'>
-                    <Image className='object-cover w-full h-full' height={9000} width={9000} src={props.image} alt={props.altText} />
+                <div className='overflow-hidden max-w-lg mx-auto p-10  '>
+                    <Image className='object-cover w-full h-full shadow-xl' height={9000} width={9000} src={props.image} alt={props.altText} />
                 </div>
             </motion.div >
         </>)
