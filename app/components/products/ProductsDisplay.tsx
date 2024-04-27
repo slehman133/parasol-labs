@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import ProductCard from './ProductCard'
 import { Pagination } from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
@@ -27,6 +27,15 @@ const ProductsDisplay = (props: { products: any }) => {
         setProducts(props.products.slice((page - 1) * 5, page * 5))
     }, [page, pages, props.products])
 
+    const onSearchChange = useCallback((value?: string) => {
+        if (value) {
+          setSearch(value);
+          setPage(1);
+        } else {
+          setSearch("");
+        }
+      }, []);
+
     return (
         <>
             <div className=" container mx-auto flex flex-wrap">
@@ -35,8 +44,8 @@ const ProductsDisplay = (props: { products: any }) => {
                             className="w-full sm:max-w-[44%] my-auto"
                             placeholder='Search by title...'
                             value={search}
-                            onValueChange={setSearch}
-                            startContent={<SearchIcon/>}
+                            onValueChange={onSearchChange}
+                            startContent={<SearchIcon className='dark:invert'/>}
                             variant='underlined'
                             // onChange={(e) => setSearch(e.target.value)}
                         />

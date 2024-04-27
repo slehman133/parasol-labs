@@ -11,11 +11,10 @@ import {
 } from "@nextui-org/react";
 import react, { useEffect, useState } from "react";
 import { SendEmail } from "@/app/api/email/contact";
-import EmailTemplate from "@/app/components/webforms/templates/emailtemplate";
 
 const statuses = [
-  { name: "Active", value: "Active" },
-  { name: "Completed", value: "Completed" },
+  { name: "Active", value: "active" },
+  { name: "Completed", value: "completed" },
 ];
 
 interface form {
