@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import ProductCard from './ProductCard'
 import { Pagination } from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
+import { SearchIcon } from '@/public/SearchIcon';
 
 const ProductsDisplay = (props: { products: any }) => {
 
@@ -13,12 +14,13 @@ const ProductsDisplay = (props: { products: any }) => {
     const [products, setProducts] = useState(props.products);
     const [search, setSearch] = useState("");
 
-
     useEffect(() => {
         // console.log(products)
         setProducts(props.products.filter((e: any) => e.node.title.toLowerCase().includes(search.toLowerCase())))
         setPages(Math.ceil(props.products.filter((e: any) => e.node.title.toLowerCase().includes(search.toLowerCase())).length / 5))
-        if (products.length <= 5) { setPage(1) }
+        if (products.length <= 5) { 
+            setPage(1);
+         }
     }, [search, props.products])
 
     useEffect(() => {
@@ -26,19 +28,28 @@ const ProductsDisplay = (props: { products: any }) => {
         setProducts(props.products.slice((page - 1) * 5, page * 5))
     }, [page, pages, props.products])
 
-
-
     return (
         <>
-            <div className="flex flex-wrap">
-                <div className="w-full flex justify-end">
-                    <div className='pr-24'>
+            <div className=" container mx-auto flex flex-wrap">
+                <div className="w-full mx-auto flex md:flex-row flex-col justify-around gap-4">
                         <Input
-                            className='w-96'
-                            placeholder='Search...'
-                            onChange={(e) => setSearch(e.target.value)}
+                            className="w-full sm:max-w-[44%] my-auto"
+                            placeholder='Search by title...'
+                            value={search}
+                            onValueChange={setSearch}
+                            startContent={<SearchIcon/>}
+                            variant='underlined'
+                            // onChange={(e) => setSearch(e.target.value)}
                         />
-                    </div>
+                        <Pagination
+                            showControls
+                            data-active-page
+                            onChange={(e) => setPage(e)}
+                            total={pages}
+                            page={page}
+                            initialPage={1}
+                            className='my-auto'
+                        />
                 </div>
                 {products.map((e: any) => {
                     const item = e.node;
@@ -72,6 +83,7 @@ const ProductsDisplay = (props: { products: any }) => {
                         data-active-page
                         onChange={(e) => setPage(e)}
                         total={pages}
+                        page={page}
                         initialPage={1} />
                 </div>
             </div>
