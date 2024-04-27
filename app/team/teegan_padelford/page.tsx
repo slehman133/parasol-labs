@@ -28,7 +28,7 @@ const MemberPage = () => {
                         <p className="md:text-xl text-medium">Passionate about biology and equipped with a background that encompassed both healthcare and biotechnology, a strong foundation that had been established in both fields. Through five years of experience in a dynamic healthcare role, was directly involved in the building of the first COVID-19 response team for Indian River Medical Center - highlighting the importance of crisis management and collaborative efforts in ensuring community well-being. The expertise extends beyond healthcare, encompassing the spearheading of research and development initiatives, and the cultivation of strategic partnerships. </p>
                         <div className="flex flex-column py-4 gap-4">
                             <a
-                                className=''
+                                className='light:invert'
                                 target="_blank"
                                 href="https://www.linkedin.com/in/teagan-padelford/"
                             >
