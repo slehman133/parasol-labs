@@ -19,46 +19,46 @@ const ProductsDisplay = (props: { products: any }) => {
         );
         setProducts(filteredProducts);
         setPages(Math.ceil(filteredProducts.length / 5));
-        setPage(1);
+        setPage(1); //doesn't filter the products not displayed on the page.
     }, [search, props.products]);
 
     useEffect(() => {
-            const startIndex = (page - 1) * 5;
-            const endIndex = page * 5;
-            const slicedProducts = props.products.slice(startIndex, endIndex);
-            setProducts(slicedProducts);
-            setPages(Math.ceil(slicedProducts.length / 5));
+        const startIndex = (page - 1) * 5;
+        const endIndex = page * 5;
+        const slicedProducts = props.products.slice(startIndex, endIndex);
+        setProducts(slicedProducts);
+        setPages(Math.ceil(props.products.length / 5));
     }, [page, props.products]);
 
     const onSearchChange = useCallback((value?: string) => {
-            if (value) {
-                setSearch(value);
-            } else {
-                setSearch("");
-            }
+        if (value) {
+            setSearch(value);
+        } else {
+            setSearch("");
+        }
     }, []);
 
     return (
         <>
             <div className=" container mx-auto flex flex-wrap">
                 <div className="w-full mx-auto flex md:flex-row flex-col justify-around gap-4">
-                        <Input
-                            className="w-full sm:max-w-[44%] my-auto"
-                            placeholder='Search by title...'
-                            value={search}
-                            onValueChange={onSearchChange}
-                            startContent={<SearchIcon className='dark:invert'/>}
-                            variant='underlined'
-                        />
-                        <Pagination
-                            showControls
-                            data-active-page
-                            onChange={(e) => setPage(e)}
-                            total={pages}
-                            page={page}
-                            initialPage={1}
-                            className='my-auto'
-                        />
+                    <Input
+                        className="w-full sm:max-w-[44%] my-auto"
+                        placeholder='Search by title...'
+                        value={search}
+                        onValueChange={onSearchChange}
+                        startContent={<SearchIcon className='dark:invert' />}
+                        variant='underlined'
+                    />
+                    <Pagination
+                        showControls
+                        data-active-page
+                        onChange={(e) => setPage(e)}
+                        total={pages}
+                        page={page}
+                        initialPage={1}
+                        className='my-auto'
+                    />
                 </div>
                 {products.map((e: any) => {
                     const item = e.node;
