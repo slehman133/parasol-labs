@@ -135,16 +135,6 @@ const UserSettings = ({ userId }: { userId: string }) => {
                     {/* if updateEnabled is true, show the form to change the password */}
                     {updateEnabled && (
                         <>
-                            {/* <Button
-                                className="w-1/2 my-5 mx-auto p-2"
-                                color="primary"
-                                variant="bordered"
-                                form='basic-information'
-                                type="submit"
-                                value="Change Password"
-                            >
-                                Change Basic Information
-                            </Button> */}
                             <form
                                 className=""
                                 action=""

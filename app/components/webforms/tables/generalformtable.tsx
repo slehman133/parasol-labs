@@ -307,6 +307,7 @@ export default function GeneralFormTable() {
       const data = await response.json();
       console.log(data);
       setForms(data);
+      setUpdatedForm(false);
     }
     fetchForms();
   }, [updatedForm]);
@@ -392,7 +393,9 @@ export default function GeneralFormTable() {
                         setLoading(false);
                         onClose();
                       }}
-                    ></Button>
+                    >
+                      Save
+                    </Button>
                   </ModalFooter>
                 </>
               )}

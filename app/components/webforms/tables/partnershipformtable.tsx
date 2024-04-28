@@ -366,6 +366,7 @@ export default function PartnershipFormTable() {
       console.log(data);
       setForms(data);
       console.log(data);
+      setUpdatedForm(false);
     }
     fetchForms();
   }, [updatedForm]);
@@ -451,7 +452,9 @@ export default function PartnershipFormTable() {
                         setLoading(false);
                         onClose();
                       }}
-                    ></Button>
+                    >
+                      Save
+                    </Button>
                   </ModalFooter>
                 </>
               )}
