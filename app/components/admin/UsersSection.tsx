@@ -202,7 +202,6 @@ const UsersSection = () => {
     const getUsers = async () => {
       const userRes = await fetch("/api/admin/users", {
         method: "GET",
-        cache: "no-store",
       }).then((res) => res.json());
       setUsers(userRes);
     };
@@ -322,12 +321,11 @@ const UsersSection = () => {
                           id="role"
                           value={userToChange.role}
                           onChange={(e) => {
-                            console.log(e.target.value);
+                            // console.log(e.target.value);
                             setUserToChange({
                               ...userToChange,
                               role: e.target.value,
                             })
-                            console.log(e.target.value);
                           }
                           }
                         >
@@ -348,7 +346,6 @@ const UsersSection = () => {
                       color="primary"
                       onPress={async () => {
                         setLoading(true);
-                        console.log(userToChange);
                         const res = await fetch(
                           `/api/admin/users/${userToChange.id}/role`,
                           {
@@ -356,7 +353,6 @@ const UsersSection = () => {
                             body: JSON.stringify({ role: userToChange.role }),
                           }
                         );
-                        console.log(res);
                         setUserChanged(!userChanged);
                         setLoading(false);
                         onClose();
