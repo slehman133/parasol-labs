@@ -22,7 +22,8 @@ const UsersSection = () => {
   useEffect(() => {
     const getUsers = async () => {
       const userRes = await fetch('/api/admin/users', {
-        method: 'GET'
+        method: 'GET',
+        cache: 'no-store'
       }).then(res => res.json())
       setUsers(userRes)
     }

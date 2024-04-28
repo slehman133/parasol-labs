@@ -22,6 +22,7 @@ const AdminPage = async () => {
     // const adminProducts = await adminGetProducts()
     const orders = await getOrders()
     // console.log(adminProducts)
+
     return (
         <>
             <div className='m-24'>
