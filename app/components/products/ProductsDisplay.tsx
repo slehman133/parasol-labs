@@ -9,32 +9,34 @@ import { SearchIcon } from '@/public/SearchIcon';
 const ProductsDisplay = (props: { products: any }) => {
 
     const [page, setPage] = useState(1);
-
-    const [pages, setPages] = useState(Math.ceil(props.products.length / 5))
+    const [pages, setPages] = useState(Math.ceil(props.products.length / 5));
     const [products, setProducts] = useState(props.products);
     const [search, setSearch] = useState("");
 
     useEffect(() => {
-        // console.log(products)
-        setProducts(props.products.filter((e: any) => e.node.title.toLowerCase().includes(search.toLowerCase())))
-        setPages(Math.ceil(props.products.filter((e: any) => e.node.title.toLowerCase().includes(search.toLowerCase())).length / 5))
-        if (products.length <= 5) { 
-            setPage(1);
-         }
-    }, [search, props.products])
+        const filteredProducts = props.products.filter((e: any) =>
+            e.node.title.toLowerCase().startsWith(search.toLowerCase())
+        );
+        setProducts(filteredProducts);
+        setPages(Math.ceil(filteredProducts.length / 5));
+        setPage(1);
+    }, [search, props.products]);
 
     useEffect(() => {
-        setProducts(props.products.slice((page - 1) * 5, page * 5))
-    }, [page, pages, props.products])
+            const startIndex = (page - 1) * 5;
+            const endIndex = page * 5;
+            const slicedProducts = props.products.slice(startIndex, endIndex);
+            setProducts(slicedProducts);
+            setPages(Math.ceil(slicedProducts.length / 5));
+    }, [page, props.products]);
 
     const onSearchChange = useCallback((value?: string) => {
-        if (value) {
-          setSearch(value);
-          setPage(1);
-        } else {
-          setSearch("");
-        }
-      }, []);
+            if (value) {
+                setSearch(value);
+            } else {
+                setSearch("");
+            }
+    }, []);
 
     return (
         <>
@@ -47,7 +49,6 @@ const ProductsDisplay = (props: { products: any }) => {
                             onValueChange={onSearchChange}
                             startContent={<SearchIcon className='dark:invert'/>}
                             variant='underlined'
-                            // onChange={(e) => setSearch(e.target.value)}
                         />
                         <Pagination
                             showControls
