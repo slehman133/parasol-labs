@@ -29,6 +29,24 @@ export default function PartnershipFormPage() {
   const [sending, setSending] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
 
+  const validateEmail = (emailAddress: string) =>
+    emailAddress.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z ]{2,4}$/i);
+
+  const isInvalid = React.useMemo(() => {
+    if (formData.emailAddress === "") return false;
+
+    return validateEmail(formData.emailAddress) ? false : true;
+  }, [formData.emailAddress]);
+
+  const validatePhoneNumber = (phoneNumber: string) =>
+    phoneNumber.match(/^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/);
+  
+  const isInvalidPhone = React.useMemo(() => {
+    if (formData.phoneNumber === "") return false;
+
+    return validatePhoneNumber(formData.phoneNumber) ? false : true;
+  }, [formData.phoneNumber]);
+
   const clearForm = () => {
     setFormData({
       companyName: "",
@@ -118,7 +136,7 @@ export default function PartnershipFormPage() {
               fullWidth
               radius="none"
               size="lg"
-              isRequired
+              isRequired={true}  
               value={formData.companyName}
               onChange={(e) =>
                 setFormData({ ...formData, companyName: e.target.value })
@@ -137,7 +155,7 @@ export default function PartnershipFormPage() {
               }
             />
           </div>
-          <h1 className="font-bold">Company Address</h1>
+          <h1 className="font-bold after:content-['*'] after:text-danger">Company Address</h1>
           <Input
             variant="bordered"
             fullWidth
@@ -156,7 +174,7 @@ export default function PartnershipFormPage() {
             fullWidth
             radius="none"
             size="lg"
-            placeholder="Street Address Line 2"
+            placeholder="Street Address Line 2 (optional)"
             className="py-2"
             value={formData.streetAddress2}
             onChange={(e) =>
@@ -201,7 +219,7 @@ export default function PartnershipFormPage() {
               setFormData({ ...formData, postalCode: e.target.value })
             }
           />
-          <h1 className="py-4 font-bold">
+          <h1 className="py-4 font-bold after:content-['*']  after:text-danger">
             Services you&apos;re interested in (can select multiple)
           </h1>
           <CheckboxGroup
@@ -209,8 +227,9 @@ export default function PartnershipFormPage() {
             onValueChange={setSelected}
             color="warning"
             className="p-2"
+            isRequired
           >
-            <Checkbox value="Website Optimization">
+            <Checkbox value="Website Optimization ">
               Website Optimization
             </Checkbox>
             <Checkbox value="Social Media">Social Media</Checkbox>
@@ -233,7 +252,7 @@ export default function PartnershipFormPage() {
               setFormData({ ...formData, additionalInfo: e.target.value })
             }
           />
-          <h1 className="font-bold pt-4">Point of Contact - Partnership</h1>
+          <h1 className="font-bold pt-4 after:content-['*']  after:text-danger">Point of Contact - Partnership</h1>
           <Input
             label="Contact Name"
             labelPlacement="outside"
@@ -246,23 +265,28 @@ export default function PartnershipFormPage() {
             }
           />
           <Input
-            label="Phone Number"
-            labelPlacement="outside"
+            className="py-2"
+            isRequired
             variant="bordered"
+            placeholder="Phone Number"
             size="lg"
             radius="none"
             value={formData.phoneNumber}
+            color={isInvalidPhone ? "danger" : "success"}
+            errorMessage={isInvalidPhone && "Please enter a valid phone number"}
             onChange={(e) =>
               setFormData({ ...formData, phoneNumber: e.target.value })
             }
           />
           <Input
-            label="Email Address"
-            labelPlacement="outside"
             variant="bordered"
             size="lg"
+            placeholder="From: name@example.com"
             radius="none"
+            isRequired
             value={formData.emailAddress}
+            color={isInvalid ? "danger" : "success"}
+            errorMessage={isInvalid && "Please enter a valid email"}
             onChange={(e) =>
               setFormData({ ...formData, emailAddress: e.target.value })
             }
