@@ -51,7 +51,7 @@ const ProductSection = ({ products }: { products: any }) => {
                                                     type="text"
                                                     name="title"
                                                     id="title"
-                                                    className="input input-bordered w-full max-w-xs"
+                                                    className="input input-bordered w-full max-w-xs bg-background"
                                                     onChange={(e) => setProduct({ ...product, title: e.target.value })}
                                                     value={product.title}
                                                 />
@@ -61,7 +61,7 @@ const ProductSection = ({ products }: { products: any }) => {
                                                 <textarea
                                                     name="description"
                                                     id="description"
-                                                    className="textarea textarea-bordered w-full max-w-xs"
+                                                    className="textarea textarea-bordered w-full max-w-xs bg-background"
                                                     onChange={(e) => setProduct({ ...product, descriptionHtml: e.target.value })}
                                                     value={product.descriptionHtml}
                                                 />
@@ -72,7 +72,7 @@ const ProductSection = ({ products }: { products: any }) => {
                                                     type="text"
                                                     name="handle"
                                                     id="handle"
-                                                    className="input input-bordered w-full max-w-xs"
+                                                    className="input input-bordered w-full max-w-xs bg-background"
                                                     onChange={(e) => setProduct({ ...product, handle: e.target.value })}
                                                     value={product.handle}
                                                 />
@@ -84,7 +84,7 @@ const ProductSection = ({ products }: { products: any }) => {
                                                     type="file"
                                                     name="image"
                                                     id="image"
-                                                    className="file-input file-input-bordered w-full max-w-xs"
+                                                    className="file-input file-input-bordered w-full max-w-xs bg-background"
                                                     onChange={async (e) => {
                                                         const image = e.target.files![0]
                                                         const fd = new FormData()
@@ -113,7 +113,7 @@ const ProductSection = ({ products }: { products: any }) => {
                                                     type="text"
                                                     name="handle"
                                                     id="handle"
-                                                    className="input input-bordered w-full max-w-xs"
+                                                    className="input input-bordered w-full max-w-xs bg-background"
                                                     onChange={(e) => setProduct({ ...product, altText: e.target.value })}
                                                     value={product.altText}
                                                 />
