@@ -117,8 +117,8 @@ export default function Home() {
             </div>
             <div className=" mx-auto">
               {/* todo: make image look like a wax seal stamp (add some flair in that page) */}
-              <img
-                className="resizeableImage mx-auto my-auto p-5"
+              <Image
+                className="w-2/3 lg:w-full mx-auto my-auto p-5"
                 src="/images/logo.png"
                 alt=""
               />
@@ -234,7 +234,7 @@ export default function Home() {
           </section>
           <Divider orientation="horizontal" className="my-10" />
           <section className="mt-[20%]" id="contact">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 md:gap-x-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-4 md:gap-x-8">
               <div className="text-center md:text-left py-2">
                 <h1 className="font-thin text-4xl md:text-7xl">
                   Let us innovate tomorrow,{" "}
@@ -335,7 +335,7 @@ export default function Home() {
                 <h1 className="font-bold text-2xl md:text-4xl border-b-2 border-foreground">
                   Recent News
                 </h1>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 py-5">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8 py-5">
                   {postPreviews}
                 </div>
               </div>
