@@ -99,23 +99,23 @@ const DisplayPanel = ({
       {activeTab === "analytics" && (
         <>
           <h1 className='text-4xl font-bold'>Analytics</h1>
-          {theme === "" && (
-          <div className='my-5'>
-            <iframe
-              width="1200"
-              height="900"
-              src="https://lookerstudio.google.com/embed/reporting/985175c2-a8e5-44a1-97df-dcbec3c2e0d8/page/9HNjD"
-              sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" />
-          </div>
+          {theme === "dark" && (
+            <div className='my-5'>
+              <iframe
+                width="1200"
+                height="900"
+                src="https://lookerstudio.google.com/embed/reporting/985175c2-a8e5-44a1-97df-dcbec3c2e0d8/page/9HNjD"
+                sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" />
+            </div>
           )}
           {theme === "light" && (
-          <div className='my-5'>
-            <iframe
-              width="1200"
-              height="900"
-              src="https://lookerstudio.google.com/embed/reporting/a97908c4-4dfe-469a-b112-006505140214/page/9HNjD"
-              sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" />
-          </div>
+            <div className='my-5'>
+              <iframe
+                width="1200"
+                height="900"
+                src="https://lookerstudio.google.com/embed/reporting/a97908c4-4dfe-469a-b112-006505140214/page/9HNjD"
+                sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" />
+            </div>
           )}
         </>
       )}
