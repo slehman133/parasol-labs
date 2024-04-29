@@ -26,6 +26,7 @@ const parseArticleData = async (article: any) => {
             .replace("-webp", ".webp")
             .replace("-jpeg", ".jpeg")
             .replace("-png", ".png")    // Best we remove PNGs but for now, this renders
+            .replace("-jpg", ".jpg")
         : "/images/placeholder_news.jpeg"
 
     const author = article.author ? await client.fetch(`*[_type == 'author' && _id == $ref][0]`,
@@ -51,19 +52,19 @@ const PostPreview = async (props: PostMetadata) => {
         <div className="flex flex-row p-2 gap-4">
           <Link key={slug} href={`/news/${slug}`}>
             <Card
-              className="h-[300px] max-w-[600px]"
+              className="h-[300px] max-w-[600px] min-w-[300px]"
             >
               <CardHeader className="z-10 absolute flex-col !items-start top-1 gap-1">
-                <p className="text-tiny text-white/60 uppercase font-bold">
+                <p className="text-med text-white uppercase font-bold">
                   {article.title}
                 </p>
-                <h4 className="text-white font-medium text-large">
+                <h4 className="text-white/60 font-medium text-med">
                   {article.subtitle}
                 </h4>
-                <p className="text-tiny text-white font-medium md:text-large">
+                <p className="text-tiny text-white/60 font-medium md:text-med">
                   <time dateTime={article._createdAt}>{format(date, 'LLLL d, yyyy')}</time>
                 </p>
-                <h4 className="text-white font-medium text-large">
+                <h4 className="text-white/60 font-medium text-large">
                   {author.name}
                 </h4>
               </CardHeader>

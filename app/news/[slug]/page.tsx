@@ -9,6 +9,7 @@ const parseArticleData = async (article: any) => {
             .replace("-webp", ".webp")
             .replace("-jpeg", ".jpeg")
             .replace("-png", ".png")
+            .replace("-jpg", ".jpg")
         : null
 
     const bodyText = article.body.map((e: any) => e.children)
