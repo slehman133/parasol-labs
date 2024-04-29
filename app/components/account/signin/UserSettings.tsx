@@ -110,7 +110,7 @@ const UserSettings = ({ userId }: { userId: string }) => {
                         {updateEnabled &&
                             <div className='flex justify-center'>
                                 <Button
-                                    className="w-1/2 my-5 mx-auto p-2"
+                                    className="w-full  xl:w-1/2 my-5 mx-auto p-2"
                                     color="primary"
                                     variant="bordered"
                                     form='basic-information'
@@ -155,7 +155,7 @@ const UserSettings = ({ userId }: { userId: string }) => {
                                 }}
                             >
                                 <Input
-                                    className="my-2 w-1/2"
+                                    className="my-2 w-full xl:w-1/2"
                                     variant="underlined"
                                     type="password"
                                     placeholder="Current Password"
@@ -168,7 +168,7 @@ const UserSettings = ({ userId }: { userId: string }) => {
                                     }}
                                 />
                                 <Input
-                                    className="my-2 w-1/2"
+                                    className="my-2 w-full xl:w-1/2"
                                     variant="underlined"
                                     type="password"
                                     placeholder="New Password"
@@ -187,7 +187,7 @@ const UserSettings = ({ userId }: { userId: string }) => {
                                 {errors.newPassword && <p className='text-red-500 text-center max-w-sm'>Valid password is required. Must contain one uppercase letter, one lowercase letter, one number, and one special character, and be at least 8 characters long.</p>}
 
                                 <Input
-                                    className=" w-1/2"
+                                    className="w-full xl:w-1/2"
                                     variant="underlined"
                                     type="password"
                                     placeholder="Confirm New Password"
@@ -205,9 +205,9 @@ const UserSettings = ({ userId }: { userId: string }) => {
                                 {errors.confirmNewPassword && <p className='text-red-500 text-center max-w-sm'>Passwords do not match.</p>}
                                 {errors.changeFailed && <p className='text-red-500 text-center max-w-sm'>Sign up failed. Please try again or use different credentials.</p>}
 
-                                <div className="flex justify-between">
+                                <div className="flex flex-col xl:flex-row justify-between">
                                     <Button
-                                        className="w-1/3 my-5 mx-auto"
+                                        className="xl:w-1/3 my-5 mx-auto text-xs"
                                         color="warning"
                                         variant="bordered"
                                         type="submit"
@@ -218,7 +218,7 @@ const UserSettings = ({ userId }: { userId: string }) => {
                                         Change Password
                                     </Button>
                                     <Button
-                                        className="w-1/3 my-5 mx-auto"
+                                        className="xl:w-1/3 my-5 mx-auto"
                                         variant="bordered"
                                         color="danger"
                                         onPress={async (e) => {
