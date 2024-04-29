@@ -44,9 +44,9 @@ const HeadNavbar = () => {
         className="bg-transparent"
       >
         <NavbarContent className=" sm:basis-full " justify="start">
-          <NavbarBrand as="li" className="gap-3 max-w-fit flex space-x-1">
+          <NavbarBrand as="li" className="gap-3 max-w-fit lg:flex space-x-1 hidden">
             <Link
-              className="flex justify-start items-center gap-1"
+              className="flex justify-start items-center gap-1 "
               href="/"
             >
               <Image
@@ -59,7 +59,7 @@ const HeadNavbar = () => {
             <Divider orientation="vertical" />
           </NavbarBrand>
           <NavbarBrand>
-            <p className="font-bold text-inherit text-lg">
+            <p className="font-bold text-inherit  text-sm md:text-lg ">
               PARASOL LABORATORIES
               <br />
               INCORPORATED
