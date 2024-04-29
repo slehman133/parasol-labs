@@ -55,9 +55,9 @@ const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
             action: "user_sign_in",
             category: "user_access",
             label: "user_log_in",
-            value: `${formData.email}`,
-            username: `${formData.email}`,
-            value: `${formData.email} - User logged in`,
+            value: ``,
+            username: "",
+            value: ` - User logged in`,
         })
     };
     const createGAEventSignOut = async () => {
@@ -65,7 +65,7 @@ const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
             action: "user_sign_out",
             category: "user_sign_out",
             label: "user_sign_out",
-            value: `${formData.email}`,
+            value: ``,
         })
     };
 

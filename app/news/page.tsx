@@ -4,6 +4,7 @@ import PostPreview from '../components/Blog/PostPreview';
 import Link from "next/link";
 import { client } from '@/sanity/lib/client';
 import {Divider } from "@nextui-org/react";
+import { PostMetadata } from '../components/Blog/PostMetadata';
 
 //developed, using integrated components, see component files for integrations
 //Written by Nicholas Whitehorn
@@ -15,8 +16,8 @@ export async function generateMetadata() {
 }
 
 const NewsPage = async () => {
-    const res = await client.fetch(`*[_type == "post"]`, {}, { cache: "no-store" })
-    const postPreviews = res.map((post:any) => (
+    const res = await client.fetch(`*[_type == "post"] | order(_createdAt asc)`, {}, { cache: "no-store" })
+    const postPreviews = await res.map((post:PostMetadata) => (
         <PostPreview key = {post.slug?.current}{...post}/>
     ));
 

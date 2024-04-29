@@ -22,8 +22,8 @@ const SignUpPage = () => {
             action: "User_Sign_Up",
             category: "user",
             label: "user_creation",
-            value: `${formData.email} - sent email successfully`,
-            username: `${formData.email}`,
+            value: ` - sent email successfully`,
+            username: "",
         })
     };
 

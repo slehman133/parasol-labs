@@ -17,8 +17,8 @@ const SignInPage = () => {
             action: "p_user_sign_in",
             category: "p_user_access",
             label: "p_user_log_in",
-            value: `${formData.email} - User logged in`,
-            username: `${formData.email}`
+            value: ` - User logged in`,
+            username: ""
         })
     };
     const [isVisible, setIsVisible] = React.useState(false)
