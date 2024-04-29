@@ -24,7 +24,7 @@ const OrdersDisplay = ({ orders }: { orders: any }) => {
     );
     return (
         <>
-            <Table classNames={classNames} removeWrapper isCompact>
+            <Table classNames={classNames} removeWrapper isCompact className='overflow-x-scroll'>
                 <TableHeader>
                     <TableColumn>
                         Status
@@ -34,12 +34,6 @@ const OrdersDisplay = ({ orders }: { orders: any }) => {
                     </TableColumn>
                     <TableColumn>
                         Product(s)
-                    </TableColumn>
-                    <TableColumn>
-                        First Name
-                    </TableColumn>
-                    <TableColumn>
-                        Last Name
                     </TableColumn>
                     <TableColumn>
                         Email
@@ -83,8 +77,6 @@ const OrdersDisplay = ({ orders }: { orders: any }) => {
                                         })
                                     }
                                 </TableCell>
-                                <TableCell>{firstName}</TableCell>
-                                <TableCell>{lastName}</TableCell>
                                 <TableCell>{email}</TableCell>
                                 <TableCell>{formatted.join(' ')}</TableCell>
                                 <TableCell>${amount}</TableCell>
