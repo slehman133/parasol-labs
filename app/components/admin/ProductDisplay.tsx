@@ -70,7 +70,7 @@ const ProductDisplay = ({ products }: { products: any }) => {
 
   const handleBroadcast = async () => {
     //fetch all 
-  };    
+  };
 
   const classNames = useMemo(
     () => ({
@@ -196,11 +196,11 @@ const ProductDisplay = ({ products }: { products: any }) => {
                     </div>
                   </ModalBody>
                   <ModalFooter>
-                    <Button color="danger" variant="light" onPress={onClose}>
+                    <Button color="primary" onPress={onClose}>
                       Close
                     </Button>
                     <Button
-                      color="primary"
+                      color="danger"
                       onPress={async () => {
                         const res = await fetch("/api/admin/product", {
                           method: "DELETE",
