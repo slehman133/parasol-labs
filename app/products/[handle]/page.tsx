@@ -35,6 +35,7 @@ const ProductPage = async (props: ProductPageProps) => {
   const quantityAvailable = product.variants.edges[0].node.quantityAvailable;
   const image = product.images.edges[0]?.node;
   const variantId = product.variants.edges[0].node;
+  const price = Number(product.priceRange.minVariantPrice.amount).toFixed(2)
 
   // console.log(image?.transformedSrc)
 
@@ -58,7 +59,7 @@ const ProductPage = async (props: ProductPageProps) => {
         <div className="mx-auto my-12 max-w-3xl">
           <h1 className="font-bold text-5xl">{product.title}</h1>
           <h3 className="font-semibold text-xl">
-            ${Number(product.priceRange.minVariantPrice.amount).toFixed(2)}
+            {price === '0.00' ? "----" : `$${price}`}
           </h3>
           <p>{product.description}</p>
           {quantityAvailable > 0 ? (

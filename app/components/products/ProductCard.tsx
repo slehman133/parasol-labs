@@ -17,6 +17,9 @@ interface ProductCardProps {
 }
 
 const ProductCard = (props: ProductCardProps) => {
+
+    const price = Number(props.price).toFixed(2)
+
     return (
         <>
             <motion.div className="flex shadow-2xl flex-col lg:flex-row w-[90%] mx-auto my-5 justify-center text-foreground"
@@ -31,7 +34,7 @@ const ProductCard = (props: ProductCardProps) => {
                 transition={{ duration: 0.75 }}>
                 <div className='flex flex-col justify-evenly md:justify-center m-5 p-5 gap-3'>
                     <h2 className="text-5xl font-bold">{props.title}</h2>
-                    <p className='font-semibold'>${Number(props.price).toFixed(2)}</p>
+                    <p className='font-semibold'>{price === "0.00" ? '----' : `$${price}`}</p>
                     <div className='h-60 overflow-hidden max-w-5xl'>
                         <p className='text-clip'>{props.description}</p>
                     </div>
