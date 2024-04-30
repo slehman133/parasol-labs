@@ -117,13 +117,14 @@ const UserSettings = ({ userId }: { userId: string }) => {
                                     type="submit"
                                     onClick={async (e) => {
                                         e.preventDefault();
-                                        const res = await fetch("http://localhost:3000/api/user/edit", {
+                                        const res = await fetch("/api/user/edit", {
                                             method: "PATCH",
                                             body: JSON.stringify({
                                                 ...formData,
                                                 event: "edit-basic-information",
                                             }),
                                         });
+                                        setUpdateEnabled(false);
                                         // console.log(res)
                                     }}
                                 >
@@ -140,7 +141,7 @@ const UserSettings = ({ userId }: { userId: string }) => {
                                 action=""
                                 onSubmit={async (e) => {
                                     e.preventDefault();
-                                    const res = await fetch("http://localhost:3000/api/user/edit", {
+                                    const res = await fetch("/api/user/edit", {
                                         method: "PATCH",
                                         body: JSON.stringify({
                                             ...formData,
