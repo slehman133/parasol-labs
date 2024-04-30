@@ -8,7 +8,7 @@ export default function page() {
     <div className="flex flex-col lg:flex-row justify-between container gap-24 mx-auto p-12">
       <div className="lg:w-1/2">
           <div className="boxed p-4">
-            <h1 className="text-5xl lg:text-8xl">Our Projects</h1>
+            <h1 className="text-5xl lg:text-8xl dark:invert">Our Projects</h1>
           </div>
           <p className="my-10 pl-4 md:w-2/3 font-medium text-lg text-left">
             At Parasol Laboratories, our projects embody our commitment to pioneering healthcare innovation. Each endeavor is a reflection of our dedication to transforming biotechnology with a focus on practical, impactful solutions.
@@ -17,7 +17,7 @@ export default function page() {
       <div className="lg:w-1/2"> 
           <div className="relative" id='strlproject'>
             <div className="strlboxed w-fit p-5 h-inherit absolute z-10">
-              <h1 className='font-bold text-4xl md:text-7xl'>STRL</h1>
+              <h1 className='font-bold text-4xl md:text-7xl dark:invert'>STRL</h1>
             </div>
             <Image 
               src='/images/strl.jpg'
