@@ -25,14 +25,16 @@ const TeamPage = () => {
     return (
         <>
             <div className = "flex md:px-48 md:py-16 flex-col flex-wrap p-4 gap-4">
-                <h2 className="flex text-3xl justify-center px-4">
-                    <Image
+                <h1 className="flex text-3xl justify-center px-4 text-center text-xl lg:text-6xl">
+                    WE ARE PARASOL
+                    {/* <Image
                         as={NextImage}
                         src="/images/TeamTitle.jpeg"
                         width={600}
                         height={600}
-                    />
-                </h2>
+                        className=''
+                    /> */}
+                </h1>
                 <Divider/>
               
                 <div className="flex md:flex-row flex-col justify-center items-center gap-4 p-4 md:gap-16 md:px-24">
