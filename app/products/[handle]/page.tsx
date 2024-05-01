@@ -43,7 +43,7 @@ const ProductPage = async (props: ProductPageProps) => {
     //need to handle the notify me button
   };
   const imageSrc =
-    image?.transformedSrc || `/images/${props.params.handle}.jpg`;
+    image?.transformedSrc || `/images/no-image.jpg`;
 
   return (
     <>

@@ -74,7 +74,7 @@ const CartPage = () => {
                                 {cartItems.map((item, index) => (
                                     <div key={index} className='relative flex flex-row overflow-hidden shadow-small my-5'>
                                         <div className='overflow-hidden w-1/2'>
-                                            <img className="object-cover h-48 w-full lg:w-48" src={item.image ? item.image : `/images/${item.handle}.jpg`} alt={item.name} />
+                                            <img className="object-cover h-48 w-full lg:w-48" src={item.image ? item.image : `/images/no-image.jpg`} alt={item.name} />
                                         </div>
                                         <div className='p-5'>
                                             <h1 className='font-bold text-2xl'>{item.name}</h1>

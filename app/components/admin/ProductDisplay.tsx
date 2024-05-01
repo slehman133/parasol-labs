@@ -323,7 +323,7 @@ const ProductDisplay = ({ products }: { products: any }) => {
             const variantId = edges[0].node.id;
             const image = e.node.images?.edges[0]?.node.transformedSrc
               ? e.node.images.edges[0].node.transformedSrc
-              : `/images/${handle}.jpg`;
+              : `/images/no-image.jpg`;
             return (
               <TableRow key={id}>
                 <TableCell>
