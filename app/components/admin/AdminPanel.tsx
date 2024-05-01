@@ -105,10 +105,10 @@ const AdminPanel = ({
                     {theme === "light" && (
                         <div className='my-5'>
                             <iframe
-                            width="1200"
-                            height="900"
-                            src="https://lookerstudio.google.com/embed/reporting/a97908c4-4dfe-469a-b112-006505140214/page/9HNjD"
-                            sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" />
+                                width="1200"
+                                height="900"
+                                src="https://lookerstudio.google.com/embed/reporting/a97908c4-4dfe-469a-b112-006505140214/page/9HNjD"
+                                sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" />
                         </div>
                     )}
                 </>
