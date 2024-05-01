@@ -105,6 +105,7 @@ export const adminEditQuantity = async (id: string, quantity: number, variantId:
       }
     }`
   const products = await admin(inventoryAdjustQuery)
+  console.log(products)
   return products
 }
 
@@ -243,7 +244,7 @@ export const editPrice = async (id: string, variantId: string, price: number) =>
   }
 }`
   const newPrice = await admin(editPriceQuery)
-  // console.log(newPrice)
+  console.log(newPrice)
   return newPrice
 }
 
@@ -351,7 +352,6 @@ export const editImage = async (product: {
 
 
 // Product creation functions
-
 const createProductQuery = async (product:
   {
     title: string,
@@ -360,7 +360,7 @@ const createProductQuery = async (product:
     imageUrl: string,
     altText: string,
   }) => {
-  const createProdQuery =
+  const createProdQuery = product.imageUrl ?
     `mutation{
       productCreate(input: {
         title: "${product.title}",
@@ -370,6 +370,24 @@ const createProductQuery = async (product:
         alt: "${product.altText}",
         mediaContentType: IMAGE,
         originalSource: "${product.imageUrl}"
+      }) {
+        product {
+          id
+          title
+          handle
+          descriptionHtml
+        }
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+  `: `mutation{
+      productCreate(input: {
+        title: "${product.title}",
+        descriptionHtml: "${product.descriptionHtml}",
+        handle: "${product.handle}"
       }) {
         product {
           id

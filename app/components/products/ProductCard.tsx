@@ -45,7 +45,7 @@ const ProductCard = (props: ProductCardProps) => {
                     </div>
                 </div>
                 <div className='overflow-hidden max-w-lg mx-auto p-10  '>
-                    <Image className='object-cover w-full h-full shadow-xl' height={9000} width={9000} src={props.image} alt={props.altText} />
+                    <Image className='object-cover w-full h-full shadow-xl' height={9000} width={9000} src={props.image || "/images/no-image.jpg"} alt={props.altText} />
                 </div>
             </motion.div >
         </>)

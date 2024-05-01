@@ -67,7 +67,7 @@ const ProductsDisplay = (props: { products: any }) => {
                     const image = item.images.edges[0]?.node.transformedSrc ?
                         item.images.edges[0]?.node.transformedSrc
                         :
-                        `/images/${item.handle}.jpg`;
+                        `/images/no-image.jpg`;
                     const altText = item.images.edges[0]?.node.altText;
                     const price = item.priceRange.minVariantPrice.amount;
 
