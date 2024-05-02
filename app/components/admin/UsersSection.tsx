@@ -49,7 +49,7 @@ const UsersSection = () => {
   const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState<User[]>([]);
   const [userChanged, setUserChanged] = useState(false);
-
+  const [lonelySuperAdmin, setLonelySuperAdmin] = useState<Number | undefined>();
   const [userToChange, setUserToChange] = useState({
     id: "",
     role: "",
@@ -66,6 +66,17 @@ const UsersSection = () => {
   const [selectedRow, setSelectedRow] = useState({});
 
   const hasSearchFilter = Boolean(filterValue);
+
+  const checkLonelySuperAdmin = async () => {
+    //of the users, check if there is only one superadmin
+    const superAdmins = users.filter((user) => user.role === "superadmin");
+    if (superAdmins.length === 1) {
+      setLonelySuperAdmin(superAdmins[0].id);
+    }
+    else {
+      setLonelySuperAdmin(undefined);
+    }
+  }
 
   const filteredItems = useMemo(() => {
     let filteredForms = [...users];
@@ -206,6 +217,7 @@ const UsersSection = () => {
       setUsers(userRes);
     };
     getUsers();
+    checkLonelySuperAdmin();
   }, [userChanged]);
 
   const classNames = useMemo(
@@ -258,9 +270,11 @@ const UsersSection = () => {
                 <DropdownTrigger>
                   <Button
                     isIconOnly
+                    disabled={user.id === lonelySuperAdmin}
                     size="sm"
                     variant="light"
                     onClick={() => {
+
                       setSelectedRow(user);
                       setUserToChange({
                         id: user.id.toString(),
@@ -276,9 +290,13 @@ const UsersSection = () => {
                   <DropdownItem
                     key="edit"
                     onClick={() => {
-                      onOpen();
-
-                      setUserChanged(!userChanged);
+                      if (user.id === lonelySuperAdmin) {
+                        alert("You cannot change the role of the only superadmin");
+                      }
+                      else {
+                        onOpen();
+                        setUserChanged(!userChanged);
+                      }
                     }}
                   >
                     Edit
@@ -328,12 +346,14 @@ const UsersSection = () => {
                             })
                           }
                           }
+                          disabled={userToChange.id === lonelySuperAdmin?.toString()}
                         >
                           <option value="superadmin">Super Admin</option>
                           <option value="admin">Admin</option>
                           <option value="admin_products">Product Admin</option>
                           <option value="admin_forms">Form Admin</option>
                           <option value="user">User</option>
+                          <option value="DEREGISTERED">Unregister</option>
                         </select>
                       </div>
                     </form>
@@ -357,6 +377,7 @@ const UsersSection = () => {
                         setLoading(false);
                         onClose();
                       }}
+                      disabled={userToChange.id === lonelySuperAdmin?.toString()}
                     >
                       Change Role
                     </Button>

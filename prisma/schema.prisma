@@ -42,6 +42,7 @@ enum user_type {
   admin_products
   admin_forms
   user
+  DEREGISTERED
 }
 
 //Logistically, you could refactor and create a model for:
