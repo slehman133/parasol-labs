@@ -2,6 +2,8 @@
  * This configuration is used to for the Sanity Studio that’s mounted on the `\app\studio\[[...index]]\page.jsx` route
  */
 
+// Config updated by Nick for light mode functionallity
+
 import { visionTool } from '@sanity/vision'
 import { defineConfig, buildLegacyTheme } from 'sanity'
 import { structureTool } from 'sanity/structure'

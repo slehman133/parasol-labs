@@ -1,7 +1,5 @@
 import React from 'react';
-import getPostMetadata from '../components/Blog/getPostMetadata';
 import PostPreview from '../components/Blog/PostPreview';
-import Link from "next/link";
 import { client } from '@/sanity/lib/client';
 import {Divider } from "@nextui-org/react";
 import { PostMetadata } from '../components/Blog/PostMetadata';
