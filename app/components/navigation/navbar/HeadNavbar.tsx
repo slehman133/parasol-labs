@@ -2,6 +2,7 @@
 
 "use client";
 //Kaeden
+// Prototyping, routes Nick
 import React, { useEffect, useRef } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { CartProvider, useCart } from "@/app/context/CartContext";

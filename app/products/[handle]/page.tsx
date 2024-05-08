@@ -5,7 +5,6 @@ import { getProduct } from "@/utils/storefront";
 import React from "react";
 import { Image } from "@nextui-org/react";
 import AddToCart from "../../components/products/AddToCart";
-import SubscriptionForm from "@/app/components/SubscriptionForm";
 import { redirect } from "next/navigation";
 
 interface ProductPageProps {
@@ -79,10 +78,6 @@ const ProductPage = async (props: ProductPageProps) => {
                 <p>This product is currently unavailable</p>
                 <p>Check back frequently to see if it becomes available</p>
               </div>
-              {/* <SubscriptionForm
-                label="Enter your email here if you'd like to receive notifications on stock updates for this product."
-                product={product.title}
-              /> */}
             </>
           )}
         </div>
