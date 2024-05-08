@@ -49,6 +49,7 @@ const AccountModalContent = ({ isOpen, onOpen, onOpenChange }) => {
     const [activeTab, setActiveTab] = useState("signin")
 
 
+    // Analytics tags Nick W & Kaeden
 
     const createGAEvent = async () => {
         ga.event({

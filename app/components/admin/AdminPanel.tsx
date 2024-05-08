@@ -11,7 +11,7 @@ import UsersSection from "./UsersSection";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 
-
+// Analytics by Nick W
 
 const AdminPanel = ({
     orders,

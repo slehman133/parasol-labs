@@ -10,6 +10,9 @@ import { useSession } from "next-auth/react";
 import UsersSection from "./UsersSection";
 import Link from "next/link";
 import { useTheme } from "next-themes";
+
+// Analytics by Nick W
+
 const DisplayPanel = ({
   orders,
   products,
